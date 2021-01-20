@@ -15,6 +15,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from 'src/components/Logo';
+import { connect } from 'react-redux';
+import { loggedOut } from '../../store/actions';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -24,7 +26,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TopBar = ({
+const TopBar = (props, {
   className,
   onMobileNavOpen,
   ...rest
@@ -54,7 +56,7 @@ const TopBar = ({
             </Badge>
           </IconButton>
           <IconButton color="inherit">
-            <InputIcon />
+            <InputIcon onClick={() => props.signOut()} />
           </IconButton>
         </Hidden>
         <Hidden lgUp>
@@ -70,9 +72,16 @@ const TopBar = ({
   );
 };
 
+// FIXME: Remove this and fix this method
+// eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(loggedOut())
+});
+
 TopBar.propTypes = {
   className: PropTypes.string,
-  onMobileNavOpen: PropTypes.func
+  onMobileNavOpen: PropTypes.func,
+  signOut: PropTypes.func
 };
 
-export default TopBar;
+export default connect(null, mapDispatchToProps)(TopBar);
