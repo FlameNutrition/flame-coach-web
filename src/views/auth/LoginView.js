@@ -6,15 +6,15 @@ import {
   Box,
   Button,
   Container,
-  Grid,
   Link,
   TextField,
   Typography,
   makeStyles
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
 import Page from 'src/components/Page';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loggedIn } from '../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +25,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const LoginView = () => {
+const LoginView = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  const handlerSubmitting = (value, { setSubmitting }) => {
+    props.signIn(value.email, value.password);
+
+    // FIXME: Change this when something wrong happened
+    if (props.isAuth) {
+      setSubmitting(false);
+      navigate('/app/dashboard', { replace: true });
+    } else {
+      setSubmitting(true);
+    }
+  };
 
   return (
     <Page
@@ -42,17 +54,16 @@ const LoginView = () => {
       >
         <Container maxWidth="sm">
           <Formik
+            // FIXME: Please remote the init values
             initialValues={{
-              email: 'demo@devias.io',
-              password: 'Password123'
+              email: 'test@test.com',
+              password: 'password'
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
-            }}
+            onSubmit={handlerSubmitting}
           >
             {({
               errors,
@@ -76,10 +87,10 @@ const LoginView = () => {
                     gutterBottom
                     variant="body2"
                   >
-                    Sign in on the internal platform
+                    Start your day, as a flame
                   </Typography>
                 </Box>
-                <Grid
+                {/*                <Grid
                   container
                   spacing={3}
                 >
@@ -114,8 +125,8 @@ const LoginView = () => {
                       Login with Google
                     </Button>
                   </Grid>
-                </Grid>
-                <Box
+                </Grid> */}
+                {/*                <Box
                   mt={3}
                   mb={1}
                 >
@@ -126,7 +137,7 @@ const LoginView = () => {
                   >
                     or login with email address
                   </Typography>
-                </Box>
+                </Box> */}
                 <TextField
                   error={Boolean(touched.email && errors.email)}
                   fullWidth
@@ -188,4 +199,21 @@ const LoginView = () => {
   );
 };
 
-export default LoginView;
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.loggedIn
+  };
+};
+
+// FIXME: Remove this
+// eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
+const mapDispatchToProps = (dispatch) => ({
+  signIn: (email, password) => dispatch(loggedIn(email, password))
+});
+
+LoginView.propTypes = {
+  isAuth: PropTypes.bool,
+  signIn: PropTypes.func
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

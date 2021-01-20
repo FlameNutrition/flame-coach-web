@@ -1,22 +1,24 @@
-import update from 'immutability-helper';
 import * as actionType from '../actions/actionsType';
 
-const initialState = {
-  loggedIn: false,
-  username: null
-};
+const initialState = { loggedIn: false, userInfo: null };
 
 const authReducer = (state = initialState, action) => {
-  switch (action) {
-    case actionType.AUTH_LOGIN:
-      return update(state, {
-        loggedIn: action.auth
-      });
-
+  switch (action.type) {
+    case actionType.AUTH_LOGIN_SUCCESS:
+      return {
+        loggedIn: true,
+        userInfo: action.user
+      };
+    case actionType.AUTH_LOGIN_FAIL:
+      return {
+        loggedIn: false,
+        userInfo: null
+      };
     case actionType.AUTH_LOGOUT:
-      return update(state, {
-        loggedIn: false
-      });
+      return {
+        loggedIn: false,
+        userInfo: null
+      };
     default:
       return state;
   }

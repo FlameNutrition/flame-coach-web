@@ -7,6 +7,7 @@ import 'src/mixins/chartjs';
 import theme from 'src/theme';
 import routes from 'src/routes';
 import { connect } from 'react-redux';
+import { withCookies } from 'react-cookie';
 
 const App = (props) => {
   // eslint-disable-next-line react/destructuring-assignment,react/prop-types
@@ -22,8 +23,8 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.authReducer.loggedIn
+    isAuth: state.auth.loggedIn
   };
 };
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, null)(withCookies(App));
