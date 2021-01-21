@@ -29,7 +29,7 @@ const LoginView = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const handlerSubmitting = (value, { setSubmitting }) => {
+  const handlerSubmitting = async (value, { setSubmitting }) => {
     props.signIn(value.email, value.password);
 
     // FIXME: Change this when something wrong happened
@@ -37,7 +37,7 @@ const LoginView = (props) => {
       setSubmitting(false);
       navigate('/app/dashboard', { replace: true });
     } else {
-      setSubmitting(true);
+      setSubmitting(false);
     }
   };
 
@@ -56,7 +56,7 @@ const LoginView = (props) => {
           <Formik
             // FIXME: Please remote the init values
             initialValues={{
-              email: 'test@test.com',
+              email: 'test@test.comsss',
               password: 'password'
             }}
             validationSchema={Yup.object().shape({
@@ -90,54 +90,6 @@ const LoginView = (props) => {
                     Start your day, as a flame
                   </Typography>
                 </Box>
-                {/*                <Grid
-                  container
-                  spacing={3}
-                >
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      color="primary"
-                      fullWidth
-                      startIcon={<FacebookIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Facebook
-                    </Button>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      fullWidth
-                      startIcon={<GoogleIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Google
-                    </Button>
-                  </Grid>
-                </Grid> */}
-                {/*                <Box
-                  mt={3}
-                  mb={1}
-                >
-                  <Typography
-                    align="center"
-                    color="textSecondary"
-                    variant="body1"
-                  >
-                    or login with email address
-                  </Typography>
-                </Box> */}
                 <TextField
                   error={Boolean(touched.email && errors.email)}
                   fullWidth
@@ -164,6 +116,13 @@ const LoginView = (props) => {
                   value={values.password}
                   variant="outlined"
                 />
+                <Typography
+                  hidden={!props.error}
+                  color="error"
+                  variant="body2"
+                >
+                  {props.error}
+                </Typography>
                 <Box my={2}>
                   <Button
                     color="primary"
@@ -201,7 +160,8 @@ const LoginView = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.auth.loggedIn
+    isAuth: state.auth.loggedIn,
+    error: state.auth.error,
   };
 };
 
@@ -213,6 +173,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 LoginView.propTypes = {
   isAuth: PropTypes.bool,
+  error: PropTypes.string,
   signIn: PropTypes.func
 };
 

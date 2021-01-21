@@ -1,15 +1,21 @@
+import moment from 'moment';
 import * as actionType from './actionsType';
 
 const loggedInSuccess = (userInfo) => {
   return {
     type: actionType.AUTH_LOGIN_SUCCESS,
-    user: userInfo
+    payload: {
+      userDetails: userInfo
+    }
   };
 };
 
-const loggedInFail = () => {
+const loggedInFail = (errorMessage) => {
   return {
-    type: actionType.AUTH_LOGIN_FAIL
+    type: actionType.AUTH_LOGIN_FAIL,
+    payload: {
+      error: errorMessage
+    }
   };
 };
 
@@ -20,10 +26,16 @@ export const loggedIn = (email, password) => {
     const isAuth = isEmailValid && isPasswordValid;
 
     if (isAuth) {
-      const userInfo = JSON.stringify('user');
-      dispatch(loggedInSuccess(userInfo));
+      const responseApi = {
+        username: 'nbento.neves@gmail.com',
+        firstname: 'Nuno',
+        lastname: 'Bento',
+        token: '048b4069-d954-4e66-b6ce-6cda605140bc',
+        expiration: moment().utc().add(1, 'hour')
+      };
+      dispatch(loggedInSuccess(responseApi));
     } else {
-      dispatch(loggedInFail());
+      dispatch(loggedInFail('Email Address or password invalid, please try again...'));
     }
   };
 };

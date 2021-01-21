@@ -11,9 +11,12 @@ import {
   Link,
   TextField,
   Typography,
-  makeStyles
+  makeStyles, Select, MenuItem, InputLabel, FormControl
 } from '@material-ui/core';
 import Page from 'src/components/Page';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { signup } from '../../store/actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const RegisterView = () => {
+const RegisterView = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -46,6 +49,7 @@ const RegisterView = () => {
               firstName: '',
               lastName: '',
               password: '',
+              type: 'CLIENT',
               policy: false
             }}
             validationSchema={
@@ -57,8 +61,23 @@ const RegisterView = () => {
                 policy: Yup.boolean().oneOf([true], 'This field must be checked')
               })
             }
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+            onSubmit={(value, { setSubmitting }) => {
+              const userInfo = {
+                email: value.email,
+                firstName: value.firstName,
+                lastName: value.lastName,
+                // FIXME: This should be encrypted
+                password: value.password,
+                userType: value.type
+              };
+
+              props.signUp(userInfo);
+
+              if (props.isAuth) {
+                navigate('/app/dashboard', { replace: true });
+              }
+
+              setSubmitting(false);
             }}
           >
             {({
@@ -86,6 +105,19 @@ const RegisterView = () => {
                     Use your email to create new account
                   </Typography>
                 </Box>
+                <FormControl fullWidth variant="outlined" margin="normal">
+                  <InputLabel>Who I am:</InputLabel>
+                  <Select
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    label="Who I am"
+                    value={values.type}
+                    name="type"
+                  >
+                    <MenuItem value="CLIENT">I am a client</MenuItem>
+                    <MenuItem value="COACH" disabled>I am a coach (not available)</MenuItem>
+                  </Select>
+                </FormControl>
                 <TextField
                   error={Boolean(touched.firstName && errors.firstName)}
                   fullWidth
@@ -203,4 +235,22 @@ const RegisterView = () => {
   );
 };
 
-export default RegisterView;
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.loggedIn,
+    error: state.auth.error,
+  };
+};
+
+// FIXME: Remove this
+// eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
+const mapDispatchToProps = (dispatch) => ({
+  signUp: (userInfo) => dispatch(signup(userInfo))
+});
+
+RegisterView.propTypes = {
+  isAuth: PropTypes.bool,
+  signUp: PropTypes.func
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterView);
