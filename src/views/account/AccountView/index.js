@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Grid,
@@ -19,6 +19,25 @@ const useStyles = makeStyles((theme) => ({
 
 const Account = () => {
   const classes = useStyles();
+  const [userDetails, setUserDetails] = useState({
+    firstName: 'Katarina',
+    lastName: 'Smith',
+    email: 'demo@devias.io',
+    phone: '',
+    codePhone: '+351',
+    height: 0,
+    weight: 0,
+    gender: 'male',
+    country: 'USA',
+    measure: 'kg/cm'
+  });
+
+  const handleUpdateUserDetails = (event) => {
+    setUserDetails({
+      ...userDetails,
+      [event.target.name]: event.target.value
+    });
+  };
 
   return (
     <Page
@@ -44,7 +63,7 @@ const Account = () => {
             md={6}
             xs={12}
           >
-            <ProfileDetails />
+            <ProfileDetails userDetails={userDetails} handleUserDetails={handleUpdateUserDetails} />
           </Grid>
         </Grid>
       </Container>
