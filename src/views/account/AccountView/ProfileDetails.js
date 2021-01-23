@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -8,47 +8,23 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  FormControl,
   Grid,
-  TextField,
-  makeStyles
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Select,
+  TextField
 } from '@material-ui/core';
-
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const ProfileDetails = ({ className, ...rest }) => {
+const ProfileDetails = ({
+  handleUserDetails, userDetails, className, ...rest
+}) => {
   const classes = useStyles();
-  const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'Alabama',
-    country: 'USA'
-  });
-
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
 
   return (
     <form
@@ -59,7 +35,7 @@ const ProfileDetails = ({ className, ...rest }) => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
+          subheader="Contact information"
           title="Profile"
         />
         <Divider />
@@ -78,9 +54,9 @@ const ProfileDetails = ({ className, ...rest }) => {
                 helperText="Please specify the first name"
                 label="First name"
                 name="firstName"
-                onChange={handleChange}
+                onChange={handleUserDetails}
                 required
-                value={values.firstName}
+                value={userDetails.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -93,9 +69,9 @@ const ProfileDetails = ({ className, ...rest }) => {
                 fullWidth
                 label="Last name"
                 name="lastName"
-                onChange={handleChange}
+                onChange={handleUserDetails}
                 required
-                value={values.lastName}
+                value={userDetails.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -108,24 +84,38 @@ const ProfileDetails = ({ className, ...rest }) => {
                 fullWidth
                 label="Email Address"
                 name="email"
-                onChange={handleChange}
+                onChange={handleUserDetails}
                 required
-                value={values.email}
+                value={userDetails.email}
                 variant="outlined"
               />
             </Grid>
             <Grid
               item
-              md={6}
-              xs={12}
+              md={2}
+              xs={6}
+            >
+              <TextField
+                fullWidth
+                label="Code"
+                name="codePhone"
+                onChange={handleUserDetails}
+                value={userDetails.codePhone}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid
+              item
+              md={4}
+              xs={6}
             >
               <TextField
                 fullWidth
                 label="Phone Number"
                 name="phone"
-                onChange={handleChange}
+                onChange={handleUserDetails}
                 type="number"
-                value={values.phone}
+                value={userDetails.phone}
                 variant="outlined"
               />
             </Grid>
@@ -138,37 +128,104 @@ const ProfileDetails = ({ className, ...rest }) => {
                 fullWidth
                 label="Country"
                 name="country"
-                onChange={handleChange}
+                onChange={handleUserDetails}
                 required
-                value={values.country}
+                value={userDetails.country}
+                variant="outlined"
+              />
+            </Grid>
+          </Grid>
+        </CardContent>
+        <CardHeader
+          subheader="Personal data"
+        />
+        <Divider />
+        <CardContent>
+          <Grid
+            container
+            spacing={3}
+          >
+            <Grid
+              item
+              md={3}
+              xs={12}
+            >
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Measure Type</InputLabel>
+                <Select
+                  onChange={handleUserDetails}
+                  label="Measure Type"
+                  name="measure"
+                  value={userDetails.measure}
+                >
+                  <MenuItem value="kg/cm">Kg/cm</MenuItem>
+                  <MenuItem value="lbs/im">Lbs/im</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            spacing={3}
+          >
+            <Grid
+              item
+              md={4}
+              xs={6}
+            >
+              <TextField
+                fullWidth
+                helperText="Please specify your weight"
+                label="Weight"
+                name="weight"
+                type="number"
+                inputProps={{
+                  step: 0.05,
+                  min: 0
+                }}
+                onChange={handleUserDetails}
+                value={userDetails.weight}
                 variant="outlined"
               />
             </Grid>
             <Grid
               item
-              md={6}
-              xs={12}
+              md={4}
+              xs={6}
             >
               <TextField
                 fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
+                helperText="Please specify your height"
+                label="Height"
+                name="height"
+                type="number"
+                inputProps={{
+                  step: 0.05,
+                  min: 0
+                }}
+                onChange={handleUserDetails}
+                value={userDetails.height}
                 variant="outlined"
-              >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField>
+              />
+            </Grid>
+            <Grid
+              item
+              md={4}
+              xs={6}
+            >
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Gender</InputLabel>
+                <Select
+                  onChange={handleUserDetails}
+                  label="Gender"
+                  name="gender"
+                  value={userDetails.gender}
+                >
+                  <MenuItem value="male">Male</MenuItem>
+                  <MenuItem value="female">Female</MenuItem>
+                  <MenuItem value="other">Other</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
         </CardContent>
@@ -182,7 +239,7 @@ const ProfileDetails = ({ className, ...rest }) => {
             color="primary"
             variant="contained"
           >
-            Save details
+            Save
           </Button>
         </Box>
       </Card>
@@ -191,7 +248,9 @@ const ProfileDetails = ({ className, ...rest }) => {
 };
 
 ProfileDetails.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  handleUserDetails: PropTypes.func,
+  userDetails: PropTypes.object
 };
 
 export default ProfileDetails;
