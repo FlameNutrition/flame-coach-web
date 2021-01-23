@@ -1,18 +1,11 @@
-import React from 'react';
-import {
-  Container,
-  Grid,
-  makeStyles
-} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Container, Grid, makeStyles } from '@material-ui/core';
 import Page from 'src/components/Page';
-import Budget from './Budget';
 import LatestOrders from './LatestOrders';
 import LatestProducts from './LatestProducts';
 import Sales from './Sales';
 import TasksProgress from './TasksProgress';
-import TotalCustomers from './TotalCustomers';
-import TotalProfit from './TotalProfit';
-import TrafficByDevice from './TrafficByDevice';
+import Calendar from './Calendar/Calendar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = () => {
   const classes = useStyles();
+  const [weekProgress] = useState(55.5);
 
   return (
     <Page
@@ -43,35 +37,13 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <Budget />
+            <TasksProgress weekProgress={weekProgress} />
           </Grid>
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <TotalCustomers />
-          </Grid>
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <TasksProgress />
-          </Grid>
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <TotalProfit />
-          </Grid>
+        </Grid>
+        <Grid
+          container
+          spacing={3}
+        >
           <Grid
             item
             lg={8}
@@ -88,7 +60,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TrafficByDevice />
+            <Calendar />
           </Grid>
           <Grid
             item

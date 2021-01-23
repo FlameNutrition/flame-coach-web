@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
+import logger from 'loglevel';
 import PropTypes from 'prop-types';
 import {
   AppBar,
@@ -26,13 +27,17 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const TopBar = (props, {
+const TopBar = ({
   className,
   onMobileNavOpen,
+  // FIXME
+  // eslint-disable-next-line no-shadow
+  notification,
+  signOut,
   ...rest
 }) => {
   const classes = useStyles();
-  const [notifications] = useState([]);
+  const notificationLength = useState([]);
 
   return (
     <AppBar
@@ -48,21 +53,24 @@ const TopBar = (props, {
         <Hidden mdDown>
           <IconButton color="inherit">
             <Badge
-              badgeContent={notifications.length}
+              badgeContent={notificationLength.length}
               color="primary"
               variant="dot"
             >
-              <NotificationsIcon onClick={() => props.notification()} />
+              <NotificationsIcon onClick={() => notification()} />
             </Badge>
           </IconButton>
           <IconButton color="inherit">
-            <InputIcon onClick={() => props.signOut()} />
+            <InputIcon onClick={() => signOut()} />
           </IconButton>
         </Hidden>
         <Hidden lgUp>
           <IconButton
             color="inherit"
-            onClick={onMobileNavOpen}
+            onClick={() => {
+              logger.info('Open the mobile menu');
+              onMobileNavOpen();
+            }}
           >
             <MenuIcon />
           </IconButton>
