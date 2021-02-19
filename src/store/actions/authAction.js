@@ -21,7 +21,7 @@ const loggedInFail = (errorMessage) => {
 
 export const loggedIn = (email, password) => {
   return (dispatch) => {
-    const isEmailValid = email === 'test@test.com';
+    const isEmailValid = email === 'test@test.com' || email === 'coach@test.com';
     const isPasswordValid = password === 'password';
     const isAuth = isEmailValid && isPasswordValid;
 
@@ -31,6 +31,7 @@ export const loggedIn = (email, password) => {
         firstname: 'Nuno',
         lastname: 'Bento',
         token: '048b4069-d954-4e66-b6ce-6cda605140bc',
+        userType: email === 'coach@test.com' ? 'COACH' : 'CLIENT',
         expiration: moment().utc().add(1, 'hour')
       };
       dispatch(loggedInSuccess(responseApi));

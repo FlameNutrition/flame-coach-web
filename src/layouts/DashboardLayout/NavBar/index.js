@@ -13,15 +13,14 @@ import {
   makeStyles
 } from '@material-ui/core';
 import {
-  AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
-  Lock as LockIcon,
+  BookOpen as PlannerIcon,
   Settings as SettingsIcon,
-  ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
-  UserPlus as UserPlusIcon,
-  Users as UsersIcon
+  Users as UsersIcon,
+  Calendar as CalendarIcon
 } from 'react-feather';
+import { connect } from 'react-redux';
 import NavItem from './NavItem';
 
 const user = {
@@ -30,7 +29,7 @@ const user = {
   name: 'Katarina Smith'
 };
 
-const items = [
+const itemsCoach = [
   {
     href: '/app/dashboard',
     icon: BarChartIcon,
@@ -42,9 +41,9 @@ const items = [
     title: 'Customers'
   },
   {
-    href: '/app/products',
-    icon: ShoppingBagIcon,
-    title: 'Products'
+    href: '/app/planner',
+    icon: CalendarIcon,
+    title: 'Planner'
   },
   {
     href: '/app/account',
@@ -56,21 +55,24 @@ const items = [
     icon: SettingsIcon,
     title: 'Settings'
   },
+];
+
+const itemsClient = [
   {
-    href: '/login',
-    icon: LockIcon,
-    title: 'Login'
+    href: '/app/dashboard',
+    icon: PlannerIcon,
+    title: 'My Planner'
   },
   {
-    href: '/register',
-    icon: UserPlusIcon,
-    title: 'Register'
+    href: '/app/account',
+    icon: UserIcon,
+    title: 'Account'
   },
   {
-    href: '/404',
-    icon: AlertCircleIcon,
-    title: 'Error'
-  }
+    href: '/app/settings',
+    icon: SettingsIcon,
+    title: 'Settings'
+  },
 ];
 
 const useStyles = makeStyles(() => ({
@@ -89,7 +91,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const NavBar = ({ onMobileClose, openMobile }) => {
+const NavBar = ({ userType, onMobileClose, openMobile }) => {
   const classes = useStyles();
   const location = useLocation();
 
@@ -135,7 +137,14 @@ const NavBar = ({ onMobileClose, openMobile }) => {
       <Divider />
       <Box p={2}>
         <List>
-          {items.map((item) => (
+          {userType === 'COACH' ? itemsCoach.map((item) => (
+            <NavItem
+              href={item.href}
+              key={item.title}
+              title={item.title}
+              icon={item.icon}
+            />
+          )) : itemsClient.map((item) => (
             <NavItem
               href={item.href}
               key={item.title}
@@ -156,13 +165,13 @@ const NavBar = ({ onMobileClose, openMobile }) => {
           gutterBottom
           variant="h4"
         >
-          Need more?
+          Having issues?
         </Typography>
         <Typography
           align="center"
           variant="body2"
         >
-          Upgrade to PRO version and access 20 more screens
+          Please report any issue did you find. Help us to help you!
         </Typography>
         <Box
           display="flex"
@@ -175,7 +184,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
             href="https://react-material-kit.devias.io"
             variant="contained"
           >
-            See PRO version
+            Report
           </Button>
         </Box>
       </Box>
@@ -211,7 +220,8 @@ const NavBar = ({ onMobileClose, openMobile }) => {
 
 NavBar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
+  userType: PropTypes.string
 };
 
 NavBar.defaultProps = {
@@ -219,4 +229,10 @@ NavBar.defaultProps = {
   openMobile: false
 };
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    userType: state.auth.userInfo !== null ? state.auth.userInfo.userType : null
+  };
+};
+
+export default connect(mapStateToProps, null)(NavBar);

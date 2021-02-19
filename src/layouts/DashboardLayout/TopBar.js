@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import logger from 'loglevel';
 import PropTypes from 'prop-types';
 import {
-  AppBar,
-  Badge,
-  Box,
-  Hidden,
-  IconButton,
-  Toolbar,
-  makeStyles
+  AppBar, Box, Hidden, IconButton, makeStyles, Toolbar
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from 'src/components/Logo';
 import { connect } from 'react-redux';
@@ -37,7 +30,6 @@ const TopBar = ({
   ...rest
 }) => {
   const classes = useStyles();
-  const notificationLength = useState([]);
 
   return (
     <AppBar
@@ -51,7 +43,7 @@ const TopBar = ({
         </RouterLink>
         <Box flexGrow={1} />
         <Hidden mdDown>
-          <IconButton color="inherit">
+          {/* <IconButton color="inherit">
             <Badge
               badgeContent={notificationLength.length}
               color="primary"
@@ -59,7 +51,7 @@ const TopBar = ({
             >
               <NotificationsIcon onClick={() => notification()} />
             </Badge>
-          </IconButton>
+          </IconButton> */}
           <IconButton color="inherit">
             <InputIcon onClick={() => signOut()} />
           </IconButton>

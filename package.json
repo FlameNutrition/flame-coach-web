@@ -1,5 +1,5 @@
 {
-  "name": "flame",
+  "name": "flame-coach",
   "author": "Flame Nutrition",
   "version": "0.1.0",
   "private": true,
@@ -25,9 +25,11 @@
     ]
   },
   "dependencies": {
+    "@date-io/moment": "1.x",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "@material-ui/pickers": "^3.2.10",
     "@material-ui/styles": "^4.10.0",
     "@react-native-community/async-storage": "^1.12.1",
     "axios": "^0.21.1",
@@ -48,6 +50,7 @@
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
     "react-helmet": "^6.1.0",
+    "react-id-generator": "^3.0.1",
     "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "^7.2.2",
     "react-router": "^6.0.0-beta.0",

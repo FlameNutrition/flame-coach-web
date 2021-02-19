@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
   Avatar,
   Box,
   Card,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
@@ -15,54 +13,28 @@ import {
   TablePagination,
   TableRow,
   Typography,
-  makeStyles
+  makeStyles, Button, SvgIcon, Grid
 } from '@material-ui/core';
 import getInitials from 'src/utils/getInitials';
+import { UserPlus as UserPlusIcon, UserMinus as UserMinusIcon } from 'react-feather';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   avatar: {
     marginRight: theme.spacing(2)
-  }
+  },
+  plusUserButton: {
+    backgroundColor: theme.palette.button.success
+  },
+  minusUserButton: {
+    backgroundColor: theme.palette.button.dangerous
+  },
 }));
 
 const Results = ({ className, customers, ...rest }) => {
   const classes = useStyles();
-  const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
-
-  const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
-
-    if (event.target.checked) {
-      newSelectedCustomerIds = customers.map((customer) => customer.id);
-    } else {
-      newSelectedCustomerIds = [];
-    }
-
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
-
-  const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCustomerIds.indexOf(id);
-    let newSelectedCustomerIds = [];
-
-    if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id);
-    } else if (selectedIndex === 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
-    } else if (selectedIndex === selectedCustomerIds.length - 1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(0, selectedIndex),
-        selectedCustomerIds.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelectedCustomerIds(newSelectedCustomerIds);
-  };
 
   const handleLimitChange = (event) => {
     setLimit(event.target.value);
@@ -70,6 +42,23 @@ const Results = ({ className, customers, ...rest }) => {
 
   const handlePageChange = (event, newPage) => {
     setPage(newPage);
+  };
+
+  const getStatusClient = (status) => {
+    switch (status) {
+      case 'AVAILABLE': {
+        return 'Available';
+      }
+      case 'MY_CLIENT': {
+        return 'Already Client';
+      }
+      case 'OTHER_CLIENT': {
+        return 'Disable';
+      }
+      default: {
+        return 'Disable';
+      }
+    }
   };
 
   return (
@@ -82,17 +71,6 @@ const Results = ({ className, customers, ...rest }) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedCustomerIds.length === customers.length}
-                    color="primary"
-                    indeterminate={
-                      selectedCustomerIds.length > 0
-                      && selectedCustomerIds.length < customers.length
-                    }
-                    onChange={handleSelectAll}
-                  />
-                </TableCell>
                 <TableCell>
                   Name
                 </TableCell>
@@ -100,13 +78,13 @@ const Results = ({ className, customers, ...rest }) => {
                   Email
                 </TableCell>
                 <TableCell>
-                  Location
-                </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
                   Registration date
+                </TableCell>
+                <TableCell>
+                  Status
+                </TableCell>
+                <TableCell>
+                  Actions
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -115,15 +93,7 @@ const Results = ({ className, customers, ...rest }) => {
                 <TableRow
                   hover
                   key={customer.id}
-                  selected={selectedCustomerIds.indexOf(customer.id) !== -1}
                 >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={selectedCustomerIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
-                      value="true"
-                    />
-                  </TableCell>
                   <TableCell>
                     <Box
                       alignItems="center"
@@ -147,13 +117,45 @@ const Results = ({ className, customers, ...rest }) => {
                     {customer.email}
                   </TableCell>
                   <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
-                  </TableCell>
-                  <TableCell>
                     {customer.phone}
                   </TableCell>
                   <TableCell>
-                    {moment(customer.createdAt).format('DD/MM/YYYY')}
+                    {getStatusClient(customer.status)}
+                  </TableCell>
+                  <TableCell>
+                    <Grid
+                      container
+                      spacing="1"
+                    >
+                      <Grid item>
+                        <Button
+                          className={classes.plusUserButton}
+                          variant="contained"
+                          disabled={!(customer.status === 'AVAILABLE')}
+                        >
+                          <SvgIcon
+                            fontSize="small"
+                            color="inherit"
+                          >
+                            <UserPlusIcon />
+                          </SvgIcon>
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          className={classes.minusUserButton}
+                          variant="contained"
+                          disabled={!(customer.status === 'MY_CLIENT')}
+                        >
+                          <SvgIcon
+                            fontSize="small"
+                            color="inherit"
+                          >
+                            <UserMinusIcon />
+                          </SvgIcon>
+                        </Button>
+                      </Grid>
+                    </Grid>
                   </TableCell>
                 </TableRow>
               ))}
