@@ -2,24 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  TextField,
-  InputAdornment,
-  SvgIcon,
-  makeStyles
+  Button, Card, CardContent, Grid, makeStyles, SvgIcon, TextField
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
-  importButton: {
-    marginRight: theme.spacing(1)
-  },
-  exportButton: {
-    marginRight: theme.spacing(1)
+  searchButton: {
+    height: '100%'
   }
 }));
 
@@ -31,48 +21,36 @@ const Toolbar = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <Box
-        display="flex"
-        justifyContent="flex-end"
-      >
-        <Button className={classes.importButton}>
-          Import
-        </Button>
-        <Button className={classes.exportButton}>
-          Export
-        </Button>
-        <Button
-          color="primary"
-          variant="contained"
-        >
-          Add customer
-        </Button>
-      </Box>
-      <Box mt={3}>
-        <Card>
-          <CardContent>
-            <Box maxWidth={500}>
+      <Card>
+        <CardContent>
+          <Grid
+            container
+            spacing="2"
+          >
+            <Grid item xs="8">
               <TextField
                 fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SvgIcon
-                        fontSize="small"
-                        color="action"
-                      >
-                        <SearchIcon />
-                      </SvgIcon>
-                    </InputAdornment>
-                  )
-                }}
                 placeholder="Search customer"
                 variant="outlined"
               />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
+            </Grid>
+            <Grid item xs="4">
+              <Button
+                color="primary"
+                variant="contained"
+                className={classes.searchButton}
+              >
+                <SvgIcon
+                  fontSize="small"
+                  color="inherit"
+                >
+                  <SearchIcon />
+                </SvgIcon>
+              </Button>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
     </div>
   );
 };

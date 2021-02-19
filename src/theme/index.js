@@ -18,6 +18,11 @@ const theme = createMuiTheme({
     text: {
       primary: colors.blueGrey[900],
       secondary: colors.blueGrey[600]
+    },
+    button: {
+      success: colors.green[300],
+      warning: colors.yellow[500],
+      dangerous: colors.red[300]
     }
   },
   shadows,
