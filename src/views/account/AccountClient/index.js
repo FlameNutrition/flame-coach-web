@@ -8,7 +8,7 @@ import Page from 'src/components/Page';
 import logger from 'loglevel';
 import Profile from '../../../components/Profile';
 import ProfileDetails from '../../../components/ProfileDetails';
-import { getUserDetails } from '../../../axios';
+import { getUserDetails, updateUserDetails } from '../../../axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +25,7 @@ const Account = () => {
 
   useEffect(() => {
     if (userDetails === null) {
-      getUserDetails(1)
+      getUserDetails(2)
         .then((response) => {
           setUserDetails(response);
         })
@@ -47,9 +47,13 @@ const Account = () => {
 
   const saveUserDetailsHandler = () => {
     logger.debug('Save user details');
+    updateUserDetails({ uuid: 'TEXT' })
+      .then((response) => {
+        setUserDetails(response);
+      })
+      .catch(() => setUserDetails(null));
   };
 
-  // TODO: Add a spinner
   return (
     userDetails !== null ? (
       <Page
@@ -76,6 +80,7 @@ const Account = () => {
               xs={12}
             >
               <ProfileDetails
+                enablePersonalData
                 userDetails={userDetails}
                 saveUserDetailsHandler={saveUserDetailsHandler}
                 updateUserDetailsHandler={updateUserDetailsHandler}

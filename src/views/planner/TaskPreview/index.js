@@ -5,6 +5,7 @@ import {
   Box, Card, CardHeader, Divider, makeStyles
 } from '@material-ui/core';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import nextId from 'react-id-generator';
 import DailyTask from '../../../components/DailyTask';
 
 const useStyles = makeStyles(() => ({
@@ -30,6 +31,7 @@ const TaskPreview = ({
           {
             tasks.map((task) => (
               <DailyTask
+                key={nextId()}
                 task={task}
                 updateTaskHandler={updateTaskHandler}
                 deleteTaskHandler={deleteTaskHandler}

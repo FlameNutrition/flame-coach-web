@@ -11,6 +11,7 @@ import TaskPreview from './TaskPreview';
 import TaskTool from './TaskTool';
 import SearchClient from '../../components/SearchClient';
 import { getClients, getDailyTasksByClientAndDay } from '../../axios';
+import ModalWarning from '../../components/ModalWarning';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,9 @@ const Planner = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedClient, setSelectedClient] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState({ title: '', message: '' });
 
   const [tasks, setTasks] = useState([]);
   const [clients, setClients] = useState([]);
@@ -76,6 +80,10 @@ const Planner = () => {
 
   const deleteTaskHandler = (task) => {
     logger.info('Delete the following task: ', task);
+    setModalMessage(
+      { title: 'Update task', message: 'We will update your task, please wait!' }
+    );
+    setModalOpen(true);
   };
 
   return (
@@ -121,6 +129,12 @@ const Planner = () => {
         <Box className={classes.actionTaskCard}>
           <TaskTool task={selectedTask} />
         </Box>
+        <ModalWarning
+          open={modalOpen}
+          title={modalMessage.title}
+          message={modalMessage.message}
+          onCloseHandler={() => { setModalOpen(false); }}
+        />
       </Container>
     </Page>
   );

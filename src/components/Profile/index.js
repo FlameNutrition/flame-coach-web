@@ -13,15 +13,6 @@ import {
   makeStyles
 } from '@material-ui/core';
 
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
-};
-
 const useStyles = makeStyles(() => ({
   root: {},
   avatar: {
@@ -30,7 +21,9 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Profile = ({ className, ...rest }) => {
+const Profile = ({
+  user, enablePhoto, updatePhotoHandler, className, ...rest
+}) => {
   const classes = useStyles();
 
   return (
@@ -44,10 +37,12 @@ const Profile = ({ className, ...rest }) => {
           display="flex"
           flexDirection="column"
         >
-          <Avatar
-            className={classes.avatar}
-            src={user.avatar}
-          />
+          {enablePhoto ? (
+            <Avatar
+              className={classes.avatar}
+              src={user.avatar}
+            />
+          ) : null}
           <Typography
             color="textPrimary"
             gutterBottom
@@ -63,22 +58,35 @@ const Profile = ({ className, ...rest }) => {
           </Typography>
         </Box>
       </CardContent>
-      <Divider />
-      <CardActions>
-        <Button
-          color="primary"
-          fullWidth
-          variant="text"
-        >
-          Upload picture
-        </Button>
-      </CardActions>
+      {enablePhoto ? (
+        <>
+          <Divider />
+          <CardActions>
+            <Button
+              fullWidth
+              color="primary"
+              variant="text"
+              onClick={() => updatePhotoHandler()}
+            >
+              Upload picture
+            </Button>
+          </CardActions>
+        </>
+      )
+        : null }
     </Card>
   );
 };
 
 Profile.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  user: PropTypes.object.isRequired,
+  enablePhoto: PropTypes.bool,
+  updatePhotoHandler: PropTypes.func.isRequired
+};
+
+Profile.defaultProps = {
+  enablePhoto: false
 };
 
 export default Profile;

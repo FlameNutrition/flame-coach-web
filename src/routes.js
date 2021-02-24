@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
 import MainLayout from 'src/layouts/MainLayout';
-import AccountView from 'src/views/account/AccountView';
+import AccountClient from 'src/views/account/AccountClient';
 import AccountCoach from 'src/views/account/AccountCoach';
 import CustomerListView from 'src/views/customer/CustomerListView';
 import DashboardClient from 'src/views/reports/DashboardClient';
@@ -25,7 +25,7 @@ const routes = (isAuth, userType) => {
   ];
 
   const childrenClient = [
-    { path: 'account', element: <AccountView /> },
+    { path: 'account', element: <AccountClient /> },
     { path: 'dashboard', element: <DashboardClient /> },
     { path: 'settings', element: <SettingsView /> },
     { path: '404', element: <NotFoundView /> },

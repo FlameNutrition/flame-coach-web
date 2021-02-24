@@ -6,9 +6,12 @@ import { CookiesProvider } from 'react-cookie';
 import { PersistGate } from 'redux-persist/integration/react';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
+import logger from 'loglevel';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import * as configStore from './store/configureStore';
+
+logger.setLevel('trace');
 
 ReactDOM.render((
 

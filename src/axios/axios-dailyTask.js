@@ -58,3 +58,16 @@ export const getDailyTasksByClientAndDay = async (clientId, date) => {
     }
   });
 };
+
+export const deleteDailyTasksByUUID = async (taskUUID) => {
+  return new Promise((resolve, reject) => {
+    if (taskUUID !== null) {
+      console.log('promise success');
+      resolve(true);
+    } else {
+      console.log('promise fail');
+      // eslint-disable-next-line prefer-promise-reject-errors
+      reject('Problem!');
+    }
+  });
+};
