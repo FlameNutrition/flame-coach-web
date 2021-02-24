@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { Alert } from '@material-ui/lab';
+import Notification from '../../../components/Notification';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -28,22 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
   resetButton: {
     backgroundColor: theme.palette.button.dangerous
-  },
-  notificationBar: {
-    marginTop: '10px'
   }
 }));
 
 const TaskTool = ({ task }) => {
   const classes = useStyles();
-
-  // eslint-disable-next-line no-unused-vars
-  const NOTIFICATION_ERROR = 'error';
-  // eslint-disable-next-line no-unused-vars
-  const NOTIFICATION_WARNING = 'warning';
-  const NOTIFICATION_INFO = 'info';
-  // eslint-disable-next-line no-unused-vars
-  const NOTIFICATION_SUCCESS = 'success';
 
   const [startDateState, setStartDate] = useState(moment().utc().format(moment.HTML5_FMT.DATE));
   const [endDateState, setEndDate] = useState(moment().utc().format(moment.HTML5_FMT.DATE));
@@ -51,7 +40,7 @@ const TaskTool = ({ task }) => {
   const [notification, setNotification] = useState({
     enable: false,
     message: '',
-    level: NOTIFICATION_INFO
+    level: 'INFO'
   });
 
   const resetFormValues = (setFieldValue) => {
@@ -98,7 +87,7 @@ const TaskTool = ({ task }) => {
                   {
                     enable: { $set: true },
                     message: { $set: 'End date is the same or after the start date.' },
-                    level: { $set: NOTIFICATION_ERROR }
+                    level: { $set: 'ERROR' }
                   }));
               }
             } else if (values.isUpdate) {
@@ -264,16 +253,8 @@ const TaskTool = ({ task }) => {
               </Box>
 
               {notification.enable
-                ? (
-                  <Box className={classes.notificationBar}>
-                    <Alert
-                      variant="filled"
-                      severity={notification.level}
-                    >
-                      {notification.message}
-                    </Alert>
-                  </Box>
-                ) : null}
+                ? <Notification level={notification.level} message={notification.message} />
+                : null}
 
             </form>
           )}
