@@ -18,7 +18,8 @@ import {
   Settings as SettingsIcon,
   User as UserIcon,
   Users as UsersIcon,
-  Calendar as CalendarIcon
+  Calendar as CalendarIcon,
+  LogOut as LogOutIcon
 } from 'react-feather';
 import { connect } from 'react-redux';
 import NavItem from './NavItem';
@@ -55,6 +56,11 @@ const itemsCoach = [
     icon: SettingsIcon,
     title: 'Settings'
   },
+  {
+    href: '/app/logout',
+    icon: LogOutIcon,
+    title: 'Logout'
+  },
 ];
 
 const itemsClient = [
@@ -72,6 +78,11 @@ const itemsClient = [
     href: '/app/settings',
     icon: SettingsIcon,
     title: 'Settings'
+  },
+  {
+    href: '/app/logout',
+    icon: LogOutIcon,
+    title: 'Logout'
   },
 ];
 

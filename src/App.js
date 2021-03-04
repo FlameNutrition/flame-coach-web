@@ -8,10 +8,11 @@ import theme from 'src/theme';
 import routes from 'src/routes';
 import { connect } from 'react-redux';
 import { withCookies } from 'react-cookie';
+import PropTypes from 'prop-types';
 
-const App = (props) => {
+const App = ({ isAuth, userType }) => {
   // eslint-disable-next-line react/destructuring-assignment,react/prop-types
-  const routing = useRoutes(routes(props.isAuth, props.userType));
+  const routing = useRoutes(routes(isAuth, userType));
 
   return (
     <ThemeProvider theme={theme}>
@@ -26,6 +27,11 @@ const mapStateToProps = (state) => {
     isAuth: state.auth.loggedIn,
     userType: state.auth.userInfo !== null ? state.auth.userInfo.userType : null
   };
+};
+
+App.propTypes = {
+  isAuth: PropTypes.bool,
+  userType: PropTypes.string,
 };
 
 export default connect(mapStateToProps, null)(withCookies(App));

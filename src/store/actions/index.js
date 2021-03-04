@@ -4,7 +4,8 @@ export {
 } from './authAction';
 
 export {
-  signup
+  signup,
+  signupReset
 } from './signupAction';
 
 export {
