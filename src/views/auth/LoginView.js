@@ -161,7 +161,7 @@ const LoginView = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.loggedIn,
-    error: state.auth.error,
+    error: state.auth.errorLogin,
   };
 };
 
@@ -173,7 +173,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 LoginView.propTypes = {
   isAuth: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.object,
   signIn: PropTypes.func
 };
 

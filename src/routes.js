@@ -12,6 +12,7 @@ import NotFoundView from 'src/views/errors/NotFoundView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 import Planner from './views/planner';
+import LogoutView from './views/auth/LogoutView';
 
 const routes = (isAuth, userType) => {
   const childrenCoach = [
@@ -20,6 +21,7 @@ const routes = (isAuth, userType) => {
     { path: 'planner', element: <Planner /> },
     { path: 'dashboard', element: <DashboardCoach /> },
     { path: 'settings', element: <SettingsView /> },
+    { path: 'logout', element: <LogoutView /> },
     { path: '404', element: <NotFoundView /> },
     { path: '*', element: <Navigate to="/app/404" /> }
   ];
@@ -28,6 +30,7 @@ const routes = (isAuth, userType) => {
     { path: 'account', element: <AccountClient /> },
     { path: 'dashboard', element: <DashboardClient /> },
     { path: 'settings', element: <SettingsView /> },
+    { path: 'logout', element: <LogoutView /> },
     { path: '404', element: <NotFoundView /> },
     { path: '*', element: <Navigate to="/app/404" /> }
   ];

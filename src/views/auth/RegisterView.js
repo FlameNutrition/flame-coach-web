@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -16,7 +16,8 @@ import {
 import Page from 'src/components/Page';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { signup } from '../../store/actions';
+import { signup, signupReset } from '../../store/actions';
+import Notification from '../../components/Notification';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,12 +25,23 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
+  },
+  notification: {
+    marginTop: '20px'
   }
 }));
 
-const RegisterView = (props) => {
+const RegisterView = ({
+  isAuth, error, signUp, signUpReset
+}) => {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (error) {
+      signUpReset();
+    }
+  }, []);
 
   return (
     <Page
@@ -71,9 +83,9 @@ const RegisterView = (props) => {
                 userType: value.type
               };
 
-              props.signUp(userInfo);
+              signUp(userInfo);
 
-              if (props.isAuth) {
+              if (isAuth) {
                 navigate('/app/dashboard', { replace: true });
               }
 
@@ -212,20 +224,32 @@ const RegisterView = (props) => {
                     Sign up now
                   </Button>
                 </Box>
-                <Typography
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  Have an account?
-                  {' '}
-                  <Link
-                    component={RouterLink}
-                    to="/login"
-                    variant="h6"
+                <Box>
+                  <Typography
+                    color="textSecondary"
+                    variant="body1"
                   >
-                    Sign in
-                  </Link>
-                </Typography>
+                    Have an account?
+                    {' '}
+                    <Link
+                      component={RouterLink}
+                      to="/login"
+                      variant="h6"
+                    >
+                      Sign in
+                    </Link>
+                  </Typography>
+                </Box>
+                <Box className={classes.notification}>
+                  {error
+                    ? (
+                      <Notification
+                        level={error.level}
+                        message={error.message}
+                      />
+                    )
+                    : null}
+                </Box>
               </form>
             )}
           </Formik>
@@ -238,19 +262,21 @@ const RegisterView = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.loggedIn,
-    error: state.auth.error,
+    error: state.auth.errorSignup,
   };
 };
 
-// FIXME: Remove this
 // eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
 const mapDispatchToProps = (dispatch) => ({
-  signUp: (userInfo) => dispatch(signup(userInfo))
+  signUp: (userInfo) => dispatch(signup(userInfo)),
+  signUpReset: () => dispatch(signupReset())
 });
 
 RegisterView.propTypes = {
   isAuth: PropTypes.bool,
-  signUp: PropTypes.func
+  signUp: PropTypes.func,
+  signUpReset: PropTypes.func,
+  error: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterView);

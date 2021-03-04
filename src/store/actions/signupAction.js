@@ -1,5 +1,5 @@
-import log from 'loglevel';
-import moment from 'moment';
+import logger from 'loglevel';
+import axios from '../../axios/axios-flame-coach';
 import * as actionType from './actionsType';
 
 const signupSuccess = (userInfo) => {
@@ -11,20 +11,56 @@ const signupSuccess = (userInfo) => {
   };
 };
 
-// eslint-disable-next-line import/prefer-default-export
+const signupFailed = (userInfoError) => {
+  logger.debug('Reset signup state!');
+  return {
+    type: actionType.AUTH_SIGNUP_FAIL,
+    payload: {
+      error: userInfoError
+    }
+  };
+};
+
+export const signupReset = () => {
+  return {
+    type: actionType.AUTH_SIGNUP_RESET
+  };
+};
+
 export const signup = (userInfo) => {
   return (dispatch) => {
-    // FIXME: Try to understand this logging doesn't work
-    log.info('UserInfo:', userInfo);
+    logger.debug('UserInfo:', userInfo);
 
-    const responseApi = {
-      username: userInfo.email,
+    const data = JSON.stringify({
       firstname: userInfo.firstName,
       lastname: userInfo.lastName,
-      token: '048b4069-d954-4e66-b6ce-6cda605140bc',
-      expiration: moment().utc().add(1, 'hour')
+      email: userInfo.email,
+      password: userInfo.password,
+      type: userInfo.userType,
+      policy: true
+    });
+
+    const config = {
+      method: 'post',
+      url: '/client/create',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data
     };
 
-    dispatch(signupSuccess(responseApi));
+    axios(config)
+      .then((response) => {
+        dispatch(signupSuccess(response));
+      })
+      .catch((error) => {
+        logger.debug('Error:', error.response);
+        const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
+        const errorMessage = error.response.data.detail;
+        dispatch(signupFailed({
+          level: errorLevel,
+          message: errorMessage
+        }));
+      });
   };
 };
