@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -14,7 +14,8 @@ import {
 import Page from 'src/components/Page';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { loggedIn } from '../../store/actions';
+import { loggedIn, loggedInReset } from '../../store/actions';
+import Notification from '../../components/Notification';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,18 +23,29 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
+  },
+  notification: {
+    marginTop: '20px'
   }
 }));
 
-const LoginView = (props) => {
+const LoginView = ({
+  isAuth, error, signIn, signInReset
+}) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (error) {
+      signInReset();
+    }
+  }, []);
+
   const handlerSubmitting = async (value, { setSubmitting }) => {
-    props.signIn(value.email, value.password);
+    signIn(value.email, value.password);
 
     // FIXME: Change this when something wrong happened
-    if (props.isAuth) {
+    if (isAuth) {
       setSubmitting(false);
       navigate('/app/dashboard', { replace: true });
     } else {
@@ -116,13 +128,6 @@ const LoginView = (props) => {
                   value={values.password}
                   variant="outlined"
                 />
-                <Typography
-                  hidden={!props.error}
-                  color="error"
-                  variant="body2"
-                >
-                  {props.error}
-                </Typography>
                 <Box my={2}>
                   <Button
                     color="primary"
@@ -149,6 +154,16 @@ const LoginView = (props) => {
                     Sign up
                   </Link>
                 </Typography>
+                <Box className={classes.notification}>
+                  {error
+                    ? (
+                      <Notification
+                        level={error.level}
+                        message={error.message}
+                      />
+                    )
+                    : null}
+                </Box>
               </form>
             )}
           </Formik>
@@ -165,16 +180,17 @@ const mapStateToProps = (state) => {
   };
 };
 
-// FIXME: Remove this
 // eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
 const mapDispatchToProps = (dispatch) => ({
-  signIn: (email, password) => dispatch(loggedIn(email, password))
+  signIn: (email, password) => dispatch(loggedIn(email, password)),
+  signInReset: () => dispatch(loggedInReset())
 });
 
 LoginView.propTypes = {
   isAuth: PropTypes.bool,
   error: PropTypes.object,
-  signIn: PropTypes.func
+  signIn: PropTypes.func,
+  signInReset: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

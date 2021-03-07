@@ -1,4 +1,5 @@
-import moment from 'moment';
+import logger from 'loglevel';
+import axios from '../../axios/axios-flame-coach';
 import * as actionType from './actionsType';
 
 const loggedInSuccess = (userInfo) => {
@@ -10,34 +11,50 @@ const loggedInSuccess = (userInfo) => {
   };
 };
 
-const loggedInFail = (errorMessage) => {
+const loggedInFail = (userInfoError) => {
   return {
     type: actionType.AUTH_LOGIN_FAIL,
     payload: {
-      error: errorMessage
+      error: userInfoError
     }
+  };
+};
+
+export const loggedInReset = () => {
+  return {
+    type: actionType.AUTH_LOGIN_RESET
   };
 };
 
 export const loggedIn = (email, password) => {
   return (dispatch) => {
-    const isEmailValid = email === 'test@test.com' || email === 'coach@test.com';
-    const isPasswordValid = password === 'password';
-    const isAuth = isEmailValid && isPasswordValid;
+    const data = JSON.stringify({
+      email,
+      password
+    });
 
-    if (isAuth) {
-      const responseApi = {
-        username: 'nbento.neves@gmail.com',
-        firstname: 'Nuno',
-        lastname: 'Bento',
-        token: '048b4069-d954-4e66-b6ce-6cda605140bc',
-        userType: email === 'coach@test.com' ? 'COACH' : 'CLIENT',
-        expiration: moment().utc().add(1, 'hour')
-      };
-      dispatch(loggedInSuccess(responseApi));
-    } else {
-      dispatch(loggedInFail('Email Address or password invalid, please try again...'));
-    }
+    const config = {
+      method: 'post',
+      url: '/client/newSession',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data
+    };
+
+    axios(config)
+      .then((response) => {
+        dispatch(loggedInSuccess(response.data));
+      })
+      .catch((error) => {
+        logger.debug('Error:', error.response);
+        const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
+        const errorMessage = error.response.data.detail;
+        dispatch(loggedInFail({
+          level: errorLevel,
+          message: errorMessage
+        }));
+      });
   };
 };
 

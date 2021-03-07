@@ -51,7 +51,7 @@ export const signup = (userInfo) => {
 
     axios(config)
       .then((response) => {
-        dispatch(signupSuccess(response));
+        dispatch(signupSuccess(response.data));
       })
       .catch((error) => {
         logger.debug('Error:', error.response);
