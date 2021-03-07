@@ -20,6 +20,10 @@ const authReducer = (state = initialState, action) => {
       return update(state, {
         errorLogin: { $set: action.payload.error }
       });
+    case actionType.AUTH_LOGIN_RESET:
+      return update(state, {
+        errorLogin: { $set: null }
+      });
     case actionType.AUTH_LOGOUT:
       return update(state, {
         loggedIn: { $set: false },

@@ -1,6 +1,7 @@
 export {
   loggedIn,
-  loggedOut
+  loggedOut,
+  loggedInReset
 } from './authAction';
 
 export {
