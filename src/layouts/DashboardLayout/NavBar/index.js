@@ -242,7 +242,7 @@ NavBar.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    userType: state.auth.userInfo !== null ? state.auth.userInfo.userType : null
+    userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null
   };
 };
 
