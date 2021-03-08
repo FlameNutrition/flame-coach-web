@@ -11,6 +11,7 @@ import LoginView from 'src/views/auth/LoginView';
 import NotFoundView from 'src/views/errors/NotFoundView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
+import logger from 'loglevel';
 import Planner from './views/planner';
 import LogoutView from './views/auth/LogoutView';
 
@@ -34,6 +35,8 @@ const routes = (isAuth, userType) => {
     { path: '404', element: <NotFoundView /> },
     { path: '*', element: <Navigate to="/app/404" /> }
   ];
+
+  logger.info('userType:', userType);
 
   return [
     {

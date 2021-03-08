@@ -25,7 +25,7 @@ const App = ({ isAuth, userType }) => {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.loggedIn,
-    userType: state.auth.userInfo !== null ? state.auth.userInfo.userType : null
+    userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null
   };
 };
 
