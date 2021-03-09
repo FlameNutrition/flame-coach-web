@@ -44,6 +44,7 @@ const DailyTask = ({
 
   return (
     <Accordion
+      id={task.identifier}
       key={nextId()}
     >
       <AccordionSummary
@@ -60,10 +61,10 @@ const DailyTask = ({
               control={(
                 <Checkbox
                   onChange={(value) => checkTaskHandler(task, value)}
-                  value={task.taskTicked}
+                  value={task.ticked}
                 />
               )}
-              label={task.taskTitle}
+              label={task.taskName}
             />
           )
           : null}
@@ -90,7 +91,7 @@ const DailyTask = ({
                 label=""
               />
               <Typography component="div">
-                {task.taskTitle}
+                {task.taskName}
               </Typography>
             </>
           )

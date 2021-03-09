@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import nextId from 'react-id-generator';
+import moment from 'moment';
 import DailyTask from '../../../components/DailyTask';
 
 const useStyles = makeStyles(() => ({
@@ -13,9 +14,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const TaskPreview = ({
-  tasks, updateTaskHandler, deleteTaskHandler, className, ...rest
+  tasks, date, updateTaskHandler, deleteTaskHandler, className, ...rest
 }) => {
   const classes = useStyles();
+
+  const stringDate = moment(date).format(moment.HTML5_FMT.DATE);
 
   return (
     <Card
@@ -30,14 +33,18 @@ const TaskPreview = ({
         <Box m="10px" maxHeight={300}>
           {
             tasks.map((task) => (
-              <DailyTask
-                key={nextId()}
-                task={task}
-                updateTaskHandler={updateTaskHandler}
-                deleteTaskHandler={deleteTaskHandler}
-                enableDelete
-                enableUpdate
-              />
+              (task.date === stringDate)
+                ? (
+                  <DailyTask
+                    key={nextId()}
+                    task={task}
+                    updateTaskHandler={updateTaskHandler}
+                    deleteTaskHandler={deleteTaskHandler}
+                    enableDelete
+                    enableUpdate
+                  />
+                )
+                : null
             ))
           }
         </Box>
@@ -49,6 +56,7 @@ const TaskPreview = ({
 TaskPreview.propTypes = {
   className: PropTypes.string,
   tasks: PropTypes.array,
+  date: PropTypes.object,
   updateTaskHandler: PropTypes.func,
   deleteTaskHandler: PropTypes.func
 };

@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import logger from 'loglevel';
 import moment from 'moment';
+import update from 'immutability-helper';
 import Page from '../../components/Page';
 import Calendar from '../../components/Calendar/Calendar';
 import TaskPreview from './TaskPreview';
@@ -63,6 +64,10 @@ const Planner = () => {
     }
   }, [selectedClient, selectedDate]);
 
+  const refreshTasksHandler = (task) => {
+    setTasks(update(tasks, { $push: [task] }));
+  };
+
   const updateTaskHandler = (task) => {
     logger.info('Following task selected: ', task);
     setSelectedTask(task);
@@ -112,6 +117,7 @@ const Planner = () => {
           >
             <TaskPreview
               tasks={tasks}
+              date={selectedDate}
               updateTaskHandler={updateTaskHandler}
               deleteTaskHandler={deleteTaskHandler}
             />
@@ -127,13 +133,15 @@ const Planner = () => {
           </Grid>
         </Grid>
         <Box className={classes.actionTaskCard}>
-          <TaskTool task={selectedTask} />
+          <TaskTool task={selectedTask} refreshTasksHandler={refreshTasksHandler} />
         </Box>
         <ModalWarning
           open={modalOpen}
           title={modalMessage.title}
           message={modalMessage.message}
-          onCloseHandler={() => { setModalOpen(false); }}
+          onCloseHandler={() => {
+            setModalOpen(false);
+          }}
         />
       </Container>
     </Page>
