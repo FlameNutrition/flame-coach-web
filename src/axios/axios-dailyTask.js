@@ -1,13 +1,22 @@
 import axios from './axios-flame-coach';
 
-export const addDailyTask = async (dailyTask) => {
+export const addDailyTask = async (dailyTask, clientToken, coachToken) => {
+  const data = JSON.stringify({
+    taskName: dailyTask.name,
+    taskDescription: dailyTask.description,
+    date: dailyTask.date,
+    toDate: dailyTask.toDate
+  });
+
   const config = {
     method: 'post',
-    url: '',
+    url: '/dailyTask/create/task',
     headers: {
+      clientToken,
+      coachToken,
       'Content-Type': 'application/json'
     },
-    data: dailyTask
+    data
   };
 
   return axios(config);
@@ -21,35 +30,25 @@ export const getDailyTasksByClientAndDay = async (clientId, date) => {
       console.log('promise success');
       resolve(
         [{
-          taskId: 1,
-          taskTitle: 'Drink 3L of water',
+          identifier: '7ebc929-3cfc-4e71-bd1d-7a4b1759abf9',
+          taskName: 'Drink 3L of water',
           taskDescription: 'A simple description',
-          taskTicked: false
-        },
-        {
-          taskId: 2,
-          taskTitle: 'Measure',
+          date: '2020-12-05',
+          ticked: false
+        }, {
+          identifier: '7ebc929-3cfc-4e71-bd1d-7a4b1759abf9',
+          taskName: 'Task 2',
           taskDescription: 'A simple description',
-          taskTicked: false
-        },
-        {
-          taskId: 3,
-          taskTitle: 'Measure',
+          date: '2020-12-05',
+          ticked: false
+        }, {
+          identifier: '7ebc929-3cfc-4e71-bd1d-7a4b1759abf9',
+          taskName: 'Task 3',
           taskDescription: 'A simple description',
-          taskTicked: false
-        },
-        {
-          taskId: 4,
-          taskTitle: 'Measure',
-          taskDescription: 'A simple description',
-          taskTicked: false
-        },
-        {
-          taskId: 5,
-          taskTitle: 'Measure',
-          taskDescription: 'A simple description',
-          taskTicked: false
-        }]
+          date: '2020-12-05',
+          ticked: false
+        }
+        ]
       );
     } else {
       console.log('promise fail');

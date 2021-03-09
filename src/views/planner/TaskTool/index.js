@@ -10,7 +10,10 @@ import clsx from 'clsx';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import logger from 'loglevel';
 import Notification from '../../../components/Notification';
+import { addDailyTask } from '../../../axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -31,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const TaskTool = ({ task }) => {
+const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
   const classes = useStyles();
 
   const [startDateState, setStartDate] = useState(moment().utc().format(moment.HTML5_FMT.DATE));
@@ -67,7 +70,7 @@ const TaskTool = ({ task }) => {
         <Formik
           // FIXME: Please remote the init values
           initialValues={{
-            taskName: task !== null ? task.taskTitle : '',
+            taskName: task !== null ? task.taskName : '',
             taskDescription: task !== null ? task.taskDescription : '',
             multipleDays: false,
             button: null,
@@ -93,7 +96,29 @@ const TaskTool = ({ task }) => {
             } else if (values.isUpdate) {
               console.log('Update task');
             } else {
-              console.log('Insert new task');
+              const dailyTask = {
+                name: values.taskName,
+                description: values.taskDescription,
+                date: startDateState
+              };
+
+              // FIXME: Change this for a real client
+              addDailyTask(dailyTask, '9afcf925-1ab6-4979-80d7-31d0f6e17a48', sessionToken)
+                .then((response) => {
+                  logger.debug('Response:', response.data.dailyTasks[0]);
+                  refreshTasksHandler(response.data.dailyTasks[0]);
+                })
+                .catch((error) => {
+                  logger.debug('Error:', error);
+                  const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
+                  const errorMessage = error.response.data.detail;
+                  setNotification(update(notification,
+                    {
+                      enable: { $set: true },
+                      message: { $set: errorMessage },
+                      level: { $set: errorLevel }
+                    }));
+                });
             }
 
             setSubmitting(false);
@@ -153,7 +178,7 @@ const TaskTool = ({ task }) => {
                             onChange={handleChange}
                             value={values.multipleDays}
                           />
-                        )}
+            )}
                         labelPlacement="start"
                         label="Multiple Days"
                       />
@@ -264,8 +289,16 @@ const TaskTool = ({ task }) => {
   );
 };
 
-TaskTool.propTypes = {
-  task: PropTypes.object
+const mapStateToProps = (state) => {
+  return {
+    sessionToken: state.auth.userInfo !== null ? state.auth.userInfo.token : null
+  };
 };
 
-export default TaskTool;
+TaskTool.propTypes = {
+  task: PropTypes.object,
+  sessionToken: PropTypes.string,
+  refreshTasksHandler: PropTypes.func
+};
+
+export default connect(mapStateToProps, null)(TaskTool);
