@@ -127,7 +127,7 @@ const RegisterView = ({
                     name="type"
                   >
                     <MenuItem value="CLIENT">I am a client</MenuItem>
-                    <MenuItem value="COACH" disabled>I am a coach (not available)</MenuItem>
+                    <MenuItem value="COACH">I am a coach</MenuItem>
                   </Select>
                 </FormControl>
                 <TextField
