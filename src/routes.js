@@ -36,7 +36,7 @@ const routes = (isAuth, userType) => {
     { path: '*', element: <Navigate to="/app/404" /> }
   ];
 
-  logger.info('userType:', userType);
+  logger.debug('userType:', userType);
 
   return [
     {

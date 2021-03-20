@@ -69,63 +69,72 @@ const CustomerListView = ({ coachIdentifier }) => {
     }
   }, []);
 
+  const setGenericErrorMessage = () => {
+    setNotification(update(notification,
+      {
+        enable: { $set: true },
+        message: { $set: process.env.REACT_APP_MSG_SERVER_ERROR },
+        level: { $set: 'ERROR' }
+      }));
+  };
+
+  const setSpecificErrorMessage = (error) => {
+    try {
+      const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
+      const errorMessage = error.response.data.detail;
+      setNotification(update(notification,
+        {
+          enable: { $set: true },
+          message: { $set: errorMessage },
+          level: { $set: errorLevel }
+        }));
+    } catch (ex) {
+      logger.error('Exception:', ex);
+      setGenericErrorMessage();
+    }
+  };
+
+  const notificationHandler = () => {
+    setNotification(update(notification,
+      {
+        enable: { $set: false }
+      }));
+  };
+
+  const setClientStatus = (client, json) => {
+    try {
+      const index = customers.findIndex(
+        (customer) => customer[4].identifier === client.identifier
+      );
+      setCustomers(update(customers, {
+        [index]: {
+          3: { $set: json.data.status },
+          4: {
+            status: { $set: json.data.status }
+          }
+        }
+      }));
+    } catch (ex) {
+      logger.error('Exception:', ex);
+      setGenericErrorMessage();
+    }
+  };
+
   const linkClientHandler = (client) => {
     enrollmentProcessInit(client.identifier, coachIdentifier)
       .then((response) => {
-        try {
-          const index = customers.findIndex(
-            (customer) => customer[4].identifier === client.identifier
-          );
-          setCustomers(update(customers, {
-            [index]: {
-              3: { $set: response.data.status },
-              4: {
-                status: { $set: response.data.status }
-              }
-            }
-          }));
-        } catch (ex) {
-          logger.error('Internal error:', ex);
-        }
+        setClientStatus(client, response);
       }).catch((error) => {
-        const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-        const errorMessage = error.response.data.detail;
-        setNotification(update(notification,
-          {
-            enable: { $set: true },
-            message: { $set: errorMessage },
-            level: { $set: errorLevel }
-          }));
+        setSpecificErrorMessage(error);
       });
   };
 
   const unlinkClientHandler = (client) => {
     enrollmentProcessBreak(client.identifier)
       .then((response) => {
-        try {
-          const index = customers.findIndex(
-            (customer) => customer[4].identifier === client.identifier
-          );
-          setCustomers(update(customers, {
-            [index]: {
-              3: { $set: response.data.status },
-              4: {
-                status: { $set: response.data.status }
-              }
-            }
-          }));
-        } catch (ex) {
-          logger.error('Internal error:', ex);
-        }
+        setClientStatus(client, response);
       }).catch((error) => {
-        const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-        const errorMessage = error.response.data.detail;
-        setNotification(update(notification,
-          {
-            enable: { $set: true },
-            message: { $set: errorMessage },
-            level: { $set: errorLevel }
-          }));
+        setSpecificErrorMessage(error);
       });
   };
 
@@ -190,13 +199,21 @@ const CustomerListView = ({ coachIdentifier }) => {
                   options={options}
                 />
                 {notification.enable
-                  ? <Notification level={notification.level} message={notification.message} />
+                  ? (
+                    <Notification
+                      collapse
+                      open={notification.enable}
+                      openHandler={notificationHandler}
+                      level={notification.level}
+                      message={notification.message}
+                    />
+                  )
                   : null}
               </>
             )
             : null}
           {!loading && customers === null
-            ? <Warning message="Something is broken...please contact the admin system!" />
+            ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
             : null}
         </Box>
       </Container>

@@ -1,6 +1,9 @@
 import React from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import {
+  Box, Collapse, IconButton, makeStyles
+} from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(() => ({
@@ -10,7 +13,9 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const Notification = ({ message, level }) => {
+const Notification = ({
+  open, openHandler, message, level, collapse
+}) => {
   const classes = useStyles();
 
   const NOTIFICATION_ERROR = 'error';
@@ -40,12 +45,36 @@ const Notification = ({ message, level }) => {
 
   return (
     <Box className={classes.notificationBar}>
-      <Alert
-        variant="filled"
-        severity={internalLevel}
-      >
-        {message}
-      </Alert>
+      {collapse
+        ? (
+          <Collapse in={open}>
+            <Alert
+              variant="filled"
+              severity={internalLevel}
+              action={(
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    openHandler(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+        )}
+            >
+              {message}
+            </Alert>
+          </Collapse>
+        ) : (
+          <Alert
+            variant="filled"
+            severity={internalLevel}
+          >
+            {message}
+          </Alert>
+        ) }
     </Box>
   );
 };
@@ -53,8 +82,13 @@ const Notification = ({ message, level }) => {
 Notification.propTypes = {
   message: PropTypes.string.isRequired,
   level: PropTypes.string.isRequired,
+  open: PropTypes.bool,
+  openHandler: PropTypes.func,
+  collapse: PropTypes.bool
 };
 
-Notification.defaultProps = {};
+Notification.defaultProps = {
+  collapse: false
+};
 
 export default Notification;
