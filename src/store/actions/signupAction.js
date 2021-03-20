@@ -42,7 +42,7 @@ export const signup = (userInfo) => {
 
     const config = {
       method: 'post',
-      url: '/client/create',
+      url: '/customer/create',
       headers: {
         'Content-Type': 'application/json'
       },

@@ -35,7 +35,7 @@ export const loggedIn = (email, password) => {
 
     const config = {
       method: 'post',
-      url: '/client/newSession',
+      url: '/customer/newSession',
       headers: {
         'Content-Type': 'application/json'
       },
