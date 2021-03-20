@@ -4,7 +4,7 @@ import DashboardLayout from 'src/layouts/DashboardLayout';
 import MainLayout from 'src/layouts/MainLayout';
 import AccountClient from 'src/views/account/AccountClient';
 import AccountCoach from 'src/views/account/AccountCoach';
-import CustomerListView from 'src/views/customer/CustomerListView';
+import CustomerListView from 'src/views/customer';
 import DashboardClient from 'src/views/reports/DashboardClient';
 import DashboardCoach from 'src/views/reports/DashboardCoach';
 import LoginView from 'src/views/auth/LoginView';
