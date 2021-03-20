@@ -12,7 +12,6 @@ const signupSuccess = (userInfo) => {
 };
 
 const signupFailed = (userInfoError) => {
-  logger.debug('Reset signup state!');
   return {
     type: actionType.AUTH_SIGNUP_FAIL,
     payload: {
@@ -29,8 +28,6 @@ export const signupReset = () => {
 
 export const signup = (userInfo) => {
   return (dispatch) => {
-    logger.debug('UserInfo:', userInfo);
-
     const data = JSON.stringify({
       firstname: userInfo.firstName,
       lastname: userInfo.lastName,
@@ -54,13 +51,20 @@ export const signup = (userInfo) => {
         dispatch(signupSuccess(response.data));
       })
       .catch((error) => {
-        logger.debug('Error:', error.response);
-        const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-        const errorMessage = error.response.data.detail;
-        dispatch(signupFailed({
-          level: errorLevel,
-          message: errorMessage
-        }));
+        try {
+          const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
+          const errorMessage = error.response.data.detail;
+          dispatch(signupFailed({
+            level: errorLevel,
+            message: errorMessage
+          }));
+        } catch (ex) {
+          logger.error('Exception', ex);
+          dispatch(signupFailed({
+            level: 'ERROR',
+            message: process.env.REACT_APP_MSG_SERVER_ERROR
+          }));
+        }
       });
   };
 };
