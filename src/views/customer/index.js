@@ -47,6 +47,19 @@ const CustomerListView = ({ coachIdentifier }) => {
     level: 'INFO'
   });
 
+  const getStatus = (status) => {
+    switch (status) {
+      case 'AVAILABLE':
+        return 'Available';
+      case 'PENDING':
+        return 'Pending';
+      case 'ACCEPTED':
+        return 'My client';
+      default:
+        return 'Unknown';
+    }
+  };
+
   useEffect(() => {
     if (customers === null) {
       getClientsCoachPlusClientsAvailableForCoaching(coachIdentifier)
@@ -56,7 +69,7 @@ const CustomerListView = ({ coachIdentifier }) => {
               `${client.firstname} ${client.lastname}`,
               client.email,
               client.registrationDate,
-              client.status,
+              getStatus(client.status),
               client
             ]));
 
@@ -108,7 +121,7 @@ const CustomerListView = ({ coachIdentifier }) => {
       );
       setCustomers(update(customers, {
         [index]: {
-          3: { $set: json.data.status },
+          3: { $set: getStatus(json.data.status) },
           4: {
             status: { $set: json.data.status }
           }
