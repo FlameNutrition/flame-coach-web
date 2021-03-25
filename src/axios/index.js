@@ -1,16 +1,15 @@
 export {
   addDailyTask,
+  addMultipleDailyTasks,
   getDailyTasksByClientAndDay,
+  updateDailyTaskByUUID,
   deleteDailyTasksByUUID
 } from './axios-dailyTask';
 
 export {
-  getClientsCoachPlusClientsAvailableForCoaching
+  getClientsCoachPlusClientsAvailableForCoaching,
+  getClientsCoach
 } from './axios-coach';
-
-export {
-  getClients
-} from './axios-clients';
 
 export {
   getUserDetails,

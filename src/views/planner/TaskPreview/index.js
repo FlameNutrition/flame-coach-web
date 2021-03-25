@@ -14,11 +14,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const TaskPreview = ({
-  tasks, date, updateTaskHandler, deleteTaskHandler, className, ...rest
+  tasks, date, selectUpdateTaskHandler, deleteTaskHandler, className, ...rest
 }) => {
   const classes = useStyles();
 
-  const stringDate = moment(date).format(moment.HTML5_FMT.DATE);
+  const stringDate = date.format(moment.HTML5_FMT.DATE);
 
   return (
     <Card
@@ -38,7 +38,7 @@ const TaskPreview = ({
                   <DailyTask
                     key={nextId()}
                     task={task}
-                    updateTaskHandler={updateTaskHandler}
+                    updateTaskHandler={selectUpdateTaskHandler}
                     deleteTaskHandler={deleteTaskHandler}
                     enableDelete
                     enableUpdate
@@ -57,7 +57,7 @@ TaskPreview.propTypes = {
   className: PropTypes.string,
   tasks: PropTypes.array,
   date: PropTypes.object,
-  updateTaskHandler: PropTypes.func,
+  selectUpdateTaskHandler: PropTypes.func,
   deleteTaskHandler: PropTypes.func
 };
 
