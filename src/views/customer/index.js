@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomerListView = ({ coachIdentifier }) => {
+const CustomersView = ({ coachIdentifier }) => {
   const classes = useStyles();
   const options = {
     filterType: 'dropdown',
@@ -234,7 +234,7 @@ const CustomerListView = ({ coachIdentifier }) => {
   );
 };
 
-CustomerListView.propTypes = {
+CustomersView.propTypes = {
   coachIdentifier: PropTypes.string
 };
 
@@ -245,4 +245,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(CustomerListView);
+export default connect(mapStateToProps, null)(CustomersView);

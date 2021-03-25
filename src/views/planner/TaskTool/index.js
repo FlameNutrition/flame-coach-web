@@ -10,10 +10,8 @@ import clsx from 'clsx';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import logger from 'loglevel';
 import Notification from '../../../components/Notification';
-import { addDailyTask } from '../../../axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -34,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
+const TaskTool = ({
+  task, addTasksHandler, addMultipleTasksHandler, updateTaskHandler, selectUpdateTaskHandler
+}) => {
   const classes = useStyles();
 
   const [startDateState, setStartDate] = useState(moment().utc().format(moment.HTML5_FMT.DATE));
@@ -58,6 +58,14 @@ const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
     setFieldValue('isUpdate', false, false);
 
     setNotification(update(notification, { enable: { $set: false } }));
+    selectUpdateTaskHandler(null);
+  };
+
+  const notificationHandler = () => {
+    setNotification(update(notification,
+      {
+        enable: { $set: false }
+      }));
   };
 
   return (
@@ -92,9 +100,26 @@ const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
                     message: { $set: 'End date is the same or after the start date.' },
                     level: { $set: 'ERROR' }
                   }));
+              } else {
+                const dailyTask = {
+                  name: values.taskName,
+                  description: values.taskDescription,
+                  date: startDateState,
+                  toDate: endDateState
+                };
+
+                addMultipleTasksHandler(dailyTask);
               }
             } else if (values.isUpdate) {
-              console.log('Update task');
+              logger.debug('%s Update task', 'TaskTool -');
+
+              const dailyTask = {
+                name: values.taskName,
+                description: values.taskDescription,
+                date: startDateState
+              };
+
+              updateTaskHandler(dailyTask);
             } else {
               const dailyTask = {
                 name: values.taskName,
@@ -102,23 +127,7 @@ const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
                 date: startDateState
               };
 
-              // FIXME: Change this for a real client
-              addDailyTask(dailyTask, '9afcf925-1ab6-4979-80d7-31d0f6e17a48', sessionToken)
-                .then((response) => {
-                  logger.debug('Response:', response.data.dailyTasks[0]);
-                  refreshTasksHandler(response.data.dailyTasks[0]);
-                })
-                .catch((error) => {
-                  logger.debug('Error:', error);
-                  const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-                  const errorMessage = error.response.data.detail;
-                  setNotification(update(notification,
-                    {
-                      enable: { $set: true },
-                      message: { $set: errorMessage },
-                      level: { $set: errorLevel }
-                    }));
-                });
+              addTasksHandler(dailyTask);
             }
 
             setSubmitting(false);
@@ -177,6 +186,7 @@ const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
                             onBlur={handleBlur}
                             onChange={handleChange}
                             value={values.multipleDays}
+                            disabled={values.isUpdate}
                           />
             )}
                         labelPlacement="start"
@@ -278,7 +288,15 @@ const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
               </Box>
 
               {notification.enable
-                ? <Notification level={notification.level} message={notification.message} />
+                ? (
+                  <Notification
+                    collapse
+                    open={notification.enable}
+                    openHandler={notificationHandler}
+                    level={notification.level}
+                    message={notification.message}
+                  />
+                )
                 : null}
 
             </form>
@@ -289,16 +307,12 @@ const TaskTool = ({ task, sessionToken, refreshTasksHandler }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    sessionToken: state.auth.userInfo !== null ? state.auth.userInfo.token : null
-  };
-};
-
 TaskTool.propTypes = {
   task: PropTypes.object,
-  sessionToken: PropTypes.string,
-  refreshTasksHandler: PropTypes.func
+  addTasksHandler: PropTypes.func.isRequired,
+  addMultipleTasksHandler: PropTypes.func.isRequired,
+  updateTaskHandler: PropTypes.func.isRequired,
+  selectUpdateTaskHandler: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, null)(TaskTool);
+export default TaskTool;

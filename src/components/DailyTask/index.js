@@ -35,11 +35,11 @@ const DailyTask = ({
   const classes = useStyles();
 
   if (enableCheck) {
-    logger.debug('Checkbox enable');
+    logger.debug('%s Checkbox enable', 'DailyTask -');
   }
 
   if (enableDelete) {
-    logger.debug('Delete button enable');
+    logger.debug('%s Delete button enable', 'DailyTask -');
   }
 
   return (

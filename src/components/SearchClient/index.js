@@ -12,7 +12,7 @@ const SearchClient = ({ clients, searchSelectedHandler }) => {
       onChange={(event, client) => {
         searchSelectedHandler(client);
       }}
-      getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
+      getOptionLabel={(option) => `${option.firstname} ${option.lastname}`}
       renderInput={(params) => (
         <TextField {...params} label="Client" margin="normal" variant="outlined" />
       )}
