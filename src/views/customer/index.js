@@ -11,6 +11,7 @@ import update from 'immutability-helper';
 import MUIDataTable from 'mui-datatables';
 import { UserMinus as UserMinusIcon, UserPlus as UserPlusIcon } from 'react-feather';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import logger from 'loglevel';
 import Warning from '../../components/Warning';
 import {
   enrollmentProcessBreak,
@@ -54,12 +55,31 @@ const CustomersView = ({ coachIdentifier }) => {
   const [clientLoading, setClientLoading] = useState(false);
   const [isClientLoading, setIsClientLoading] = useState(null);
 
+  const resetNotificationHandler = () => {
+    setNotification(update(notification,
+      {
+        enable: { $set: false }
+      }));
+  };
+
+  const updateNotificationHandler = (enable, message, level) => {
+    setNotification({
+      enable,
+      message,
+      level
+    });
+  };
+
   const {
     isLoading,
     isError,
     data
   } = useQuery(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier],
-    () => getClientsCoachPlusClientsAvailableForCoaching(coachIdentifier));
+    () => getClientsCoachPlusClientsAvailableForCoaching(coachIdentifier), {
+      onError: async (err) => {
+        logger.error('%s Problem:', 'Customer -', err);
+      }
+    });
 
   const linkClientMutation = useMutation(
     ({
@@ -71,6 +91,16 @@ const CustomersView = ({ coachIdentifier }) => {
       onMutate: async ({ client }) => {
         setClientLoading(client.identifier);
         setIsClientLoading(true);
+        resetNotificationHandler();
+      },
+      onError: async (error) => {
+        logger.error('%s Problem', 'Customer -', error.response);
+        setIsClientLoading(false);
+
+        const message = error.response.data.detail;
+        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
+
+        updateNotificationHandler(true, message, level);
       },
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
@@ -99,11 +129,21 @@ const CustomersView = ({ coachIdentifier }) => {
       client,
       // eslint-disable-next-line no-shadow,no-unused-vars
       coachIdentifier
-    }) => enrollmentProcessBreak(client.identifier),
+    }) => enrollmentProcessBreak(client),
     {
       onMutate: async ({ client }) => {
         setClientLoading(client.identifier);
         setIsClientLoading(true);
+        resetNotificationHandler();
+      },
+      onError: async (error) => {
+        logger.error('%s Problem', 'Customer -', error.response);
+        setIsClientLoading(false);
+
+        const message = error.response.data.detail;
+        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
+
+        updateNotificationHandler(true, message, level);
       },
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
@@ -152,13 +192,6 @@ const CustomersView = ({ coachIdentifier }) => {
       default:
         return 'Unknown';
     }
-  };
-
-  const notificationHandler = () => {
-    setNotification(update(notification,
-      {
-        enable: { $set: false }
-      }));
   };
 
   const columns = ['Name', 'Email', 'Registration date', 'Status', {
@@ -246,7 +279,7 @@ const CustomersView = ({ coachIdentifier }) => {
                     <Notification
                       collapse
                       open={notification.enable}
-                      openHandler={notificationHandler}
+                      openHandler={resetNotificationHandler}
                       level={notification.level}
                       message={notification.message}
                     />
@@ -255,7 +288,7 @@ const CustomersView = ({ coachIdentifier }) => {
               </>
             )
             : null}
-          {!isLoading && isError && data === null
+          {!isLoading && isError
             ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
             : null}
         </Box>
