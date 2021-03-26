@@ -40,6 +40,14 @@
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
-    "react-redux/connect-prefer-named-arguments": 2
+    "react-redux/connect-prefer-named-arguments": 2,
+    "no-shadow": [
+      "error",
+      {
+        "allow": [
+          "data"
+        ]
+      }
+    ]
   }
 }

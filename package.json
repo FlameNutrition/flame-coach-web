@@ -53,6 +53,7 @@
     "react-helmet": "^6.1.0",
     "react-id-generator": "^3.0.1",
     "react-perfect-scrollbar": "^1.5.8",
+    "react-query": "^3.13.0",
     "react-redux": "^7.2.2",
     "react-router": "^6.0.0-beta.0",
     "react-router-dom": "^6.0.0-beta.0",

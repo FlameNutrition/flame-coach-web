@@ -15,7 +15,9 @@ export const enrollmentProcessInit = async (clientUUID, coachUUID) => {
     data
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
 
 export const enrollmentProcessFinish = async (clientUUID, accept) => {
@@ -33,7 +35,9 @@ export const enrollmentProcessFinish = async (clientUUID, accept) => {
     data
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
 
 export const enrollmentProcessBreak = async (clientUUID) => {
@@ -50,5 +54,7 @@ export const enrollmentProcessBreak = async (clientUUID) => {
     data
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
