@@ -19,5 +19,7 @@ export const getClientsCoach = async (coachUUID) => {
     headers: {}
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };

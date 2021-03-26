@@ -33,7 +33,7 @@ const TaskPreview = ({
         <Box m="10px" maxHeight={300}>
           {
             tasks.map((task) => (
-              (task.date === stringDate)
+              (task && task.date === stringDate)
                 ? (
                   <DailyTask
                     key={nextId()}

@@ -20,7 +20,9 @@ export const addDailyTask = async (dailyTask, clientIdentifier, coachIdentifier)
     data
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
 
 export const addMultipleDailyTasks = async (dailyTask, clientIdentifier, coachIdentifier) => {
@@ -42,7 +44,9 @@ export const addMultipleDailyTasks = async (dailyTask, clientIdentifier, coachId
     data
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
 
 export const getDailyTasksByClientAndDay = async (clientIdentifier, date) => {
@@ -61,7 +65,9 @@ export const getDailyTasksByClientAndDay = async (clientIdentifier, date) => {
     data
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
 
 export const updateDailyTaskByUUID = async (taskUUID, dailyTask) => {
@@ -83,7 +89,9 @@ export const updateDailyTaskByUUID = async (taskUUID, dailyTask) => {
     data
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
 
 export const deleteDailyTasksByUUID = async (taskUUID) => {
@@ -95,5 +103,7 @@ export const deleteDailyTasksByUUID = async (taskUUID) => {
     }
   };
 
-  return axios(config);
+  const response = await axios(config);
+
+  return response.data;
 };
