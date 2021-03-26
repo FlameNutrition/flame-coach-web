@@ -11,7 +11,6 @@ import update from 'immutability-helper';
 import MUIDataTable from 'mui-datatables';
 import { UserMinus as UserMinusIcon, UserPlus as UserPlusIcon } from 'react-feather';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import logger from 'loglevel';
 import Warning from '../../components/Warning';
 import {
   enrollmentProcessBreak,
@@ -19,6 +18,7 @@ import {
   getClientsCoachPlusClientsAvailableForCoaching
 } from '../../axios';
 import Notification from '../../components/Notification';
+import { logError } from '../../logging';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,24 +77,28 @@ const CustomersView = ({ coachIdentifier }) => {
   } = useQuery(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier],
     () => getClientsCoachPlusClientsAvailableForCoaching(coachIdentifier), {
       onError: async (err) => {
-        logger.error('%s Problem:', 'Customer -', err);
+        logError('Customer',
+          'useQuery getClientsCoachPlusClientsAvailableForCoaching',
+          'Error:', err);
       }
     });
 
-  const linkClientMutation = useMutation(
+  const linkClient = useMutation(
     ({
-      client,
+      clientIdentifier,
       // eslint-disable-next-line no-shadow
       coachIdentifier
-    }) => enrollmentProcessInit(client.identifier, coachIdentifier),
+    }) => enrollmentProcessInit(clientIdentifier, coachIdentifier),
     {
-      onMutate: async ({ client }) => {
-        setClientLoading(client.identifier);
+      onMutate: async ({ clientIdentifier }) => {
+        setClientLoading(clientIdentifier);
         setIsClientLoading(true);
         resetNotificationHandler();
       },
       onError: async (error) => {
-        logger.error('%s Problem', 'Customer -', error.response);
+        logError('Customer',
+          'useMutation enrollmentProcessInit',
+          'Error:', error.response);
         setIsClientLoading(false);
 
         const message = error.response.data.detail;
@@ -105,12 +109,12 @@ const CustomersView = ({ coachIdentifier }) => {
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
 
-        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldDate) => {
-          const index = oldDate.clientsCoach.findIndex(
-            (customer) => customer.identifier === variables.client.identifier
+        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldData) => {
+          const index = oldData.clientsCoach.findIndex(
+            (customer) => customer.identifier === variables.clientIdentifier
           );
 
-          return update(oldDate, {
+          return update(oldData, {
             clientsCoach: {
               [index]: {
                 status: { $set: data.status }
@@ -124,20 +128,22 @@ const CustomersView = ({ coachIdentifier }) => {
     }
   );
 
-  const unlinkClientMutation = useMutation(
+  const unlinkClient = useMutation(
     ({
-      client,
+      clientIdentifier,
       // eslint-disable-next-line no-shadow,no-unused-vars
       coachIdentifier
-    }) => enrollmentProcessBreak(client),
+    }) => enrollmentProcessBreak(clientIdentifier),
     {
-      onMutate: async ({ client }) => {
-        setClientLoading(client.identifier);
+      onMutate: async ({ clientIdentifier }) => {
+        setClientLoading(clientIdentifier);
         setIsClientLoading(true);
         resetNotificationHandler();
       },
       onError: async (error) => {
-        logger.error('%s Problem', 'Customer -', error.response);
+        logError('Customer',
+          'useMutation enrollmentProcessBreak',
+          'Error:', error.response);
         setIsClientLoading(false);
 
         const message = error.response.data.detail;
@@ -148,12 +154,12 @@ const CustomersView = ({ coachIdentifier }) => {
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
 
-        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldDate) => {
-          const index = oldDate.clientsCoach.findIndex(
-            (customer) => customer.identifier === variables.client.identifier
+        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldData) => {
+          const index = oldData.clientsCoach.findIndex(
+            (customer) => customer.identifier === variables.clientIdentifier
           );
 
-          return update(oldDate, {
+          return update(oldData, {
             clientsCoach: {
               [index]: {
                 status: { $set: data.status }
@@ -168,15 +174,15 @@ const CustomersView = ({ coachIdentifier }) => {
   );
 
   const linkClientHandler = (client) => {
-    linkClientMutation.mutate({
-      client,
+    linkClient.mutate({
+      clientIdentifier: client.identifier,
       coachIdentifier
     });
   };
 
   const unlinkClientHandler = (client) => {
-    unlinkClientMutation.mutate({
-      client,
+    unlinkClient.mutate({
+      clientIdentifier: client.identifier,
       coachIdentifier
     });
   };

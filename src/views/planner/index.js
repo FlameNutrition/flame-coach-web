@@ -3,22 +3,27 @@ import {
   Box,
   Card, CardContent, Container, Grid, makeStyles
 } from '@material-ui/core';
-import logger from 'loglevel';
 import moment from 'moment';
 import update from 'immutability-helper';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import Page from '../../components/Page';
 import Calendar from '../../components/Calendar/Calendar';
 import TaskPreview from './TaskPreview';
 import TaskTool from './TaskTool';
 import SearchClient from '../../components/SearchClient';
 import {
-  addDailyTask, addMultipleDailyTasks, deleteDailyTasksByUUID, getClientsCoach,
-  getDailyTasksByClientAndDay, updateDailyTaskByUUID
+  addDailyTask,
+  addMultipleDailyTasks,
+  deleteDailyTasksByUUID,
+  getClientsCoach,
+  getDailyTasksByClientAndDay,
+  updateDailyTaskByUUID
 } from '../../axios';
 import Warning from '../../components/Warning';
 import Notification from '../../components/Notification';
+import { logDebug, logError } from '../../logging';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,89 +43,72 @@ const useStyles = makeStyles((theme) => ({
 const Planner = ({ coachIdentifier }) => {
   const classes = useStyles();
 
+  const queryClient = useQueryClient();
+
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedClient, setSelectedClient] = useState(null);
   const [selectedDate, setSelectedDate] = useState(moment.utc());
 
-  const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState({
     enable: false,
     message: '',
     level: 'INFO'
   });
 
-  const [tasks, setTasks] = useState([]);
-  const [clients, setClients] = useState(null);
-
-  const setGenericErrorMessage = () => {
-    setNotification(update(notification,
-      {
-        enable: { $set: true },
-        message: { $set: process.env.REACT_APP_MSG_SERVER_ERROR },
-        level: { $set: 'ERROR' }
-      }));
+  const updateNotificationHandler = (enable, message, level) => {
+    setNotification({
+      enable,
+      message,
+      level
+    });
   };
 
-  const setSpecificErrorMessage = (error) => {
-    try {
-      const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-      const errorMessage = error.response.data.detail;
-      setNotification(update(notification,
-        {
-          enable: { $set: true },
-          message: { $set: errorMessage },
-          level: { $set: errorLevel }
-        }));
-    } catch (ex) {
-      logger.error('%s Exception:', 'Planner -', ex);
-      setGenericErrorMessage();
-    }
-  };
+  const clients = useQuery(['getClientsCoach', coachIdentifier],
+    () => getClientsCoach(coachIdentifier), {
+      onError: async (err) => {
+        logError('Planner',
+          'useQuery getClientsCoach',
+          'Error:', err);
+      },
+      refetchOnMount: 'always'
+    });
 
-  useEffect(() => {
-    if (clients === null) {
-      getClientsCoach(coachIdentifier)
-        .then((response) => {
-          setClients(response.data.clientsCoach);
-        }).catch((error) => {
-          logger.error('%s Exception', 'Planner -', error);
-          setLoading(false);
-          setClients(null);
-        });
-    }
-  }, []);
+  const clientTasks = useQuery(['getDailyTasksByClientAndDay', selectedClient, selectedDate],
+    () => getDailyTasksByClientAndDay(selectedClient.identifier, selectedDate), {
+      onError: async (err) => {
+        logError('Planner',
+          'useQuery getDailyTasksByClientAndDay',
+          'Error:', err);
+      },
+      enabled: false
+    });
 
   useEffect(() => {
     if (selectedClient !== null && selectedDate !== null) {
-      getDailyTasksByClientAndDay(selectedClient.identifier, selectedDate)
-        .then((response) => {
-          if (response.data.dailyTasks !== undefined) {
-            setTasks(response.data.dailyTasks);
-          } else {
-            setGenericErrorMessage();
-          }
-        }).catch(() => {
-          setTasks([]);
-          setGenericErrorMessage();
-        });
-    } else {
-      setTasks([]);
+      clientTasks.refetch();
     }
   }, [selectedClient, selectedDate]);
 
   const searchClientSelectHandler = (client) => {
-    logger.debug('%s Following client selected:', 'Planner -', client);
+    logDebug('Planner',
+      'searchClientSelectHandler',
+      'Client Selected:', client);
     setSelectedClient(client);
   };
 
   const selectDateHandler = (value) => {
-    logger.debug('%s Period from %s to %s', 'Planner -', moment(value[0]), moment(value[1]));
+    logDebug('Planner',
+      'selectDateHandler',
+      'Period Selected:', value[0], value[1]);
 
-    setSelectedDate(moment(value[0]).utc());
+    setSelectedDate(moment(value[0])
+      .utc());
   };
 
   const selectUpdateTaskHandler = (task) => {
-    logger.debug('%s Following task selected:', 'Planner -', task);
+    logDebug('Planner',
+      'selectUpdateTaskHandler',
+      'Task Selected', task);
     setSelectedTask(task);
   };
 
@@ -131,174 +119,219 @@ const Planner = ({ coachIdentifier }) => {
       }));
   };
 
+  const addMultiplesDailyTasksMutation = useMutation(
+    ({
+      task,
+      clientIdentifier,
+      // eslint-disable-next-line no-shadow
+      coachIdentifier
+    }) => addMultipleDailyTasks(task, clientIdentifier, coachIdentifier),
+    {
+      onError: async (error) => {
+        logError('Planner',
+          'addMultiplesDailyTasksMutation',
+          'Error:', error);
+
+        const message = error.response.data.detail;
+        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
+
+        updateNotificationHandler(true, message, level);
+      }
+    }
+  );
+
+  const addDailyTaskMutation = useMutation(
+    ({
+      task,
+      clientIdentifier,
+      // eslint-disable-next-line no-shadow
+      coachIdentifier
+    }) => addDailyTask(task, clientIdentifier, coachIdentifier),
+    {
+      onError: async (error) => {
+        logError('Planner',
+          'addDailyTaskMutation',
+          'Error:', error);
+
+        const message = error.response.data.detail;
+        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
+
+        updateNotificationHandler(true, message, level);
+      },
+      onSuccess: async (data) => {
+        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
+
+        logDebug('Planner',
+          'addDailyTaskMutation',
+          'Response:', data);
+
+        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
+          logDebug('Planner',
+            'addDailyTaskMutation',
+            'Old Data:', oldData);
+          return update(oldData, { dailyTasks: { $push: [data.dailyTasks[0]] } });
+        });
+
+        updateNotificationHandler(true, 'Task added with success!', 'SUCCESS');
+      }
+    }
+  );
+
+  const updateDailyTaskMutation = useMutation(
+    ({
+      taskIdentifier,
+      newTask
+    }) => updateDailyTaskByUUID(taskIdentifier, newTask),
+    {
+      onError: async (error) => {
+        logError('Planner',
+          'updateDailyTaskMutation',
+          'Error:', error);
+
+        const message = error.response.data.detail;
+        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
+
+        updateNotificationHandler(true, message, level);
+      },
+      onSuccess: async (data, variables) => {
+        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
+
+        logDebug('Planner',
+          'updateDailyTaskMutation',
+          'Response:', data);
+
+        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
+          logDebug('Planner',
+            'updateDailyTaskMutation',
+            'Old Data:', oldData);
+          const index = oldData.dailyTasks.findIndex(
+            (dailyTask) => dailyTask !== undefined
+              && dailyTask.identifier === variables.taskIdentifier
+          );
+
+          // FIXME: The undefined values should be deleted
+          const newData = update(oldData, {
+            dailyTasks: {
+              [index]: { $set: data.dailyTasks[0] }
+            }
+          });
+
+          logDebug('Planner',
+            'updateDailyTaskMutation',
+            'New Data:', newData);
+
+          return newData;
+        });
+
+        updateNotificationHandler(true, 'Task updated with success!', 'SUCCESS');
+        setSelectedTask(null);
+      }
+    }
+  );
+
+  const deleteDailyTaskMutation = useMutation(
+    ({ taskIdentifier }) => deleteDailyTasksByUUID(taskIdentifier),
+    {
+      onError: async (error) => {
+        logError('Planner',
+          'deleteDailyTaskMutation',
+          'Error:', error);
+
+        const message = error.response.data.detail;
+        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
+
+        updateNotificationHandler(true, message, level);
+      },
+      onSuccess: async (data, variables) => {
+        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
+
+        logDebug('Planner',
+          'deleteDailyTaskMutation',
+          'Response:', data);
+
+        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
+          logDebug('Planner',
+            'deleteDailyTaskMutation',
+            'Old Data:', oldData);
+          const index = oldData.dailyTasks.findIndex(
+            (dailyTask) => dailyTask !== undefined
+              && dailyTask.identifier === variables.taskIdentifier
+          );
+
+          // FIXME: The undefined values should be deleted
+          const newData = update(oldData, { dailyTasks: { $unset: [index] } });
+
+          logDebug('Planner',
+            'deleteDailyTaskMutation',
+            'New Data:', newData);
+
+          return newData;
+        });
+
+        updateNotificationHandler(true, 'Task deleted with success!', 'SUCCESS');
+      }
+    }
+  );
+
   const addMultipleTasksHandler = (task) => {
     if (selectedClient === null) {
-      setNotification(update(notification,
-        {
-          enable: { $set: true },
-          message: { $set: 'Ops! You need select a client first. Please choose a client in the top of the application' },
-          level: { $set: 'WARNING' }
-        }));
+      updateNotificationHandler(true,
+        'Ops! You need select a client first. Please choose a client in the top of the application',
+        'WARNING');
     }
 
     if (selectedClient !== null && selectedDate !== null) {
-      logger.debug('%s Add Multiple Tasks:', 'Planner -', task);
-
-      addMultipleDailyTasks(task, selectedClient.identifier, coachIdentifier)
-        .then((response) => {
-          // TODO: Process the success message for multiple daily tasks
-          logger.warn('%s Process success message:', 'Planner -', response.data);
-        })
-        .catch((error) => {
-          try {
-            const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-            const errorMessage = error.response.data.detail;
-            setNotification(update(notification,
-              {
-                enable: { $set: true },
-                message: { $set: errorMessage },
-                level: { $set: errorLevel }
-              }));
-          } catch (ex) {
-            setGenericErrorMessage();
-          }
-        });
+      logDebug('Planner',
+        'addMultipleTasksHandler',
+        'Add multiple tasks action. Task: ', task);
+      addMultiplesDailyTasksMutation.mutate(
+        {
+          task,
+          clientIdentifier: selectedClient.identifier,
+          coachIdentifier
+        }
+      );
     }
   };
 
   const addTasksHandler = (task) => {
     if (selectedClient === null) {
-      setNotification(update(notification,
-        {
-          enable: { $set: true },
-          message: { $set: 'Ops! You need select a client first. Please choose a client in the top of the application' },
-          level: { $set: 'WARNING' }
-        }));
+      updateNotificationHandler(true,
+        'Ops! You need select a client first. Please choose a client in the top of the application',
+        'WARNING');
     }
 
     if (selectedClient !== null && selectedDate !== null) {
-      logger.debug('%s Task:', 'Planner -', task);
-
-      addDailyTask(task, selectedClient.identifier, coachIdentifier)
-        .then((response) => {
-          if (response.data.dailyTasks[0] !== null) {
-            setTasks(update(tasks, { $push: [response.data.dailyTasks[0]] }));
-            setNotification(update(notification,
-              {
-                enable: { $set: true },
-                message: { $set: 'Task added with success!' },
-                level: { $set: 'SUCCESS' }
-              }));
-            setSelectedTask(null);
-          }
-        })
-        .catch((error) => {
-          try {
-            const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-            const errorMessage = error.response.data.detail;
-            setNotification(update(notification,
-              {
-                enable: { $set: true },
-                message: { $set: errorMessage },
-                level: { $set: errorLevel }
-              }));
-          } catch (ex) {
-            setGenericErrorMessage();
-          }
-        });
+      addDailyTaskMutation.mutate(
+        {
+          task,
+          clientIdentifier: selectedClient.identifier,
+          coachIdentifier
+        }
+      );
     }
   };
 
   const updateTasksHandler = (newTask) => {
     if (selectedTask === null) {
-      setNotification(update(notification,
-        {
-          enable: { $set: true },
-          message: { $set: 'Ops! You need select a task first. Please choose the task you want to update' },
-          level: { $set: 'WARNING' }
-        }));
+      updateNotificationHandler(true,
+        'Ops! You need select a task first. Please choose the task you want to update',
+        'WARNING');
     }
 
     if (selectedTask !== null && selectedClient !== null && selectedDate !== null) {
       newTask = update(newTask, { ticked: { $set: selectedTask.ticked } });
 
-      logger.debug('%s Task:', 'Planner -', newTask);
-
-      updateDailyTaskByUUID(selectedTask.identifier, newTask)
-        .then((response) => {
-          if (response.data.dailyTasks[0] !== null) {
-            try {
-              const index = tasks.findIndex(
-                (dailyTask) => dailyTask !== undefined
-                  && dailyTask.identifier === selectedTask.identifier
-              );
-
-              setTasks(update(tasks, {
-                [index]: { $set: response.data.dailyTasks[0] }
-              }));
-
-              setNotification(update(notification,
-                {
-                  enable: { $set: true },
-                  message: { $set: 'Task updated with success!' },
-                  level: { $set: 'SUCCESS' }
-                }));
-
-              setSelectedTask(null);
-            } catch (ex) {
-              logger.error('%s Exception:', 'Planner -', ex);
-              setGenericErrorMessage();
-            }
-          }
-        })
-        .catch((error) => {
-          try {
-            const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-            const errorMessage = error.response.data.detail;
-            setNotification(update(notification,
-              {
-                enable: { $set: true },
-                message: { $set: errorMessage },
-                level: { $set: errorLevel }
-              }));
-          } catch (ex) {
-            setGenericErrorMessage();
-          }
-        });
+      updateDailyTaskMutation.mutate({
+        taskIdentifier: selectedTask.identifier,
+        newTask
+      });
     }
   };
 
   const deleteTaskHandler = (task) => {
     if (task !== null) {
-      logger.debug('%s Task', 'Planner-', task);
-      deleteDailyTasksByUUID(task.identifier)
-        .then((response) => {
-          if (response.data.dailyTasks[0].identifier !== null) {
-            try {
-              const index = tasks.findIndex(
-                (dailyTask) => dailyTask !== undefined && dailyTask.identifier === task.identifier
-              );
-
-              setTasks(update(tasks, {
-                $unset: [index]
-              }));
-
-              setNotification(update(notification,
-                {
-                  enable: { $set: true },
-                  message: { $set: 'Task deleted with success!' },
-                  level: { $set: 'SUCCESS' }
-                }));
-            } catch (ex) {
-              logger.error('%s Exception:', 'Planner -', ex);
-              setGenericErrorMessage();
-            }
-          } else {
-            setGenericErrorMessage();
-          }
-        }).catch((error) => {
-          setSpecificErrorMessage(error);
-        });
+      deleteDailyTaskMutation.mutate({ taskIdentifier: task.identifier });
     }
   };
 
@@ -308,16 +341,16 @@ const Planner = ({ coachIdentifier }) => {
       title="Planner"
     >
       <Container maxWidth={false}>
-        {!loading && clients === null
+        {!clients.isLoading && clients.isError
           ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
           : null}
-        {clients !== null ? (
+        {!clients.isLoading && clients.data ? (
           <>
             <Box className={classes.searchClientCard}>
               <Card>
                 <CardContent>
                   <SearchClient
-                    clients={clients}
+                    clients={clients.data.clientsCoach}
                     searchSelectedHandler={searchClientSelectHandler}
                   />
                 </CardContent>
@@ -335,7 +368,7 @@ const Planner = ({ coachIdentifier }) => {
                 xs={12}
               >
                 <TaskPreview
-                  tasks={tasks}
+                  tasks={clientTasks.data ? clientTasks.data.dailyTasks : []}
                   date={selectedDate}
                   selectUpdateTaskHandler={selectUpdateTaskHandler}
                   deleteTaskHandler={deleteTaskHandler}
