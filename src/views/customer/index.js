@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box, Button,
   Container, Grid,
@@ -7,10 +7,10 @@ import {
 import Page from 'src/components/Page';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import logger from 'loglevel';
 import update from 'immutability-helper';
 import MUIDataTable from 'mui-datatables';
 import { UserMinus as UserMinusIcon, UserPlus as UserPlusIcon } from 'react-feather';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import Warning from '../../components/Warning';
 import {
   enrollmentProcessBreak,
@@ -37,15 +37,109 @@ const CustomersView = ({ coachIdentifier }) => {
   const options = {
     filterType: 'dropdown',
     selectableRows: 'none',
-    tableBodyMaxHeight: '70vh'
+    tableBodyMaxHeight: '70vh',
+    sortOrder: {
+      name: 'Name',
+      direction: 'asc'
+    }
   };
-  const [customers, setCustomers] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState({
     enable: false,
     message: '',
     level: 'INFO'
   });
+
+  const queryClient = useQueryClient();
+
+  const [clientLoading, setClientLoading] = useState(false);
+  const [isClientLoading, setIsClientLoading] = useState(null);
+
+  const {
+    isLoading,
+    isError,
+    data
+  } = useQuery(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier],
+    () => getClientsCoachPlusClientsAvailableForCoaching(coachIdentifier));
+
+  const linkClientMutation = useMutation(
+    ({
+      client,
+      // eslint-disable-next-line no-shadow
+      coachIdentifier
+    }) => enrollmentProcessInit(client.identifier, coachIdentifier),
+    {
+      onMutate: async ({ client }) => {
+        setClientLoading(client.identifier);
+        setIsClientLoading(true);
+      },
+      onSuccess: async (data, variables) => {
+        await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
+
+        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldDate) => {
+          const index = oldDate.clientsCoach.findIndex(
+            (customer) => customer.identifier === variables.client.identifier
+          );
+
+          return update(oldDate, {
+            clientsCoach: {
+              [index]: {
+                status: { $set: data.status }
+              }
+            }
+          });
+        });
+
+        setIsClientLoading(false);
+      }
+    }
+  );
+
+  const unlinkClientMutation = useMutation(
+    ({
+      client,
+      // eslint-disable-next-line no-shadow,no-unused-vars
+      coachIdentifier
+    }) => enrollmentProcessBreak(client.identifier),
+    {
+      onMutate: async ({ client }) => {
+        setClientLoading(client.identifier);
+        setIsClientLoading(true);
+      },
+      onSuccess: async (data, variables) => {
+        await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
+
+        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldDate) => {
+          const index = oldDate.clientsCoach.findIndex(
+            (customer) => customer.identifier === variables.client.identifier
+          );
+
+          return update(oldDate, {
+            clientsCoach: {
+              [index]: {
+                status: { $set: data.status }
+              }
+            }
+          });
+        });
+
+        setIsClientLoading(false);
+      }
+    }
+  );
+
+  const linkClientHandler = (client) => {
+    linkClientMutation.mutate({
+      client,
+      coachIdentifier
+    });
+  };
+
+  const unlinkClientHandler = (client) => {
+    unlinkClientMutation.mutate({
+      client,
+      coachIdentifier
+    });
+  };
 
   const getStatus = (status) => {
     switch (status) {
@@ -60,53 +154,6 @@ const CustomersView = ({ coachIdentifier }) => {
     }
   };
 
-  useEffect(() => {
-    if (customers === null) {
-      getClientsCoachPlusClientsAvailableForCoaching(coachIdentifier)
-        .then((response) => {
-          const clients = response.data.clientsCoach
-            .map((client) => ([
-              `${client.firstname} ${client.lastname}`,
-              client.email,
-              client.registrationDate,
-              getStatus(client.status),
-              client
-            ]));
-
-          setLoading(false);
-          setCustomers(clients);
-        }).catch(() => {
-          setLoading(false);
-          setCustomers(null);
-        });
-    }
-  }, []);
-
-  const setGenericErrorMessage = () => {
-    setNotification(update(notification,
-      {
-        enable: { $set: true },
-        message: { $set: process.env.REACT_APP_MSG_SERVER_ERROR },
-        level: { $set: 'ERROR' }
-      }));
-  };
-
-  const setSpecificErrorMessage = (error) => {
-    try {
-      const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-      const errorMessage = error.response.data.detail;
-      setNotification(update(notification,
-        {
-          enable: { $set: true },
-          message: { $set: errorMessage },
-          level: { $set: errorLevel }
-        }));
-    } catch (ex) {
-      logger.error('Exception:', ex);
-      setGenericErrorMessage();
-    }
-  };
-
   const notificationHandler = () => {
     setNotification(update(notification,
       {
@@ -114,84 +161,57 @@ const CustomersView = ({ coachIdentifier }) => {
       }));
   };
 
-  const setClientStatus = (client, json) => {
-    try {
-      const index = customers.findIndex(
-        (customer) => customer[4].identifier === client.identifier
-      );
-      setCustomers(update(customers, {
-        [index]: {
-          3: { $set: getStatus(json.data.status) },
-          4: {
-            status: { $set: json.data.status }
-          }
-        }
-      }));
-    } catch (ex) {
-      logger.error('Exception:', ex);
-      setGenericErrorMessage();
-    }
-  };
-
-  const linkClientHandler = (client) => {
-    enrollmentProcessInit(client.identifier, coachIdentifier)
-      .then((response) => {
-        setClientStatus(client, response);
-      }).catch((error) => {
-        setSpecificErrorMessage(error);
-      });
-  };
-
-  const unlinkClientHandler = (client) => {
-    enrollmentProcessBreak(client.identifier)
-      .then((response) => {
-        setClientStatus(client, response);
-      }).catch((error) => {
-        setSpecificErrorMessage(error);
-      });
-  };
-
   const columns = ['Name', 'Email', 'Registration date', 'Status', {
     label: 'Actions',
     filter: false,
     options: {
-      customBodyRender: (value) => (
-        <Grid
-          container
-          spacing="1"
-        >
-          <Grid item>
-            <Button
-              className={classes.plusUserButton}
-              variant="contained"
-              disabled={!(value.status === 'AVAILABLE')}
-              onClick={() => linkClientHandler(value)}
-            >
-              <SvgIcon
-                fontSize="small"
-                color="inherit"
+      customBodyRender: (value) => {
+        const disableButtonPlus = value.client.identifier === value.clientLoading
+          ? value.isClientLoading || !(value.client.status === 'AVAILABLE')
+          : !(value.client.status === 'AVAILABLE');
+
+        const disableButtonMinus = value.client.identifier === value.clientLoading
+          ? value.isClientLoading || !(value.client.status !== 'AVAILABLE')
+          : !(value.client.status !== 'AVAILABLE');
+
+        return (
+          <Grid
+            container
+            spacing={1}
+          >
+            <Grid item>
+              <Button
+                className={classes.plusUserButton}
+                variant="contained"
+                disabled={disableButtonPlus}
+                onClick={() => linkClientHandler(value.client)}
               >
-                <UserPlusIcon />
-              </SvgIcon>
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              className={classes.minusUserButton}
-              variant="contained"
-              disabled={!(value.status !== 'AVAILABLE')}
-              onClick={() => unlinkClientHandler(value)}
-            >
-              <SvgIcon
-                fontSize="small"
-                color="inherit"
+                <SvgIcon
+                  fontSize="small"
+                  color="inherit"
+                >
+                  <UserPlusIcon />
+                </SvgIcon>
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                className={classes.minusUserButton}
+                variant="contained"
+                disabled={disableButtonMinus}
+                onClick={() => unlinkClientHandler(value.client)}
               >
-                <UserMinusIcon />
-              </SvgIcon>
-            </Button>
+                <SvgIcon
+                  fontSize="small"
+                  color="inherit"
+                >
+                  <UserMinusIcon />
+                </SvgIcon>
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-      )
+        );
+      }
     }
   }];
 
@@ -202,12 +222,22 @@ const CustomersView = ({ coachIdentifier }) => {
     >
       <Container maxWidth={false}>
         <Box mt={3}>
-          {customers !== null
+          {!isLoading && !isError
             ? (
               <>
                 <MUIDataTable
                   title="Clients list"
-                  data={customers}
+                  data={data.clientsCoach.map((client) => ([
+                    `${client.firstname} ${client.lastname}`,
+                    client.email,
+                    client.registrationDate,
+                    getStatus(client.status),
+                    {
+                      client,
+                      clientLoading,
+                      isClientLoading
+                    },
+                  ]))}
                   columns={columns}
                   options={options}
                 />
@@ -225,7 +255,7 @@ const CustomersView = ({ coachIdentifier }) => {
               </>
             )
             : null}
-          {!loading && customers === null
+          {!isLoading && isError && data === null
             ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
             : null}
         </Box>
