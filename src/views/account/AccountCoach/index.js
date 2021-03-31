@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Grid,
@@ -6,9 +6,8 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import logger from 'loglevel';
-import Profile from '../../../components/Profile';
-import ProfileDetails from '../../../components/ProfileDetails';
-import { getUserDetails } from '../../../axios';
+import Profile from '../Profile';
+import ProfileDetails from '../ProfileDetails';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,16 +21,6 @@ const useStyles = makeStyles((theme) => ({
 const Account = () => {
   const classes = useStyles();
   const [userDetails, setUserDetails] = useState(null);
-
-  useEffect(() => {
-    if (userDetails === null) {
-      getUserDetails(1)
-        .then((response) => {
-          setUserDetails(response);
-        })
-        .catch(() => setUserDetails(null));
-    }
-  }, []);
 
   const updateUserDetailsHandler = (event) => {
     logger.debug('Update user details');
