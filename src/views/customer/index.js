@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomersView = ({ coachIdentifier }) => {
+const CustomersView = ({ customerIdentifier }) => {
   const classes = useStyles();
   const options = {
     filterType: 'dropdown',
@@ -74,8 +74,8 @@ const CustomersView = ({ coachIdentifier }) => {
     isLoading,
     isError,
     data
-  } = useQuery(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier],
-    () => getClientsCoachPlusClientsAvailableForCoaching(coachIdentifier), {
+  } = useQuery(['getClientsCoachPlusClientsAvailableForCoaching', customerIdentifier],
+    () => getClientsCoachPlusClientsAvailableForCoaching(customerIdentifier), {
       onError: async (err) => {
         logError('Customer',
           'useQuery getClientsCoachPlusClientsAvailableForCoaching',
@@ -109,7 +109,7 @@ const CustomersView = ({ coachIdentifier }) => {
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
 
-        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldData) => {
+        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', customerIdentifier], (oldData) => {
           const index = oldData.clientsCoach.findIndex(
             (customer) => customer.identifier === variables.clientIdentifier
           );
@@ -154,7 +154,7 @@ const CustomersView = ({ coachIdentifier }) => {
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
 
-        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', coachIdentifier], (oldData) => {
+        queryClient.setQueryData(['getClientsCoachPlusClientsAvailableForCoaching', customerIdentifier], (oldData) => {
           const index = oldData.clientsCoach.findIndex(
             (customer) => customer.identifier === variables.clientIdentifier
           );
@@ -176,14 +176,14 @@ const CustomersView = ({ coachIdentifier }) => {
   const linkClientHandler = (client) => {
     linkClient.mutate({
       clientIdentifier: client.identifier,
-      coachIdentifier
+      customerIdentifier
     });
   };
 
   const unlinkClientHandler = (client) => {
     unlinkClient.mutate({
       clientIdentifier: client.identifier,
-      coachIdentifier
+      customerIdentifier
     });
   };
 
@@ -304,12 +304,12 @@ const CustomersView = ({ coachIdentifier }) => {
 };
 
 CustomersView.propTypes = {
-  coachIdentifier: PropTypes.string
+  customerIdentifier: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
   return {
-    coachIdentifier: state.auth.userInfo.identifier !== null
+    customerIdentifier: state.auth.userInfo.identifier !== null
       ? state.auth.userInfo.identifier : null
   };
 };

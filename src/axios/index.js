@@ -12,9 +12,11 @@ export {
 } from './axios-coach';
 
 export {
-  getUserDetails,
-  updateUserDetails
-} from './axios-user';
+  getClientContactInformation,
+  getClientPersonalData,
+  updateClientContactInformation,
+  updateClientPersonalData
+} from './axios-client';
 
 export {
   enrollmentProcessInit,

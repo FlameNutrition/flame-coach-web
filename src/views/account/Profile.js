@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -12,6 +12,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import moment from 'moment';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -25,6 +26,18 @@ const Profile = ({
   user, enablePhoto, updatePhotoHandler, className, ...rest
 }) => {
   const classes = useStyles();
+
+  const dateFormat = 'MMMM Do YYYY, h:mm:ss a';
+  const [localTime, setLocalTime] = useState(moment().format(dateFormat));
+
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
+    const interval = setInterval(() => {
+      setLocalTime(moment().format(dateFormat));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Card
@@ -54,7 +67,11 @@ const Profile = ({
             color="textSecondary"
             variant="body1"
           >
-            {`${user.city} ${user.country}`}
+            {
+              user.country
+                ? `${localTime} - ${user.city} ${user.country}`
+                : `${localTime}`
+            }
           </Typography>
         </Box>
       </CardContent>

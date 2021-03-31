@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Planner = ({ coachIdentifier }) => {
+const Planner = ({ customerIdentifier }) => {
   const classes = useStyles();
 
   const queryClient = useQueryClient();
@@ -63,8 +63,8 @@ const Planner = ({ coachIdentifier }) => {
     });
   };
 
-  const clients = useQuery(['getClientsCoach', coachIdentifier],
-    () => getClientsCoach(coachIdentifier), {
+  const clients = useQuery(['getClientsCoach', customerIdentifier],
+    () => getClientsCoach(customerIdentifier), {
       onError: async (err) => {
         logError('Planner',
           'useQuery getClientsCoach',
@@ -288,7 +288,7 @@ const Planner = ({ coachIdentifier }) => {
         {
           task,
           clientIdentifier: selectedClient.identifier,
-          coachIdentifier
+          coachIdentifier: customerIdentifier
         }
       );
     }
@@ -306,7 +306,7 @@ const Planner = ({ coachIdentifier }) => {
         {
           task,
           clientIdentifier: selectedClient.identifier,
-          coachIdentifier
+          coachIdentifier: customerIdentifier
         }
       );
     }
@@ -412,12 +412,12 @@ const Planner = ({ coachIdentifier }) => {
 };
 
 Planner.propTypes = {
-  coachIdentifier: PropTypes.string
+  customerIdentifier: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
   return {
-    coachIdentifier: state.auth.userInfo.identifier !== null
+    customerIdentifier: state.auth.userInfo.identifier !== null
       ? state.auth.userInfo.identifier : null
   };
 };
