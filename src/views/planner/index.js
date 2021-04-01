@@ -3,7 +3,6 @@ import {
   Box,
   Card, CardContent, Container, Grid, makeStyles
 } from '@material-ui/core';
-import moment from 'moment';
 import update from 'immutability-helper';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -22,7 +21,6 @@ import {
   updateDailyTaskByUUID
 } from '../../axios';
 import Warning from '../../components/Warning';
-import Notification from '../../components/Notification';
 import { logDebug, logError } from '../../logging';
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +45,7 @@ const Planner = ({ customerIdentifier }) => {
 
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedClient, setSelectedClient] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(moment.utc());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [notification, setNotification] = useState({
     enable: false,
@@ -100,9 +98,7 @@ const Planner = ({ customerIdentifier }) => {
     logDebug('Planner',
       'selectDateHandler',
       'Period Selected:', value[0], value[1]);
-
-    setSelectedDate(moment(value[0])
-      .utc());
+    setSelectedDate(value[0]);
   };
 
   const selectUpdateTaskHandler = (task) => {
@@ -387,23 +383,15 @@ const Planner = ({ customerIdentifier }) => {
             <Box className={classes.actionTaskCard}>
               <TaskTool
                 task={selectedTask}
+                notification={notification}
+                notificationCollapseHandler={notificationHandler}
+                updateNotificationHandler={updateNotificationHandler}
                 addTasksHandler={addTasksHandler}
                 addMultipleTasksHandler={addMultipleTasksHandler}
                 updateTaskHandler={updateTasksHandler}
                 selectUpdateTaskHandler={selectUpdateTaskHandler}
               />
             </Box>
-            {notification.enable
-              ? (
-                <Notification
-                  collapse
-                  open={notification.enable}
-                  openHandler={notificationHandler}
-                  level={notification.level}
-                  message={notification.message}
-                />
-              )
-              : null}
           </>
         ) : null}
       </Container>

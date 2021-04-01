@@ -8,6 +8,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import nextId from 'react-id-generator';
 import moment from 'moment';
 import DailyTask from '../../../components/DailyTask';
+import { logDebug } from '../../../logging';
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -18,7 +19,9 @@ const TaskPreview = ({
 }) => {
   const classes = useStyles();
 
-  const stringDate = date.format(moment.HTML5_FMT.DATE);
+  const stringDate = moment(date).format(moment.HTML5_FMT.DATE);
+
+  logDebug('TaskPreview', 'render', 'stringDate', stringDate);
 
   return (
     <Card
