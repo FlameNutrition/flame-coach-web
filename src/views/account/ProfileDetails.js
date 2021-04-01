@@ -166,18 +166,21 @@ const ProfileDetails = ({
                     <FormControl fullWidth variant="outlined">
                       <InputLabel>Country</InputLabel>
                       <Controller
-                        as={(
+                        render={(renderProps) => (
                           <Select
                             labelId="country"
                             label="Country"
+                            name="country"
                             value={userDetails.country}
-                            onChange={updateUserDetailsHandler}
+                            onChange={(event) => {
+                              renderProps.onChange(updateUserDetailsHandler(event));
+                            }}
                           >
                             <MenuItem value="">Country</MenuItem>
                             <MenuItem value="PT">Portugal</MenuItem>
                             <MenuItem value="BR">Brazil</MenuItem>
                           </Select>
-                      )}
+                        )}
                         control={formContactInformation.control}
                         defaultValue={userDetails.country}
                         name="country"
@@ -237,17 +240,21 @@ const ProfileDetails = ({
                         <FormControl fullWidth variant="outlined">
                           <InputLabel>Measure Type</InputLabel>
                           <Controller
-                            as={(
+                            render={(renderProps) => (
                               <Select
                                 labelId="measureType"
                                 label="Measure Type"
+                                name="measureType"
                                 value={userDetails.measureType}
-                                onChange={updateUserDetailsHandler}
+                                onChange={(event) => {
+                                  renderProps.onChange(updateUserDetailsHandler(event));
+                                }}
                               >
                                 <MenuItem value="KG_CM">Kg/cm</MenuItem>
                                 <MenuItem value="LBS_IN">Lbs/in</MenuItem>
                               </Select>
-                          )}
+                            )}
+                            onChange={updateUserDetailsHandler}
                             control={formPersonalInformation.control}
                             defaultValue={userDetails.measureType}
                             name="measureType"
@@ -261,19 +268,22 @@ const ProfileDetails = ({
                         <FormControl fullWidth variant="outlined">
                           <InputLabel>Gender</InputLabel>
                           <Controller
-                            as={(
+                            render={(renderProps) => (
                               <Select
                                 labelId="gender"
                                 label="Gender"
+                                name="gender"
                                 value={userDetails.gender}
-                                onChange={updateUserDetailsHandler}
+                                onChange={(event) => {
+                                  renderProps.onChange(updateUserDetailsHandler(event));
+                                }}
                               >
                                 <MenuItem value="">Gender</MenuItem>
                                 <MenuItem value="M">Male</MenuItem>
                                 <MenuItem value="F">Female</MenuItem>
                                 <MenuItem value="O">Other</MenuItem>
                               </Select>
-                          )}
+                            )}
                             control={formPersonalInformation.control}
                             defaultValue={userDetails.gender}
                             name="gender"
@@ -352,7 +362,7 @@ ProfileDetails.propTypes = {
   className: PropTypes.string,
   updateUserDetailsHandler: PropTypes.func.isRequired,
   saveContactInformationHandler: PropTypes.func.isRequired,
-  savePersonalInformationHandler: PropTypes.func.isRequired,
+  savePersonalInformationHandler: PropTypes.func,
   userDetails: PropTypes.object.isRequired,
   enablePersonalData: PropTypes.bool
 };

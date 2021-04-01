@@ -68,7 +68,7 @@ const Profile = ({
             variant="body1"
           >
             {
-              user.country
+              user.country && user.country !== 'Country'
                 ? `${localTime} - ${user.city} ${user.country}`
                 : `${localTime}`
             }
