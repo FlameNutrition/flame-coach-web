@@ -237,13 +237,13 @@ const Account = ({
                     email,
                     phoneCode: contactInformation.data.phoneCode,
                     phoneNumber: contactInformation.data.phoneNumber,
-                    country: (contactInformation.data.country)
-                      ? contactInformation.data.country.code : null,
+                    country: contactInformation.data.country && contactInformation.data.country.code
+                      ? contactInformation.data.country.code : '',
                     measureType: personalData.data.measureType.code,
                     weight: personalData.data.weight,
                     height: personalData.data.height,
-                    gender: (personalData.data.gender)
-                      ? personalData.data.gender.code : null
+                    gender: personalData.data.gender && personalData.data.gender.code
+                      ? personalData.data.gender.code : ''
                   }}
                   saveContactInformationHandler={saveContactInformationHandler}
                   savePersonalInformationHandler={savePersonalInformationHandler}

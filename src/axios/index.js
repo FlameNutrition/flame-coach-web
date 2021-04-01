@@ -8,7 +8,9 @@ export {
 
 export {
   getClientsCoachPlusClientsAvailableForCoaching,
-  getClientsCoach
+  getClientsCoach,
+  getCoachContactInformation,
+  updateCoachContactInformation
 } from './axios-coach';
 
 export {
