@@ -86,7 +86,6 @@ const CustomersView = ({ customerIdentifier }) => {
   const linkClient = useMutation(
     ({
       clientIdentifier,
-      // eslint-disable-next-line no-shadow
       coachIdentifier
     }) => enrollmentProcessInit(clientIdentifier, coachIdentifier),
     {
@@ -131,7 +130,7 @@ const CustomersView = ({ customerIdentifier }) => {
   const unlinkClient = useMutation(
     ({
       clientIdentifier,
-      // eslint-disable-next-line no-shadow,no-unused-vars
+      // eslint-disable-next-line no-unused-vars
       coachIdentifier
     }) => enrollmentProcessBreak(clientIdentifier),
     {
@@ -176,14 +175,14 @@ const CustomersView = ({ customerIdentifier }) => {
   const linkClientHandler = (client) => {
     linkClient.mutate({
       clientIdentifier: client.identifier,
-      customerIdentifier
+      coachIdentifier: customerIdentifier
     });
   };
 
   const unlinkClientHandler = (client) => {
     unlinkClient.mutate({
       clientIdentifier: client.identifier,
-      customerIdentifier
+      coachIdentifier: customerIdentifier
     });
   };
 
