@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import update from 'immutability-helper';
 import {
   Box, Button, Card, CardContent, CardHeader, Divider, Grid, makeStyles,
   TextField, Checkbox, FormControlLabel, FormGroup, FormHelperText
@@ -10,8 +9,8 @@ import clsx from 'clsx';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import logger from 'loglevel';
 import Notification from '../../../components/Notification';
+import { logDebug } from '../../../logging';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -33,22 +32,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TaskTool = ({
-  task, addTasksHandler, addMultipleTasksHandler, updateTaskHandler, selectUpdateTaskHandler
+  task,
+  notification,
+  notificationCollapseHandler,
+  updateNotificationHandler,
+  addTasksHandler,
+  addMultipleTasksHandler,
+  updateTaskHandler,
+  selectUpdateTaskHandler
 }) => {
   const classes = useStyles();
 
-  const [startDateState, setStartDate] = useState(moment().utc().format(moment.HTML5_FMT.DATE));
-  const [endDateState, setEndDate] = useState(moment().utc().format(moment.HTML5_FMT.DATE));
+  const [startDateState, setStartDate] = useState(moment().format(moment.HTML5_FMT.DATE));
+  const [endDateState, setEndDate] = useState(moment().format(moment.HTML5_FMT.DATE));
 
-  const [notification, setNotification] = useState({
-    enable: false,
-    message: '',
-    level: 'INFO'
+  useEffect(() => {
+    // FIXME: This not allow change the date of task.
+    if (task) {
+      setStartDate(task.date);
+      setEndDate(task.date);
+    }
+
+    logDebug('TaskTool', 'render', 'task', task, startDateState, endDateState);
   });
 
   const resetFormValues = (setFieldValue) => {
-    setStartDate(moment().utc().format(moment.HTML5_FMT.DATE));
-    setEndDate(moment().utc().format(moment.HTML5_FMT.DATE));
+    setStartDate(moment()
+      .utc()
+      .format(moment.HTML5_FMT.DATE));
+    setEndDate(moment()
+      .utc()
+      .format(moment.HTML5_FMT.DATE));
 
     setFieldValue('button', 'ADD', false);
     setFieldValue('taskName', '', false);
@@ -57,15 +71,8 @@ const TaskTool = ({
     // setFieldValue('multipleDays', false, true);
     setFieldValue('isUpdate', false, false);
 
-    setNotification(update(notification, { enable: { $set: false } }));
+    updateNotificationHandler(false, '', '');
     selectUpdateTaskHandler(null);
-  };
-
-  const notificationHandler = () => {
-    setNotification(update(notification,
-      {
-        enable: { $set: false }
-      }));
   };
 
   return (
@@ -84,22 +91,17 @@ const TaskTool = ({
             button: null,
             isUpdate: task !== null,
           }}
-          validationSchema={Yup.object().shape({
-            taskName: Yup.string().max(255).required('Name is required'),
-          })}
+          validationSchema={Yup.object()
+            .shape({
+              taskName: Yup.string()
+                .max(255)
+                .required('Name is required'),
+            })}
           enableReinitialize
           onSubmit={(values, { setSubmitting }) => {
             if (values.multipleDays) {
-              const startDate = moment(startDateState, moment.HTML5_FMT.DATE);
-              const endDate = moment(endDateState, moment.HTML5_FMT.DATE);
-
-              if (startDate.isSameOrAfter(endDate)) {
-                setNotification(update(notification,
-                  {
-                    enable: { $set: true },
-                    message: { $set: 'End date is the same or after the start date.' },
-                    level: { $set: 'ERROR' }
-                  }));
+              if (moment(startDateState).isSameOrAfter(moment(endDateState))) {
+                updateNotificationHandler(true, 'End date is the same or after the start date.', 'WARNING');
               } else {
                 const dailyTask = {
                   name: values.taskName,
@@ -111,13 +113,13 @@ const TaskTool = ({
                 addMultipleTasksHandler(dailyTask);
               }
             } else if (values.isUpdate) {
-              logger.debug('%s Update task', 'TaskTool -');
-
               const dailyTask = {
                 name: values.taskName,
                 description: values.taskDescription,
                 date: startDateState
               };
+
+              logDebug('TaskTool', 'update', 'dailyTask', dailyTask);
 
               updateTaskHandler(dailyTask);
             } else {
@@ -188,7 +190,7 @@ const TaskTool = ({
                             value={values.multipleDays}
                             disabled={values.isUpdate}
                           />
-            )}
+                        )}
                         labelPlacement="start"
                         label="Multiple Days"
                       />
@@ -204,7 +206,8 @@ const TaskTool = ({
                       margin="dense"
                       format="YYYY/MM/DD"
                       onChange={(date) => {
-                        setStartDate(date.format(moment.HTML5_FMT.DATE));
+                        setStartDate(moment(date)
+                          .format(moment.HTML5_FMT.DATE));
                       }}
                       value={startDateState}
                       inputVariant="outlined"
@@ -219,7 +222,8 @@ const TaskTool = ({
                       margin="dense"
                       format="YYYY/MM/DD"
                       onChange={(date) => {
-                        setEndDate(date.format(moment.HTML5_FMT.DATE));
+                        setEndDate(moment(date)
+                          .format(moment.HTML5_FMT.DATE));
                       }}
                       value={endDateState}
                       inputVariant="outlined"
@@ -286,13 +290,12 @@ const TaskTool = ({
                   </Grid>
                 </Grid>
               </Box>
-
               {notification.enable
                 ? (
                   <Notification
                     collapse
                     open={notification.enable}
-                    openHandler={notificationHandler}
+                    openHandler={notificationCollapseHandler}
                     level={notification.level}
                     message={notification.message}
                   />
@@ -309,6 +312,9 @@ const TaskTool = ({
 
 TaskTool.propTypes = {
   task: PropTypes.object,
+  notification: PropTypes.func.isRequired,
+  notificationCollapseHandler: PropTypes.func.isRequired,
+  updateNotificationHandler: PropTypes.func.isRequired,
   addTasksHandler: PropTypes.func.isRequired,
   addMultipleTasksHandler: PropTypes.func.isRequired,
   updateTaskHandler: PropTypes.func.isRequired,

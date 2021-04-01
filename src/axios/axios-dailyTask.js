@@ -1,5 +1,6 @@
 import moment from 'moment';
 import axios from './axios-flame-coach';
+import { logDebug } from '../logging';
 
 export const addDailyTask = async (dailyTask, clientIdentifier, coachIdentifier) => {
   const data = JSON.stringify({
@@ -50,10 +51,14 @@ export const addMultipleDailyTasks = async (dailyTask, clientIdentifier, coachId
 };
 
 export const getDailyTasksByClientAndDay = async (clientIdentifier, date) => {
+  const dateFormatted = moment(date).format(moment.HTML5_FMT.DATE);
+
+  logDebug('axios-dailyTask', 'getDailyTasksByClientAndDay', 'dateFormatted:', dateFormatted);
+
   const data = JSON.stringify({
     filters: [
       { type: 'IDENTIFIER', values: [clientIdentifier] },
-      { type: 'BETWEEN_DATES', values: [date.format(moment.HTML5_FMT.DATE), date.format(moment.HTML5_FMT.DATE)] }]
+      { type: 'BETWEEN_DATES', values: [dateFormatted, dateFormatted] }]
   });
 
   const config = {
