@@ -45,6 +45,7 @@ const TaskPreview = ({
                     deleteTaskHandler={deleteTaskHandler}
                     enableDelete
                     enableUpdate
+                    enableDate
                   />
                 )
                 : null

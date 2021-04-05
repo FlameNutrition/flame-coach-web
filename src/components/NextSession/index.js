@@ -2,35 +2,27 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  Grid,
-  LinearProgress,
-  Typography,
-  makeStyles,
-  colors
+  Avatar, Card, CardContent, colors, Grid, makeStyles, Typography
 } from '@material-ui/core';
-import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
+import SessionDateIcon from '@material-ui/icons/Today';
 
 const useStyles = makeStyles(() => ({
   root: {
     height: '100%'
   },
   avatar: {
-    backgroundColor: colors.orange[600],
+    backgroundColor: colors.lightGreen[600],
     height: 56,
     width: 56
   }
 }));
 
-const TasksProgress = ({ weekProgress, className, ...rest }) => {
+const NextSession = ({ date, ...rest }) => {
   const classes = useStyles();
 
   return (
     <Card
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root)}
       {...rest}
     >
       <CardContent>
@@ -45,36 +37,28 @@ const TasksProgress = ({ weekProgress, className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              WEEK PROGRESS
+              NEXT SESSION
             </Typography>
             <Typography
               color="textPrimary"
-              variant="h3"
+              variant="h5"
             >
-              {weekProgress}
-              %
+              {date || 'N/A'}
             </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <InsertChartIcon />
+              <SessionDateIcon />
             </Avatar>
           </Grid>
         </Grid>
-        <Box mt={3}>
-          <LinearProgress
-            value={weekProgress}
-            variant="determinate"
-          />
-        </Box>
       </CardContent>
     </Card>
   );
 };
 
-TasksProgress.propTypes = {
-  className: PropTypes.string,
-  weekProgress: PropTypes.number
+NextSession.propTypes = {
+  date: PropTypes.string
 };
 
-export default TasksProgress;
+export default NextSession;

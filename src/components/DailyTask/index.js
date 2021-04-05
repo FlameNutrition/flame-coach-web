@@ -12,10 +12,23 @@ import nextId from 'react-id-generator';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PropTypes from 'prop-types';
 import { Trash2 as DeleteIcon, RotateCw as UpdateIcon } from 'react-feather';
-import logger from 'loglevel';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
+  accordionSummary: {
+    display: 'flex',
+    flexFlow: 'column-reverse'
+  },
+  date: {
+    display: 'flex',
+    flexFlow: 'flex-end',
+    alignItems: 'center',
+    color: theme.palette.text.secondary
+  },
+  taskName: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   deleteButton: {
     backgroundColor: theme.palette.button.dangerous,
     marginLeft: '10px'
@@ -29,18 +42,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DailyTask = ({
-  task, enableDelete, enableUpdate, enableCheck,
+  task, enableDelete, enableUpdate, enableCheck, enableDate,
   updateTaskHandler, deleteTaskHandler, checkTaskHandler
 }) => {
   const classes = useStyles();
-
-  if (enableCheck) {
-    logger.debug('%s Checkbox enable', 'DailyTask -');
-  }
-
-  if (enableDelete) {
-    logger.debug('%s Delete button enable', 'DailyTask -');
-  }
 
   return (
     <Accordion
@@ -55,17 +60,25 @@ const DailyTask = ({
       >
         {(enableCheck && !enableDelete)
           ? (
-            <FormControlLabel
-              onClick={(event) => event.stopPropagation()}
-              onFocus={(event) => event.stopPropagation()}
-              control={(
-                <Checkbox
-                  onChange={(value) => checkTaskHandler(task, value)}
-                  value={task.ticked}
-                />
+            <div className={classes.accordionSummary}>
+              <FormControlLabel
+                onClick={(event) => event.stopPropagation()}
+                onFocus={(event) => event.stopPropagation()}
+                control={(
+                  <Checkbox
+                    onChange={(value) => checkTaskHandler(task, value)}
+                    checked={task.ticked}
+                  />
               )}
-              label={task.taskName}
-            />
+                label={task.taskName}
+              />
+              {enableDate
+                ? (
+                  <Typography component="span" className={classes.date}>
+                    {task.date}
+                  </Typography>
+                ) : null}
+            </div>
           )
           : null}
         {(!enableCheck && enableDelete)
@@ -90,7 +103,7 @@ const DailyTask = ({
               )}
                 label=""
               />
-              <Typography component="div">
+              <Typography component="div" className={classes.taskName}>
                 {task.taskName}
               </Typography>
             </>
@@ -139,6 +152,7 @@ DailyTask.propTypes = {
   enableDelete: PropTypes.bool,
   enableUpdate: PropTypes.bool,
   enableCheck: PropTypes.bool,
+  enableDate: PropTypes.bool,
   deleteTaskHandler: PropTypes.func,
   updateTaskHandler: PropTypes.func,
   checkTaskHandler: PropTypes.func
@@ -148,6 +162,7 @@ DailyTask.defaultProps = {
   enableDelete: false,
   enableUpdate: false,
   enableCheck: false,
+  enableDate: false,
   deleteTaskHandler: null,
   updateTaskHandler: null,
   checkTaskHandler: null
