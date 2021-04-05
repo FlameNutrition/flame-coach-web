@@ -72,7 +72,7 @@ const Planner = ({ customerIdentifier }) => {
     });
 
   const clientTasks = useQuery(['getDailyTasksByClientAndDay', selectedClient, selectedDate],
-    () => getDailyTasksByClientAndDay(selectedClient.identifier, selectedDate), {
+    () => getDailyTasksByClientAndDay(selectedClient.identifier, selectedDate, selectedDate), {
       onError: async (err) => {
         logError('Planner',
           'useQuery getDailyTasksByClientAndDay',

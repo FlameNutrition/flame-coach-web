@@ -17,10 +17,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Calendar = ({
-  daily, onChangeCalendar, className, ...rest
+  daily, onChangeCalendar, ...rest
 }) => {
   const classes = useStyles();
-  const [calendar, setCalendar] = useState(new Date());
+  const [calendar, setCalendar] = useState(null);
 
   const infoDaily = (
     <Typography component="div" align="right" variant="caption">
@@ -43,7 +43,7 @@ const Calendar = ({
 
   return (
     <Card
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root)}
       {...rest}
     >
       <CardHeader title="Calendar" />
@@ -73,9 +73,8 @@ const Calendar = ({
 };
 
 Calendar.propTypes = {
-  className: PropTypes.string,
   daily: PropTypes.bool,
-  onChangeCalendar: PropTypes.func
+  onChangeCalendar: PropTypes.func.isRequired
 };
 
 Calendar.defaultProps = {

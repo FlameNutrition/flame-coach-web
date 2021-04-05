@@ -50,15 +50,16 @@ export const addMultipleDailyTasks = async (dailyTask, clientIdentifier, coachId
   return response.data;
 };
 
-export const getDailyTasksByClientAndDay = async (clientIdentifier, date) => {
-  const dateFormatted = moment(date).format(moment.HTML5_FMT.DATE);
+export const getDailyTasksByClientAndDay = async (clientIdentifier, startDate, endDate) => {
+  const startDateFormatted = moment(startDate).format(moment.HTML5_FMT.DATE);
+  const endDateFormatted = moment(endDate).format(moment.HTML5_FMT.DATE);
 
-  logDebug('axios-dailyTask', 'getDailyTasksByClientAndDay', 'dateFormatted:', dateFormatted);
+  logDebug('axios-dailyTask', 'getDailyTasksByClientAndDay', 'dates:', startDateFormatted, endDateFormatted);
 
   const data = JSON.stringify({
     filters: [
       { type: 'IDENTIFIER', values: [clientIdentifier] },
-      { type: 'BETWEEN_DATES', values: [dateFormatted, dateFormatted] }]
+      { type: 'BETWEEN_DATES', values: [startDateFormatted, endDateFormatted] }]
   });
 
   const config = {

@@ -2,33 +2,27 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
-  Avatar,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  makeStyles,
-  colors
+  Avatar, Card, CardContent, colors, Grid, makeStyles, Typography
 } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import CoachIcon from '@material-ui/icons/FitnessCenter';
 
 const useStyles = makeStyles(() => ({
   root: {
     height: '100%'
   },
   avatar: {
-    backgroundColor: colors.indigo[600],
+    backgroundColor: colors.green[600],
     height: 56,
     width: 56
   }
 }));
 
-const TotalProfit = ({ className, ...rest }) => {
+const MyCoach = ({ coachName, ...rest }) => {
   const classes = useStyles();
 
   return (
     <Card
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root)}
       {...rest}
     >
       <CardContent>
@@ -43,18 +37,18 @@ const TotalProfit = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL PROFIT
+              COACH
             </Typography>
             <Typography
               color="textPrimary"
-              variant="h3"
+              variant="h5"
             >
-              $23,200
+              {coachName || 'N/A'}
             </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <AttachMoneyIcon />
+              <CoachIcon />
             </Avatar>
           </Grid>
         </Grid>
@@ -63,8 +57,8 @@ const TotalProfit = ({ className, ...rest }) => {
   );
 };
 
-TotalProfit.propTypes = {
-  className: PropTypes.string
+MyCoach.propTypes = {
+  coachName: PropTypes.string
 };
 
-export default TotalProfit;
+export default MyCoach;
