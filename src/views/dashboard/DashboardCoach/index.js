@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import React from 'react';
+import { Container, makeStyles } from '@material-ui/core';
 import Page from 'src/components/Page';
-import TasksProgress from './TasksProgress';
+import WorkInProgress from '../../../components/WorkInProgress';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,29 +14,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = () => {
   const classes = useStyles();
-  const [weekProgress] = useState(55.5);
 
   return (
     <Page
       className={classes.root}
       title="Dashboard"
     >
-      <Container maxWidth={false}>
-        <Grid
-          container
-          spacing={3}
-        >
-          <Grid
-            item
-            lg={3}
-            sm={6}
-            xl={3}
-            xs={12}
-          >
-            <TasksProgress weekProgress={weekProgress} />
-          </Grid>
-        </Grid>
-
+      <Container>
+        <WorkInProgress
+          message="Ops...this page is under construction!"
+          submessage="Sorry, we are doing the best for having good features available for you.
+          But unfortunately this is a free application and we don't have much time as we liked to work on it."
+        />
       </Container>
     </Page>
   );

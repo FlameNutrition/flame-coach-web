@@ -22,13 +22,9 @@ import {
   LogOut as LogOutIcon
 } from 'react-feather';
 import { connect } from 'react-redux';
+import ClientIcon from '@material-ui/icons/PermIdentity';
+import CoachIcon from '@material-ui/icons/PeopleOutline';
 import NavItem from './NavItem';
-
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith'
-};
 
 const itemsCoach = [
   {
@@ -98,11 +94,14 @@ const useStyles = makeStyles(() => ({
   avatar: {
     cursor: 'pointer',
     width: 64,
-    height: 64
+    height: 64,
+    marginBottom: '10px'
   }
 }));
 
-const NavBar = ({ userType, onMobileClose, openMobile }) => {
+const NavBar = ({
+  userType, firstName, lastName, onMobileClose, openMobile
+}) => {
   const classes = useStyles();
   const location = useLocation();
 
@@ -128,21 +127,26 @@ const NavBar = ({ userType, onMobileClose, openMobile }) => {
         <Avatar
           className={classes.avatar}
           component={RouterLink}
-          src={user.avatar}
           to="/app/account"
-        />
+        >
+          {userType === 'CLIENT' ? <ClientIcon /> : <CoachIcon /> }
+        </Avatar>
         <Typography
           className={classes.name}
           color="textPrimary"
           variant="h5"
         >
-          {user.name}
+          {firstName}
+          {' '}
+          {lastName}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {user.jobTitle}
+          Account Type:
+          {' '}
+          {userType === 'CLIENT' ? 'Client' : 'Coach'}
         </Typography>
       </Box>
       <Divider />
@@ -232,7 +236,9 @@ const NavBar = ({ userType, onMobileClose, openMobile }) => {
 NavBar.propTypes = {
   onMobileClose: PropTypes.func,
   openMobile: PropTypes.bool,
-  userType: PropTypes.string
+  userType: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string
 };
 
 NavBar.defaultProps = {
@@ -242,7 +248,9 @@ NavBar.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null
+    userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null,
+    firstName: state.auth.userInfo !== null ? state.auth.userInfo.firstname : null,
+    lastName: state.auth.userInfo !== null ? state.auth.userInfo.lastname : null,
   };
 };
 
