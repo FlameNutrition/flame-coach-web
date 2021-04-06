@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  IconButton,
+  makeStyles,
+  Step,
+  StepLabel,
+  Stepper
+} from '@material-ui/core';
 import Page from 'src/components/Page';
-import { Alert } from '@material-ui/lab';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import update from 'immutability-helper';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBackIcon from '@material-ui/icons/NavigateBefore';
+import { Alert } from '@material-ui/lab';
 import TasksProgress from './TasksProgress';
 import Tasks from './Tasks';
 import MyCoach from '../../../components/MyCoach';
-import NextSession from '../../../components/NextSession';
 import { logDebug, logError } from '../../../logging';
 import { getDailyTasksByClientAndDay, updateDailyTaskByUUID } from '../../../axios';
 import Warning from '../../../components/Warning';
@@ -22,6 +33,20 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100%',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
+  },
+  coachConfirmation: {
+    display: 'flex',
+    flexFlow: 'row-reverse',
+    paddingRight: '20px'
+  },
+  coachConfirmationNextBtn: {
+    margin: '3px'
+  },
+  coachConfirmationBackBtn: {
+    margin: '3px'
+  },
+  coachConfirmationWarning: {
+    fontSize: 'small'
   }
 }));
 
@@ -30,8 +55,9 @@ const Dashboard = ({ customerIdentifier }) => {
 
   const classes = useStyles();
 
-  const [nextSession] = useState(null);
   const [coach] = useState(null);
+  const [activeCoachStep, setActiveCoachStep] = React.useState(0);
+  const steps = ['Waiting for a coach invitation', 'You want be part of this experience?', 'Confirmation'];
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -155,11 +181,16 @@ const Dashboard = ({ customerIdentifier }) => {
 
   const progressLabel = () => {
     switch (taskPeriod) {
-      case 'today': return 'TODAY';
-      case 'thisWeek': return 'THIS WEEK';
-      case 'lastWeek': return 'LAST WEEK';
-      case 'nextWeek': return 'NEXT WEEK';
-      default: return 'TODAY';
+      case 'today':
+        return 'TODAY';
+      case 'thisWeek':
+        return 'THIS WEEK';
+      case 'lastWeek':
+        return 'LAST WEEK';
+      case 'nextWeek':
+        return 'NEXT WEEK';
+      default:
+        return 'TODAY';
     }
   };
 
@@ -185,7 +216,8 @@ const Dashboard = ({ customerIdentifier }) => {
     logDebug('Dashboard', 'taskPeriodHandler', 'value', event.target.value);
     setTaskPeriod(event.target.value);
     const now = moment();
-    let initDate; let
+    let initDate;
+    let
       finalDate;
 
     switch (event.target.value) {
@@ -196,20 +228,30 @@ const Dashboard = ({ customerIdentifier }) => {
         break;
       }
       case 'thisWeek': {
-        initDate = now.startOf('week').toDate();
-        finalDate = now.endOf('week').toDate();
+        initDate = now.startOf('week')
+          .toDate();
+        finalDate = now.endOf('week')
+          .toDate();
         break;
       }
       case 'lastWeek': {
         const firstDayOfWeek = now.startOf('week');
-        initDate = moment(firstDayOfWeek).subtract(7, 'days').toDate();
-        finalDate = moment(firstDayOfWeek).subtract(1, 'days').toDate();
+        initDate = moment(firstDayOfWeek)
+          .subtract(7, 'days')
+          .toDate();
+        finalDate = moment(firstDayOfWeek)
+          .subtract(1, 'days')
+          .toDate();
         break;
       }
       case 'nextWeek': {
         const firstDayOfWeek = now.startOf('week');
-        initDate = moment(firstDayOfWeek).add(7, 'days').toDate();
-        finalDate = moment(firstDayOfWeek).add(13, 'days').toDate();
+        initDate = moment(firstDayOfWeek)
+          .add(7, 'days')
+          .toDate();
+        finalDate = moment(firstDayOfWeek)
+          .add(13, 'days')
+          .toDate();
         break;
       }
       default: {
@@ -257,15 +299,6 @@ const Dashboard = ({ customerIdentifier }) => {
                 >
                   <MyCoach coachName={coach} />
                 </Grid>
-                <Grid
-                  item
-                  lg={3}
-                  sm={6}
-                  xl={3}
-                  xs={12}
-                >
-                  <NextSession date={nextSession} />
-                </Grid>
               </Grid>
               <Grid
                 container
@@ -275,12 +308,57 @@ const Dashboard = ({ customerIdentifier }) => {
                   item
                   xs={12}
                 >
-                  <Alert
-                    variant="filled"
-                    severity="warning"
-                  >
-                    Coach X invited you to be part of this experience. Do you want accepted?
-                  </Alert>
+                  <Card>
+                    <CardContent>
+                      <Stepper activeStep={activeCoachStep} alternativeLabel>
+                        {steps.map((label) => (
+                          <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                          </Step>
+                        ))}
+                      </Stepper>
+
+                      <div className={classes.coachConfirmation}>
+                        {activeCoachStep === steps.length ? (
+                          <IconButton
+                            aria-label="Reset"
+                            disabled
+                            onClick={() => setActiveCoachStep(0)}
+                          />
+                        ) : (
+                          <div>
+                            <IconButton
+                              color="primary"
+                              aria-label="Back"
+                              className={classes.coachConfirmationBackBtn}
+                              disabled={activeCoachStep === 0}
+                              onClick={() => setActiveCoachStep((prevState) => prevState - 1)}
+                            >
+                              <NavigateBackIcon />
+                            </IconButton>
+
+                            <IconButton
+                              color="primary"
+                              aria-label={activeCoachStep === steps.length - 1 ? 'Finish' : 'Next'}
+                              className={classes.coachConfirmationNextBtn}
+                              onClick={() => setActiveCoachStep((prevState) => prevState + 1)}
+                            >
+                              <NavigateNextIcon />
+                            </IconButton>
+                          </div>
+                        )}
+                      </div>
+                      {activeCoachStep === steps.length - 1 ? (
+                        <div className={classes.coachConfirmation}>
+                          <Alert severity="warning">
+                            {' '}
+                            After confirmation you will need to ask our
+                            or your coach to leave this experience.
+                          </Alert>
+                        </div>
+                      ) : null}
+                    </CardContent>
+                  </Card>
                 </Grid>
                 <Grid
                   item
