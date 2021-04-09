@@ -23,7 +23,12 @@ import TasksProgress from './TasksProgress';
 import Tasks from './Tasks';
 import MyCoach from '../../../components/MyCoach';
 import { logDebug, logError } from '../../../logging';
-import { getDailyTasksByClientAndDay, updateDailyTaskByUUID } from '../../../axios';
+import {
+  enrollmentProcessFinish,
+  enrollmentProcessStatus,
+  getDailyTasksByClientAndDay,
+  updateDailyTaskByUUID
+} from '../../../axios';
 import Warning from '../../../components/Warning';
 import Notification from '../../../components/Notification';
 
@@ -47,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   },
   coachConfirmationWarning: {
     fontSize: 'small'
+  },
+  notification: {
+    marginTop: '0px !important'
   }
 }));
 
@@ -55,7 +63,8 @@ const Dashboard = ({ customerIdentifier }) => {
 
   const classes = useStyles();
 
-  const [coach] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [enrollment, setEnrollment] = useState({});
   const [activeCoachStep, setActiveCoachStep] = React.useState(0);
   const steps = ['Waiting for a coach invitation', 'You want be part of this experience?', 'Confirmation'];
 
@@ -85,20 +94,11 @@ const Dashboard = ({ customerIdentifier }) => {
       }));
   };
 
-  const clientTasks = useQuery(['getDailyTasksByClientAndDay', customerIdentifier, startDate, endDate],
-    () => getDailyTasksByClientAndDay(customerIdentifier, startDate, endDate), {
-      onError: async (err) => {
-        logError('DashboardClient',
-          'useQuery getDailyTasksByClientAndDay',
-          'Error:', err);
-      }
-    });
-
-  const progressPercentage = () => {
-    if (!clientTasks.data || !clientTasks.data.dailyTasks) {
+  const progressPercentage = (data) => {
+    if (!data || !data.dailyTasks) {
       return 0.0;
     }
-    const listOfDailyTasks = clientTasks.data.dailyTasks;
+    const listOfDailyTasks = data.dailyTasks;
     const numberOfDailyTasks = listOfDailyTasks.length;
 
     logDebug('DashboardClient', 'progressPercentage', 'numberOfDailyTasks', numberOfDailyTasks);
@@ -119,11 +119,81 @@ const Dashboard = ({ customerIdentifier }) => {
     return result % 1 === 0 ? result : result.toFixed(1);
   };
 
-  useEffect(() => {
-    if (!clientTasks.isLoading && clientTasks.data) {
-      setTaskProgress(progressPercentage());
+  const clientTasks = useQuery(['getDailyTasksByClientAndDay', customerIdentifier, startDate, endDate],
+    () => getDailyTasksByClientAndDay(customerIdentifier, startDate, endDate), {
+      onError: async (err) => {
+        logError('DashboardClient',
+          'useQuery getDailyTasksByClientAndDay',
+          'Error:', err);
+      },
+      onSettled: (data) => {
+        setTaskProgress(progressPercentage(data));
+      }
+    });
+
+  const enrollmentStatus = useQuery(['getEnrollmentStatus', customerIdentifier],
+    () => enrollmentProcessStatus(customerIdentifier), {
+      onError: async (err) => {
+        logError('DashboardClient',
+          'useQuery getEnrollmentStatus',
+          'Error:', err);
+      },
+      onSuccess: (data) => {
+        const coach = data.coach ? {
+          name: `${data.coach.firstName} ${data.coach.lastName}`
+        } : null;
+
+        setEnrollment({
+          coach,
+          status: data.status
+        });
+
+        if (data.status === 'ACCEPTED') {
+          setActiveCoachStep(3);
+        } else if (data.status === 'PENDING') {
+          setActiveCoachStep(1);
+        }
+      }
+    });
+
+  const enrollmentFinish = useMutation(
+    ({
+      // eslint-disable-next-line no-shadow
+      customerIdentifier,
+      flag
+    }) => enrollmentProcessFinish(customerIdentifier, flag),
+    {
+      onError: async (error) => {
+        logError('DashboardClient',
+          'useMutation enrollmentProcessBreak',
+          'Error:', error.response);
+
+        const message = error.response.data.detail;
+        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
+
+        updateNotificationHandler(true, message, level);
+      },
+      // eslint-disable-next-line no-unused-vars
+      onSuccess: async (data, variables) => {
+        if (data.status === 'AVAILABLE') {
+          setEnrollment(update(enrollment, {
+            coach: { $set: null },
+            status: { $set: 'AVAILABLE' }
+          }));
+          setActiveCoachStep((prevState) => prevState - 1);
+          notificationHandler();
+        } else if (data.status === 'ACCEPTED') {
+          setEnrollment(update(enrollment, {
+            status: { $set: 'ACCEPTED' }
+          }));
+          setActiveCoachStep((prevState) => prevState + 1);
+          notificationHandler();
+        } else {
+          updateNotificationHandler(true, 'Opss...something wrong happened, please contact the admin system.', 'ERROR');
+        }
+      }
     }
-  });
+  );
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -162,7 +232,6 @@ const Dashboard = ({ customerIdentifier }) => {
             (dailyTask) => dailyTask.identifier === variables.taskIdentifier
           );
 
-          // FIXME: The undefined values should be deleted
           const newData = update(oldData, {
             dailyTasks: {
               [index]: { $set: data.dailyTasks[0] }
@@ -175,6 +244,9 @@ const Dashboard = ({ customerIdentifier }) => {
 
           return newData;
         });
+
+        setTaskProgress(progressPercentage(data));
+        notificationHandler();
       }
     }
   );
@@ -267,128 +339,163 @@ const Dashboard = ({ customerIdentifier }) => {
     setEndDate(finalDate);
   };
 
+  const generalProblem = <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />;
+
+  const dashboard = (
+    <>
+      <Grid
+        container
+        spacing={3}
+      >
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <TasksProgress type={progressLabel(taskPeriod)} progress={tasksProgress} />
+        </Grid>
+        <Grid
+          item
+          lg={3}
+          sm={6}
+          xl={3}
+          xs={12}
+        >
+          <MyCoach coachName={enrollment.coach ? enrollment.coach.name : null} />
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        spacing={3}
+      >
+        <Grid
+          item
+          xs={12}
+        >
+          <Card>
+            <CardContent>
+              <Stepper activeStep={activeCoachStep} alternativeLabel>
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+
+              <div className={classes.coachConfirmation}>
+                {activeCoachStep === steps.length ? (
+                  <IconButton
+                    aria-label="Reset"
+                    disabled
+                    onClick={() => setActiveCoachStep(0)}
+                  />
+                ) : (
+                  <div>
+                    <IconButton
+                      color="primary"
+                      aria-label="Back"
+                      className={classes.coachConfirmationBackBtn}
+                      disabled={activeCoachStep === 0}
+                      onClick={() => {
+                        if (activeCoachStep === 1) {
+                          enrollmentFinish.mutate({
+                            customerIdentifier,
+                            flag: false
+                          });
+                        } else {
+                          setActiveCoachStep((prevState) => prevState - 1);
+                        }
+                      }}
+                    >
+                      <NavigateBackIcon />
+                    </IconButton>
+
+                    <IconButton
+                      color="primary"
+                      aria-label={activeCoachStep === steps.length - 1 ? 'Finish' : 'Next'}
+                      className={classes.coachConfirmationNextBtn}
+                      disabled={enrollment.status === 'AVAILABLE'}
+                      onClick={() => {
+                        if (activeCoachStep === 2) {
+                          enrollmentFinish.mutate({
+                            customerIdentifier,
+                            flag: true
+                          });
+                        } else {
+                          setActiveCoachStep((prevState) => prevState + 1);
+                        }
+                      }}
+                    >
+                      <NavigateNextIcon />
+                    </IconButton>
+                  </div>
+                )}
+              </div>
+              {activeCoachStep === steps.length - 1 ? (
+                <div className={classes.coachConfirmation}>
+                  <Alert severity="warning">
+                    {' '}
+                    After confirmation you will need to ask our
+                    or your coach to leave this experience.
+                  </Alert>
+                </div>
+              ) : null}
+            </CardContent>
+          </Card>
+        </Grid>
+        {notification.enable
+          ? (
+            <Grid
+              item
+              xs={12}
+            >
+              <Notification
+                className={classes.notification}
+                collapse
+                open={notification.enable}
+                openHandler={notificationHandler}
+                level={notification.level}
+                message={notification.message}
+              />
+            </Grid>
+          )
+          : null}
+        <Grid
+          item
+          lg={8}
+          md={12}
+          xl={9}
+          xs={12}
+        >
+          <Tasks
+            tasks={clientTasks.data ? clientTasks.data.dailyTasks : []}
+            taskPeriod={taskPeriod}
+            taskPeriodHandler={taskPeriodHandler}
+            taskPeriodRefreshHandler={taskPeriodRefreshHandler}
+            updateTaskHandler={updateTaskHandler}
+          />
+        </Grid>
+      </Grid>
+    </>
+  );
+
+  let container;
+
+  if (!clientTasks.isLoading && !enrollmentStatus.isLoading) {
+    container = (clientTasks.isError || enrollmentStatus.isError) ? generalProblem : dashboard;
+  } else {
+    container = null;
+  }
+
   return (
     <Page
       className={classes.root}
       title="Dashboard"
     >
       <Container maxWidth={false}>
-        {!clientTasks.isLoading && clientTasks.isError
-          ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
-          : (
-            <>
-              <Grid
-                container
-                spacing={3}
-              >
-                <Grid
-                  item
-                  lg={3}
-                  sm={6}
-                  xl={3}
-                  xs={12}
-                >
-                  <TasksProgress type={progressLabel(taskPeriod)} progress={tasksProgress} />
-                </Grid>
-                <Grid
-                  item
-                  lg={3}
-                  sm={6}
-                  xl={3}
-                  xs={12}
-                >
-                  <MyCoach coachName={coach} />
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                spacing={3}
-              >
-                <Grid
-                  item
-                  xs={12}
-                >
-                  <Card>
-                    <CardContent>
-                      <Stepper activeStep={activeCoachStep} alternativeLabel>
-                        {steps.map((label) => (
-                          <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                          </Step>
-                        ))}
-                      </Stepper>
-
-                      <div className={classes.coachConfirmation}>
-                        {activeCoachStep === steps.length ? (
-                          <IconButton
-                            aria-label="Reset"
-                            disabled
-                            onClick={() => setActiveCoachStep(0)}
-                          />
-                        ) : (
-                          <div>
-                            <IconButton
-                              color="primary"
-                              aria-label="Back"
-                              className={classes.coachConfirmationBackBtn}
-                              disabled={activeCoachStep === 0}
-                              onClick={() => setActiveCoachStep((prevState) => prevState - 1)}
-                            >
-                              <NavigateBackIcon />
-                            </IconButton>
-
-                            <IconButton
-                              color="primary"
-                              aria-label={activeCoachStep === steps.length - 1 ? 'Finish' : 'Next'}
-                              className={classes.coachConfirmationNextBtn}
-                              onClick={() => setActiveCoachStep((prevState) => prevState + 1)}
-                            >
-                              <NavigateNextIcon />
-                            </IconButton>
-                          </div>
-                        )}
-                      </div>
-                      {activeCoachStep === steps.length - 1 ? (
-                        <div className={classes.coachConfirmation}>
-                          <Alert severity="warning">
-                            {' '}
-                            After confirmation you will need to ask our
-                            or your coach to leave this experience.
-                          </Alert>
-                        </div>
-                      ) : null}
-                    </CardContent>
-                  </Card>
-                </Grid>
-                <Grid
-                  item
-                  lg={8}
-                  md={12}
-                  xl={9}
-                  xs={12}
-                >
-                  <Tasks
-                    tasks={clientTasks.data ? clientTasks.data.dailyTasks : []}
-                    taskPeriod={taskPeriod}
-                    taskPeriodHandler={taskPeriodHandler}
-                    taskPeriodRefreshHandler={taskPeriodRefreshHandler}
-                    updateTaskHandler={updateTaskHandler}
-                  />
-                </Grid>
-                {notification.enable
-                  ? (
-                    <Notification
-                      collapse
-                      open={notification.enable}
-                      openHandler={notificationHandler}
-                      level={notification.level}
-                      message={notification.message}
-                    />
-                  )
-                  : null}
-              </Grid>
-            </>
-          )}
+        {container}
       </Container>
     </Page>
   );

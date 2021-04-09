@@ -5,6 +5,7 @@ import {
 import { Alert } from '@material-ui/lab';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -14,7 +15,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Notification = ({
-  open, openHandler, message, level, collapse
+  open,
+  openHandler,
+  message,
+  level,
+  collapse,
+  className
 }) => {
   const classes = useStyles();
 
@@ -44,7 +50,7 @@ const Notification = ({
   }
 
   return (
-    <Box className={classes.notificationBar}>
+    <Box className={clsx(className, classes.notificationBar)}>
       {collapse
         ? (
           <Collapse in={open}>
@@ -62,7 +68,7 @@ const Notification = ({
                 >
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
-        )}
+              )}
             >
               {message}
             </Alert>
@@ -74,7 +80,7 @@ const Notification = ({
           >
             {message}
           </Alert>
-        ) }
+        )}
     </Box>
   );
 };
@@ -84,7 +90,8 @@ Notification.propTypes = {
   level: PropTypes.string.isRequired,
   open: PropTypes.bool,
   openHandler: PropTypes.func,
-  collapse: PropTypes.bool
+  collapse: PropTypes.bool,
+  className: PropTypes.string
 };
 
 Notification.defaultProps = {

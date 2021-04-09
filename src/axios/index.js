@@ -23,5 +23,6 @@ export {
 export {
   enrollmentProcessInit,
   enrollmentProcessFinish,
-  enrollmentProcessBreak
+  enrollmentProcessBreak,
+  enrollmentProcessStatus
 } from './axios-enrollment-process';

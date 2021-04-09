@@ -58,3 +58,17 @@ export const enrollmentProcessBreak = async (clientUUID) => {
 
   return response.data;
 };
+
+export const enrollmentProcessStatus = async (clientUUID) => {
+  const config = {
+    method: 'get',
+    url: '/client/enrollment/status',
+    headers: {
+      clientUUID
+    }
+  };
+
+  const response = await axios(config);
+
+  return response.data;
+};
