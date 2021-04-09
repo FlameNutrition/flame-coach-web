@@ -12,7 +12,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import * as configStore from './store/configureStore';
 
-logger.setLevel('trace');
+logger.setLevel(process.env.REACT_APP_LOG_LEVEL);
 
 const queryClient = new QueryClient({
   defaultOptions: {
