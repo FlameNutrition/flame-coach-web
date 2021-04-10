@@ -2,13 +2,15 @@
   "parser": "babel-eslint",
   "env": {
     "es6": true,
-    "browser": true
+    "browser": true,
+    "jest/globals": true
   },
   "extends": [
     "airbnb",
     "airbnb/hooks",
     "eslint:recommended",
-    "plugin:react-redux/recommended"
+    "plugin:react-redux/recommended",
+    "plugin:jest/recommended"
   ],
   "settings": {
     "import/resolver": {
@@ -28,6 +30,7 @@
     "arrow-body-style": "off",
     "comma-dangle": "off",
     "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/control-has-associated-label": "off",
@@ -48,6 +51,11 @@
           "data"
         ]
       }
-    ]
+    ],
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   }
 }

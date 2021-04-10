@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Calendar/ > Show daily calendar 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(CardHeader))
+    title="Calendar"
+  />
+  <WithStyles(ForwardRef(Divider)) />
+  <WithStyles(ForwardRef(CardContent))>
+    <Styled(MuiBox)>
+      <Calendar
+        maxDate={+275760-09-13T00:00:00.000Z}
+        maxDetail="month"
+        minDate={0001-01-01T00:00:00.000Z}
+        minDetail="century"
+        next2Label={null}
+        nextLabel={<Memo />}
+        onChange={[Function]}
+        prev2Label={null}
+        prevLabel={<Memo />}
+        returnValue="range"
+        selectRange={false}
+        showNavigation={true}
+        showNeighboringMonth={true}
+        value={null}
+      />
+    </Styled(MuiBox)>
+    <Styled(MuiBox) />
+  </WithStyles(ForwardRef(CardContent))>
+</WithStyles(ForwardRef(Card))>
+`;
+
+exports[`<Calendar/ > Show daily selection calendar 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(CardHeader))
+    title="Calendar"
+  />
+  <WithStyles(ForwardRef(Divider)) />
+  <WithStyles(ForwardRef(CardContent))>
+    <Styled(MuiBox)>
+      <Calendar
+        maxDate={+275760-09-13T00:00:00.000Z}
+        maxDetail="month"
+        minDate={0001-01-01T00:00:00.000Z}
+        minDetail="century"
+        next2Label={null}
+        nextLabel={<Memo />}
+        onChange={[Function]}
+        prev2Label={null}
+        prevLabel={<Memo />}
+        returnValue="range"
+        selectRange={false}
+        showNavigation={true}
+        showNeighboringMonth={true}
+        value={null}
+      />
+    </Styled(MuiBox)>
+    <Styled(MuiBox) />
+  </WithStyles(ForwardRef(CardContent))>
+</WithStyles(ForwardRef(Card))>
+`;
+
+exports[`<Calendar/ > Show multiple selection calendar 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="makeStyles-root-1"
+>
+  <WithStyles(ForwardRef(CardHeader))
+    title="Calendar"
+  />
+  <WithStyles(ForwardRef(Divider)) />
+  <WithStyles(ForwardRef(CardContent))>
+    <Styled(MuiBox)>
+      <Calendar
+        maxDate={+275760-09-13T00:00:00.000Z}
+        maxDetail="month"
+        minDate={0001-01-01T00:00:00.000Z}
+        minDetail="century"
+        next2Label={null}
+        nextLabel={<Memo />}
+        onChange={[Function]}
+        prev2Label={null}
+        prevLabel={<Memo />}
+        returnValue="range"
+        selectRange={true}
+        showNavigation={true}
+        showNeighboringMonth={true}
+        value={null}
+      />
+    </Styled(MuiBox)>
+    <Styled(MuiBox)>
+      <WithStyles(ForwardRef(Typography))
+        align="right"
+        component="div"
+        variant="caption"
+      >
+        <strong>
+          Day:
+        </strong>
+         
+        Double click date
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        align="right"
+        component="div"
+        variant="caption"
+      >
+        <strong>
+          Period:
+        </strong>
+         
+        Select a start and end date
+      </WithStyles(ForwardRef(Typography))>
+    </Styled(MuiBox)>
+  </WithStyles(ForwardRef(CardContent))>
+</WithStyles(ForwardRef(Card))>
+`;
