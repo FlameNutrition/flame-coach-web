@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Calendar = ({
-  daily, onChangeCalendar, ...rest
+  daily, onChangeCalendar
 }) => {
   const classes = useStyles();
   const [calendar, setCalendar] = useState(null);
@@ -44,7 +44,6 @@ const Calendar = ({
   return (
     <Card
       className={clsx(classes.root)}
-      {...rest}
     >
       <CardHeader title="Calendar" />
       <Divider />

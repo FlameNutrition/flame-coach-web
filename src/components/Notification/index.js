@@ -75,6 +75,7 @@ const Notification = ({
           </Collapse>
         ) : (
           <Alert
+            itemID="notification"
             variant="filled"
             severity={internalLevel}
           >
