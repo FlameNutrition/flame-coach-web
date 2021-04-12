@@ -5,6 +5,7 @@ import {
   makeStyles, SvgIcon
 } from '@material-ui/core';
 import Page from 'src/components/Page';
+import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import update from 'immutability-helper';
@@ -100,10 +101,9 @@ const CustomersView = ({ customerIdentifier }) => {
           'Error:', error.response);
         setIsClientLoading(false);
 
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('Customer', 'useMutation enrollmentProcessInit', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);
@@ -145,10 +145,9 @@ const CustomersView = ({ customerIdentifier }) => {
           'Error:', error.response);
         setIsClientLoading(false);
 
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('Customer', 'useMutation enrollmentProcessBreak', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getClientsCoachPlusClientsAvailableForCoaching', variables.coachIdentifier]);

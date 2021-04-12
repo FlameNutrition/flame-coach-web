@@ -6,6 +6,9 @@ import { Alert } from '@material-ui/lab';
 import CloseIcon from '@material-ui/icons/Close';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import {
+  ERROR, INFO, SUCCESS, WARNING
+} from './notificationTypes';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -24,28 +27,23 @@ const Notification = ({
 }) => {
   const classes = useStyles();
 
-  const NOTIFICATION_ERROR = 'error';
-  const NOTIFICATION_WARNING = 'warning';
-  const NOTIFICATION_INFO = 'info';
-  const NOTIFICATION_SUCCESS = 'success';
-
   let internalLevel;
 
   switch (level) {
-    case 'INFO':
-      internalLevel = NOTIFICATION_INFO;
+    case INFO:
+      internalLevel = 'info';
       break;
-    case 'WARNING':
-      internalLevel = NOTIFICATION_WARNING;
+    case WARNING:
+      internalLevel = 'warning';
       break;
-    case 'ERROR':
-      internalLevel = NOTIFICATION_ERROR;
+    case ERROR:
+      internalLevel = 'error';
       break;
-    case 'SUCCESS':
-      internalLevel = NOTIFICATION_SUCCESS;
+    case SUCCESS:
+      internalLevel = 'success';
       break;
     default:
-      internalLevel = NOTIFICATION_INFO;
+      internalLevel = 'info';
       break;
   }
 

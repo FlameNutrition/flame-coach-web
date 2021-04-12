@@ -6,6 +6,8 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import logger from 'loglevel';
+import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from 'src/components/Notification/InfoMessage/InfoMessage';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -77,12 +79,13 @@ const Account = ({
     }) => updateClientContactInformation(customerIdentifier, newContactInformation),
     {
       onError: (error) => {
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-        updateNotificationHandler(true, message, level);
+        logError('AccountClient', 'updateContactInformation', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: () => {
-        updateNotificationHandler(true, 'Contact information updated with success!', 'SUCCESS');
+        const infoCode = InfoMessage.CODE_2001;
+        updateNotificationHandler(true, infoCode.msg, infoCode.level);
       }
     }
   );
@@ -104,12 +107,13 @@ const Account = ({
     }) => updateClientPersonalData(customerIdentifier, newPersonalData),
     {
       onError: (error) => {
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-        updateNotificationHandler(true, message, level);
+        logError('AccountClient', 'updatePersonalData', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: () => {
-        updateNotificationHandler(true, 'Personal information updated with success!', 'SUCCESS');
+        const infoCode = InfoMessage.CODE_2002;
+        updateNotificationHandler(true, infoCode.msg, infoCode.level);
       }
     }
   );

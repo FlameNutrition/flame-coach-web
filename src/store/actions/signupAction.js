@@ -1,4 +1,5 @@
 import logger from 'loglevel';
+import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
 import axios from '../../axios/axios-flame-coach';
 import * as actionType from './actionsType';
 
@@ -52,17 +53,16 @@ export const signup = (userInfo) => {
       })
       .catch((error) => {
         try {
-          const errorLevel = error.response.status === 500 ? 'ERROR' : 'WARNING';
-          const errorMessage = error.response.data.detail;
+          const errorCode = ErrorMessage.fromCode(error.response.data.code);
           dispatch(signupFailed({
-            level: errorLevel,
-            message: errorMessage
+            level: errorCode.level,
+            message: errorCode.msg
           }));
         } catch (ex) {
           logger.error('Exception', ex);
           dispatch(signupFailed({
             level: 'ERROR',
-            message: process.env.REACT_APP_MSG_SERVER_ERROR
+            message: ErrorMessage.CODE_9999.msg
           }));
         }
       });

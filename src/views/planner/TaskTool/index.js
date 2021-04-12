@@ -6,6 +6,7 @@ import {
   TextField, Checkbox, FormControlLabel, FormGroup, FormHelperText
 } from '@material-ui/core';
 import clsx from 'clsx';
+import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import moment from 'moment';
 import PropTypes from 'prop-types';
@@ -101,7 +102,8 @@ const TaskTool = ({
           onSubmit={(values, { setSubmitting }) => {
             if (values.multipleDays) {
               if (moment(startDateState).isSameOrAfter(moment(endDateState))) {
-                updateNotificationHandler(true, 'End date is the same or after the start date.', 'WARNING');
+                const errorCode = ErrorMessage.CODE_0001;
+                updateNotificationHandler(true, errorCode.msg, errorCode.level);
               } else {
                 const dailyTask = {
                   name: values.taskName,
