@@ -4,6 +4,8 @@ import {
   Grid,
   makeStyles
 } from '@material-ui/core';
+import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from 'src/components/Notification/InfoMessage/InfoMessage';
 import Page from 'src/components/Page';
 import logger from 'loglevel';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
@@ -98,12 +100,13 @@ const Account = ({
     }) => updateCoachContactInformation(customerIdentifier, newContactInformation),
     {
       onError: (error) => {
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-        updateNotificationHandler(true, message, level);
+        logError('AccountCoach', 'updateContactInformation', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: () => {
-        updateNotificationHandler(true, 'Contact information updated with success!', 'SUCCESS');
+        const infoCode = InfoMessage.CODE_2001;
+        updateNotificationHandler(true, infoCode.msg, infoCode.level);
       }
     }
   );

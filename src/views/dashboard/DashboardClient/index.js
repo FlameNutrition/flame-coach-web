@@ -10,6 +10,7 @@ import {
   StepLabel,
   Stepper
 } from '@material-ui/core';
+import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
 import Page from 'src/components/Page';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { connect } from 'react-redux';
@@ -168,10 +169,9 @@ const Dashboard = ({ customerIdentifier }) => {
           'useMutation enrollmentProcessBreak',
           'Error:', error.response);
 
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('DashboardClient', 'useMutation enrollmentProcessBreak', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       // eslint-disable-next-line no-unused-vars
       onSuccess: async (data, variables) => {
@@ -189,7 +189,8 @@ const Dashboard = ({ customerIdentifier }) => {
           setActiveCoachStep((prevState) => prevState + 1);
           notificationHandler();
         } else {
-          updateNotificationHandler(true, 'Opss...something wrong happened, please contact the admin system.', 'ERROR');
+          const errorCode = ErrorMessage.CODE_9999;
+          updateNotificationHandler(true, errorCode.msg, errorCode.level);
         }
       }
     }
@@ -208,14 +209,9 @@ const Dashboard = ({ customerIdentifier }) => {
     }) => updateDailyTaskByUUID(taskIdentifier, newTask),
     {
       onError: async (error) => {
-        logError('DashboardClient',
-          'updateDailyTaskMutation',
-          'Error:', error);
-
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('DashboardClient', 'updateDailyTaskMutation', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getDailyTasksByClientAndDay', customerIdentifier, startDate, endDate]);
@@ -435,10 +431,9 @@ const Dashboard = ({ customerIdentifier }) => {
               </div>
               {activeCoachStep === steps.length - 1 ? (
                 <div className={classes.coachConfirmation}>
-                  <Alert severity="warning">
+                  <Alert severity={ErrorMessage.CODE_0004.level}>
                     {' '}
-                    After confirmation you will need to ask our
-                    or your coach to leave this experience.
+                    {ErrorMessage.CODE_0004.msg}
                   </Alert>
                 </div>
               ) : null}

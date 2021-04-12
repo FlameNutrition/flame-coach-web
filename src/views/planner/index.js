@@ -7,6 +7,8 @@ import update from 'immutability-helper';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from 'src/components/Notification/InfoMessage/InfoMessage';
 import Page from '../../components/Page';
 import Calendar from '../../components/Calendar/Calendar';
 import TaskPreview from './TaskPreview';
@@ -124,14 +126,9 @@ const Planner = ({ customerIdentifier }) => {
     }) => addMultipleDailyTasks(task, clientIdentifier, coachIdentifier),
     {
       onError: async (error) => {
-        logError('Planner',
-          'addMultiplesDailyTasksMutation',
-          'Error:', error);
-
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('Planner', 'addMultiplesDailyTasksMutation', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       }
     }
   );
@@ -145,14 +142,9 @@ const Planner = ({ customerIdentifier }) => {
     }) => addDailyTask(task, clientIdentifier, coachIdentifier),
     {
       onError: async (error) => {
-        logError('Planner',
-          'addDailyTaskMutation',
-          'Error:', error);
-
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('Planner', 'addDailyTaskMutation', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data) => {
         await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
@@ -168,7 +160,8 @@ const Planner = ({ customerIdentifier }) => {
           return update(oldData, { dailyTasks: { $push: [data.dailyTasks[0]] } });
         });
 
-        updateNotificationHandler(true, 'Task added with success!', 'SUCCESS');
+        const errorCode = InfoMessage.CODE_4001;
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       }
     }
   );
@@ -180,14 +173,9 @@ const Planner = ({ customerIdentifier }) => {
     }) => updateDailyTaskByUUID(taskIdentifier, newTask),
     {
       onError: async (error) => {
-        logError('Planner',
-          'updateDailyTaskMutation',
-          'Error:', error);
-
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('Planner', 'updateDailyTaskMutation', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
@@ -219,7 +207,8 @@ const Planner = ({ customerIdentifier }) => {
           return newData;
         });
 
-        updateNotificationHandler(true, 'Task updated with success!', 'SUCCESS');
+        const errorCode = InfoMessage.CODE_4002;
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
         setSelectedTask(null);
       }
     }
@@ -229,14 +218,9 @@ const Planner = ({ customerIdentifier }) => {
     ({ taskIdentifier }) => deleteDailyTasksByUUID(taskIdentifier),
     {
       onError: async (error) => {
-        logError('Planner',
-          'deleteDailyTaskMutation',
-          'Error:', error);
-
-        const message = error.response.data.detail;
-        const level = error.response.data.status === 500 ? 'ERROR' : 'WARNING';
-
-        updateNotificationHandler(true, message, level);
+        logError('Planner', 'deleteDailyTaskMutation', 'Error Details:', error.response.data.detail);
+        const errorCode = ErrorMessage.fromCode(error.response.data.code);
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data, variables) => {
         await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
@@ -264,16 +248,16 @@ const Planner = ({ customerIdentifier }) => {
           return newData;
         });
 
-        updateNotificationHandler(true, 'Task deleted with success!', 'SUCCESS');
+        const errorCode = InfoMessage.CODE_4003;
+        updateNotificationHandler(true, errorCode.msg, errorCode.level);
       }
     }
   );
 
   const addMultipleTasksHandler = (task) => {
     if (selectedClient === null) {
-      updateNotificationHandler(true,
-        'Ops! You need select a client first. Please choose a client in the top of the application',
-        'WARNING');
+      const errorCode = ErrorMessage.CODE_0002;
+      updateNotificationHandler(true, errorCode.msg, errorCode.level);
     }
 
     if (selectedClient !== null && selectedDate !== null) {
@@ -292,9 +276,8 @@ const Planner = ({ customerIdentifier }) => {
 
   const addTasksHandler = (task) => {
     if (selectedClient === null) {
-      updateNotificationHandler(true,
-        'Ops! You need select a client first. Please choose a client in the top of the application',
-        'WARNING');
+      const errorCode = ErrorMessage.CODE_0002;
+      updateNotificationHandler(true, errorCode.msg, errorCode.level);
     }
 
     if (selectedClient !== null && selectedDate !== null) {
@@ -310,9 +293,8 @@ const Planner = ({ customerIdentifier }) => {
 
   const updateTasksHandler = (newTask) => {
     if (selectedTask === null) {
-      updateNotificationHandler(true,
-        'Ops! You need select a task first. Please choose the task you want to update',
-        'WARNING');
+      const errorCode = ErrorMessage.CODE_0003;
+      updateNotificationHandler(true, errorCode.msg, errorCode.level);
     }
 
     if (selectedTask !== null && selectedClient !== null && selectedDate !== null) {

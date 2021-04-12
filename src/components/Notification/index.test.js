@@ -1,17 +1,15 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { createMount, createRender, createShallow } from '@material-ui/core/test-utils';
+import { createMount, createShallow } from '@material-ui/core/test-utils';
 import sinon from 'sinon';
 import Notification from './index';
 
 describe('<Notification/ >', () => {
   let shallow;
-  let render;
   let mount;
 
   beforeAll(() => {
     shallow = createShallow();
-    render = createRender();
     mount = createMount();
   });
 
