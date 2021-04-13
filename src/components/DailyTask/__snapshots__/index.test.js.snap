@@ -1,0 +1,332 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Daily Task/ > Show daily task with checked btn 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-elevation1 MuiPaper-rounded"
+    data-testid="identifier"
+    id="07f8536d-c78f-4af3-b668-3c83d122e6e9"
+  >
+    <div
+      aria-controls="additional-actions1-content"
+      aria-disabled="false"
+      aria-expanded="false"
+      aria-label="Expand"
+      class="MuiButtonBase-root MuiAccordionSummary-root"
+      id="additional-actions1-header"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="MuiAccordionSummary-content"
+      >
+        <div
+          class="makeStyles-accordionSummary-9"
+        >
+          <label
+            class="MuiFormControlLabel-root"
+            data-testid="formControlLabelCheckTask"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-15 MuiCheckbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-checked-16 Mui-checked MuiIconButton-colorSecondary"
+              data-testid="checkedTask"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  checked=""
+                  class="PrivateSwitchBase-input-18"
+                  data-indeterminate="false"
+                  type="checkbox"
+                  value=""
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </span>
+            <span
+              class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+            >
+              Drink Water
+            </span>
+          </label>
+          <span
+            class="MuiTypography-root makeStyles-date-10 MuiTypography-body1"
+            data-testid="date"
+          >
+            2021-04-05
+          </span>
+        </div>
+      </div>
+      <div
+        aria-disabled="false"
+        aria-hidden="true"
+        class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </div>
+    </div>
+    <div
+      class="MuiCollapse-container MuiCollapse-hidden"
+      style="min-height: 0px;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
+      >
+        <div
+          class="MuiCollapse-wrapperInner"
+        >
+          <div
+            aria-labelledby="additional-actions1-header"
+            id="additional-actions1-content"
+            role="region"
+          >
+            <div
+              class="MuiAccordionDetails-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-item"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                    data-testid="description"
+                  >
+                    You should drink 3L of water
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Daily Task/ > Show daily task with delete and update btn 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-elevation1 MuiPaper-rounded"
+    data-testid="identifier"
+    id="07f8536d-c78f-4af3-b668-3c83d122e6e9"
+  >
+    <div
+      aria-controls="additional-actions1-content"
+      aria-disabled="false"
+      aria-expanded="false"
+      aria-label="Expand"
+      class="MuiButtonBase-root MuiAccordionSummary-root"
+      id="additional-actions1-header"
+      role="button"
+      tabindex="0"
+    >
+      <div
+        class="MuiAccordionSummary-content"
+      >
+        <label
+          class="MuiFormControlLabel-root"
+          data-testid="formControlLabelDeleteTask"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-deleteButton-5"
+            data-testid="deleteTask"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <svg
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polyline
+                    points="3 6 5 6 21 6"
+                  />
+                  <path
+                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                  />
+                  <line
+                    x1="10"
+                    x2="10"
+                    y1="11"
+                    y2="17"
+                  />
+                  <line
+                    x1="14"
+                    x2="14"
+                    y1="11"
+                    y2="17"
+                  />
+                </svg>
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+          <span
+            class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+          />
+        </label>
+        <div
+          class="MuiTypography-root makeStyles-taskName-4 MuiTypography-body1"
+          data-testid="name"
+        >
+          Drink Water
+        </div>
+      </div>
+      <div
+        aria-disabled="false"
+        aria-hidden="true"
+        class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </div>
+    </div>
+    <div
+      class="MuiCollapse-container MuiCollapse-hidden"
+      style="min-height: 0px;"
+    >
+      <div
+        class="MuiCollapse-wrapper"
+      >
+        <div
+          class="MuiCollapse-wrapperInner"
+        >
+          <div
+            aria-labelledby="additional-actions1-header"
+            id="additional-actions1-content"
+            role="region"
+          >
+            <div
+              class="MuiAccordionDetails-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-item"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                    data-testid="description"
+                  >
+                    You should drink 3L of water
+                  </p>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-updateButton-6"
+                    data-testid="updateTask"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Update
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root makeStyles-updateButtonIcon-7 MuiSvgIcon-fontSizeSmall"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <svg
+                          fill="none"
+                          height="24"
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <polyline
+                            points="23 4 23 10 17 10"
+                          />
+                          <path
+                            d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"
+                          />
+                        </svg>
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

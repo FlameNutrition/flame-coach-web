@@ -49,6 +49,7 @@ const DailyTask = ({
 
   return (
     <Accordion
+      data-testid="identifier"
       id={task.identifier}
       key={nextId()}
     >
@@ -62,10 +63,12 @@ const DailyTask = ({
           ? (
             <div className={classes.accordionSummary}>
               <FormControlLabel
+                data-testid="formControlLabelCheckTask"
                 onClick={(event) => event.stopPropagation()}
                 onFocus={(event) => event.stopPropagation()}
                 control={(
                   <Checkbox
+                    data-testid="checkedTask"
                     onChange={(value) => checkTaskHandler(task, value)}
                     checked={task.ticked}
                   />
@@ -74,7 +77,7 @@ const DailyTask = ({
               />
               {enableDate
                 ? (
-                  <Typography component="span" className={classes.date}>
+                  <Typography data-testid="date" component="span" className={classes.date}>
                     {task.date}
                   </Typography>
                 ) : null}
@@ -85,12 +88,14 @@ const DailyTask = ({
           ? (
             <>
               <FormControlLabel
+                data-testid="formControlLabelDeleteTask"
                 onClick={(event) => event.stopPropagation()}
                 onFocus={(event) => event.stopPropagation()}
                 control={(
                   <Button
                     className={classes.deleteButton}
                     variant="contained"
+                    data-testid="deleteTask"
                     onClick={() => deleteTaskHandler(task)}
                   >
                     <SvgIcon
@@ -103,7 +108,11 @@ const DailyTask = ({
               )}
                 label=""
               />
-              <Typography component="div" className={classes.taskName}>
+              <Typography
+                data-testid="name"
+                component="div"
+                className={classes.taskName}
+              >
                 {task.taskName}
               </Typography>
             </>
@@ -118,7 +127,10 @@ const DailyTask = ({
           alignItems="center"
         >
           <Grid item>
-            <Typography color="textSecondary">
+            <Typography
+              data-testid="description"
+              color="textSecondary"
+            >
               {task.taskDescription}
             </Typography>
           </Grid>
@@ -128,6 +140,7 @@ const DailyTask = ({
                 <Button
                   className={classes.updateButton}
                   variant="contained"
+                  data-testid="updateTask"
                   onClick={() => updateTaskHandler(task)}
                 >
                   Update

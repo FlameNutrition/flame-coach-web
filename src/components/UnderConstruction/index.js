@@ -4,7 +4,7 @@ import {
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
-import WorkInProgressIcon from '../../icons/WorkInProgress';
+import UnderConstructionIcon from '../../icons/UnderConstruction';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -74,7 +74,7 @@ const WorkInProgress = ({ message, submessage }) => {
             justifyContent="center"
             className={classes.imageLayout}
           >
-            <WorkInProgressIcon className={isMobile ? classes.imageMobile : classes.image} viewBox="0 0 496 496" />
+            <UnderConstructionIcon className={isMobile ? classes.imageMobile : classes.image} viewBox="0 0 496 496" />
           </Box>
           <Box
             display="flex"

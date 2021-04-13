@@ -1,7 +1,7 @@
 import React from 'react';
 import { SvgIcon } from '@material-ui/core';
 
-const ConnectionError = (props) => {
+const UnderConstruction = (props) => {
   return (
     <SvgIcon {...props}>
       <g>
@@ -43,8 +43,23 @@ const ConnectionError = (props) => {
         <rect x="23.911" y="263.737" fill="#BAB8B9" width="57.642" height="31.101" />
         <rect x="430.451" y="263.737" fill="#BAB8B9" width="57.642" height="31.101" />
       </g>
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
+      <g />
     </SvgIcon>
   );
 };
 
-export default ConnectionError;
+export default UnderConstruction;
