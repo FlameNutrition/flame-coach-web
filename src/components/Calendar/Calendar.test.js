@@ -6,35 +6,49 @@ import Calendar from './Calendar';
 
 describe('<Calendar/ >', () => {
   let shallow;
+  let wrapper;
+  const changeCalenderHandlerSpy = sinon.spy();
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, 'useState');
+  useStateSpy.mockImplementation((init) => [init, setState]);
 
   beforeAll(() => {
     shallow = createShallow();
   });
 
-  it('Show daily selection calendar', () => {
-    const changeCalenderHandler = sinon.spy();
+  beforeEach(() => {
+    wrapper = shallow(
+      <Calendar onChangeCalendar={changeCalenderHandlerSpy} />
+    );
+  });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('Show daily selection calendar', () => {
     const calendar = shallow(
       <Calendar
         daily
-        onChangeCalendar={changeCalenderHandler}
+        onChangeCalendar={changeCalenderHandlerSpy}
       />
     );
 
     expect(toJson(calendar)).toMatchSnapshot();
   });
 
-  it('Show multiple selection calendar', () => {
-    const changeCalenderHandler = sinon.spy();
+  it('Show multiple selection calendar with lable', () => {
+    expect(toJson(wrapper)).toMatchSnapshot();
 
-    const calendar = shallow(
-      <Calendar onChangeCalendar={changeCalenderHandler} />
-    );
+    const labelBox = wrapper.find('WithStyles(ForwardRef(Typography))');
 
-    expect(toJson(calendar)).toMatchSnapshot();
+    expect(labelBox.first().text()).toEqual('Day: Double click date');
+    expect(labelBox.last().text()).toEqual('Period: Select a start and end date');
+  });
 
-    const labelBox = calendar.find('WithStyles(ForwardRef(Typography))');
+  it('Change date handler', () => {
+    wrapper.find('Calendar').props().onChange();
 
-    console.log(labelBox.debug());
+    expect(changeCalenderHandlerSpy).toHaveBeenCalledOnce();
   });
 });

@@ -4,18 +4,18 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "Debug CRA Tests",
+            "name": "vscode-jest-tests",
             "type": "node",
             "request": "launch",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/react-scripts",
+            "runtimeExecutable": "yarn",
             "args": [
                 "test",
                 "--runInBand",
                 "--no-cache",
                 "--watchAll=false"
             ],
-            "cwd": "${workspaceRoot}",
             "protocol": "inspector",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Container, makeStyles } from '@material-ui/core';
 import Page from 'src/components/Page';
-import WorkInProgress from '../../../components/WorkInProgress';
+import UnderConstruction from '../../../components/UnderConstruction';
+
+const workInProgressMessage = 'Ops...this page is under construction!';
+const workInProgressSubMessage = 'Sorry, we are doing the best for having good features available for you But unfortunately this is a free application and we don\'t have much time as we liked to work on it.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,10 +24,9 @@ const Dashboard = () => {
       title="Dashboard"
     >
       <Container>
-        <WorkInProgress
-          message="Ops...this page is under construction!"
-          submessage="Sorry, we are doing the best for having good features available for you.
-          But unfortunately this is a free application and we don't have much time as we liked to work on it."
+        <UnderConstruction
+          message={workInProgressMessage}
+          submessage={workInProgressSubMessage}
         />
       </Container>
     </Page>
