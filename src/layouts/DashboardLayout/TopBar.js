@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import logger from 'loglevel';
 import PropTypes from 'prop-types';
@@ -8,7 +7,6 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import InputIcon from '@material-ui/icons/Input';
-import Logo from 'src/components/Logo';
 import { connect } from 'react-redux';
 import { loggedOut, notification } from '../../store/actions';
 
@@ -38,9 +36,13 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
+        {
+        /**
         <RouterLink to="/">
           <Logo />
         </RouterLink>
+        */
+        }
         <Box flexGrow={1} />
         <Hidden mdDown>
           {/* <IconButton color="inherit">

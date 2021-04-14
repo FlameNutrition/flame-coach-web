@@ -8,7 +8,7 @@ import CustomerListView from 'src/views/customer';
 import DashboardClient from 'src/views/dashboard/DashboardClient';
 import DashboardCoach from 'src/views/dashboard/DashboardCoach';
 import LoginView from 'src/views/auth/LoginView';
-import NotFoundView from 'src/views/errors/NotFoundView';
+import NotFoundView from 'src/views/notFound/NotFoundView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 import logger from 'loglevel';
@@ -50,7 +50,7 @@ const routes = (isAuth, userType) => {
       children: [
         { path: 'login', element: <LoginView /> },
         { path: '/', element: <Navigate to="/login" /> },
-        { path: 'register', element: <RegisterView /> },
+        { path: 'register', element: <RegisterView termsConditions={false} /> },
         { path: '*', element: <Navigate to="/app/404" /> }
       ]
     }
