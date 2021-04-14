@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RegisterView = ({
-  isAuth, error, signUp, signUpReset
+  isAuth, error, signUp, signUpReset, termsConditions
 }) => {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -62,14 +62,14 @@ const RegisterView = ({
               lastName: '',
               password: '',
               type: 'CLIENT',
-              policy: false
+              policy: true
             }}
             validationSchema={
               Yup.object().shape({
                 email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                 firstName: Yup.string().max(255).required('First name is required'),
                 lastName: Yup.string().max(255).required('Last name is required'),
-                password: Yup.string().max(255).required('password is required'),
+                password: Yup.string().max(255).required('Password is required'),
                 policy: Yup.boolean().oneOf([true], 'This field must be checked')
               })
             }
@@ -180,38 +180,46 @@ const RegisterView = ({
                   value={values.password}
                   variant="outlined"
                 />
-                <Box
-                  alignItems="center"
-                  display="flex"
-                  ml={-1}
-                >
-                  <Checkbox
-                    checked={values.policy}
-                    name="policy"
-                    onChange={handleChange}
-                  />
-                  <Typography
-                    color="textSecondary"
-                    variant="body1"
-                  >
-                    I have read the
-                    {' '}
-                    <Link
-                      color="primary"
-                      component={RouterLink}
-                      to="#"
-                      underline="always"
-                      variant="h6"
+                {
+                termsConditions
+                  ? (
+                    <Box
+                      alignItems="center"
+                      display="flex"
+                      ml={-1}
                     >
-                      Terms and Conditions
-                    </Link>
-                  </Typography>
-                </Box>
-                {Boolean(touched.policy && errors.policy) && (
+                      <Checkbox
+                        checked={values.policy}
+                        name="policy"
+                        onChange={handleChange}
+                      />
+                      <Typography
+                        color="textSecondary"
+                        variant="body1"
+                      >
+                        I have read the
+                        {' '}
+                        <Link
+                          color="primary"
+                          component={RouterLink}
+                          to="#"
+                          underline="always"
+                          variant="h6"
+                        >
+                          Terms and Conditions
+                        </Link>
+                      </Typography>
+                    </Box>
+                  )
+                  : null
+                }
+                {
+                  Boolean(touched.policy && errors.policy) && (
                   <FormHelperText error>
                     {errors.policy}
                   </FormHelperText>
-                )}
+                  )
+                }
                 <Box my={2}>
                   <Button
                     color="primary"
@@ -274,6 +282,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 RegisterView.propTypes = {
   isAuth: PropTypes.bool,
+  termsConditions: PropTypes.bool,
   signUp: PropTypes.func,
   signUpReset: PropTypes.func,
   error: PropTypes.object

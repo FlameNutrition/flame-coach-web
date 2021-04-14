@@ -319,10 +319,13 @@ const Planner = ({ customerIdentifier }) => {
       title="Planner"
     >
       <Container maxWidth={false}>
-        {!clients.isLoading && clients.isError
+        {(!clients.isLoading && !clientTasks.isLoading)
+        && (clients.isError || clientTasks.isError)
           ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
           : null}
-        {!clients.isLoading && clients.data ? (
+        {(!clients.isLoading && !clientTasks.isLoading)
+        && (!clients.isError || !clientTasks.isError)
+        && clients.data ? (
           <>
             <Box className={classes.searchClientCard}>
               <Card>
@@ -375,7 +378,7 @@ const Planner = ({ customerIdentifier }) => {
               />
             </Box>
           </>
-        ) : null}
+          ) : null}
       </Container>
     </Page>
   );

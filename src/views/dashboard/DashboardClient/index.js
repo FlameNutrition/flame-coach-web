@@ -431,7 +431,7 @@ const Dashboard = ({ customerIdentifier }) => {
               </div>
               {activeCoachStep === steps.length - 1 ? (
                 <div className={classes.coachConfirmation}>
-                  <Alert severity={ErrorMessage.CODE_0004.level}>
+                  <Alert severity="warning">
                     {' '}
                     {ErrorMessage.CODE_0004.msg}
                   </Alert>

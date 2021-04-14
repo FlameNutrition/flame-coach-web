@@ -43,7 +43,8 @@ const CustomersView = ({ customerIdentifier }) => {
     sortOrder: {
       name: 'Name',
       direction: 'asc'
-    }
+    },
+    print: false
   };
   const [notification, setNotification] = useState({
     enable: false,
