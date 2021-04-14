@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const SmallBox = ({
+const NavBarBox = ({
   title, message, icon, iconEnable, btnEnable, btnLabel, btnHref
 }) => {
   const classes = useStyles();
@@ -67,7 +67,7 @@ const SmallBox = ({
   );
 };
 
-SmallBox.propTypes = {
+NavBarBox.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   iconEnable: PropTypes.bool.isRequired,
@@ -77,7 +77,7 @@ SmallBox.propTypes = {
   btnHref: PropTypes.string
 };
 
-SmallBox.defaultProps = {
+NavBarBox.defaultProps = {
 };
 
-export default SmallBox;
+export default NavBarBox;
