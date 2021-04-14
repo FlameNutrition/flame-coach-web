@@ -4,7 +4,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ConnectionError from '../../icons/ConnectionError';
+import ConnectionError from '../../images/ConnectionError';
 
 const useStyles = makeStyles(() => ({
   root: {

@@ -3,7 +3,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
-import PageNotFound from '../../icons/404';
+import PageNotFound from '../../images/404';
 
 const useStyles = makeStyles(() => ({
   root: {

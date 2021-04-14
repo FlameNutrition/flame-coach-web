@@ -4,7 +4,7 @@ import {
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
-import UnderConstructionIcon from '../../icons/UnderConstruction';
+import UnderConstructionIcon from '../../images/UnderConstruction';
 
 const useStyles = makeStyles(() => ({
   root: {
