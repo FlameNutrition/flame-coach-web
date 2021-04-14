@@ -23,7 +23,7 @@ import {
 import { connect } from 'react-redux';
 import ClientIcon from '@material-ui/icons/PermIdentity';
 import CoachIcon from '@material-ui/icons/PeopleOutline';
-import SmallBox from '../../../components/SmallBox';
+import NavBarBox from '../../../components/NavBarBox';
 import NavItem from './NavItem';
 
 const itemsCoach = [
@@ -170,7 +170,7 @@ const NavBar = ({
         </List>
       </Box>
       <Box flexGrow={1} />
-      <SmallBox
+      <NavBarBox
         title=""
         message="Help to improve this app!"
         iconEnable
@@ -184,7 +184,7 @@ const NavBar = ({
         btnLabel="Buy me a coffee"
         btnHref={`${process.env.REACT_APP_BUY_ME_A_COFFEE}`}
       />
-      <SmallBox
+      <NavBarBox
         title="Having issues?"
         message="Please report any issue did you find. Help us to help you!"
         iconEnable
