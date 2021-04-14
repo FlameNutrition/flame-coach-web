@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
-  Button,
   Divider,
   Drawer,
   Hidden,
@@ -24,6 +23,7 @@ import {
 import { connect } from 'react-redux';
 import ClientIcon from '@material-ui/icons/PermIdentity';
 import CoachIcon from '@material-ui/icons/PeopleOutline';
+import SmallBox from '../../../components/SmallBox';
 import NavItem from './NavItem';
 
 const itemsCoach = [
@@ -170,39 +170,34 @@ const NavBar = ({
         </List>
       </Box>
       <Box flexGrow={1} />
-      <Box
-        p={2}
-        m={2}
-        bgcolor="background.dark"
-      >
-        <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-        >
-          Having issues?
-        </Typography>
-        <Typography
-          align="center"
-          variant="body2"
-        >
-          Please report any issue did you find. Help us to help you!
-        </Typography>
-        <Box
-          display="flex"
-          justifyContent="center"
-          mt={2}
-        >
-          <Button
-            color="primary"
-            component="a"
-            href="https://react-material-kit.devias.io"
-            variant="contained"
-          >
-            Report
-          </Button>
-        </Box>
-      </Box>
+      <SmallBox
+        title=""
+        message="Help to improve this app!"
+        iconEnable
+        icon={(
+          <img
+            alt="BuyMeACoffee"
+            src="/static/icons/coffee.png"
+          />
+        )}
+        btnEnable
+        btnLabel="Buy me a coffee"
+        btnHref={`${process.env.REACT_APP_BUY_ME_A_COFFEE}`}
+      />
+      <SmallBox
+        title="Having issues?"
+        message="Please report any issue did you find. Help us to help you!"
+        iconEnable
+        icon={(
+          <img
+            alt="ReportIssue"
+            src="/static/icons/issue.png"
+          />
+        )}
+        btnEnable
+        btnLabel="Report"
+        btnHref={`mailto:${process.env.REACT_APP_SUPPORT_EMAIL}`}
+      />
     </Box>
   );
 
