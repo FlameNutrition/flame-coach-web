@@ -29,7 +29,7 @@ class ErrorMessage {
   static CODE_0001 = new ErrorMessage('CODE_0001', 'End date is the same or after the start date.', WARNING)
   static CODE_0002 = new ErrorMessage('CODE_0002', 'Ops! You need select a client first. Please choose a client in the top of the application', WARNING)
   static CODE_0003 = new ErrorMessage('CODE_0003', 'Ops! You need select a task first. Please choose the task you want to update', WARNING)
-  static CODE_0004 = new ErrorMessage('CODE_0004', 'After confirmation you will need to ask our or your coach to leave this experience.', WARNING)
+  static CODE_0004 = new ErrorMessage('CODE_0004', 'After confirmation you will need to ask us or your coach to leave this experience.', WARNING)
 
   static fromCode(code) {
     const value = this[`CODE_${code}`];

@@ -10,8 +10,6 @@ import {
   StepLabel,
   Stepper
 } from '@material-ui/core';
-import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
-import Page from 'src/components/Page';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,6 +18,9 @@ import update from 'immutability-helper';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBackIcon from '@material-ui/icons/NavigateBefore';
 import { Alert } from '@material-ui/lab';
+import Page from '../../../components/Page';
+import InfoMessage from '../../../components/Notification/InfoMessage/InfoMessage';
+import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
 import TasksProgress from './TasksProgress';
 import Tasks from './Tasks';
 import MyCoach from '../../../components/MyCoach';
@@ -431,9 +432,18 @@ const Dashboard = ({ customerIdentifier }) => {
               </div>
               {activeCoachStep === steps.length - 1 ? (
                 <div className={classes.coachConfirmation}>
-                  <Alert severity="warning">
+                  <Alert severity={ErrorMessage.CODE_0004.level.toLowerCase()}>
                     {' '}
                     {ErrorMessage.CODE_0004.msg}
+                  </Alert>
+                </div>
+              ) : null}
+
+              {activeCoachStep === steps.length ? (
+                <div className={classes.coachConfirmation}>
+                  <Alert severity={InfoMessage.CODE_0001.level.toLowerCase()}>
+                    {' '}
+                    {InfoMessage.CODE_0001.msg}
                   </Alert>
                 </div>
               ) : null}
