@@ -5,6 +5,9 @@
     "browser": true,
     "jest/globals": true
   },
+  "plugins": [
+    "react-redux"
+  ],
   "extends": [
     "airbnb",
     "airbnb/hooks",
@@ -65,7 +68,10 @@
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": [
+          "@material-ui/*/*/*",
+          "!@material-ui/core/test-utils/*"
+        ]
       }
     ]
   }

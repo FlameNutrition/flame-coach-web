@@ -4,7 +4,6 @@ import {
   Card, CardContent, Container, Grid, makeStyles
 } from '@material-ui/core';
 import update from 'immutability-helper';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
@@ -69,8 +68,7 @@ const Planner = ({ customerIdentifier }) => {
         logError('Planner',
           'useQuery getClientsCoach',
           'Error:', err);
-      },
-      refetchOnMount: 'always'
+      }
     });
 
   const clientTasks = useQuery(['getDailyTasksByClientAndDay', selectedClient, selectedDate],
@@ -319,19 +317,16 @@ const Planner = ({ customerIdentifier }) => {
       title="Planner"
     >
       <Container maxWidth={false}>
-        {(!clients.isLoading && !clientTasks.isLoading)
-        && (clients.isError || clientTasks.isError)
+        {(!clients.isLoading && (clients.isError || clientTasks.isError))
           ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
           : null}
-        {(!clients.isLoading && !clientTasks.isLoading)
-        && (!clients.isError || !clientTasks.isError)
-        && clients.data ? (
+        {(!clients.isError && !clientTasks.isError) ? (
           <>
             <Box className={classes.searchClientCard}>
               <Card>
                 <CardContent>
                   <SearchClient
-                    clients={clients.data.clientsCoach}
+                    clients={!clients.isLoading ? clients.data.clientsCoach : []}
                     searchSelectedHandler={searchClientSelectHandler}
                   />
                 </CardContent>
@@ -378,7 +373,7 @@ const Planner = ({ customerIdentifier }) => {
               />
             </Box>
           </>
-          ) : null}
+        ) : null}
       </Container>
     </Page>
   );
@@ -395,4 +390,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Planner);
+export { Planner, mapStateToProps };

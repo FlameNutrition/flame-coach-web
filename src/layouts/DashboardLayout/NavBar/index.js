@@ -20,7 +20,6 @@ import {
   Calendar as CalendarIcon,
   LogOut as LogOutIcon
 } from 'react-feather';
-import { connect } from 'react-redux';
 import { PermIdentity as ClientIcon, PeopleOutline as CoachIcon } from '@material-ui/icons';
 import NavBarBox from '../../../components/NavBarBox';
 import NavItem from './NavItem';
@@ -248,4 +247,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(NavBar);
+export { NavBar, mapStateToProps };

@@ -2,21 +2,19 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import React, { Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
-import GlobalStyles from 'src/components/GlobalStyles';
-import theme from 'src/theme';
-import routes from 'src/routes';
-import { connect } from 'react-redux';
-import { withCookies } from 'react-cookie';
 import PropTypes from 'prop-types';
+import GlobalStyles from '../components/GlobalStyles';
+import theme from '../theme';
+import routes from '../routes';
+import Loading from '../components/Loading';
 
 const App = ({ isAuth, userType }) => {
-  // eslint-disable-next-line react/destructuring-assignment,react/prop-types
   const routing = useRoutes(routes(isAuth, userType));
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading message="loading" />}>
         {routing}
       </Suspense>
     </ThemeProvider>
@@ -35,4 +33,4 @@ App.propTypes = {
   userType: PropTypes.string,
 };
 
-export default connect(mapStateToProps, null)(withCookies(App));
+export { App, mapStateToProps };

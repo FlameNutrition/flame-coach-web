@@ -10,7 +10,6 @@ import Page from 'src/components/Page';
 import logger from 'loglevel';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import update from 'immutability-helper';
 import Profile from '../Profile';
 import ProfileDetails from '../ProfileDetails';
@@ -210,4 +209,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Account);
+export { Account, mapStateToProps };
