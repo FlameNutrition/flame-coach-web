@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBarBox/ > create component with button & icon 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-2"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-3"
+    >
+      <img
+        alt="ReportIssue"
+        class="makeStyles-image-1"
+        src="/static/icons/issue.png"
+      />
+      <h4
+        class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom MuiTypography-alignCenter"
+      >
+        Having issues?
+      </h4>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter"
+    >
+      Please report any issue did you find. Help us to help you!
+    </p>
+    <div
+      class="MuiBox-root MuiBox-root-4"
+    >
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+        href="mailto:test@gmail.com"
+        tabindex="0"
+        target="_blank"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Report
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<NavBarBox/ > create component with button only 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-9"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-10"
+    >
+      <h4
+        class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom MuiTypography-alignCenter"
+      >
+        Having issues?
+      </h4>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter"
+    >
+      Please report any issue did you find. Help us to help you!
+    </p>
+    <div
+      class="MuiBox-root MuiBox-root-11"
+    >
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+        href="mailto:test@gmail.com"
+        tabindex="0"
+        target="_blank"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Report
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<NavBarBox/ > create component with icon only 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-6"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-7"
+    >
+      <img
+        alt="ReportIssue"
+        class="makeStyles-image-5"
+        src="/static/icons/issue.png"
+      />
+      <h4
+        class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom MuiTypography-alignCenter"
+      >
+        Having issues?
+      </h4>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 MuiTypography-alignCenter"
+    >
+      Please report any issue did you find. Help us to help you!
+    </p>
+  </div>
+</div>
+`;
