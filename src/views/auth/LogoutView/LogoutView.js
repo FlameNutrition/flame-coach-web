@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { loggedOut } from '../../store/actions';
+import { loggedOut } from '../../../store/actions';
 
 const LogoutView = ({ isAuth, signOut }) => {
   const navigate = useNavigate();
@@ -36,4 +35,4 @@ LogoutView.propTypes = {
   signOut: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogoutView);
+export { LogoutView, mapStateToProps, mapDispatchToProps };

@@ -6,8 +6,7 @@ import {
   AppBar, Box, Hidden, IconButton, makeStyles, Toolbar
 } from '@material-ui/core';
 import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
-import { connect } from 'react-redux';
-import { loggedOut, notification } from '../../store/actions';
+import { loggedOut, notification } from '../../../store/actions';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -87,4 +86,4 @@ TopBar.propTypes = {
   notification: PropTypes.func
 };
 
-export default connect(null, mapDispatchToProps)(TopBar);
+export { TopBar, mapDispatchToProps };

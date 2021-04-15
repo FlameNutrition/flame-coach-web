@@ -10,7 +10,6 @@ import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage'
 import InfoMessage from 'src/components/Notification/InfoMessage/InfoMessage';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import update from 'immutability-helper';
 import Profile from '../Profile';
 import ProfileDetails from '../ProfileDetails';
@@ -289,4 +288,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Account);
+export { Account, mapStateToProps };

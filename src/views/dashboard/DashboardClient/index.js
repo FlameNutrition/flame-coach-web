@@ -11,7 +11,6 @@ import {
   Stepper
 } from '@material-ui/core';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import update from 'immutability-helper';
@@ -516,4 +515,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Dashboard);
+export { Dashboard, mapStateToProps };

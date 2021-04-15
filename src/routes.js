@@ -1,21 +1,20 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import logger from 'loglevel';
 
-const MainLayout = lazy(() => import('./layouts/MainLayout'));
-const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
+import MainLayout from './layouts/MainLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 
-const AccountClient = lazy(() => import('./views/account/AccountClient'));
-const AccountCoach = lazy(() => import('./views/account/AccountCoach'));
-const CustomerListView = lazy(() => import('./views/customer'));
-const DashboardClient = lazy(() => import('./views/dashboard/DashboardClient'));
+const AccountClient = lazy(() => import('./views/account/AccountClient/connector'));
+const AccountCoach = lazy(() => import('./views/account/AccountCoach/connector'));
+const CustomerListView = lazy(() => import('./views/customer/connector'));
+const DashboardClient = lazy(() => import('./views/dashboard/DashboardClient/connector'));
 const DashboardCoach = lazy(() => import('./views/dashboard/DashboardCoach'));
 const LoginView = lazy(() => import('./views/auth/LoginView'));
 const NotFoundView = lazy(() => import('./views/notFound/NotFoundView'));
 const RegisterView = lazy(() => import('./views/auth/RegisterView'));
 const SettingsView = lazy(() => import('./views/settings/SettingsView'));
-const Planner = lazy(() => import('./views/planner'));
-const LogoutView = lazy(() => import('./views/auth/LogoutView'));
+const LogoutView = lazy(() => import('./views/auth/LogoutView/connector'));
+const Planner = lazy(() => import('./views/planner/connector'));
 
 const routes = (isAuth, userType) => {
   const childrenCoach = [
@@ -37,8 +36,6 @@ const routes = (isAuth, userType) => {
     { path: '404', element: <NotFoundView /> },
     { path: '*', element: <Navigate to="/app/404" /> }
   ];
-
-  logger.debug('userType:', userType);
 
   return [
     {
