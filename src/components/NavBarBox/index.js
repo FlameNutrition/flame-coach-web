@@ -70,14 +70,16 @@ const NavBarBox = ({
 NavBarBox.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
-  iconEnable: PropTypes.bool.isRequired,
+  iconEnable: PropTypes.bool,
   icon: PropTypes.object,
-  btnEnable: PropTypes.bool.isRequired,
+  btnEnable: PropTypes.bool,
   btnLabel: PropTypes.string,
   btnHref: PropTypes.string
 };
 
 NavBarBox.defaultProps = {
+  btnEnable: false,
+  iconEnable: false
 };
 
 export default NavBarBox;
