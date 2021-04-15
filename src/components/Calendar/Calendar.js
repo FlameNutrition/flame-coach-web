@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import NextMonth from '@material-ui/icons/NavigateNextRounded';
-import PreviousMonth from '@material-ui/icons/NavigateBeforeRounded';
+import { NavigateNextRounded as NextMonth, NavigateBeforeRounded as PreviousMonth } from '@material-ui/icons';
 import {
   Box, Card, CardContent, CardHeader, Divider, makeStyles, Typography
 } from '@material-ui/core';

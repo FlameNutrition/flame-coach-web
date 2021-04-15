@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Avatar, Card, CardContent, colors, Grid, makeStyles, Typography
 } from '@material-ui/core';
-import SessionDateIcon from '@material-ui/icons/Today';
+import SessionDateIcon from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {

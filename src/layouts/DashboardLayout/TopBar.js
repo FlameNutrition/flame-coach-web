@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import {
   AppBar, Box, Hidden, IconButton, makeStyles, Toolbar
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import InputIcon from '@material-ui/icons/Input';
+import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { loggedOut, notification } from '../../store/actions';
 

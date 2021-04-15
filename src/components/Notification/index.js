@@ -3,7 +3,7 @@ import {
   Box, Collapse, IconButton, makeStyles
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import CloseIcon from '@material-ui/icons/Close';
+import { Close as CloseIcon } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {

@@ -13,8 +13,7 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { ArrowDropDown as ArrowDropDownIcon, ArrowRight as ArrowRightIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {}

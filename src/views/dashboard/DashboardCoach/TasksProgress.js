@@ -12,7 +12,7 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
+import { InsertChartOutlined as InsertChartIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {

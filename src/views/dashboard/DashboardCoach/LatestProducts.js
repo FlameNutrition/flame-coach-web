@@ -16,8 +16,7 @@ import {
   ListItemText,
   makeStyles
 } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { MoreVert as MoreVertIcon, ArrowRight as ArrowRightIcon } from '@material-ui/icons';
 
 const data = [
   {

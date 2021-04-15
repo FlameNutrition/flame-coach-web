@@ -10,7 +10,7 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import { AttachMoney as AttachMoneyIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {
