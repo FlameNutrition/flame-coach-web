@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import DashboardLayout from 'src/layouts/DashboardLayout';
-import MainLayout from 'src/layouts/MainLayout';
-import AccountClient from 'src/views/account/AccountClient';
-import AccountCoach from 'src/views/account/AccountCoach';
-import CustomerListView from 'src/views/customer';
-import DashboardClient from 'src/views/dashboard/DashboardClient';
-import DashboardCoach from 'src/views/dashboard/DashboardCoach';
-import LoginView from 'src/views/auth/LoginView';
-import NotFoundView from 'src/views/notFound/NotFoundView';
-import RegisterView from 'src/views/auth/RegisterView';
-import SettingsView from 'src/views/settings/SettingsView';
 import logger from 'loglevel';
-import Planner from './views/planner';
-import LogoutView from './views/auth/LogoutView';
+
+const MainLayout = lazy(() => import('./layouts/MainLayout'));
+const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
+
+const AccountClient = lazy(() => import('./views/account/AccountClient'));
+const AccountCoach = lazy(() => import('./views/account/AccountCoach'));
+const CustomerListView = lazy(() => import('./views/customer'));
+const DashboardClient = lazy(() => import('./views/dashboard/DashboardClient'));
+const DashboardCoach = lazy(() => import('./views/dashboard/DashboardCoach'));
+const LoginView = lazy(() => import('./views/auth/LoginView'));
+const NotFoundView = lazy(() => import('./views/notFound/NotFoundView'));
+const RegisterView = lazy(() => import('./views/auth/RegisterView'));
+const SettingsView = lazy(() => import('./views/settings/SettingsView'));
+const Planner = lazy(() => import('./views/planner'));
+const LogoutView = lazy(() => import('./views/auth/LogoutView'));
 
 const routes = (isAuth, userType) => {
   const childrenCoach = [
