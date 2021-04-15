@@ -21,7 +21,7 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import { Controller, useForm } from 'react-hook-form';
 import { logDebug } from '../../logging';
 

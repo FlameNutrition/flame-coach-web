@@ -20,7 +20,7 @@ import {
   Tooltip,
   makeStyles
 } from '@material-ui/core';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { ArrowRight as ArrowRightIcon } from '@material-ui/icons';
 
 const data = [
   {

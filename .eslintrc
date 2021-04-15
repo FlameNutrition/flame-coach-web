@@ -30,7 +30,12 @@
     "arrow-body-style": "off",
     "comma-dangle": "off",
     "import/no-unresolved": "off",
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/control-has-associated-label": "off",
@@ -56,6 +61,12 @@
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+      }
+    ]
   }
 }

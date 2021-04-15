@@ -11,8 +11,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import GetAppIcon from '@material-ui/icons/GetApp';
+import { AccessTime as AccessTimeIcon, GetApp as GetAppIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {

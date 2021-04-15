@@ -15,7 +15,7 @@ import {
   Tabs,
   useMediaQuery
 } from '@material-ui/core';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import { Refresh as RefreshIcon } from '@material-ui/icons';
 import moment from 'moment';
 import nextId from 'react-id-generator';
 import PerfectScrollbar from 'react-perfect-scrollbar';

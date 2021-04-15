@@ -21,8 +21,7 @@ import {
   LogOut as LogOutIcon
 } from 'react-feather';
 import { connect } from 'react-redux';
-import ClientIcon from '@material-ui/icons/PermIdentity';
-import CoachIcon from '@material-ui/icons/PeopleOutline';
+import { PermIdentity as ClientIcon, PeopleOutline as CoachIcon } from '@material-ui/icons';
 import NavBarBox from '../../../components/NavBarBox';
 import NavItem from './NavItem';
 

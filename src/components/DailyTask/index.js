@@ -9,7 +9,7 @@ import {
   Typography
 } from '@material-ui/core';
 import nextId from 'react-id-generator';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import { Trash2 as DeleteIcon, RotateCw as UpdateIcon } from 'react-feather';
 
