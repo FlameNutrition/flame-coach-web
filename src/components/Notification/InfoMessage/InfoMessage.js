@@ -1,5 +1,5 @@
 /* eslint-disable lines-between-class-members */
-import { SUCCESS } from '../notificationTypes';
+import { INFO, SUCCESS } from '../notificationTypes';
 
 class InfoMessage {
   // Customer
@@ -10,6 +10,9 @@ class InfoMessage {
   static CODE_4001 = new InfoMessage('Task added with success!', SUCCESS)
   static CODE_4002 = new InfoMessage('Task updated with success!', SUCCESS)
   static CODE_4003 = new InfoMessage('Task deleted with success!', SUCCESS)
+
+  // UI
+  static CODE_0001 = new InfoMessage('If you want to leave please ask for us or your coach.', INFO)
 
   constructor(msg, level) {
     this.msg = msg;
