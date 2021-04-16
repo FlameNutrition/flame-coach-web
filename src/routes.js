@@ -1,8 +1,9 @@
 import React, { lazy } from 'react';
-import { Navigate } from 'react-router-dom';
 
-import MainLayout from './layouts/MainLayout';
 import DashboardLayout from './layouts/DashboardLayout';
+import Loading from './components/Loading';
+import MainLayout from './layouts/MainLayout';
+import { Navigate } from 'react-router-dom';
 
 const AccountClient = lazy(() => import('./views/account/AccountClient/connector'));
 const AccountCoach = lazy(() => import('./views/account/AccountCoach/connector'));
@@ -38,6 +39,10 @@ const routes = (isAuth, userType) => {
   ];
 
   return [
+    {
+      path: 'loading',
+      element: <Loading size={200} />
+    },
     {
       path: 'app',
       element: isAuth ? <DashboardLayout /> : <Navigate to="/login" />,

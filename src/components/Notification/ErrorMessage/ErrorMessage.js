@@ -1,5 +1,5 @@
 /* eslint-disable lines-between-class-members */
-import { logWarn } from 'src/logging';
+import { logWarn } from '../../../logging';
 import { ERROR, WARNING } from '../notificationTypes';
 
 class ErrorMessage {

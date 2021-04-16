@@ -1,16 +1,25 @@
-import React from 'react';
+import { Box, CircularProgress } from '@material-ui/core';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const Loading = ({
-  message
+  size
 }) => {
   return (
-    <div>{message}</div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      height="100%"
+    >
+      <CircularProgress size={size} />
+    </Box>
   );
 };
 
 Loading.propTypes = {
-  message: PropTypes.string,
+  size: PropTypes.number,
 };
 
 export default Loading;

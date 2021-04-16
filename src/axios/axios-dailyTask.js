@@ -1,6 +1,6 @@
-import moment from 'moment';
 import axios from './axios-flame-coach';
 import { logDebug } from '../logging';
+import moment from 'moment';
 
 export const addDailyTask = async (dailyTask, clientIdentifier, coachIdentifier) => {
   const data = JSON.stringify({

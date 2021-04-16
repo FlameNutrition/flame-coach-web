@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   Avatar,
   Box,
@@ -12,6 +9,10 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import moment from 'moment';
 
 const useStyles = makeStyles(() => ({

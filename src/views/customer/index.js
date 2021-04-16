@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
 import {
-  Box, Button,
-  Container, Grid,
-  makeStyles, SvgIcon
+  Box,
+  Button,
+  Container,
+  Grid,
+  SvgIcon,
+  makeStyles
 } from '@material-ui/core';
-import Page from 'src/components/Page';
-import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
-import PropTypes from 'prop-types';
-import update from 'immutability-helper';
-import MUIDataTable from 'mui-datatables';
+import React, { useState } from 'react';
 import { UserMinus as UserMinusIcon, UserPlus as UserPlusIcon } from 'react-feather';
+import { enrollmentProcessBreak, enrollmentProcessInit, getClientsCoachPlusClientsAvailableForCoaching } from '../../axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import Warning from '../../components/Warning';
-import {
-  enrollmentProcessBreak,
-  enrollmentProcessInit,
-  getClientsCoachPlusClientsAvailableForCoaching
-} from '../../axios';
+
+import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
+import MUIDataTable from 'mui-datatables';
 import Notification from '../../components/Notification';
+import Page from '../../components/Page';
+import PropTypes from 'prop-types';
+import Warning from '../../components/Warning';
 import { logError } from '../../logging';
+import update from 'immutability-helper';
 
 const useStyles = makeStyles((theme) => ({
   root: {

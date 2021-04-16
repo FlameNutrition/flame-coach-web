@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Container,
-  Grid,
-  makeStyles
-} from '@material-ui/core';
+import { Box, Container, Grid, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
-import Page from 'src/components/Page';
-import Toolbar from './Toolbar';
-import ProductCard from './ProductCard';
+import React, { useState } from 'react';
+
+import Page from '../../../components/Page';
 import data from './data';
+import ProductCard from './ProductCard';
+import Toolbar from './Toolbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {

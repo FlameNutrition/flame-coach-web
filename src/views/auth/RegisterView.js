@@ -1,23 +1,29 @@
-import React, { useEffect } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { Formik } from 'formik';
+
 import {
   Box,
   Button,
   Checkbox,
   Container,
+  FormControl,
   FormHelperText,
+  InputLabel,
   Link,
+  MenuItem,
+  Select,
   TextField,
   Typography,
-  makeStyles, Select, MenuItem, InputLabel, FormControl
+  makeStyles
 } from '@material-ui/core';
-import Page from 'src/components/Page';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { signup, signupReset } from '../../store/actions';
+
+import { Formik } from 'formik';
 import Notification from '../../components/Notification';
+import Page from '../../components/Page';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {

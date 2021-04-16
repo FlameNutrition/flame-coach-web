@@ -1,6 +1,3 @@
-import React from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import {
   Accordion,
   AccordionActions,
@@ -15,14 +12,18 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  makeStyles,
   MenuItem,
   Select,
   TextField,
-  Typography
+  Typography,
+  makeStyles
 } from '@material-ui/core';
-import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import { Controller, useForm } from 'react-hook-form';
+
+import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
+import PropTypes from 'prop-types';
+import React from 'react';
+import clsx from 'clsx';
 import { logDebug } from '../../logging';
 
 const useStyles = makeStyles(() => ({

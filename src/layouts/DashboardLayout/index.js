@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core';
-import { Outlet } from 'react-router';
+import React, { Suspense, useState } from 'react';
+
+import Loading from '../../components/Loading';
 import NavBar from './NavBar/connector';
+import { Outlet } from 'react-router';
 import TopBar from './TopBar/connector';
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +49,9 @@ const DashboardLayout = () => {
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
           <div className={classes.content}>
-            <Outlet />
+            <Suspense fallback={<Loading size={100} />}>
+              <Outlet />
+            </Suspense>
           </div>
         </div>
       </div>

@@ -29,6 +29,7 @@
     }
   },
   "rules": {
+    "import/order": "off",
     "no-underscore-dangle": "off",
     "arrow-body-style": "off",
     "comma-dangle": "off",
