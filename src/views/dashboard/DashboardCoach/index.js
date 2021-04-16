@@ -1,6 +1,7 @@
-import React from 'react';
 import { Container, makeStyles } from '@material-ui/core';
-import Page from 'src/components/Page';
+import React from 'react';
+
+import Page from '../../../components/Page';
 import UnderConstruction from '../../../components/UnderConstruction';
 
 const workInProgressMessage = 'Ops...this page is under construction!';

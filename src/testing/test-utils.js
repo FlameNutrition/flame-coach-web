@@ -1,7 +1,8 @@
-import React from 'react';
-import { render } from '@testing-library/react';
 import { ThemeProvider } from '@material-ui/core';
-import theme from 'src/theme';
+import { render } from '@testing-library/react';
+import React from 'react';
+
+import theme from '../theme';
 
 // eslint-disable-next-line react/prop-types
 const AllTheProviders = ({ children }) => {

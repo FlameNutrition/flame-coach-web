@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import {
   Box,
-  Card, CardContent, Container, Grid, makeStyles
+  Card,
+  CardContent,
+  Container,
+  Grid,
+  makeStyles
 } from '@material-ui/core';
-import update from 'immutability-helper';
-import PropTypes from 'prop-types';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from 'src/components/Notification/InfoMessage/InfoMessage';
-import Page from '../../components/Page';
-import Calendar from '../../components/Calendar/Calendar';
-import TaskPreview from './TaskPreview';
-import TaskTool from './TaskTool';
-import SearchClient from '../../components/SearchClient';
+import React, { useEffect, useState } from 'react';
 import {
   addDailyTask,
   addMultipleDailyTasks,
@@ -21,8 +15,19 @@ import {
   getDailyTasksByClientAndDay,
   updateDailyTaskByUUID
 } from '../../axios';
-import Warning from '../../components/Warning';
 import { logDebug, logError } from '../../logging';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+import Calendar from '../../components/Calendar/Calendar';
+import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
+import Page from '../../components/Page';
+import PropTypes from 'prop-types';
+import SearchClient from '../../components/SearchClient';
+import TaskPreview from './TaskPreview';
+import TaskTool from './TaskTool';
+import Warning from '../../components/Warning';
+import update from 'immutability-helper';
 
 const useStyles = makeStyles((theme) => ({
   root: {

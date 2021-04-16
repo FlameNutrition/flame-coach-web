@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
-import {
-  Container,
-  Grid,
-  makeStyles
-} from '@material-ui/core';
-import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from 'src/components/Notification/InfoMessage/InfoMessage';
-import Page from 'src/components/Page';
-import logger from 'loglevel';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import PropTypes from 'prop-types';
+import { Container, Grid, makeStyles } from '@material-ui/core';
 import update from 'immutability-helper';
+import logger from 'loglevel';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+import { getCoachContactInformation, updateCoachContactInformation } from '../../../axios';
+import Notification from '../../../components/Notification';
+import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../../components/Notification/InfoMessage/InfoMessage';
+import Page from '../../../components/Page';
+import Warning from '../../../components/Warning';
+import { logDebug, logError } from '../../../logging';
 import Profile from '../Profile';
 import ProfileDetails from '../ProfileDetails';
-import { logDebug, logError } from '../../../logging';
-import {
-  getCoachContactInformation,
-  updateCoachContactInformation
-} from '../../../axios';
-import Warning from '../../../components/Warning';
-import Notification from '../../../components/Notification';
 
 const useStyles = makeStyles((theme) => ({
   root: {

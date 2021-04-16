@@ -1,12 +1,14 @@
 import 'react-perfect-scrollbar/dist/css/styles.css';
+
 import React, { Suspense } from 'react';
-import { useRoutes } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core';
-import PropTypes from 'prop-types';
+
 import GlobalStyles from '../components/GlobalStyles';
-import theme from '../theme';
-import routes from '../routes';
 import Loading from '../components/Loading';
+import PropTypes from 'prop-types';
+import { ThemeProvider } from '@material-ui/core';
+import routes from '../routes';
+import theme from '../theme';
+import { useRoutes } from 'react-router-dom';
 
 const App = ({ isAuth, userType }) => {
   const routing = useRoutes(routes(isAuth, userType));
@@ -14,7 +16,7 @@ const App = ({ isAuth, userType }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Suspense fallback={<Loading message="loading" />}>
+      <Suspense fallback={<Loading size={100} />}>
         {routing}
       </Suspense>
     </ThemeProvider>

@@ -1,8 +1,8 @@
+import Calendar from './Calendar';
 import React from 'react';
-import toJson from 'enzyme-to-json';
 import { createShallow } from '@material-ui/core/test-utils';
 import sinon from 'sinon';
-import Calendar from './Calendar';
+import toJson from 'enzyme-to-json';
 
 describe('<Calendar/ >', () => {
   let shallow;

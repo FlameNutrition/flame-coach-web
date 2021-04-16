@@ -1,9 +1,8 @@
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
-import {
-  makeStyles
-} from '@material-ui/core';
-import Page from 'src/components/Page';
-import NotFound from 'src/components/NotFound';
+
+import NotFound from '../../components/NotFound';
+import Page from '../../components/Page';
 
 const useStyles = makeStyles((theme) => ({
   root: {

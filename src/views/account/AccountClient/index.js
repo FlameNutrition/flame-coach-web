@@ -1,25 +1,24 @@
+import { Container, Grid, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import {
-  Container,
-  Grid,
-  makeStyles
-} from '@material-ui/core';
-import Page from 'src/components/Page';
-import logger from 'loglevel';
-import ErrorMessage from 'src/components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from 'src/components/Notification/InfoMessage/InfoMessage';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import PropTypes from 'prop-types';
-import update from 'immutability-helper';
-import Profile from '../Profile';
-import ProfileDetails from '../ProfileDetails';
-import {
   getClientContactInformation,
-  getClientPersonalData, updateClientContactInformation, updateClientPersonalData
+  getClientPersonalData,
+  updateClientContactInformation,
+  updateClientPersonalData
 } from '../../../axios';
 import { logDebug, logError } from '../../../logging';
-import Warning from '../../../components/Warning';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../../components/Notification/InfoMessage/InfoMessage';
 import Notification from '../../../components/Notification';
+import Page from '../../../components/Page';
+import Profile from '../Profile';
+import ProfileDetails from '../ProfileDetails';
+import PropTypes from 'prop-types';
+import Warning from '../../../components/Warning';
+import logger from 'loglevel';
+import update from 'immutability-helper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
