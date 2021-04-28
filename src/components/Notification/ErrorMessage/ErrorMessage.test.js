@@ -22,6 +22,7 @@ describe('ErrorMessage', () => {
     expect(ErrorMessage.fromCode('0002')).toStrictEqual(ErrorMessage.CODE_0002);
     expect(ErrorMessage.fromCode('0003')).toStrictEqual(ErrorMessage.CODE_0003);
     expect(ErrorMessage.fromCode('0004')).toStrictEqual(ErrorMessage.CODE_0004);
+    expect(ErrorMessage.fromCode('0005')).toStrictEqual(ErrorMessage.CODE_0005);
   });
 
   it('Check error message using fromCode method default error', () => {

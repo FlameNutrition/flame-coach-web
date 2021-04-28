@@ -70,8 +70,8 @@ const LoginView = ({
           <Formik
             // FIXME: Please remote the init values
             initialValues={{
-              email: 'admin@gmail.com',
-              password: '12345'
+              email: '',
+              password: ''
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),

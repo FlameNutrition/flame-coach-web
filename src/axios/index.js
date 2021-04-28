@@ -26,3 +26,7 @@ export {
   enrollmentProcessBreak,
   enrollmentProcessStatus
 } from './axios-enrollment-process';
+
+export {
+  updatePassword
+} from './axios-auth';

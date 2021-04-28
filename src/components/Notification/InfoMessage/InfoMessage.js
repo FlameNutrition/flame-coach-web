@@ -5,6 +5,7 @@ class InfoMessage {
   // Customer
   static CODE_2001 = new InfoMessage('Contact information updated with success!', SUCCESS)
   static CODE_2002 = new InfoMessage('Personal information updated with success!', SUCCESS)
+  static CODE_2003 = new InfoMessage('Password updated with success!', SUCCESS)
 
   // Daily Tasks
   static CODE_4001 = new InfoMessage('Task added with success!', SUCCESS)

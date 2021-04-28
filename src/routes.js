@@ -13,7 +13,7 @@ const DashboardCoach = lazy(() => import('./views/dashboard/DashboardCoach'));
 const LoginView = lazy(() => import('./views/auth/LoginView'));
 const NotFoundView = lazy(() => import('./views/notFound/NotFoundView'));
 const RegisterView = lazy(() => import('./views/auth/RegisterView'));
-const SettingsView = lazy(() => import('./views/settings/SettingsView'));
+const SettingsView = lazy(() => import('./views/settings/connector'));
 const LogoutView = lazy(() => import('./views/auth/LogoutView/connector'));
 const Planner = lazy(() => import('./views/planner/connector'));
 
