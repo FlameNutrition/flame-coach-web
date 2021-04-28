@@ -1,6 +1,7 @@
+import { ERROR, WARNING } from '../notificationTypes';
+
 /* eslint-disable lines-between-class-members */
 import { logWarn } from '../../../logging';
-import { ERROR, WARNING } from '../notificationTypes';
 
 class ErrorMessage {
   // Request
@@ -30,6 +31,7 @@ class ErrorMessage {
   static CODE_0002 = new ErrorMessage('CODE_0002', 'Ops! You need select a client first. Please choose a client in the top of the application', WARNING)
   static CODE_0003 = new ErrorMessage('CODE_0003', 'Ops! You need select a task first. Please choose the task you want to update', WARNING)
   static CODE_0004 = new ErrorMessage('CODE_0004', 'After confirmation you will need to ask us or your coach to leave this experience.', WARNING)
+  static CODE_0005 = new ErrorMessage('CODE_0005', '\'Password\' and \'Confirm password\' fields don\'t have the same value.', WARNING)
 
   static fromCode(code) {
     const value = this[`CODE_${code}`];

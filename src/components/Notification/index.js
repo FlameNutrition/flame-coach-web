@@ -1,14 +1,21 @@
-import React from 'react';
 import {
-  Box, Collapse, IconButton, makeStyles
+  Box,
+  Collapse,
+  IconButton,
+  makeStyles
 } from '@material-ui/core';
+import {
+  ERROR,
+  INFO,
+  SUCCESS,
+  WARNING
+} from './notificationTypes';
+
 import { Alert } from '@material-ui/lab';
 import { Close as CloseIcon } from '@material-ui/icons';
 import PropTypes from 'prop-types';
+import React from 'react';
 import clsx from 'clsx';
-import {
-  ERROR, INFO, SUCCESS, WARNING
-} from './notificationTypes';
 
 const useStyles = makeStyles(() => ({
   root: {},
