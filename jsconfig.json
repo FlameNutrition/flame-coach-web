@@ -3,6 +3,7 @@
     "baseUrl": "."
   },
   "include": [
-    "src"
+    "src",
+    "__mocks__"
   ]
 }
