@@ -1,0 +1,1078 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileDetails / > render component with personal data 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-2"
+  >
+    <div
+      class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+    >
+      <div
+        class="MuiCardContent-root"
+      >
+        <div
+          class="MuiCardHeader-root"
+        >
+          <div
+            class="MuiCardHeader-content"
+          >
+            <span
+              class="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+            >
+              Profile
+            </span>
+            <span
+              class="MuiTypography-root MuiCardHeader-subheader MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+            >
+              Use this section to update information related with you
+            </span>
+          </div>
+        </div>
+        <form
+          autocomplete="off"
+          class="makeStyles-root-1"
+        >
+          <div
+            class="MuiPaper-root MuiAccordion-root Mui-expanded MuiAccordion-rounded MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              aria-controls="contactInfo-content"
+              aria-disabled="false"
+              aria-expanded="true"
+              class="MuiButtonBase-root MuiAccordionSummary-root Mui-expanded"
+              id="contactInfo-header"
+              role="button"
+              tabindex="0"
+            >
+              <div
+                class="MuiAccordionSummary-content Mui-expanded"
+              >
+                <h2
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  Contact information
+                </h2>
+              </div>
+              <div
+                aria-disabled="false"
+                aria-hidden="true"
+                class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon Mui-expanded MuiIconButton-edgeEnd"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiCollapse-container MuiCollapse-entered"
+              style="min-height: 0px;"
+            >
+              <div
+                class="MuiCollapse-wrapper"
+              >
+                <div
+                  class="MuiCollapse-wrapperInner"
+                >
+                  <div
+                    aria-labelledby="contactInfo-header"
+                    id="contactInfo-content"
+                    role="region"
+                  >
+                    <div
+                      class="MuiAccordionDetails-root"
+                    >
+                      <div
+                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+                      >
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              First name
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="firstName"
+                                type="text"
+                                value="Miguel"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    First name
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                            <p
+                              class="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-filled"
+                            >
+                              First name is required
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Last name
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="lastName"
+                                type="text"
+                                value="Teles"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Last name
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined Mui-disabled Mui-disabled MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Email Address
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root Mui-disabled Mui-disabled MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled Mui-disabled"
+                                disabled=""
+                                name="email"
+                                type="email"
+                                value="test@gmail.com"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Email Address
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-2"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Code
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="phoneCode"
+                                type="text"
+                                value="+44"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Code
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Phone Number
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="phoneNumber"
+                                type="number"
+                                value="44332211"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Phone Number
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Country
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                            >
+                              <div
+                                aria-haspopup="listbox"
+                                aria-labelledby="country mui-component-select-country"
+                                class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                                id="mui-component-select-country"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Portugal
+                              </div>
+                              <input
+                                aria-hidden="true"
+                                class="MuiSelect-nativeInput"
+                                name="country"
+                                tabindex="-1"
+                                value="PT"
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M7 10l5 5 5-5z"
+                                />
+                              </svg>
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Country
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr
+                      class="MuiDivider-root"
+                    />
+                    <div
+                      class="MuiAccordionActions-root MuiAccordionActions-spacing"
+                    >
+                      <div
+                        class="MuiBox-root MuiBox-root-7"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                          tabindex="0"
+                          type="submit"
+                        >
+                          <span
+                            class="MuiButton-label"
+                          >
+                            Save
+                          </span>
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form
+          autocomplete="off"
+          class="makeStyles-root-1"
+        >
+          <div
+            class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              aria-controls="contactInfo-content"
+              aria-disabled="false"
+              aria-expanded="false"
+              class="MuiButtonBase-root MuiAccordionSummary-root"
+              id="contactInfo-header"
+              role="button"
+              tabindex="0"
+            >
+              <div
+                class="MuiAccordionSummary-content"
+              >
+                <h2
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  Personal information
+                </h2>
+              </div>
+              <div
+                aria-disabled="false"
+                aria-hidden="true"
+                class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiCollapse-container MuiCollapse-hidden"
+              style="min-height: 0px;"
+            >
+              <div
+                class="MuiCollapse-wrapper"
+              >
+                <div
+                  class="MuiCollapse-wrapperInner"
+                >
+                  <div
+                    aria-labelledby="contactInfo-header"
+                    id="contactInfo-content"
+                    role="region"
+                  >
+                    <div
+                      class="MuiAccordionDetails-root"
+                    >
+                      <div
+                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+                      >
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Measure Type
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                            >
+                              <div
+                                aria-haspopup="listbox"
+                                aria-labelledby="measureType mui-component-select-measureType"
+                                class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                                id="mui-component-select-measureType"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Kg/cm
+                              </div>
+                              <input
+                                aria-hidden="true"
+                                class="MuiSelect-nativeInput"
+                                name="measureType"
+                                tabindex="-1"
+                                value="KG_CM"
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M7 10l5 5 5-5z"
+                                />
+                              </svg>
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Measure Type
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Gender
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                            >
+                              <div
+                                aria-haspopup="listbox"
+                                aria-labelledby="gender mui-component-select-gender"
+                                class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                                id="mui-component-select-gender"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Other
+                              </div>
+                              <input
+                                aria-hidden="true"
+                                class="MuiSelect-nativeInput"
+                                name="gender"
+                                tabindex="-1"
+                                value="O"
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M7 10l5 5 5-5z"
+                                />
+                              </svg>
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Gender
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Weight
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                min="0"
+                                name="weight"
+                                step="0.05"
+                                type="number"
+                                value="74.6"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Weight
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                            <p
+                              class="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-filled"
+                            >
+                              Please specify your weight
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Height
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                min="0"
+                                name="height"
+                                step="0.05"
+                                type="number"
+                                value="172"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-3 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-5 PrivateNotchedOutline-legendNotched-6"
+                                >
+                                  <span>
+                                    Height
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                            <p
+                              class="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-filled"
+                            >
+                              Please specify your height
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr
+                      class="MuiDivider-root"
+                    />
+                    <div
+                      class="MuiAccordionActions-root MuiAccordionActions-spacing"
+                    >
+                      <div
+                        class="MuiBox-root MuiBox-root-8"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                          tabindex="0"
+                          type="submit"
+                        >
+                          <span
+                            class="MuiButton-label"
+                          >
+                            Save
+                          </span>
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ProfileDetails / > render component without personal data 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-10"
+  >
+    <div
+      class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+    >
+      <div
+        class="MuiCardContent-root"
+      >
+        <div
+          class="MuiCardHeader-root"
+        >
+          <div
+            class="MuiCardHeader-content"
+          >
+            <span
+              class="MuiTypography-root MuiCardHeader-title MuiTypography-h5 MuiTypography-displayBlock"
+            >
+              Profile
+            </span>
+            <span
+              class="MuiTypography-root MuiCardHeader-subheader MuiTypography-body1 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+            >
+              Use this section to update information related with you
+            </span>
+          </div>
+        </div>
+        <form
+          autocomplete="off"
+          class="makeStyles-root-9"
+        >
+          <div
+            class="MuiPaper-root MuiAccordion-root Mui-expanded MuiAccordion-rounded MuiPaper-elevation1 MuiPaper-rounded"
+          >
+            <div
+              aria-controls="contactInfo-content"
+              aria-disabled="false"
+              aria-expanded="true"
+              class="MuiButtonBase-root MuiAccordionSummary-root Mui-expanded"
+              id="contactInfo-header"
+              role="button"
+              tabindex="0"
+            >
+              <div
+                class="MuiAccordionSummary-content Mui-expanded"
+              >
+                <h2
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  Contact information
+                </h2>
+              </div>
+              <div
+                aria-disabled="false"
+                aria-hidden="true"
+                class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon Mui-expanded MuiIconButton-edgeEnd"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiCollapse-container MuiCollapse-entered"
+              style="min-height: 0px;"
+            >
+              <div
+                class="MuiCollapse-wrapper"
+              >
+                <div
+                  class="MuiCollapse-wrapperInner"
+                >
+                  <div
+                    aria-labelledby="contactInfo-header"
+                    id="contactInfo-content"
+                    role="region"
+                  >
+                    <div
+                      class="MuiAccordionDetails-root"
+                    >
+                      <div
+                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+                      >
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              First name
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="firstName"
+                                type="text"
+                                value="Miguel"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                                >
+                                  <span>
+                                    First name
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                            <p
+                              class="MuiFormHelperText-root MuiFormHelperText-contained MuiFormHelperText-filled"
+                            >
+                              First name is required
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Last name
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="lastName"
+                                type="text"
+                                value="Teles"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                                >
+                                  <span>
+                                    Last name
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined Mui-disabled Mui-disabled MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Email Address
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root Mui-disabled Mui-disabled MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled Mui-disabled"
+                                disabled=""
+                                name="email"
+                                type="email"
+                                value="test@gmail.com"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                                >
+                                  <span>
+                                    Email Address
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-2"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Code
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="phoneCode"
+                                type="text"
+                                value="+44"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                                >
+                                  <span>
+                                    Code
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Phone Number
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                            >
+                              <input
+                                aria-invalid="false"
+                                class="MuiInputBase-input MuiOutlinedInput-input"
+                                name="phoneNumber"
+                                type="number"
+                                value="44332211"
+                              />
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                                >
+                                  <span>
+                                    Phone Number
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                        >
+                          <div
+                            class="MuiFormControl-root MuiFormControl-fullWidth"
+                          >
+                            <label
+                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
+                              data-shrink="true"
+                            >
+                              Country
+                            </label>
+                            <div
+                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                            >
+                              <div
+                                aria-haspopup="listbox"
+                                aria-labelledby="country mui-component-select-country"
+                                class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+                                id="mui-component-select-country"
+                                role="button"
+                                tabindex="0"
+                              >
+                                Portugal
+                              </div>
+                              <input
+                                aria-hidden="true"
+                                class="MuiSelect-nativeInput"
+                                name="country"
+                                tabindex="-1"
+                                value="PT"
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M7 10l5 5 5-5z"
+                                />
+                              </svg>
+                              <fieldset
+                                aria-hidden="true"
+                                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                              >
+                                <legend
+                                  class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                                >
+                                  <span>
+                                    Country
+                                  </span>
+                                </legend>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr
+                      class="MuiDivider-root"
+                    />
+                    <div
+                      class="MuiAccordionActions-root MuiAccordionActions-spacing"
+                    >
+                      <div
+                        class="MuiBox-root MuiBox-root-15"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                          tabindex="0"
+                          type="submit"
+                        >
+                          <span
+                            class="MuiButton-label"
+                          >
+                            Save
+                          </span>
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
