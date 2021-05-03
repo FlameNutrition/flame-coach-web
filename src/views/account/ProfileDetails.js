@@ -24,6 +24,7 @@ import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import React from 'react';
 import clsx from 'clsx';
+import countries from '../../data/countryCode';
 import { logDebug } from '../../logging';
 
 const useStyles = makeStyles(() => ({
@@ -36,8 +37,7 @@ const ProfileDetails = ({
   saveContactInformationHandler,
   savePersonalInformationHandler,
   updateUserDetailsHandler,
-  className,
-  ...rest
+  className
 }) => {
   const classes = useStyles();
 
@@ -63,7 +63,6 @@ const ProfileDetails = ({
               )(event);
             }}
             className={clsx(classes.root, className)}
-            {...rest}
           >
             <Accordion defaultExpanded>
               <AccordionSummary
@@ -172,14 +171,20 @@ const ProfileDetails = ({
                             labelId="country"
                             label="Country"
                             name="country"
+                            data-testid="country"
                             value={userDetails.country}
                             onChange={(event) => {
                               renderProps.onChange(updateUserDetailsHandler(event));
                             }}
                           >
                             <MenuItem value="">Country</MenuItem>
-                            <MenuItem value="PT">Portugal</MenuItem>
-                            <MenuItem value="BR">Brazil</MenuItem>
+                            {
+                              countries.map((country) => (
+                                <MenuItem value={country.code}>
+                                  {country.name}
+                                </MenuItem>
+                              ))
+                            }
                           </Select>
                         )}
                         control={formContactInformation.control}
@@ -219,7 +224,6 @@ const ProfileDetails = ({
                   )(event);
                 }}
                 className={clsx(classes.root, className)}
-                {...rest}
               >
                 <Accordion>
                   <AccordionSummary
@@ -255,7 +259,6 @@ const ProfileDetails = ({
                                 <MenuItem value="LBS_IN">Lbs/in</MenuItem>
                               </Select>
                             )}
-                            onChange={updateUserDetailsHandler}
                             control={formPersonalInformation.control}
                             defaultValue={userDetails.measureType}
                             name="measureType"
