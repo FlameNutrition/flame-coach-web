@@ -11,7 +11,8 @@ import theme from '../theme';
 import { useRoutes } from 'react-router-dom';
 
 const App = ({ isAuth, userType }) => {
-  const routing = useRoutes(routes(isAuth, userType));
+  const isInProgress = process.env.REACT_APP_TOGGLE_IN_PROGRESS;
+  const routing = useRoutes(routes(isAuth, userType, isInProgress));
 
   return (
     <ThemeProvider theme={theme}>

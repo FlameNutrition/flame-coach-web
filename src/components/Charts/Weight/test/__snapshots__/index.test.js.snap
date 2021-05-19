@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeightChart /> create component WeightChart 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiCard-root MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <div
+      class="MuiCardContent-root"
+    >
+      <h2
+        class="MuiTypography-root makeStyles-weightGraphicTitle-1 MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Weight
+      </h2>
+    </div>
+  </div>
+</div>
+`;
