@@ -15,13 +15,14 @@ const NotFoundView = lazy(() => import('./views/notFound/NotFoundView'));
 const RegisterView = lazy(() => import('./views/auth/RegisterView'));
 const SettingsView = lazy(() => import('./views/settings/connector'));
 const LogoutView = lazy(() => import('./views/auth/LogoutView/connector'));
-const Planner = lazy(() => import('./views/planner/connector'));
+const PlannerView = lazy(() => import('./views/planner/connector'));
+const MeasuresView = lazy(() => import('./views/measures'));
 
-const routes = (isAuth, userType) => {
+const routes = (isAuth, userType, isInProgress) => {
   const childrenCoach = [
     { path: 'account', element: <AccountCoach /> },
     { path: 'customers', element: <CustomerListView /> },
-    { path: 'planner', element: <Planner /> },
+    { path: 'planner', element: <PlannerView /> },
     { path: 'dashboard', element: <DashboardCoach /> },
     { path: 'settings', element: <SettingsView /> },
     { path: 'logout', element: <LogoutView /> },
@@ -32,6 +33,7 @@ const routes = (isAuth, userType) => {
   const childrenClient = [
     { path: 'account', element: <AccountClient /> },
     { path: 'dashboard', element: <DashboardClient /> },
+    { path: 'measures', element: isInProgress ? <MeasuresView /> : <Navigate to="/app/dashboard" /> },
     { path: 'settings', element: <SettingsView /> },
     { path: 'logout', element: <LogoutView /> },
     { path: '404', element: <NotFoundView /> },

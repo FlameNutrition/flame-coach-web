@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
@@ -13,16 +10,21 @@ import {
 } from '@material-ui/core';
 import {
   BarChart as BarChartIcon,
+  Calendar as CalendarIcon,
+  LogOut as LogOutIcon,
+  Heart as MeasuresIcon,
   BookOpen as PlannerIcon,
   Settings as SettingsIcon,
   User as UserIcon,
-  Users as UsersIcon,
-  Calendar as CalendarIcon,
-  LogOut as LogOutIcon
+  Users as UsersIcon
 } from 'react-feather';
 import { PermIdentity as ClientIcon, PeopleOutline as CoachIcon } from '@material-ui/icons';
+import React, { useEffect } from 'react';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+
 import NavBarBox from '../../../components/NavBarBox';
 import NavItem from './NavItem';
+import PropTypes from 'prop-types';
 
 const itemsCoach = [
   {
@@ -67,6 +69,11 @@ const itemsClient = [
     href: '/app/account',
     icon: UserIcon,
     title: 'Account'
+  },
+  {
+    href: '/app/measures',
+    icon: MeasuresIcon,
+    title: 'Measures'
   },
   {
     href: '/app/settings',
