@@ -304,6 +304,7 @@ exports[`<ProfileDetails / > render component with personal data 1`] = `
                             </label>
                             <div
                               class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                              data-testid="country"
                             >
                               <div
                                 aria-haspopup="listbox"
@@ -995,6 +996,7 @@ exports[`<ProfileDetails / > render component without personal data 1`] = `
                             </label>
                             <div
                               class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+                              data-testid="country"
                             >
                               <div
                                 aria-haspopup="listbox"

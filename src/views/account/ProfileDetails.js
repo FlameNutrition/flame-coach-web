@@ -168,6 +168,7 @@ const ProfileDetails = ({
                       <Controller
                         render={(renderProps) => (
                           <Select
+                            key="select_country"
                             labelId="country"
                             label="Country"
                             name="country"
@@ -177,10 +178,10 @@ const ProfileDetails = ({
                               renderProps.onChange(updateUserDetailsHandler(event));
                             }}
                           >
-                            <MenuItem value="">Country</MenuItem>
+                            <MenuItem key="default" value="">Country</MenuItem>
                             {
                               countries.map((country) => (
-                                <MenuItem value={country.code}>
+                                <MenuItem key={country.code} value={country.code}>
                                   {country.name}
                                 </MenuItem>
                               ))
