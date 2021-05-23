@@ -1,7 +1,7 @@
 import {
   filterWeightsPerTimeRange,
   formatDateLabels,
-  maxTicksLimit,
+  maxTicksLimit, maxTicksLimitMobile,
   minMaxWeight
 } from '../chartUtil';
 
@@ -35,15 +35,28 @@ describe('chartUtil tests', () => {
 
   it('test max ticks labels limit based on time frame', async () => {
     expect(maxTicksLimit('1_WEEK'))
-      .toEqual(8);
+      .toEqual(7);
     expect(maxTicksLimit('1_MONTH'))
-      .toEqual(10);
+      .toEqual(4);
     expect(maxTicksLimit('2_MONTH'))
-      .toEqual(8);
+      .toEqual(6);
     expect(maxTicksLimit('6_MONTH'))
-      .toEqual(5);
+      .toEqual(6);
     expect(maxTicksLimit('OTHER'))
-      .toEqual(8);
+      .toEqual(7);
+  });
+
+  it('test max ticks labels limit based on time frame for mobile', async () => {
+    expect(maxTicksLimitMobile('1_WEEK'))
+      .toEqual(7);
+    expect(maxTicksLimitMobile('1_MONTH'))
+      .toEqual(5);
+    expect(maxTicksLimitMobile('2_MONTH'))
+      .toEqual(4);
+    expect(maxTicksLimitMobile('6_MONTH'))
+      .toEqual(6);
+    expect(maxTicksLimitMobile('OTHER'))
+      .toEqual(7);
   });
 
   it('test filter data based on time frame', async () => {
@@ -70,8 +83,7 @@ describe('chartUtil tests', () => {
       }
     ];
 
-    const today = moment('2021-05-20T23:00:00.000Z')
-      .utc();
+    const today = moment('2021-05-20T23:00:00.000Z');
 
     const result = filterWeightsPerTimeRange(data, today, '1_WEEK');
 
@@ -79,38 +91,38 @@ describe('chartUtil tests', () => {
       .toHaveLength(3);
     expect(result)
       .toStrictEqual([{
-        x: '05-13',
-        y: 76.3
+        date: '2021-05-13',
+        value: 76.3
       }, {
-        x: '05-18',
-        y: 76.3
+        date: '2021-05-18',
+        value: 76.3
       }, {
-        x: '05-20',
-        y: 76.3
+        date: '2021-05-20',
+        value: 76.3
       }]);
   });
 
   it('test min and max weight', async () => {
     const data = [
       {
-        x: '2021-05-13',
-        y: 70.5
+        data: '2021-05-13',
+        value: 70.5
       },
       {
-        x: '2021-05-20',
-        y: 80.6
+        data: '2021-05-20',
+        value: 80.6
       },
       {
-        x: '2021-05-21',
-        y: 60.4
+        data: '2021-05-21',
+        value: 60.4
       },
       {
-        x: '2021-05-12',
-        y: 100.3
+        data: '2021-05-12',
+        value: 100.3
       },
       {
-        x: '2021-05-18',
-        y: 50.4
+        data: '2021-05-18',
+        value: 50.4
       }
     ];
 

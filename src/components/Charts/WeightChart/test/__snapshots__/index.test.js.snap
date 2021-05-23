@@ -1,0 +1,571 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeightChart /> create component WeightChart 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <div
+      class="MuiCardContent-root"
+    >
+      <h2
+        class="MuiTypography-root makeStyles-weightGraphicTitle-3 MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Weight
+      </h2>
+      <div
+        class="MuiBox-root MuiBox-root-4 makeStyles-chart-2"
+      >
+        <div
+          style="width: 100%; height: 100%;"
+        >
+          <div
+            class="rv-xy-plot "
+            style="width: 0px; height: 0px;"
+          >
+            <svg
+              class="rv-xy-plot__inner"
+              height="0"
+              width="0"
+            >
+              <g
+                class="rv-xy-plot__grid-lines undefined"
+                transform="translate(30,5)"
+              >
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-0.3571428571428571"
+                  x2="-0.3571428571428571"
+                  y1="0"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-8.928571428571429"
+                  x2="-8.928571428571429"
+                  y1="0"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-17.5"
+                  x2="-17.5"
+                  y1="0"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-26.071428571428573"
+                  x2="-26.071428571428573"
+                  y1="0"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-34.64285714285714"
+                  x2="-34.64285714285714"
+                  y1="0"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-43.214285714285715"
+                  x2="-43.214285714285715"
+                  y1="0"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-51.78571428571429"
+                  x2="-51.78571428571429"
+                  y1="0"
+                  y2="-65"
+                />
+              </g>
+              <g
+                class="rv-xy-plot__grid-lines undefined"
+                transform="translate(30,5)"
+              >
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="0"
+                  x2="-60"
+                  y1="-65"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="0"
+                  x2="-60"
+                  y1="-52"
+                  y2="-52"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="0"
+                  x2="-60"
+                  y1="-39"
+                  y2="-39"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="0"
+                  x2="-60"
+                  y1="-26"
+                  y2="-26"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="0"
+                  x2="-60"
+                  y1="-12.999999999999996"
+                  y2="-12.999999999999996"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="0"
+                  x2="-60"
+                  y1="0"
+                  y2="0"
+                />
+              </g>
+              <g
+                class="rv-xy-plot__axis rv-xy-plot__axis--horizontal "
+                transform="translate(30,-60)"
+              >
+                <line
+                  class="rv-xy-plot__axis__line"
+                  x1="0"
+                  x2="-60"
+                  y1="0"
+                  y2="0"
+                />
+                <g
+                  class="rv-xy-plot__axis__ticks"
+                  transform="translate(0, 0)"
+                >
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-0.3571428571428571, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-17
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-8.928571428571429, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-18
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-17.5, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-19
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-26.071428571428573, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-20
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-34.64285714285714, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-21
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-43.214285714285715, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-22
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-51.78571428571429, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-23
+                    </text>
+                  </g>
+                </g>
+              </g>
+              <g
+                class="rv-xy-plot__axis rv-xy-plot__axis--vertical "
+                transform="translate(0,5)"
+              >
+                <line
+                  class="rv-xy-plot__axis__line"
+                  x1="30"
+                  x2="30"
+                  y1="0"
+                  y2="-65"
+                />
+                <g
+                  class="rv-xy-plot__axis__ticks"
+                  transform="translate(30, 0)"
+                >
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -65)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      0
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -58.5)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      10
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -52)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      20
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -45.5)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      30
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -39)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      40
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -32.5)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      50
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -26)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      60
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -19.500000000000004)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      70
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -12.999999999999996)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      80
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, -6.499999999999998)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      90
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    transform="translate(0, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.32em"
+                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="end"
+                      transform="translate(-7, 0)"
+                    >
+                      100
+                    </text>
+                  </g>
+                </g>
+              </g>
+              <path
+                class="rv-xy-plot__series rv-xy-plot__series--line "
+                d="M317.1428571428571,-19.175000000000004Z"
+                style="opacity: 1; stroke: #12939A;"
+                transform="translate(30,5)"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

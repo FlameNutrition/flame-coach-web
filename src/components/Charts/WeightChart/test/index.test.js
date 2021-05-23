@@ -2,15 +2,14 @@ import React from 'react';
 import WeightChart from '../index';
 import { render } from '../../../../testing/test-utils';
 
-// Is not possible to test the canvas
-jest.mock('react-chartjs-2', () => ({
-  Line: () => null,
-}));
-
 describe('<WeightChart />', () => {
   it('create component WeightChart', () => {
+    const data = [
+      { identifier: 1, date: '2021-04-10', value: 70.5 }
+    ];
+
     const { container } = render(<WeightChart
-      dataChart={[60, 70, 50, 70, 50, 30, 80]}
+      dataChart={data}
       timeFrame="1_WEEK"
     />);
 

@@ -5,7 +5,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import {
-  minMaxWeight, filterWeightsPerTimeRange, formatDateLabels, maxTicksLimit
+  minMaxWeight, formatDateLabels, maxTicksLimit
 } from '../utils/chartUtil';
 
 import { Line } from 'react-chartjs-2';
@@ -13,27 +13,37 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
 import { getTimeRange } from '../../../utils/timeRangeUtil';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({
+  root: {
+  },
   weightGraphicTitle: {
     textAlign: 'center'
   }
 }));
 
 const WeightChart = ({
-  isMobile, timeFrame, dataChart
+  isMobile,
+  timeFrame,
+  dataChart,
+  measureUnit,
+  className
 }) => {
   const classes = useStyles();
 
-  const formattedDataChart = filterWeightsPerTimeRange(dataChart, moment().utc(), timeFrame);
+  const minMaxWeightInfo = minMaxWeight(dataChart);
 
-  const minMaxWeightInfo = minMaxWeight(formattedDataChart);
+  const dataFormatted = dataChart.map((data) => ({
+    y: data.value,
+    x: moment(data.date).format('MM-DD')
+  }));
 
   const data = {
     labels: formatDateLabels(getTimeRange(timeFrame, moment().utc())),
     datasets: [
       {
-        data: formattedDataChart,
+        data: dataFormatted,
         fill: false,
         borderWidth: 2,
         backgroundColor: 'rgb(63, 81, 181)',
@@ -46,7 +56,8 @@ const WeightChart = ({
   };
 
   const options = {
-    responsive: true,
+    // responsive: true,
+    // maintainAspectRatio: true,
     scales: {
       x: {
         ticks: {
@@ -71,7 +82,7 @@ const WeightChart = ({
           label(context) {
             const label = context.formattedValue || '';
 
-            return `${label} Kgs`;
+            return `${label} ${measureUnit}`;
           }
         }
       }
@@ -79,8 +90,8 @@ const WeightChart = ({
   };
 
   return (
-    <Card>
-      <CardContent>
+    <Card className={clsx(classes.root)}>
+      <CardContent className={className}>
         <Typography className={classes.weightGraphicTitle} component="h2" variant="h5" gutterBottom>
           Weight
         </Typography>
@@ -91,8 +102,10 @@ const WeightChart = ({
 };
 
 WeightChart.propTypes = {
+  className: PropTypes.string,
   timeFrame: PropTypes.string.isRequired,
   dataChart: PropTypes.array.isRequired,
+  measureUnit: PropTypes.string.isRequired,
   isMobile: PropTypes.bool
 };
 

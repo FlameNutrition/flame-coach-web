@@ -3,7 +3,7 @@ import moment from 'moment';
 
 describe('timeRangeUtil tests', () => {
   it('test get time frame range for 1 week', async () => {
-    const today = moment('2021-04-14T23:00:00.000Z');
+    const today = moment.utc('2021-04-14T23:00:00.000Z');
     const result = getTimeRange('1_WEEK', today);
 
     expect(result)

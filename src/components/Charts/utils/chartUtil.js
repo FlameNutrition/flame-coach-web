@@ -15,19 +15,47 @@ export const formatDateLabels = (listOfDates) => {
 export const maxTicksLimit = (timeFrame) => {
   switch (timeFrame) {
     case '1_WEEK':
-      return 8;
+      return 7;
     case '1_MONTH':
-      return 10;
+      return 4;
     case '2_MONTH':
-      return 8;
+      return 6;
     case '6_MONTH':
-      return 5;
+      return 6;
     default:
-      return 8;
+      return 7;
   }
 };
 
+export const maxTicksLimitMobile = (timeFrame) => {
+  switch (timeFrame) {
+    case '1_WEEK':
+      return 7;
+    case '1_MONTH':
+      return 5;
+    case '2_MONTH':
+      return 4;
+    case '6_MONTH':
+      return 6;
+    default:
+      return 7;
+  }
+};
+
+export const orderPerDate = (a, b) => {
+  const dateA = a.date;
+  const dateB = b.date;
+
+  if (dateA < dateB) return -1;
+  if (dateA > dateB) return 1;
+  return 0;
+};
+
 export const filterWeightsPerTimeRange = (data, now, timeFrame) => {
+  if (data === undefined) {
+    return [];
+  }
+
   const filterDates = getTimeRangeDates(timeFrame, now);
 
   const dataFiltered = [];
@@ -35,32 +63,22 @@ export const filterWeightsPerTimeRange = (data, now, timeFrame) => {
   data.forEach((data) => {
     const momentDate = moment(data.date, 'YYYY-MM-DD');
     if (momentDate.isBetween(filterDates.fromDttm, filterDates.toDttm, undefined, '[]')) {
-      dataFiltered.push({
-        x: momentDate.format('MM-DD'),
-        y: data.value
-      });
+      dataFiltered.push(data);
     }
   });
 
-  dataFiltered.sort((a, b) => {
-    const dateA = a.x;
-    const dateB = b.x;
-
-    if (dateA < dateB) return -1;
-    if (dateA > dateB) return 1;
-    return 0;
-  });
+  dataFiltered.sort(orderPerDate);
 
   return dataFiltered;
 };
 
 export const minMaxWeight = (formattedData) => {
-  let minWeight = formattedData.length === 0 ? 0 : formattedData[0].y;
-  let maxWeight = formattedData.length === 0 ? 0 : formattedData[0].y;
+  let minWeight = formattedData.length === 0 ? 0 : formattedData[0].value;
+  let maxWeight = formattedData.length === 0 ? 0 : formattedData[0].value;
 
   formattedData.forEach((data) => {
-    minWeight = data.y < minWeight ? data.y : minWeight;
-    maxWeight = data.y > maxWeight ? data.y : maxWeight;
+    minWeight = data.value < minWeight ? data.value : minWeight;
+    maxWeight = data.value > maxWeight ? data.value : maxWeight;
   });
 
   return {
