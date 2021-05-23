@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Event /> create component Event 1`] = `
+<div>
+  <div
+    class="MuiPaper-root complex-swipeable-list-item MuiPaper-outlined"
+  >
+    <div
+      class="complex-swipeable-list-item-label"
+    >
+      <span
+        class="complex-swipeable-list-item-name"
+      >
+        50.5
+         
+        Lb/s
+      </span>
+    </div>
+    <div
+      class="complex-swipeable-list-item-description"
+    >
+      Thu, April 1st 2021
+    </div>
+  </div>
+</div>
+`;

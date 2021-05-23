@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Events /> create component Events 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiCard-root makeStyles-root-1 MuiPaper-elevation1 MuiPaper-rounded"
+  >
+    <div
+      class="MuiCardContent-root"
+    >
+      <h2
+        class="MuiTypography-root makeStyles-eventsCardTitle-2 MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Events
+      </h2>
+      <div
+        class="makeStyles-complexSwipeableListContainer-3"
+      >
+        <div
+          class="swipeable-list"
+        >
+          <div
+            class="swipeable-list-item"
+          >
+            <div
+              class="swipeable-list-item__content-right"
+              data-testid="swipe-right-content"
+            >
+              <div
+                class="MuiPaper-root makeStyles-complexSwipeableListItemContentLeft-4 MuiPaper-outlined"
+              >
+                <p
+                  class="MuiTypography-root makeStyles-complexSwipeableListItemContentLeftText-5 MuiTypography-body1"
+                >
+                  Delete
+                </p>
+              </div>
+            </div>
+            <div
+              class="swipeable-list-item__content"
+              data-testid="content"
+            >
+              <div
+                class="MuiPaper-root complex-swipeable-list-item MuiPaper-outlined"
+              >
+                <div
+                  class="complex-swipeable-list-item-label"
+                >
+                  <span
+                    class="complex-swipeable-list-item-name"
+                  >
+                    80.5
+                     
+                    kg
+                  </span>
+                </div>
+                <div
+                  class="complex-swipeable-list-item-description"
+                >
+                  Tue, June 1st 2021
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="swipeable-list-item"
+          >
+            <div
+              class="swipeable-list-item__content-right"
+              data-testid="swipe-right-content"
+            >
+              <div
+                class="MuiPaper-root makeStyles-complexSwipeableListItemContentLeft-4 MuiPaper-outlined"
+              >
+                <p
+                  class="MuiTypography-root makeStyles-complexSwipeableListItemContentLeftText-5 MuiTypography-body1"
+                >
+                  Delete
+                </p>
+              </div>
+            </div>
+            <div
+              class="swipeable-list-item__content"
+              data-testid="content"
+            >
+              <div
+                class="MuiPaper-root complex-swipeable-list-item MuiPaper-outlined"
+              >
+                <div
+                  class="complex-swipeable-list-item-label"
+                >
+                  <span
+                    class="complex-swipeable-list-item-name"
+                  >
+                    70.5
+                     
+                    kg
+                  </span>
+                </div>
+                <div
+                  class="complex-swipeable-list-item-description"
+                >
+                  Sat, May 1st 2021
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="swipeable-list-item"
+          >
+            <div
+              class="swipeable-list-item__content-right"
+              data-testid="swipe-right-content"
+            >
+              <div
+                class="MuiPaper-root makeStyles-complexSwipeableListItemContentLeft-4 MuiPaper-outlined"
+              >
+                <p
+                  class="MuiTypography-root makeStyles-complexSwipeableListItemContentLeftText-5 MuiTypography-body1"
+                >
+                  Delete
+                </p>
+              </div>
+            </div>
+            <div
+              class="swipeable-list-item__content"
+              data-testid="content"
+            >
+              <div
+                class="MuiPaper-root complex-swipeable-list-item MuiPaper-outlined"
+              >
+                <div
+                  class="complex-swipeable-list-item-label"
+                >
+                  <span
+                    class="complex-swipeable-list-item-name"
+                  >
+                    50.5
+                     
+                    kg
+                  </span>
+                </div>
+                <div
+                  class="complex-swipeable-list-item-description"
+                >
+                  Thu, April 1st 2021
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -30,3 +30,10 @@ export {
 export {
   updatePassword
 } from './axios-auth';
+
+export {
+  getWeightClient,
+  addWeightClient,
+  updateWeightClient,
+  deleteWeightClient
+} from './axios-measures-weight';

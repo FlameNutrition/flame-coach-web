@@ -16,7 +16,7 @@ const RegisterView = lazy(() => import('./views/auth/RegisterView'));
 const SettingsView = lazy(() => import('./views/settings/connector'));
 const LogoutView = lazy(() => import('./views/auth/LogoutView/connector'));
 const PlannerView = lazy(() => import('./views/planner/connector'));
-const MeasuresView = lazy(() => import('./views/measures'));
+const MeasuresView = lazy(() => import('./views/measures/connector'));
 
 const routes = (isAuth, userType, isInProgress) => {
   const childrenCoach = [

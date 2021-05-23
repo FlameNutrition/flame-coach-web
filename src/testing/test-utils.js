@@ -5,6 +5,8 @@ import { ThemeProvider } from '@material-ui/core';
 import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import theme from '../theme';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 const queryClient = new QueryClient();
 
@@ -12,9 +14,11 @@ const queryClient = new QueryClient();
 const AllTheProviders = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        {children}
-      </QueryClientProvider>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </MuiPickersUtilsProvider>
     </ThemeProvider>
   );
 };
