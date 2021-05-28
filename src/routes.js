@@ -18,7 +18,9 @@ const LogoutView = lazy(() => import('./views/auth/LogoutView/connector'));
 const PlannerView = lazy(() => import('./views/planner/connector'));
 const MeasuresView = lazy(() => import('./views/measures/connector'));
 
-const routes = (isAuth, userType, isInProgress) => {
+const isMeasuresToggleEnable = process.env.REACT_APP_TOGGLE_MEASURES;
+
+const routes = (isAuth, userType, isWhitelist) => {
   const childrenCoach = [
     { path: 'account', element: <AccountCoach /> },
     { path: 'customers', element: <CustomerListView /> },
@@ -33,7 +35,7 @@ const routes = (isAuth, userType, isInProgress) => {
   const childrenClient = [
     { path: 'account', element: <AccountClient /> },
     { path: 'dashboard', element: <DashboardClient /> },
-    { path: 'measures', element: isInProgress ? <MeasuresView /> : <Navigate to="/app/dashboard" /> },
+    { path: 'measures', element: isMeasuresToggleEnable && isWhitelist ? <MeasuresView /> : <Navigate to="/app/dashboard" /> },
     { path: 'settings', element: <SettingsView /> },
     { path: 'logout', element: <LogoutView /> },
     { path: '404', element: <NotFoundView /> },

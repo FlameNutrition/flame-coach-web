@@ -12,7 +12,7 @@ import {
   BarChart as BarChartIcon,
   Calendar as CalendarIcon,
   LogOut as LogOutIcon,
-  Heart as MeasuresIcon,
+  // Heart as MeasuresIcon,
   BookOpen as PlannerIcon,
   Settings as SettingsIcon,
   User as UserIcon,
@@ -69,11 +69,6 @@ const itemsClient = [
     href: '/app/account',
     icon: UserIcon,
     title: 'Account'
-  },
-  {
-    href: '/app/measures',
-    icon: MeasuresIcon,
-    title: 'Measures'
   },
   {
     href: '/app/settings',
