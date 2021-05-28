@@ -10,9 +10,12 @@ import routes from '../routes';
 import theme from '../theme';
 import { useRoutes } from 'react-router-dom';
 
-const App = ({ isAuth, userType }) => {
-  const isInProgress = process.env.REACT_APP_TOGGLE_IN_PROGRESS;
-  const routing = useRoutes(routes(isAuth, userType, isInProgress));
+const App = ({
+  isAuth,
+  userType,
+  isWhiteList
+}) => {
+  const routing = useRoutes(routes(isAuth, userType, isWhiteList));
 
   return (
     <ThemeProvider theme={theme}>
@@ -25,15 +28,24 @@ const App = ({ isAuth, userType }) => {
 };
 
 const mapStateToProps = (state) => {
+  let isWhitelist = false;
+
+  if (state.auth.userInfo !== null) {
+    const uuidWhitelist = process.env.REACT_APP_UUID_WHITELIST.split(',');
+    isWhitelist = uuidWhitelist.includes(state.auth.userInfo.identifier);
+  }
+
   return {
     isAuth: state.auth.loggedIn,
-    userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null
+    userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null,
+    isWhiteList: isWhitelist
   };
 };
 
 App.propTypes = {
   isAuth: PropTypes.bool,
   userType: PropTypes.string,
+  isWhiteList: PropTypes.bool
 };
 
 export { App, mapStateToProps };
