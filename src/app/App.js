@@ -9,6 +9,7 @@ import { ThemeProvider } from '@material-ui/core';
 import routes from '../routes';
 import theme from '../theme';
 import { useRoutes } from 'react-router-dom';
+import { isWhitelist } from '../utils/toggles';
 
 const App = ({
   isAuth,
@@ -28,17 +29,10 @@ const App = ({
 };
 
 const mapStateToProps = (state) => {
-  let isWhitelist = false;
-
-  if (state.auth.userInfo !== null) {
-    const uuidWhitelist = process.env.REACT_APP_UUID_WHITELIST.split(',');
-    isWhitelist = uuidWhitelist.includes(state.auth.userInfo.identifier);
-  }
-
   return {
     isAuth: state.auth.loggedIn,
     userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null,
-    isWhiteList: isWhitelist
+    isWhiteList: state.auth.userInfo !== null ? isWhitelist(state.auth.userInfo.identifier) : true
   };
 };
 

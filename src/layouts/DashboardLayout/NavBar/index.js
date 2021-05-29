@@ -5,57 +5,64 @@ import {
   Drawer,
   Hidden,
   List,
-  Typography,
-  makeStyles
+  makeStyles,
+  Typography
 } from '@material-ui/core';
 import {
   BarChart as BarChartIcon,
-  Calendar as CalendarIcon,
-  LogOut as LogOutIcon,
-  // Heart as MeasuresIcon,
   BookOpen as PlannerIcon,
+  Calendar as CalendarIcon,
+  Heart as MeasuresIcon,
+  LogOut as LogOutIcon,
   Settings as SettingsIcon,
   User as UserIcon,
   Users as UsersIcon
 } from 'react-feather';
-import { PermIdentity as ClientIcon, PeopleOutline as CoachIcon } from '@material-ui/icons';
+import { PeopleOutline as CoachIcon, PermIdentity as ClientIcon } from '@material-ui/icons';
 import React, { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 import NavBarBox from '../../../components/NavBarBox';
 import NavItem from './NavItem';
 import PropTypes from 'prop-types';
+import { isEnable, isWhitelist, MEASURES } from '../../../utils/toggles';
 
 const itemsCoach = [
   {
     href: '/app/dashboard',
     icon: BarChartIcon,
-    title: 'Dashboard'
+    title: 'Dashboard',
+    featureName: 'DASHBOARD'
   },
   {
     href: '/app/customers',
     icon: UsersIcon,
-    title: 'Customers'
+    title: 'Customers',
+    featureName: 'CUSTOMERS'
   },
   {
     href: '/app/planner',
     icon: CalendarIcon,
-    title: 'Planner'
+    title: 'Planner',
+    featureName: 'PLANNER'
   },
   {
     href: '/app/account',
     icon: UserIcon,
-    title: 'Account'
+    title: 'Account',
+    featureName: 'ACCOUNT'
   },
   {
     href: '/app/settings',
     icon: SettingsIcon,
-    title: 'Settings'
+    title: 'Settings',
+    featureName: 'SETTING'
   },
   {
     href: '/app/logout',
     icon: LogOutIcon,
-    title: 'Logout'
+    title: 'Logout',
+    featureName: 'LOGOUT'
   },
 ];
 
@@ -63,22 +70,32 @@ const itemsClient = [
   {
     href: '/app/dashboard',
     icon: PlannerIcon,
-    title: 'My Planner'
+    title: 'My Planner',
+    featureName: 'DASHBOARD'
   },
   {
     href: '/app/account',
     icon: UserIcon,
-    title: 'Account'
+    title: 'Account',
+    featureName: 'ACCOUNT'
+  },
+  {
+    href: '/app/measures',
+    icon: MeasuresIcon,
+    title: 'Measures',
+    featureName: MEASURES
   },
   {
     href: '/app/settings',
     icon: SettingsIcon,
-    title: 'Settings'
+    title: 'Settings',
+    featureName: 'SETTINGS'
   },
   {
     href: '/app/logout',
     icon: LogOutIcon,
-    title: 'Logout'
+    title: 'Logout',
+    featureName: 'LOGOUT'
   },
 ];
 
@@ -100,7 +117,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const NavBar = ({
-  userType, firstName, lastName, onMobileClose, openMobile
+  userType,
+  firstName,
+  lastName,
+  isWhiteListFl,
+  onMobileClose,
+  openMobile
 }) => {
   const classes = useStyles();
   const location = useLocation();
@@ -109,7 +131,6 @@ const NavBar = ({
     if (openMobile && onMobileClose) {
       onMobileClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const content = (
@@ -129,7 +150,7 @@ const NavBar = ({
           component={RouterLink}
           to="/app/account"
         >
-          {userType === 'CLIENT' ? <ClientIcon /> : <CoachIcon /> }
+          {userType === 'CLIENT' ? <ClientIcon /> : <CoachIcon />}
         </Avatar>
         <Typography
           className={classes.name}
@@ -152,21 +173,32 @@ const NavBar = ({
       <Divider />
       <Box p={2}>
         <List>
-          {userType === 'COACH' ? itemsCoach.map((item) => (
-            <NavItem
-              href={item.href}
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
-            />
-          )) : itemsClient.map((item) => (
-            <NavItem
-              href={item.href}
-              key={item.title}
-              title={item.title}
-              icon={item.icon}
-            />
-          ))}
+          {userType === 'COACH'
+            ? itemsCoach.map((item) => {
+              if (isEnable(item.featureName) || isWhiteListFl) {
+                return (
+                  <NavItem
+                    href={item.href}
+                    key={item.title}
+                    title={item.title}
+                    icon={item.icon}
+                  />
+                );
+              }
+              return null;
+            }) : itemsClient.map((item) => {
+              if (isEnable(item.featureName) || isWhiteListFl) {
+                return (
+                  <NavItem
+                    href={item.href}
+                    key={item.title}
+                    title={item.title}
+                    icon={item.icon}
+                  />
+                );
+              }
+              return null;
+            })}
         </List>
       </Box>
       <Box flexGrow={1} />
@@ -233,12 +265,15 @@ NavBar.propTypes = {
   openMobile: PropTypes.bool,
   userType: PropTypes.string,
   firstName: PropTypes.string,
-  lastName: PropTypes.string
+  lastName: PropTypes.string,
+  isWhiteListFl: PropTypes.bool
 };
 
 NavBar.defaultProps = {
-  onMobileClose: () => {},
-  openMobile: false
+  onMobileClose: () => {
+  },
+  openMobile: false,
+  isWhiteListFl: true
 };
 
 const mapStateToProps = (state) => {
@@ -246,6 +281,7 @@ const mapStateToProps = (state) => {
     userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null,
     firstName: state.auth.userInfo !== null ? state.auth.userInfo.firstname : null,
     lastName: state.auth.userInfo !== null ? state.auth.userInfo.lastname : null,
+    isWhiteListFl: state.auth.userInfo !== null ? isWhitelist(state.auth.userInfo.identifier) : true
   };
 };
 
