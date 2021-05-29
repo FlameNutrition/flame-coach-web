@@ -28,7 +28,7 @@ import {
   enrollmentProcessStatus,
   getDailyTasksByClientAndDay,
   updateDailyTaskByUUID
-} from '../../../axios';
+} from '../../../api/axios';
 import Warning from '../../../components/Warning';
 import Notification from '../../../components/Notification';
 

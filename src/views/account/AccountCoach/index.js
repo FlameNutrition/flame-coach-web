@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
-import { getCoachContactInformation, updateCoachContactInformation } from '../../../axios';
+import { getCoachContactInformation, updateCoachContactInformation } from '../../../api/axios';
 import Notification from '../../../components/Notification';
 import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
 import InfoMessage from '../../../components/Notification/InfoMessage/InfoMessage';

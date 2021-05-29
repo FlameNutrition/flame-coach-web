@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import React, { useState } from 'react';
 import { UserMinus as UserMinusIcon, UserPlus as UserPlusIcon } from 'react-feather';
-import { enrollmentProcessBreak, enrollmentProcessInit, getClientsCoachPlusClientsAvailableForCoaching } from '../../axios';
+import { enrollmentProcessBreak, enrollmentProcessInit, getClientsCoachPlusClientsAvailableForCoaching } from '../../api/axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';

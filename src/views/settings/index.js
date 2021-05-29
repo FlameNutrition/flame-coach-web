@@ -7,7 +7,7 @@ import Page from '../../components/Page';
 import Password from './Password';
 import PropTypes from 'prop-types';
 import { logError } from '../../logging';
-import { updatePassword } from '../../axios';
+import { updatePassword } from '../../api/axios';
 import { useMutation } from 'react-query';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,6 +1,6 @@
 import logger from 'loglevel';
 
-import axios from '../../axios/axios-flame-coach';
+import axios from '../../api/axios/axios-flame-coach';
 import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
 import * as actionType from './actionsType';
 
