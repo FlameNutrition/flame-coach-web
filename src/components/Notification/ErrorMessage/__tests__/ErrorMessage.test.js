@@ -1,4 +1,4 @@
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
 
 describe('ErrorMessage', () => {
   it('Check error message using fromCode method', () => {

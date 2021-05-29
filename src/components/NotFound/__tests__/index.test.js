@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '../../testing/test-utils';
-import NotFound from './index';
+import { render } from '../../../testing/test-utils';
+import NotFound from '../index';
 
 describe('<NotFound/ >', () => {
   it('create component', () => {

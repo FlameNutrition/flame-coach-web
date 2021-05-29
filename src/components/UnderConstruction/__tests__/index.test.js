@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '../../testing/test-utils';
-import UnderConstruction from './index';
+import { render } from '../../../testing/test-utils';
+import UnderConstruction from '../index';
 
 describe('<UnderConstruction / >', () => {
   it('create component', () => {

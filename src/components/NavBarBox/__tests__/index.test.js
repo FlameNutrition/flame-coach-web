@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '../../testing/test-utils';
-import NavBarBox from './index';
+import { render } from '../../../testing/test-utils';
+import NavBarBox from '../index';
 
 describe('<NavBarBox/ >', () => {
   it('create component with button & icon', () => {

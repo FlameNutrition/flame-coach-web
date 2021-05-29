@@ -2,7 +2,7 @@ import React from 'react';
 import toJson from 'enzyme-to-json';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import sinon from 'sinon';
-import Notification from './index';
+import Notification from '../index';
 
 describe('<Notification/ >', () => {
   let shallow;
