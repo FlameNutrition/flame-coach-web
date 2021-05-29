@@ -1,7 +1,7 @@
 import React from 'react';
 import sinon from 'sinon';
-import { render, fireEvent, screen } from '../../testing/test-utils';
-import DailyTask from './index';
+import { render, fireEvent, screen } from '../../../testing/test-utils';
+import DailyTask from '../index';
 
 describe('<Daily Task/ >', () => {
   const updateTaskHandlerSpy = sinon.spy();

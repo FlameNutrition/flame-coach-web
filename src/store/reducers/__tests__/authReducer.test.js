@@ -2,8 +2,8 @@ import {
   AUTH_LOGIN_FAIL, AUTH_LOGIN_RESET, AUTH_LOGIN_SUCCESS,
   AUTH_LOGOUT,
   AUTH_SIGNUP_FAIL, AUTH_SIGNUP_RESET, AUTH_SIGNUP_SUCCESS
-} from '../actions/actionsType';
-import authReducer from './authReducer';
+} from '../../actions/actionsType';
+import authReducer from '../authReducer';
 
 describe('authReducer', () => {
   it('check initial state', () => {

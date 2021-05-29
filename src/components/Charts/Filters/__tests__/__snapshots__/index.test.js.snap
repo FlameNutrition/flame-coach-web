@@ -96,10 +96,17 @@ exports[`<Filters /> create component Filters with adding session 1`] = `
           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
         >
           <label
-            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled"
+            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiFormLabel-filled Mui-required Mui-required"
             data-shrink="true"
           >
             Weight
+            <span
+              aria-hidden="true"
+              class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+            >
+               
+              *
+            </span>
           </label>
           <div
             class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl"
@@ -109,13 +116,14 @@ exports[`<Filters /> create component Filters with adding session 1`] = `
               class="MuiInputBase-input MuiInput-input"
               min="0"
               name="weight"
+              required=""
               step="0.05"
               type="number"
               value="50.5"
             />
           </div>
           <p
-            class="MuiFormHelperText-root MuiFormHelperText-filled"
+            class="MuiFormHelperText-root MuiFormHelperText-filled Mui-required"
           >
             Please specify your weight
           </p>

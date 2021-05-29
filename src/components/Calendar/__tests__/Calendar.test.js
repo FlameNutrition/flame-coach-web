@@ -1,4 +1,4 @@
-import Calendar from './Calendar';
+import Calendar from '../Calendar';
 import React from 'react';
 import { createShallow } from '@material-ui/core/test-utils';
 import sinon from 'sinon';

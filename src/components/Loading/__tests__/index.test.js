@@ -1,6 +1,6 @@
-import Loading from '.';
+import Loading from '../index';
 import React from 'react';
-import { render } from '../../testing/test-utils';
+import { render } from '../../../testing/test-utils';
 
 describe('<Loading / >', () => {
   it('create component snapshot match', () => {
