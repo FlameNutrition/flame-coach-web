@@ -34,50 +34,57 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
               >
                 <line
                   class="rv-xy-plot__grid-lines__line"
-                  x1="-0.3571428571428571"
-                  x2="-0.3571428571428571"
+                  x1="0"
+                  x2="0"
                   y1="0"
                   y2="-65"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
-                  x1="-8.928571428571429"
-                  x2="-8.928571428571429"
+                  x1="-8.571428571428571"
+                  x2="-8.571428571428571"
                   y1="0"
                   y2="-65"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
-                  x1="-17.5"
-                  x2="-17.5"
+                  x1="-17.142857142857142"
+                  x2="-17.142857142857142"
                   y1="0"
                   y2="-65"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
-                  x1="-26.071428571428573"
-                  x2="-26.071428571428573"
+                  x1="-25.71428571428571"
+                  x2="-25.71428571428571"
                   y1="0"
                   y2="-65"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
-                  x1="-34.64285714285714"
-                  x2="-34.64285714285714"
+                  x1="-34.285714285714285"
+                  x2="-34.285714285714285"
                   y1="0"
                   y2="-65"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
-                  x1="-43.214285714285715"
-                  x2="-43.214285714285715"
+                  x1="-42.85714285714286"
+                  x2="-42.85714285714286"
                   y1="0"
                   y2="-65"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
-                  x1="-51.78571428571429"
-                  x2="-51.78571428571429"
+                  x1="-51.42857142857142"
+                  x2="-51.42857142857142"
+                  y1="0"
+                  y2="-65"
+                />
+                <line
+                  class="rv-xy-plot__grid-lines__line"
+                  x1="-60"
+                  x2="-60"
                   y1="0"
                   y2="-65"
                 />
@@ -97,29 +104,22 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                   class="rv-xy-plot__grid-lines__line"
                   x1="0"
                   x2="-60"
-                  y1="-52"
-                  y2="-52"
+                  y1="-48.75"
+                  y2="-48.75"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
                   x1="0"
                   x2="-60"
-                  y1="-39"
-                  y2="-39"
+                  y1="-32.5"
+                  y2="-32.5"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
                   x1="0"
                   x2="-60"
-                  y1="-26"
-                  y2="-26"
-                />
-                <line
-                  class="rv-xy-plot__grid-lines__line"
-                  x1="0"
-                  x2="-60"
-                  y1="-12.999999999999996"
-                  y2="-12.999999999999996"
+                  y1="-16.25"
+                  y2="-16.25"
                 />
                 <line
                   class="rv-xy-plot__grid-lines__line"
@@ -147,122 +147,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                   <g
                     class="rv-xy-plot__axis__tick"
                     style="padding-left: 50px;"
-                    transform="translate(-0.3571428571428571, 0)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      style="padding-left: 50px;"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.72em"
-                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="middle"
-                      transform="translate(0, 10)"
-                    >
-                      05-17
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    style="padding-left: 50px;"
-                    transform="translate(-8.928571428571429, 0)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      style="padding-left: 50px;"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.72em"
-                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="middle"
-                      transform="translate(0, 10)"
-                    >
-                      05-18
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    style="padding-left: 50px;"
-                    transform="translate(-17.5, 0)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      style="padding-left: 50px;"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.72em"
-                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="middle"
-                      transform="translate(0, 10)"
-                    >
-                      05-19
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    style="padding-left: 50px;"
-                    transform="translate(-26.071428571428573, 0)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      style="padding-left: 50px;"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.72em"
-                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="middle"
-                      transform="translate(0, 10)"
-                    >
-                      05-20
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    style="padding-left: 50px;"
-                    transform="translate(-34.64285714285714, 0)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      style="padding-left: 50px;"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.72em"
-                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="middle"
-                      transform="translate(0, 10)"
-                    >
-                      05-21
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    style="padding-left: 50px;"
-                    transform="translate(-43.214285714285715, 0)"
+                    transform="translate(0, 0)"
                   >
                     <line
                       class="rv-xy-plot__axis__tick__line"
@@ -285,7 +170,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                   <g
                     class="rv-xy-plot__axis__tick"
                     style="padding-left: 50px;"
-                    transform="translate(-51.78571428571429, 0)"
+                    transform="translate(-8.571428571428571, 0)"
                   >
                     <line
                       class="rv-xy-plot__axis__tick__line"
@@ -303,6 +188,144 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       transform="translate(0, 10)"
                     >
                       05-23
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-17.142857142857142, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-24
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-25.71428571428571, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-25
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-34.285714285714285, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-26
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-42.85714285714286, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-27
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-51.42857142857142, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-28
+                    </text>
+                  </g>
+                  <g
+                    class="rv-xy-plot__axis__tick"
+                    style="padding-left: 50px;"
+                    transform="translate(-60, 0)"
+                  >
+                    <line
+                      class="rv-xy-plot__axis__tick__line"
+                      style="padding-left: 50px;"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="0"
+                    />
+                    <text
+                      class="rv-xy-plot__axis__tick__text"
+                      dy="0.72em"
+                      style="padding-left: 50px; font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
+                      text-anchor="middle"
+                      transform="translate(0, 10)"
+                    >
+                      05-29
                     </text>
                   </g>
                 </g>
@@ -340,12 +363,12 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="end"
                       transform="translate(-7, 0)"
                     >
-                      0
+                      60
                     </text>
                   </g>
                   <g
                     class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -58.5)"
+                    transform="translate(0, -48.75)"
                   >
                     <line
                       class="rv-xy-plot__axis__tick__line"
@@ -361,70 +384,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="end"
                       transform="translate(-7, 0)"
                     >
-                      10
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -52)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.32em"
-                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="end"
-                      transform="translate(-7, 0)"
-                    >
-                      20
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -45.5)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.32em"
-                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="end"
-                      transform="translate(-7, 0)"
-                    >
-                      30
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -39)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.32em"
-                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="end"
-                      transform="translate(-7, 0)"
-                    >
-                      40
+                      65
                     </text>
                   </g>
                   <g
@@ -445,54 +405,12 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="end"
                       transform="translate(-7, 0)"
                     >
-                      50
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -26)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.32em"
-                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="end"
-                      transform="translate(-7, 0)"
-                    >
-                      60
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -19.500000000000004)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.32em"
-                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="end"
-                      transform="translate(-7, 0)"
-                    >
                       70
                     </text>
                   </g>
                   <g
                     class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -12.999999999999996)"
+                    transform="translate(0, -16.25)"
                   >
                     <line
                       class="rv-xy-plot__axis__tick__line"
@@ -508,28 +426,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="end"
                       transform="translate(-7, 0)"
                     >
-                      80
-                    </text>
-                  </g>
-                  <g
-                    class="rv-xy-plot__axis__tick"
-                    transform="translate(0, -6.499999999999998)"
-                  >
-                    <line
-                      class="rv-xy-plot__axis__tick__line"
-                      x1="0"
-                      x2="0"
-                      y1="0"
-                      y2="0"
-                    />
-                    <text
-                      class="rv-xy-plot__axis__tick__text"
-                      dy="0.32em"
-                      style="font-family: \\"Roboto\\", \\"Helvetica\\", \\"Arial\\", sans-serif;"
-                      text-anchor="end"
-                      transform="translate(-7, 0)"
-                    >
-                      90
+                      75
                     </text>
                   </g>
                   <g
@@ -550,17 +447,32 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="end"
                       transform="translate(-7, 0)"
                     >
-                      100
+                      80
                     </text>
                   </g>
                 </g>
               </g>
-              <path
-                class="rv-xy-plot__series rv-xy-plot__series--line "
-                d="M317.1428571428571,-19.175000000000004Z"
-                style="opacity: 1; stroke: #12939A;"
-                transform="translate(30,5)"
-              />
+              <g
+                class="rv-xy-plot__series rv-xy-plot__series--linemark"
+              >
+                <path
+                  class="rv-xy-plot__series rv-xy-plot__series--line "
+                  d="M360,-30.875Z"
+                  style="opacity: 1; stroke: #3f51b5;"
+                  transform="translate(30,5)"
+                />
+                <g
+                  class="rv-xy-plot__series rv-xy-plot__series--mark "
+                  transform="translate(30,5)"
+                >
+                  <circle
+                    cx="360"
+                    cy="-30.875"
+                    r="3"
+                    style="opacity: 1; stroke: #3f51b5; fill: #3f51b5; stroke-width: 1;"
+                  />
+                </g>
+              </g>
             </svg>
           </div>
         </div>

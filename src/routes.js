@@ -4,6 +4,7 @@ import DashboardLayout from './layouts/DashboardLayout';
 import Loading from './components/Loading';
 import MainLayout from './layouts/MainLayout';
 import { Navigate } from 'react-router-dom';
+import { isEnable, MEASURES } from './utils/toggles';
 
 const AccountClient = lazy(() => import('./views/account/AccountClient/connector'));
 const AccountCoach = lazy(() => import('./views/account/AccountCoach/connector'));
@@ -17,8 +18,6 @@ const SettingsView = lazy(() => import('./views/settings/connector'));
 const LogoutView = lazy(() => import('./views/auth/LogoutView/connector'));
 const PlannerView = lazy(() => import('./views/planner/connector'));
 const MeasuresView = lazy(() => import('./views/measures/connector'));
-
-const isMeasuresToggleEnable = process.env.REACT_APP_TOGGLE_MEASURES;
 
 const routes = (isAuth, userType, isWhitelist) => {
   const childrenCoach = [
@@ -35,7 +34,7 @@ const routes = (isAuth, userType, isWhitelist) => {
   const childrenClient = [
     { path: 'account', element: <AccountClient /> },
     { path: 'dashboard', element: <DashboardClient /> },
-    { path: 'measures', element: isMeasuresToggleEnable && isWhitelist ? <MeasuresView /> : <Navigate to="/app/dashboard" /> },
+    { path: 'measures', element: isEnable(MEASURES) || isWhitelist ? <MeasuresView /> : <Navigate to="/app/dashboard" /> },
     { path: 'settings', element: <SettingsView /> },
     { path: 'logout', element: <LogoutView /> },
     { path: '404', element: <NotFoundView /> },

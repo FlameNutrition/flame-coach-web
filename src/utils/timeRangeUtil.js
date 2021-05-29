@@ -37,7 +37,7 @@ const getTimeRangeMonth = (toDttm, numOfMonths) => {
   };
 };
 
-export const getTimeRange = (type, toDttm) => {
+const getTimeRange = (type, toDttm) => {
   switch (type) {
     case '1_WEEK':
       return getTimeRangePerWeek(toDttm);
@@ -52,7 +52,7 @@ export const getTimeRange = (type, toDttm) => {
   }
 };
 
-export const getTimeRangeDates = (type, toDttm) => {
+const getTimeRangeDates = (type, toDttm) => {
   switch (type) {
     case '1_WEEK':
       return getTimeRangeWeek(toDttm);
@@ -67,7 +67,7 @@ export const getTimeRangeDates = (type, toDttm) => {
   }
 };
 
-export default {
+export {
   getTimeRange,
   getTimeRangeDates
 };
