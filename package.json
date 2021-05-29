@@ -1,13 +1,13 @@
 {
   "name": "flame-coach",
   "author": "Flame Nutrition",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test-report": "yarn test -- --coverage",
+    "test-report": "yarn test --coverage --watchAll --no-cache",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -16,6 +16,12 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "coveragePathIgnorePatterns" : [
+      "node_modules",
+      "<rootDir>/src/serviceWorker.js",
+      "<rootDir>/src/setupTests.js",
+      "<rootDir>/testing/test-utils.js"
     ]
   },
   "browserslist": {
