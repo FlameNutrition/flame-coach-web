@@ -14,7 +14,7 @@ import {
   getClientsCoach,
   getDailyTasksByClientAndDay,
   updateDailyTaskByUUID
-} from '../../axios';
+} from '../../api/axios';
 import { logDebug, logError } from '../../logging';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 

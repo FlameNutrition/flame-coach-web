@@ -6,11 +6,11 @@ import React, { useState } from 'react';
 import Page from '../../components/Page';
 import WeightChart from '../../components/Charts/WeightChart';
 import Events from '../../components/Charts/Events';
-import { filterWeightsPerTimeRange, orderPerDate } from '../../components/Charts/utils/chartUtil';
+import { filterWeightsPerTimeRange } from '../../components/Charts/utils/chartUtil';
 import moment from 'moment';
 import Filters from '../../components/Charts/Filters';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { addWeightClient, deleteWeightClient, getWeightClient } from '../../axios';
+import { useMutation, useQueryClient } from 'react-query';
+import { addWeightClient, deleteWeightClient } from '../../api/axios';
 import { logError } from '../../logging';
 import PropTypes from 'prop-types';
 import Warning from '../../components/Warning';
@@ -18,6 +18,7 @@ import Notification from '../../components/Notification';
 import update from 'immutability-helper';
 import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
 import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
+import { fetchWeightClient } from '../../api/measures/fetchWeightClient';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,26 +70,7 @@ const MeasuresView = ({
       }));
   };
 
-  const {
-    isLoading,
-    isError,
-    data
-  } = useQuery(['getWeightClient', clientIdentifier],
-    () => getWeightClient(clientIdentifier), {
-      onError: async (err) => {
-        console.log(`here:${data}`);
-        logError('Measures',
-          'useQuery getWeightClient',
-          'Error:', err);
-      },
-      select: (data) => {
-        if (data === undefined || data.weights === undefined) {
-          return [];
-        }
-
-        return data.weights.sort(orderPerDate);
-      }
-    });
+  const { isLoading, isError, data } = fetchWeightClient(clientIdentifier);
 
   const filteredData = filterWeightsPerTimeRange(data, moment().utc(), timeFrameWeight);
 
