@@ -3,12 +3,12 @@ import { getWeightClient } from '../axios';
 import { logError } from '../../logging';
 import { orderPerDate } from '../../components/Charts/utils/chartUtil';
 
-const fetchWeightClient = (clientIdentifier) => {
+// eslint-disable-next-line import/prefer-default-export
+export const useFetchWeightClient = (clientIdentifier) => {
   const {
     isLoading,
     isError,
     data
-    // eslint-disable-next-line react-hooks/rules-of-hooks
   } = useQuery(['getWeightClient', clientIdentifier],
     () => getWeightClient(clientIdentifier), {
       onError: async (err) => {
@@ -25,10 +25,9 @@ const fetchWeightClient = (clientIdentifier) => {
       }
     });
 
-  return { isLoading, isError, data };
-};
-
-export {
-  // eslint-disable-next-line import/prefer-default-export
-  fetchWeightClient
+  return {
+    isLoading,
+    isError,
+    data
+  };
 };

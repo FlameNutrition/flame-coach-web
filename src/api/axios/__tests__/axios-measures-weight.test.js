@@ -27,8 +27,11 @@ describe('axios-measures-weight tests', () => {
     mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
 
     const date = moment.utc('2021-04-04');
-    const result = await addWeightClient('a65ad74f-4f9f-4b00-98ee-756e454da73f', 50.6, date
-      .utc());
+    const result = await addWeightClient({
+      clientIdentifier: 'a65ad74f-4f9f-4b00-98ee-756e454da73f',
+      weight: 50.6,
+      utcDate: date.utc()
+    });
 
     expect(mockAxios)
       .toBeCalledWith({
@@ -72,7 +75,10 @@ describe('axios-measures-weight tests', () => {
   it('delete weight client', async () => {
     mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
 
-    const result = await deleteWeightClient('a65ad74f-4f9f-4b00-98ee-756e454da73f', 200);
+    const result = await deleteWeightClient({
+      clientIdentifier: 'a65ad74f-4f9f-4b00-98ee-756e454da73f',
+      identifier: 200
+    });
 
     expect(mockAxios)
       .toBeCalledWith({

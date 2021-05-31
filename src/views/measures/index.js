@@ -9,8 +9,7 @@ import Events from '../../components/Charts/Events';
 import { filterWeightsPerTimeRange } from '../../components/Charts/utils/chartUtil';
 import moment from 'moment';
 import Filters from '../../components/Charts/Filters';
-import { useMutation, useQueryClient } from 'react-query';
-import { addWeightClient, deleteWeightClient } from '../../api/axios';
+import { useQueryClient } from 'react-query';
 import { logError } from '../../logging';
 import PropTypes from 'prop-types';
 import Warning from '../../components/Warning';
@@ -18,7 +17,9 @@ import Notification from '../../components/Notification';
 import update from 'immutability-helper';
 import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
 import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
-import { fetchWeightClient } from '../../api/measures/fetchWeightClient';
+import { useFetchWeightClient } from '../../api/measures/useFetchWeightClient';
+import { useAddWeightClient } from '../../api/measures/useAddWeightClient';
+import { useDeleteWeightClient } from '../../api/measures/useDeleteWeightClient';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,18 +71,19 @@ const MeasuresView = ({
       }));
   };
 
-  const { isLoading, isError, data } = fetchWeightClient(clientIdentifier);
+  const { isLoading, isError, data } = useFetchWeightClient(clientIdentifier);
+  const { mutate: mutateAddWeight } = useAddWeightClient();
+  const { mutate: mutateDeleteWeight } = useDeleteWeightClient();
 
   const filteredData = filterWeightsPerTimeRange(data, moment().utc(), timeFrameWeight);
 
-  const addNewWeight = useMutation(
-    ({
-      customerIdentifier,
+  const addWeightHandler = (weight, date) => {
+    mutateAddWeight({
+      clientIdentifier,
       weight,
-      utcDate
-    }) => addWeightClient(customerIdentifier, weight, utcDate),
-    {
-      onError: async (error) => {
+      utcDate: date
+    }, {
+      onError: (error) => {
         logError('Measures',
           'useMutation addNewWeight',
           'Error:', error.response);
@@ -96,42 +98,26 @@ const MeasuresView = ({
         const successMessage = InfoMessage.CODE_0002;
         updateNotificationHandler(true, successMessage.msg, successMessage.level);
       }
-    }
-  );
+    });
+  };
 
-  const deleteWeight = useMutation(
-    ({
-      customerIdentifier,
-      eventIdentifier
-    }) => deleteWeightClient(customerIdentifier, eventIdentifier),
-    {
-      onError: async (error) => {
+  const deleteWeightHandler = (event) => {
+    mutateDeleteWeight({
+      clientIdentifier,
+      identifier: event.identifier
+    }, {
+      onError: (error) => {
         logError('Measures',
-          'useMutation deleteWeight',
+          'useMutation deleteHandler',
           'Error:', error.response);
 
-        logError('Measures', 'useMutation deleteWeight', 'Error Details:', error.response.data.detail);
+        logError('Measures', 'useMutation deleteHandler', 'Error Details:', error.response.data.detail);
         const errorCode = ErrorMessage.fromCode(error.response.data.code);
         updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: () => {
         queryClient.invalidateQueries(['getWeightClient', clientIdentifier]);
       }
-    }
-  );
-
-  const addWeightHandler = (weight, date) => {
-    addNewWeight.mutate({
-      customerIdentifier: clientIdentifier,
-      weight,
-      utcDate: date
-    });
-  };
-
-  const deleteHandler = (event) => {
-    deleteWeight.mutate({
-      customerIdentifier: clientIdentifier,
-      eventIdentifier: event.identifier
     });
   };
 
@@ -178,7 +164,7 @@ const MeasuresView = ({
                         <Events
                           className={classes.eventsCardContent}
                           dataEvents={filteredData}
-                          onDeleteHandle={deleteHandler}
+                          onDeleteHandle={deleteWeightHandler}
                         />
                       </Grid>
                     </Grid>
