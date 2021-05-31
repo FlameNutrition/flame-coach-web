@@ -12,7 +12,7 @@ export const getWeightClient = async (clientIdentifier) => {
   return response.data;
 };
 
-export const addWeightClient = async (clientIdentifier, weight, utcDate) => {
+export const addWeightClient = async ({ clientIdentifier, weight, utcDate }) => {
   const data = JSON.stringify({
     value: weight,
     date: utcDate.format('YYYY-MM-DD')
@@ -52,7 +52,7 @@ export const updateWeightClient = async (clientIdentifier, identifier, weight, u
   return response.data;
 };
 
-export const deleteWeightClient = async (clientIdentifier, identifier) => {
+export const deleteWeightClient = async ({ clientIdentifier, identifier }) => {
   const config = {
     method: 'delete',
     url: `/client/measures/weight/delete?clientIdentifier=${clientIdentifier}&identifier=${identifier}`,
