@@ -50,6 +50,7 @@ const Profile = ({
           alignItems="center"
           display="flex"
           flexDirection="column"
+          textAlign="center"
         >
           {enablePhoto ? (
             <Avatar
