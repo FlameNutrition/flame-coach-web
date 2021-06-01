@@ -28,6 +28,7 @@ import TaskPreview from './TaskPreview';
 import TaskTool from './TaskTool';
 import Warning from '../../components/Warning';
 import update from 'immutability-helper';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -132,6 +133,30 @@ const Planner = ({ customerIdentifier }) => {
         logError('Planner', 'addMultiplesDailyTasksMutation', 'Error Details:', error.response.data.detail);
         const errorCode = ErrorMessage.fromCode(error.response.data.code);
         updateNotificationHandler(true, errorCode.msg, errorCode.level);
+      },
+      onSuccess: async (data) => {
+        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
+        logDebug('Planner',
+          'addMultipleDailyTasks',
+          'Response:', data);
+
+        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
+          logDebug('Planner',
+            'addMultipleDailyTasks',
+            'Old Data:', oldData);
+
+          const newTask = data.dailyTasks.find((it) => it.date === moment(selectedDate)
+            .format(moment.HTML5_FMT.DATE));
+
+          logDebug('Planner',
+            'found task',
+            'Task:', newTask);
+
+          return update(oldData, { dailyTasks: { $push: [newTask] } });
+        });
+
+        const infoMessage = InfoMessage.CODE_4001;
+        updateNotificationHandler(true, infoMessage.msg, infoMessage.level);
       }
     }
   );
@@ -163,8 +188,8 @@ const Planner = ({ customerIdentifier }) => {
           return update(oldData, { dailyTasks: { $push: [data.dailyTasks[0]] } });
         });
 
-        const errorCode = InfoMessage.CODE_4001;
-        updateNotificationHandler(true, errorCode.msg, errorCode.level);
+        const infoMessage = InfoMessage.CODE_4001;
+        updateNotificationHandler(true, infoMessage.msg, infoMessage.level);
       }
     }
   );

@@ -81,8 +81,7 @@ const TaskTool = ({
     setFieldValue('button', 'ADD', false);
     setFieldValue('taskName', '', false);
     setFieldValue('taskDescription', '', false);
-    // FIXME: This doesn't work, find a way to reset the checkbox
-    // setFieldValue('multipleDays', false, true);
+    setFieldValue('multipleDays', false, false);
     setFieldValue('isUpdate', false, false);
 
     updateNotificationHandler(false, '', '');
@@ -202,8 +201,8 @@ const TaskTool = ({
                             name="multipleDays"
                             onBlur={handleBlur}
                             onChange={handleChange}
-                            value={values.multipleDays}
                             disabled={values.isUpdate}
+                            checked={values.multipleDays}
                           />
                         )}
                         labelPlacement="start"
