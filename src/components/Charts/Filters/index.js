@@ -101,8 +101,7 @@ const Filters = ({
                     min: 0
                   }}
                   onChange={(event) => {
-                    onChangeWeightHandler(Number.isNaN(event.target.valueAsNumber) ? 0.0
-                      : event.target.valueAsNumber);
+                    onChangeWeightHandler(event.target.valueAsNumber);
                   }}
                   value={weight}
                 />
