@@ -62,7 +62,7 @@ const Events = ({
         </Typography>
 
         <div className={classes.complexSwipeableListContainer}>
-          <SwipeableList threshold={0.70}>
+          <SwipeableList threshold={0.65}>
             {dataEvents.reverse().map((event) => {
               return (
                 <SwipeableListItem

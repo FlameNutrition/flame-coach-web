@@ -164,7 +164,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-24
+                      05-25
                     </text>
                   </g>
                   <g
@@ -187,7 +187,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-25
+                      05-26
                     </text>
                   </g>
                   <g
@@ -210,7 +210,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-26
+                      05-27
                     </text>
                   </g>
                   <g
@@ -233,7 +233,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-27
+                      05-28
                     </text>
                   </g>
                   <g
@@ -256,7 +256,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-28
+                      05-29
                     </text>
                   </g>
                   <g
@@ -279,7 +279,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-29
+                      05-30
                     </text>
                   </g>
                   <g
@@ -302,7 +302,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-30
+                      05-31
                     </text>
                   </g>
                   <g
@@ -325,7 +325,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                       text-anchor="middle"
                       transform="translate(0, 10)"
                     >
-                      05-31
+                      06-01
                     </text>
                   </g>
                 </g>
@@ -457,7 +457,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
               >
                 <path
                   class="rv-xy-plot__series rv-xy-plot__series--line "
-                  d="M377.1428571428571,-30.875Z"
+                  d="M385.7142857142857,-30.875Z"
                   style="opacity: 1; stroke: #3f51b5;"
                   transform="translate(30,5)"
                 />
@@ -466,7 +466,7 @@ exports[`<WeightChart /> create component WeightChart 1`] = `
                   transform="translate(30,5)"
                 >
                   <circle
-                    cx="377.1428571428571"
+                    cx="385.7142857142857"
                     cy="-30.875"
                     r="3"
                     style="opacity: 1; stroke: #3f51b5; fill: #3f51b5; stroke-width: 1;"

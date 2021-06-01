@@ -48,7 +48,7 @@ const MeasuresView = ({
 
   const [timeFrameWeight, setTimeFrameWeight] = useState('1_WEEK');
   const [dateWeightAdding, setDateWeightAdding] = useState(moment().utc());
-  const [weightAdding, setWeightAdding] = useState(0.0);
+  const [weightAdding, setWeightAdding] = useState(NaN);
 
   const [notification, setNotification] = useState({
     enable: false,
@@ -78,27 +78,35 @@ const MeasuresView = ({
   const filteredData = filterWeightsPerTimeRange(data, moment().utc(), timeFrameWeight);
 
   const addWeightHandler = (weight, date) => {
-    mutateAddWeight({
-      clientIdentifier,
-      weight,
-      utcDate: date
-    }, {
-      onError: (error) => {
-        logError('Measures',
-          'useMutation addNewWeight',
-          'Error:', error.response);
+    if (Number.isNaN(weight)) {
+      const errorMessage = ErrorMessage.CODE_0006;
+      updateNotificationHandler(true, errorMessage.msg, errorMessage.level);
+    } else if (date === null) {
+      const errorMessage = ErrorMessage.CODE_0007;
+      updateNotificationHandler(true, errorMessage.msg, errorMessage.level);
+    } else {
+      mutateAddWeight({
+        clientIdentifier,
+        weight,
+        utcDate: date
+      }, {
+        onError: (error) => {
+          logError('Measures',
+            'useMutation addNewWeight',
+            'Error:', error.response);
 
-        logError('Measures', 'useMutation addNewWeight', 'Error Details:', error.response.data.detail);
-        const errorCode = ErrorMessage.fromCode(error.response.data.code);
-        updateNotificationHandler(true, errorCode.msg, errorCode.level);
-      },
-      onSuccess: () => {
-        queryClient.invalidateQueries(['getWeightClient', clientIdentifier]);
+          logError('Measures', 'useMutation addNewWeight', 'Error Details:', error.response.data.detail);
+          const errorCode = ErrorMessage.fromCode(error.response.data.code);
+          updateNotificationHandler(true, errorCode.msg, errorCode.level);
+        },
+        onSuccess: () => {
+          queryClient.invalidateQueries(['getWeightClient', clientIdentifier]);
 
-        const successMessage = InfoMessage.CODE_0002;
-        updateNotificationHandler(true, successMessage.msg, successMessage.level);
-      }
-    });
+          const successMessage = InfoMessage.CODE_0002;
+          updateNotificationHandler(true, successMessage.msg, successMessage.level);
+        }
+      });
+    }
   };
 
   const deleteWeightHandler = (event) => {
