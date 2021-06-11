@@ -21,7 +21,8 @@ import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.dark,
+    // FIXME: Why gray color doesn't work well?
+    // backgroundColor: theme.palette.background.dark,
     height: '100%',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
