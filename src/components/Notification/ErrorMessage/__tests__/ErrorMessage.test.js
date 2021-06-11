@@ -7,6 +7,9 @@ describe('ErrorMessage', () => {
     expect(ErrorMessage.fromCode('2001')).toStrictEqual(ErrorMessage.CODE_2001);
     expect(ErrorMessage.fromCode('2002')).toStrictEqual(ErrorMessage.CODE_2002);
     expect(ErrorMessage.fromCode('2003')).toStrictEqual(ErrorMessage.CODE_2003);
+    expect(ErrorMessage.fromCode('2005')).toStrictEqual(ErrorMessage.CODE_2005);
+    expect(ErrorMessage.fromCode('2006')).toStrictEqual(ErrorMessage.CODE_2006);
+    expect(ErrorMessage.fromCode('2007')).toStrictEqual(ErrorMessage.CODE_2007);
 
     expect(ErrorMessage.fromCode('3001')).toStrictEqual(ErrorMessage.CODE_3001);
     expect(ErrorMessage.fromCode('3002')).toStrictEqual(ErrorMessage.CODE_3002);

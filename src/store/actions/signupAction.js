@@ -36,7 +36,8 @@ export const signup = (userInfo) => {
       email: userInfo.email,
       password: userInfo.password,
       type: userInfo.userType,
-      policy: true
+      policy: true,
+      registrationKey: userInfo.userType === 'CLIENT' ? userInfo.registrationKey : null
     });
 
     const config = {

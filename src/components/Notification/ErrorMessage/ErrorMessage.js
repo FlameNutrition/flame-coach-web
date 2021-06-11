@@ -11,6 +11,9 @@ class ErrorMessage {
   static CODE_2001 = new ErrorMessage('CODE_2001', 'Customer not found! Please ask help for the admin system.', ERROR)
   static CODE_2002 = new ErrorMessage('CODE_2002', 'Email already registed, please use another email.', WARNING)
   static CODE_2003 = new ErrorMessage('CODE_2003', 'Email or password invalid, please try again.', WARNING)
+  static CODE_2005 = new ErrorMessage('CODE_2005', 'Invalid registration code, please ask for a new registration code', WARNING)
+  static CODE_2006 = new ErrorMessage('CODE_2006', 'Registration code expired, please ask for a new registration code', WARNING)
+  static CODE_2007 = new ErrorMessage('CODE_2007', 'Email invalid for registration code, please use the right email', WARNING)
 
   // Enrollment Process
   static CODE_3001 = new ErrorMessage('CODE_3001', "Client already has a coach assigned, you can't apply the enrollment process.", WARNING)
