@@ -37,6 +37,7 @@ const WeightChart = ({
   timeFrame,
   className,
   dataChart,
+  measureUnit
 }) => {
   const classes = useStyles();
 
@@ -121,7 +122,7 @@ const WeightChart = ({
                     },
                     {
                       title: 'Weight',
-                      value: datapoint.y
+                      value: `${datapoint.y} ${measureUnit}`
                     }];
                 }}
                 style={{ text: { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' } }}
@@ -138,7 +139,8 @@ WeightChart.propTypes = {
   className: PropTypes.string,
   timeFrame: PropTypes.string.isRequired,
   dataChart: PropTypes.array.isRequired,
-  isMobile: PropTypes.bool
+  isMobile: PropTypes.bool,
+  measureUnit: PropTypes.string.isRequired
 };
 
 WeightChart.defaultProps = {};

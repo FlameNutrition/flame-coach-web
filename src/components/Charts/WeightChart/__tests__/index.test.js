@@ -11,8 +11,10 @@ describe('<WeightChart />', () => {
     const { container } = render(<WeightChart
       dataChart={data}
       timeFrame="1_WEEK"
+      measureUnit="Kg"
     />);
 
+    // FIXME: Refactor this to instead of using snapshot, search for specific dates
     expect(container).toMatchSnapshot();
   });
 });

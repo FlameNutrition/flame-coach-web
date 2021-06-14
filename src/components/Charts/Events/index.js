@@ -37,6 +37,7 @@ const useStyles = makeStyles(() => ({
 const Events = ({
   dataEvents,
   onDeleteHandle,
+  measureUnit,
   className
 }) => {
   const classes = useStyles();
@@ -74,7 +75,7 @@ const Events = ({
                     }
                   }}
                 >
-                  <Event date={event.date} value={event.value} />
+                  <Event date={event.date} value={event.value} measureType={measureUnit} />
                 </SwipeableListItem>
               );
             })}
@@ -88,7 +89,8 @@ const Events = ({
 Events.propTypes = {
   className: PropTypes.string,
   dataEvents: PropTypes.array.isRequired,
-  onDeleteHandle: PropTypes.func.isRequired
+  onDeleteHandle: PropTypes.func.isRequired,
+  measureUnit: PropTypes.string.isRequired
 };
 
 Events.defaultProps = {

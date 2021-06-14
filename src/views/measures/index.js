@@ -20,6 +20,8 @@ import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
 import { useFetchWeightClient } from '../../api/measures/useFetchWeightClient';
 import { useAddWeightClient } from '../../api/measures/useAddWeightClient';
 import { useDeleteWeightClient } from '../../api/measures/useDeleteWeightClient';
+import { useFetchClientPersonalInformation } from '../../api/client/useFetchClientPersonalInformation';
+import { extractWeightType } from '../../api/client/clientPersonalInformationUtil';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
   weightGraphicCardContent: {
     height: '400px'
+  },
+  weightGraphicMobileCardContent: {
+    height: '400px',
+    marginBottom: '35px'
   },
   eventsCardContent: {
     height: '400px'
@@ -46,7 +52,7 @@ const MeasuresView = ({
 
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  const [timeFrameWeight, setTimeFrameWeight] = useState('1_WEEK');
+  const [timeFrameWeight, setTimeFrameWeight] = useState('1_MONTH');
   const [dateWeightAdding, setDateWeightAdding] = useState(moment().utc());
   const [weightAdding, setWeightAdding] = useState(NaN);
 
@@ -71,6 +77,7 @@ const MeasuresView = ({
       }));
   };
 
+  const personalData = useFetchClientPersonalInformation(clientIdentifier);
   const { isLoading, isError, data } = useFetchWeightClient(clientIdentifier);
   const { mutate: mutateAddWeight } = useAddWeightClient();
   const { mutate: mutateDeleteWeight } = useDeleteWeightClient();
@@ -137,7 +144,8 @@ const MeasuresView = ({
       <Container
         maxWidth={false}
       >
-        {!isLoading && !isError
+        {(!isLoading && !isError)
+          && (!personalData.isLoading && !personalData.isError)
           ? (
             <Grid
               container
@@ -161,11 +169,12 @@ const MeasuresView = ({
                     <Grid container spacing={1}>
                       <Grid item md={9} xs={12}>
                         <WeightChart
-                          className={isMobile ? null : classes.weightGraphicCardContent}
+                          className={isMobile ? classes.weightGraphicMobileCardContent
+                            : classes.weightGraphicCardContent}
                           isMobile={isMobile}
                           timeFrame={timeFrameWeight}
                           dataChart={filteredData}
-                          measureUnit="Kg"
+                          measureUnit={extractWeightType(personalData.data.measureType.value)}
                         />
                       </Grid>
                       <Grid item md={3} xs={12}>
@@ -173,6 +182,7 @@ const MeasuresView = ({
                           className={classes.eventsCardContent}
                           dataEvents={filteredData}
                           onDeleteHandle={deleteWeightHandler}
+                          measureUnit={extractWeightType(personalData.data.measureType.value)}
                         />
                       </Grid>
                     </Grid>
@@ -216,7 +226,8 @@ const MeasuresView = ({
                 : null}
             </Grid>
           ) : null}
-        {!isLoading && isError
+        {(!isLoading && isError)
+          || (!personalData.isLoading && personalData.isError)
           ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
           : null}
       </Container>
