@@ -16,6 +16,7 @@ describe('<Events />', () => {
     const { container } = render(<Events
       onDeleteHandle={deleteHandler}
       dataEvents={events}
+      measureUnit="kg"
     />);
 
     expect(container).toMatchSnapshot();
@@ -31,6 +32,7 @@ describe('<Events />', () => {
     render(<Events
       onDeleteHandle={deleteHandler}
       dataEvents={events}
+      measureUnit="kg"
     />);
 
     expect(screen.queryByText('Events')).not.toBeNull();

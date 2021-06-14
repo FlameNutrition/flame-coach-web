@@ -2,7 +2,6 @@ import { Container, Grid, makeStyles } from '@material-ui/core';
 import React, { useState } from 'react';
 import {
   getClientContactInformation,
-  getClientPersonalData,
   updateClientContactInformation,
   updateClientPersonalData
 } from '../../../api/axios';
@@ -19,6 +18,7 @@ import PropTypes from 'prop-types';
 import Warning from '../../../components/Warning';
 import logger from 'loglevel';
 import update from 'immutability-helper';
+import { useFetchClientPersonalInformation } from '../../../api/client/useFetchClientPersonalInformation';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,14 +88,7 @@ const Account = ({
     }
   );
 
-  const personalData = useQuery(['getClientPersonalData', customerIdentifier],
-    () => getClientPersonalData(customerIdentifier), {
-      onError: async (err) => {
-        logError('AccountClient',
-          'useQuery getClientPersonalData',
-          'Error:', err);
-      }
-    });
+  const personalData = useFetchClientPersonalInformation(customerIdentifier);
 
   const updatePersonalData = useMutation(
     ({

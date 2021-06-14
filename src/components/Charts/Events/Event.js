@@ -32,11 +32,10 @@ const Event = ({
 Event.propTypes = {
   date: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  measureType: PropTypes.string
+  measureType: PropTypes.string.isRequired
 };
 
 Event.defaultProps = {
-  measureType: 'kg'
 };
 
 export default Event;
