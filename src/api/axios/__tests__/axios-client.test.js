@@ -1,6 +1,7 @@
 import {
   getClientContactInformation,
   getClientPersonalData,
+  inviteClient,
   updateClientContactInformation,
   updateClientPersonalData
 } from '../axios-client';
@@ -94,6 +95,21 @@ describe('axios-client tests', () => {
         genderCode: 'M',
         measureTypeCode: 'KM_CM'
       })
+    });
+    expect(result).toEqual({ response: 'data' });
+  });
+
+  it('invite client successfully from API', async () => {
+    mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
+
+    const result = await inviteClient({
+      coachIdentifier: 'a65ad74f-4f9f-4b00-98ee-756e454da73f',
+      clientEmail: 'test@gmail.com'
+    });
+
+    expect(mockAxios).toBeCalledWith({
+      method: 'post',
+      url: '/client/invite?coachIdentifier=a65ad74f-4f9f-4b00-98ee-756e454da73f&clientEmail=test@gmail.com'
     });
     expect(result).toEqual({ response: 'data' });
   });

@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Box, Card, makeStyles, Typography, useMediaQuery
+  Box, Card, makeStyles, Typography
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import ConnectionError from '../../images/ConnectionError';
+import { useIsMobile } from '../../utils/mediaUtil';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles(() => ({
 
 const Warning = ({ message }) => {
   const classes = useStyles();
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useIsMobile();
 
   return (
     <>

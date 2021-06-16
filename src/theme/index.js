@@ -25,17 +25,6 @@ const theme = createMuiTheme({
       dangerous: colors.red[300]
     }
   },
-  overrides: {
-    MUIDataTable: {
-    },
-    MUIDataTableToolbar: {
-      titleText: {
-        fontWeight: 500,
-        fontSize: 20,
-        letterSpacing: '-0.06px'
-      }
-    }
-  },
   shadows,
   typography
 });

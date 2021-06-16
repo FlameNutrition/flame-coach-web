@@ -2,13 +2,13 @@ import {
   Box,
   Modal,
   Typography,
-  useMediaQuery
 } from '@material-ui/core';
 import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
+import { useIsMobile } from '../../utils/mediaUtil';
 
 const getModalStyle = () => {
   const top = 40;
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 const ModalWarning = ({
   title, message, open, onCloseHandler
 }) => {
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useIsMobile();
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);

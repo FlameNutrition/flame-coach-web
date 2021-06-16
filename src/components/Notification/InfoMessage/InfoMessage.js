@@ -15,6 +15,8 @@ class InfoMessage {
   // UI
   static CODE_0001 = new InfoMessage('If you want to leave please ask for us or your coach.', INFO)
   static CODE_0002 = new InfoMessage('Weight added with success', SUCCESS)
+  static CODE_0003 = new InfoMessage('Invite sent with success', SUCCESS)
+  static CODE_0004 = new InfoMessage('Email to sign up sent with success', SUCCESS)
 
   constructor(msg, level) {
     this.msg = msg;

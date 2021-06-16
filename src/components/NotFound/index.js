@@ -1,9 +1,10 @@
 import {
-  Box, Container, makeStyles, Typography, useMediaQuery
+  Box, Container, makeStyles, Typography
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import PageNotFound from '../../images/404';
+import { useIsMobile } from '../../utils/mediaUtil';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -27,7 +28,7 @@ const useStyles = makeStyles(() => ({
 
 const NotFound = ({ title, submessage }) => {
   const classes = useStyles();
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useIsMobile();
 
   return (
     <Box

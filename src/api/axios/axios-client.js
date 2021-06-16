@@ -74,3 +74,14 @@ export const updateClientPersonalData = async (clientIdentifier, newContactInfor
 
   return response.data;
 };
+
+export const inviteClient = async ({ coachIdentifier, clientEmail }) => {
+  const config = {
+    method: 'post',
+    url: `/client/invite?coachIdentifier=${coachIdentifier}&clientEmail=${clientEmail}`,
+  };
+
+  const response = await axios(config);
+
+  return response.data;
+};

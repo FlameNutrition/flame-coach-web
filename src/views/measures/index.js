@@ -1,5 +1,5 @@
 import {
-  Container, Grid, makeStyles, useMediaQuery
+  Container, Grid, makeStyles
 } from '@material-ui/core';
 import React, { useState } from 'react';
 
@@ -22,6 +22,7 @@ import { useAddWeightClient } from '../../api/measures/useAddWeightClient';
 import { useDeleteWeightClient } from '../../api/measures/useDeleteWeightClient';
 import { useFetchClientPersonalInformation } from '../../api/client/useFetchClientPersonalInformation';
 import { extractWeightType } from '../../api/client/clientPersonalInformationUtil';
+import { useIsMobile } from '../../utils/mediaUtil';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,7 @@ const MeasuresView = ({
 
   const queryClient = useQueryClient();
 
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useIsMobile();
 
   const [timeFrameWeight, setTimeFrameWeight] = useState('1_MONTH');
   const [dateWeightAdding, setDateWeightAdding] = useState(moment().utc());
