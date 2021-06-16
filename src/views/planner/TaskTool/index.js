@@ -209,7 +209,7 @@ const TaskTool = ({
                         label="Multiple Days"
                       />
                       <FormHelperText className={classes.multipleDaysHelper}>
-                        Enable this to add this task into multiple days
+                        Enable to add this task into multiple days
                       </FormHelperText>
                     </FormGroup>
                   </Grid>

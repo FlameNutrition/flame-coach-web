@@ -5,7 +5,7 @@ import Page from '../../../components/Page';
 import UnderConstruction from '../../../components/UnderConstruction';
 
 const workInProgressMessage = 'Ops...this page is under construction!';
-const workInProgressSubMessage = 'Sorry, we are doing the best for having good features available for you. But unfortunately this is a free application and we don\'t have much time as we liked to work on it.';
+const workInProgressSubMessage = 'Sorry, we are doing the to have good features available to you. But unfortunately this is a free application and we don\'t have as much time as we would like to work on it.';
 
 const useStyles = makeStyles((theme) => ({
   root: {

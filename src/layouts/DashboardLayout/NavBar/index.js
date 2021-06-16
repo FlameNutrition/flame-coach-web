@@ -218,7 +218,7 @@ const NavBar = ({
       />
       <NavBarBox
         title="Having issues?"
-        message="Please report any issue did you find. Help us to help you!"
+        message="Please report any issue you find. Help us to help you!"
         iconEnable
         icon={(
           <img
