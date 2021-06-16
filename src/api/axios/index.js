@@ -17,7 +17,8 @@ export {
   getClientContactInformation,
   getClientPersonalData,
   updateClientContactInformation,
-  updateClientPersonalData
+  updateClientPersonalData,
+  inviteClient
 } from './axios-client';
 
 export {

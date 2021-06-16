@@ -13,7 +13,6 @@ import {
   Select,
   Tab,
   Tabs,
-  useMediaQuery
 } from '@material-ui/core';
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 import moment from 'moment';
@@ -22,6 +21,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import DailyTask from '../../../../components/DailyTask';
 import { logDebug } from '../../../../logging';
 import TaskPanel from './TaskPanel';
+import { useIsMobile } from '../../../../utils/mediaUtil';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -59,7 +59,7 @@ const Tasks = ({
 }) => {
   const classes = useStyles();
 
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useIsMobile();
   const [tabIndex, setTabIndex] = React.useState(0);
 
   const changeTabHandler = (event, newTabIndex) => {

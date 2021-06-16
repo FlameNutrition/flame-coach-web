@@ -1,10 +1,11 @@
 import {
-  Box, Card, makeStyles, Typography, useMediaQuery
+  Box, Card, makeStyles, Typography
 } from '@material-ui/core';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import UnderConstructionIcon from '../../images/UnderConstruction';
+import { useIsMediumMobile, useIsMobile } from '../../utils/mediaUtil';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -45,13 +46,13 @@ const useStyles = makeStyles(() => ({
 
 const WorkInProgress = ({ message, submessage }) => {
   const classes = useStyles();
-  const isMobile = useMediaQuery('(max-width:600px)');
-  const isSmallMobile = useMediaQuery('(max-height:800px)');
+  const isMobile = useIsMobile();
+  const isMediumMobile = useIsMediumMobile();
 
   let rootClass = classes.root;
 
   if (isMobile) {
-    if (isSmallMobile) {
+    if (isMediumMobile) {
       rootClass = classes.rootMobileSmall;
     } else {
       rootClass = classes.rootMobile;
