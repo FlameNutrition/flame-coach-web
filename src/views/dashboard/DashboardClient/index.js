@@ -66,7 +66,7 @@ const Dashboard = ({ customerIdentifier }) => {
   // eslint-disable-next-line no-unused-vars
   const [enrollment, setEnrollment] = useState({});
   const [activeCoachStep, setActiveCoachStep] = React.useState(0);
-  const steps = ['Waiting for a coach invitation', 'You want be part of this experience?', 'Confirmation'];
+  const steps = ['Waiting for a coach invitation', 'Do you want be part of this experience?', 'Confirmation'];
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
