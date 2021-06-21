@@ -1,7 +1,7 @@
 {
   "name": "flame-coach",
   "author": "Flame Nutrition",
-  "version": "2021.6.3-SNAPSHOT",
+  "version": "2021.6.3",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
