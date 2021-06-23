@@ -1,84 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Notification/ > Show error notification 1`] = `
-<Styled(MuiBox)
-  className="makeStyles-notificationBar-2"
->
-  <WithStyles(ForwardRef(Alert))
-    itemID="notification"
-    severity="error"
-    variant="filled"
+exports[`<Notification/ > Show info notification with collapse 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-3 makeStyles-notificationBar-2"
   >
-    INFO MESSAGE
-  </WithStyles(ForwardRef(Alert))>
-</Styled(MuiBox)>
-`;
-
-exports[`<Notification/ > Show info notification 1`] = `
-<Styled(MuiBox)
-  className="makeStyles-notificationBar-2"
->
-  <WithStyles(ForwardRef(Alert))
-    itemID="notification"
-    severity="info"
-    variant="filled"
-  >
-    INFO MESSAGE
-  </WithStyles(ForwardRef(Alert))>
-</Styled(MuiBox)>
-`;
-
-exports[`<Notification/ > Show notification with collapse 1`] = `
-<Styled(MuiBox)
-  className="makeStyles-notificationBar-2"
->
-  <WithStyles(ForwardRef(Collapse))>
-    <WithStyles(ForwardRef(Alert))
-      action={
-        <WithStyles(ForwardRef(IconButton))
-          aria-label="close"
-          color="inherit"
-          onClick={[Function]}
-          size="small"
-        >
-          <Memo
-            fontSize="inherit"
-          />
-        </WithStyles(ForwardRef(IconButton))>
-      }
-      severity="success"
-      variant="filled"
+    <div
+      class="MuiCollapse-container MuiCollapse-hidden"
+      style="min-height: 0px;"
     >
-      INFO MESSAGE
-    </WithStyles(ForwardRef(Alert))>
-  </WithStyles(ForwardRef(Collapse))>
-</Styled(MuiBox)>
-`;
-
-exports[`<Notification/ > Show success notification 1`] = `
-<Styled(MuiBox)
-  className="makeStyles-notificationBar-2"
->
-  <WithStyles(ForwardRef(Alert))
-    itemID="notification"
-    severity="success"
-    variant="filled"
-  >
-    INFO MESSAGE
-  </WithStyles(ForwardRef(Alert))>
-</Styled(MuiBox)>
-`;
-
-exports[`<Notification/ > Show warning notification 1`] = `
-<Styled(MuiBox)
-  className="makeStyles-notificationBar-2"
->
-  <WithStyles(ForwardRef(Alert))
-    itemID="notification"
-    severity="warning"
-    variant="filled"
-  >
-    INFO MESSAGE
-  </WithStyles(ForwardRef(Alert))>
-</Styled(MuiBox)>
+      <div
+        class="MuiCollapse-wrapper"
+      >
+        <div
+          class="MuiCollapse-wrapperInner"
+        >
+          <div
+            class="MuiPaper-root MuiAlert-root MuiAlert-filledInfo MuiPaper-elevation0"
+            role="alert"
+          >
+            <div
+              class="MuiAlert-icon"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"
+                />
+              </svg>
+            </div>
+            <div
+              class="MuiAlert-message"
+            >
+              INFO MESSAGE
+            </div>
+            <div
+              class="MuiAlert-action"
+            >
+              <button
+                aria-label="close"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;

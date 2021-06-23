@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  IconButton,
-  makeStyles,
-  Step,
-  StepLabel,
-  Stepper
-} from '@material-ui/core';
+import { Container, Grid, makeStyles } from '@material-ui/core';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import update from 'immutability-helper';
-import { NavigateNext as NavigateNextIcon, NavigateBefore as NavigateBackIcon } from '@material-ui/icons';
-import { Alert } from '@material-ui/lab';
 import Page from '../../../components/Page';
-import InfoMessage from '../../../components/Notification/InfoMessage/InfoMessage';
 import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
 import TasksProgress from './TasksProgress';
 import Tasks from './Tasks';
@@ -31,6 +18,7 @@ import {
 } from '../../../api/axios';
 import Warning from '../../../components/Warning';
 import Notification from '../../../components/Notification';
+import EnrollmentCard from './EnrollmentCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,20 +26,6 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100%',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
-  },
-  coachConfirmation: {
-    display: 'flex',
-    flexFlow: 'row-reverse',
-    paddingRight: '20px'
-  },
-  coachConfirmationNextBtn: {
-    margin: '3px'
-  },
-  coachConfirmationBackBtn: {
-    margin: '3px'
-  },
-  coachConfirmationWarning: {
-    fontSize: 'small'
   },
   notification: {
     marginTop: '0px !important'
@@ -66,7 +40,6 @@ const Dashboard = ({ customerIdentifier }) => {
   // eslint-disable-next-line no-unused-vars
   const [enrollment, setEnrollment] = useState({});
   const [activeCoachStep, setActiveCoachStep] = React.useState(0);
-  const steps = ['Waiting for a coach invitation', 'Do you want be part of this experience?', 'Confirmation'];
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -334,7 +307,7 @@ const Dashboard = ({ customerIdentifier }) => {
     setEndDate(finalDate);
   };
 
-  const generalProblem = <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />;
+  const generalProblem = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
 
   const dashboard = (
     <>
@@ -349,7 +322,11 @@ const Dashboard = ({ customerIdentifier }) => {
           xl={3}
           xs={12}
         >
-          <TasksProgress type={progressLabel(taskPeriod)} progress={tasksProgress} />
+          <TasksProgress
+            isLoading={clientTasks.isFetching}
+            type={progressLabel(taskPeriod)}
+            progress={tasksProgress}
+          />
         </Grid>
         <Grid
           item
@@ -358,7 +335,10 @@ const Dashboard = ({ customerIdentifier }) => {
           xl={3}
           xs={12}
         >
-          <MyCoach coachName={enrollment.coach ? enrollment.coach.name : null} />
+          <MyCoach
+            isLoading={enrollmentStatus.isFetching}
+            coachName={enrollment.coach ? enrollment.coach.name : null}
+          />
         </Grid>
       </Grid>
       <Grid
@@ -369,84 +349,14 @@ const Dashboard = ({ customerIdentifier }) => {
           item
           xs={12}
         >
-          <Card>
-            <CardContent>
-              <Stepper activeStep={activeCoachStep} alternativeLabel>
-                {steps.map((label) => (
-                  <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-
-              <div className={classes.coachConfirmation}>
-                {activeCoachStep === steps.length ? (
-                  <IconButton
-                    aria-label="Reset"
-                    disabled
-                    onClick={() => setActiveCoachStep(0)}
-                  />
-                ) : (
-                  <div>
-                    <IconButton
-                      color="primary"
-                      aria-label="Back"
-                      className={classes.coachConfirmationBackBtn}
-                      disabled={activeCoachStep === 0}
-                      onClick={() => {
-                        if (activeCoachStep === 1) {
-                          enrollmentFinish.mutate({
-                            customerIdentifier,
-                            flag: false
-                          });
-                        } else {
-                          setActiveCoachStep((prevState) => prevState - 1);
-                        }
-                      }}
-                    >
-                      <NavigateBackIcon />
-                    </IconButton>
-
-                    <IconButton
-                      color="primary"
-                      aria-label={activeCoachStep === steps.length - 1 ? 'Finish' : 'Next'}
-                      className={classes.coachConfirmationNextBtn}
-                      disabled={enrollment.status === 'AVAILABLE'}
-                      onClick={() => {
-                        if (activeCoachStep === 2) {
-                          enrollmentFinish.mutate({
-                            customerIdentifier,
-                            flag: true
-                          });
-                        } else {
-                          setActiveCoachStep((prevState) => prevState + 1);
-                        }
-                      }}
-                    >
-                      <NavigateNextIcon />
-                    </IconButton>
-                  </div>
-                )}
-              </div>
-              {activeCoachStep === steps.length - 1 ? (
-                <div className={classes.coachConfirmation}>
-                  <Alert severity={ErrorMessage.CODE_0004.level.toLowerCase()}>
-                    {' '}
-                    {ErrorMessage.CODE_0004.msg}
-                  </Alert>
-                </div>
-              ) : null}
-
-              {activeCoachStep === steps.length ? (
-                <div className={classes.coachConfirmation}>
-                  <Alert severity={InfoMessage.CODE_0001.level.toLowerCase()}>
-                    {' '}
-                    {InfoMessage.CODE_0001.msg}
-                  </Alert>
-                </div>
-              ) : null}
-            </CardContent>
-          </Card>
+          <EnrollmentCard
+            isLoading={enrollmentStatus.isFetching}
+            activeCoachStep={activeCoachStep}
+            setActiveCoachStep={setActiveCoachStep}
+            customerIdentifier={customerIdentifier}
+            enrollmentFinish={enrollmentFinish}
+            enrollmentStatus={enrollment.status}
+          />
         </Grid>
         {notification.enable
           ? (
@@ -486,10 +396,10 @@ const Dashboard = ({ customerIdentifier }) => {
 
   let container;
 
-  if (!clientTasks.isLoading && !enrollmentStatus.isLoading) {
-    container = (clientTasks.isError || enrollmentStatus.isError) ? generalProblem : dashboard;
+  if (clientTasks.isError || enrollmentStatus.isError) {
+    container = generalProblem;
   } else {
-    container = null;
+    container = dashboard;
   }
 
   return (
@@ -510,7 +420,7 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    customerIdentifier: state.auth.userInfo.identifier !== null
+    customerIdentifier: state.auth.userInfo !== null && state.auth.userInfo.identifier !== null
       ? state.auth.userInfo.identifier : null
   };
 };

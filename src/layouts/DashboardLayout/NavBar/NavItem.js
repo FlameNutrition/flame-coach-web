@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink as RouterLink } from 'react-router-dom';
+import Link from 'next/link';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -55,22 +55,23 @@ const NavItem = ({
       disableGutters
       {...rest}
     >
-      <Button
-        activeClassName={classes.active}
-        className={classes.button}
-        component={RouterLink}
-        to={href}
-      >
-        {Icon && (
+      <Link href={href}>
+        <Button
+          activeClassName={classes.active}
+          className={classes.button}
+          component="a"
+        >
+          {Icon && (
           <Icon
             className={classes.icon}
             size="20"
           />
-        )}
-        <span className={classes.title}>
-          {title}
-        </span>
-      </Button>
+          )}
+          <span className={classes.title}>
+            {title}
+          </span>
+        </Button>
+      </Link>
     </ListItem>
   );
 };

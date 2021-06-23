@@ -4,25 +4,13 @@
   "version": "2021.6.4-SNAPSHOT",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test-report": "yarn test --coverage --watchAll --no-cache",
-    "eject": "react-scripts eject"
+    "build": "next build",
+    "tests-report": "jest --watchAll --coverage --no-cache",
+    "tests": "jest --watchAll",
+    "dev": "node src/server.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
-  },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "coveragePathIgnorePatterns": [
-      "node_modules",
-      "<rootDir>/src/serviceWorker.js",
-      "<rootDir>/src/setupTests.js",
-      "<rootDir>/testing/test-utils.js"
-    ]
+    "extends": "next"
   },
   "browserslist": {
     "production": [
@@ -48,6 +36,7 @@
     "axios": "^0.21.1",
     "chart.js": "^3.2.1",
     "clsx": "^1.1.1",
+    "express": "^4.17.1",
     "formik": "^2.2.6",
     "history": "^5.0.0",
     "immutability-helper": "^3.1.1",
@@ -55,6 +44,8 @@
     "loglevel": "^1.7.1",
     "moment": "^2.29.1",
     "mui-datatables": "^3.7.6",
+    "next": "^11.0.0",
+    "next-redux-wrapper": "^7.0.2",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -69,9 +60,6 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-query": "^3.13.0",
     "react-redux": "^7.2.2",
-    "react-router": "^6.0.0-beta.0",
-    "react-router-dom": "^6.0.0-beta.0",
-    "react-scripts": "^4.0.0",
     "react-vis": "^1.11.7",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
@@ -82,16 +70,17 @@
     "yup": "^0.29.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
+    "@next/env": "^11.0.1",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/react-hooks": "^5.1.2",
     "@testing-library/user-event": "^13.1.5",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6",
-    "enzyme-to-json": "^3.6.2",
-    "eslint": "^7.11.0",
-    "eslint-config-airbnb": "^18.2.0",
+    "babel-jest": "^27.0.5",
+    "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^24.3.4",
@@ -100,9 +89,11 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
     "eslint-plugin-react-redux": "^3.3.2",
+    "identity-obj-proxy": "^3.0.0",
     "import-sort": "^6.0.0",
     "import-sort-cli": "^6.0.0",
     "import-sort-style-eslint": "^6.0.0",
+    "jest": "^27.0.5",
     "jest-sinon": "^1.0.4",
     "nock": "^13.0.11",
     "prettier": "^1.19.1",

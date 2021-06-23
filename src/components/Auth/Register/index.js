@@ -8,22 +8,19 @@ import {
   FormControl,
   FormHelperText,
   InputLabel,
-  Link,
+  makeStyles,
   MenuItem,
   Select,
   TextField,
-  Typography,
-  makeStyles
+  Typography
 } from '@material-ui/core';
-import React, { useEffect } from 'react';
-import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
-import { signup, signupReset } from '../../store/actions';
+import React from 'react';
+import Link from 'next/link';
 
 import { Formik } from 'formik';
-import Notification from '../../components/Notification';
-import Page from '../../components/Page';
+import Notification from '../../Notification';
+import Page from '../../Page';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,29 +36,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const useRouterLocationSearch = () => {
-  return new URLSearchParams(useLocation().search);
+const useRouterLocationSearch = (query) => {
+  const queryParams = query.split('?')[1];
+  return new URLSearchParams(queryParams);
 };
 
-const RegisterView = ({
-  isAuth,
+const Register = ({
   error,
   signUp,
-  signUpReset,
+  routerQuery,
   termsConditions
 }) => {
   const classes = useStyles();
-  const navigate = useNavigate();
-  const searchParameters = useRouterLocationSearch();
+
+  const searchParameters = useRouterLocationSearch(routerQuery);
 
   const registrationKeyQueryParam = searchParameters.get('registrationKey');
   const emailQueryParam = searchParameters.get('email');
-
-  useEffect(() => {
-    if (error) {
-      signUpReset();
-    }
-  }, []);
 
   return (
     <Page
@@ -117,11 +108,6 @@ const RegisterView = ({
             };
 
             signUp(userInfo);
-
-            if (isAuth) {
-              navigate('/app/dashboard', { replace: true });
-            }
-
             setSubmitting(false);
           }}
         >
@@ -139,6 +125,7 @@ const RegisterView = ({
                 <Typography
                   color="textPrimary"
                   variant="h2"
+                  aria-label="Create new account"
                 >
                   Create new account
                 </Typography>
@@ -253,12 +240,11 @@ const RegisterView = ({
                         {' '}
                         <Link
                           color="primary"
-                          component={RouterLink}
-                          to="#"
+                          href="#"
                           underline="always"
                           variant="h6"
                         >
-                          Terms and Conditions
+                          <a>Terms and Conditions</a>
                         </Link>
                       </Typography>
                     </Box>
@@ -292,11 +278,10 @@ const RegisterView = ({
                   Have an account?
                   {' '}
                   <Link
-                    component={RouterLink}
-                    to="/login"
+                    href="/login"
                     variant="h6"
                   >
-                    Sign in
+                    <a>Sign in</a>
                   </Link>
                 </Typography>
               </Box>
@@ -318,25 +303,15 @@ const RegisterView = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.loggedIn,
-    error: state.auth.errorSignup,
-  };
-};
-
-// eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
-const mapDispatchToProps = (dispatch) => ({
-  signUp: (userInfo) => dispatch(signup(userInfo)),
-  signUpReset: () => dispatch(signupReset())
-});
-
-RegisterView.propTypes = {
-  isAuth: PropTypes.bool,
+Register.propTypes = {
   termsConditions: PropTypes.bool,
-  signUp: PropTypes.func,
-  signUpReset: PropTypes.func,
+  routerQuery: PropTypes.object.isRequired,
+  signUp: PropTypes.func.isRequired,
   error: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterView);
+Register.defaultProps = {
+  termsConditions: false,
+};
+
+export default Register;

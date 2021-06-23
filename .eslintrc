@@ -1,19 +1,19 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "env": {
     "es6": true,
     "browser": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "node": true
   },
   "plugins": [
     "react-redux"
   ],
   "extends": [
-    "airbnb",
-    "airbnb/hooks",
     "eslint:recommended",
     "plugin:react-redux/recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "next"
   ],
   "settings": {
     "import/resolver": {
