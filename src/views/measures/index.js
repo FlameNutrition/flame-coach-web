@@ -23,11 +23,13 @@ import { useDeleteWeightClient } from '../../api/measures/useDeleteWeightClient'
 import { useFetchClientPersonalInformation } from '../../api/client/useFetchClientPersonalInformation';
 import { extractWeightType } from '../../api/client/clientPersonalInformationUtil';
 import { useIsMobile } from '../../utils/mediaUtil';
+import Loading from '../../components/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(3),
+    height: '100%'
   },
   weightGraphicCardContent: {
     height: '400px'
@@ -42,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   filtersCardContent: {
     height: '400px'
   },
+  container: {
+    height: '100%'
+  }
 }));
 
 const MeasuresView = ({
@@ -137,100 +142,105 @@ const MeasuresView = ({
     });
   };
 
+  let container = (<Loading size={100} />);
+
+  if ((!isLoading && !isError) && (!personalData.isLoading && !personalData.isError)) {
+    container = (
+      <Grid
+        container
+        spacing={1}
+        direction="row"
+      >
+        <Grid
+          item
+          xs={12}
+          md={9}
+        >
+          <Grid
+            container
+            spacing={1}
+            direction="column"
+          >
+            <Grid
+              item
+              xs={12}
+            >
+              <Grid container spacing={1}>
+                <Grid item md={9} xs={12}>
+                  <WeightChart
+                    className={isMobile ? classes.weightGraphicMobileCardContent
+                      : classes.weightGraphicCardContent}
+                    isMobile={isMobile}
+                    timeFrame={timeFrameWeight}
+                    dataChart={filteredData}
+                    measureUnit={extractWeightType(personalData.data.measureType.value)}
+                  />
+                </Grid>
+                <Grid item md={3} xs={12}>
+                  <Events
+                    className={classes.eventsCardContent}
+                    dataEvents={filteredData}
+                    onDeleteHandle={deleteWeightHandler}
+                    measureUnit={extractWeightType(personalData.data.measureType.value)}
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid
+          item
+          md={3}
+          xs={12}
+        >
+          <Filters
+            className={isMobile ? null : classes.filtersCardContent}
+            enableAddingWeight
+            timeFrame={timeFrameWeight}
+            onChangeTimeFrameHandler={(newTimeFrame) => setTimeFrameWeight(newTimeFrame)}
+            date={dateWeightAdding}
+            onChangeDateHandler={(newDate) => setDateWeightAdding(newDate)}
+            weight={weightAdding}
+            onChangeWeightHandler={(newWeight) => setWeightAdding(newWeight)}
+            onAddWeightHandler={addWeightHandler}
+          />
+        </Grid>
+        {notification.enable
+          ? (
+            <Grid
+              item
+              xs={12}
+              md={9}
+            >
+              <Notification
+                collapse
+                open={notification.enable}
+                openHandler={notificationHandler}
+                level={notification.level}
+                message={notification.message}
+              />
+            </Grid>
+          )
+          : null}
+      </Grid>
+    );
+  }
+
+  if ((!isLoading && isError) || (!personalData.isLoading && personalData.isError)) {
+    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
+  }
+
   return (
     <Page
       className={classes.root}
       title="Measures"
     >
       <Container
+        className={classes.container}
         maxWidth={false}
       >
-        {(!isLoading && !isError)
-          && (!personalData.isLoading && !personalData.isError)
-          ? (
-            <Grid
-              container
-              spacing={1}
-              direction="row"
-            >
-              <Grid
-                item
-                xs={12}
-                md={9}
-              >
-                <Grid
-                  container
-                  spacing={1}
-                  direction="column"
-                >
-                  <Grid
-                    item
-                    xs={12}
-                  >
-                    <Grid container spacing={1}>
-                      <Grid item md={9} xs={12}>
-                        <WeightChart
-                          className={isMobile ? classes.weightGraphicMobileCardContent
-                            : classes.weightGraphicCardContent}
-                          isMobile={isMobile}
-                          timeFrame={timeFrameWeight}
-                          dataChart={filteredData}
-                          measureUnit={extractWeightType(personalData.data.measureType.value)}
-                        />
-                      </Grid>
-                      <Grid item md={3} xs={12}>
-                        <Events
-                          className={classes.eventsCardContent}
-                          dataEvents={filteredData}
-                          onDeleteHandle={deleteWeightHandler}
-                          measureUnit={extractWeightType(personalData.data.measureType.value)}
-                        />
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-
-              <Grid
-                item
-                md={3}
-                xs={12}
-              >
-                <Filters
-                  className={isMobile ? null : classes.filtersCardContent}
-                  enableAddingWeight
-                  timeFrame={timeFrameWeight}
-                  onChangeTimeFrameHandler={(newTimeFrame) => setTimeFrameWeight(newTimeFrame)}
-                  date={dateWeightAdding}
-                  onChangeDateHandler={(newDate) => setDateWeightAdding(newDate)}
-                  weight={weightAdding}
-                  onChangeWeightHandler={(newWeight) => setWeightAdding(newWeight)}
-                  onAddWeightHandler={addWeightHandler}
-                />
-              </Grid>
-              {notification.enable
-                ? (
-                  <Grid
-                    item
-                    xs={12}
-                    md={9}
-                  >
-                    <Notification
-                      collapse
-                      open={notification.enable}
-                      openHandler={notificationHandler}
-                      level={notification.level}
-                      message={notification.message}
-                    />
-                  </Grid>
-                )
-                : null}
-            </Grid>
-          ) : null}
-        {(!isLoading && isError)
-          || (!personalData.isLoading && personalData.isError)
-          ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
-          : null}
+        {container}
       </Container>
     </Page>
   );

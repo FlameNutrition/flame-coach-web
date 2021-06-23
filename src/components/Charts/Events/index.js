@@ -4,7 +4,6 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable-list';
-import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import Event from './Event';
 import clsx from 'clsx';
 

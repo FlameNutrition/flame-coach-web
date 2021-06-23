@@ -14,13 +14,18 @@ import Warning from '../../../components/Warning';
 import { logDebug, logError } from '../../../logging';
 import Profile from '../Profile';
 import ProfileDetails from '../ProfileDetails';
+import Loading from '../../../components/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(3),
+    height: '100%'
+  },
+  container: {
+    height: '100%'
   }
 }));
 
@@ -121,70 +126,79 @@ const Account = ({
     });
   };
 
+  let container = (<Loading size={100} />);
+
+  if (!contactInformation.isFetching && !contactInformation.isError) {
+    container = (
+      <Grid
+        container
+        spacing={3}
+      >
+        <Grid
+          item
+          lg={4}
+          md={6}
+          xs={12}
+        >
+          <Profile
+            user={{
+              city: '',
+              country: (contactInformation.data.country)
+                ? contactInformation.data.country.value : '',
+              avatar: ''
+            }}
+            updatePhotoHandler={updatePhotoHandler}
+          />
+        </Grid>
+        <Grid
+          item
+          lg={8}
+          md={6}
+          xs={12}
+        >
+          <ProfileDetails
+            userDetails={{
+              firstName: contactInformation.data.firstName,
+              lastName: contactInformation.data.lastName,
+              email,
+              phoneCode: contactInformation.data.phoneCode,
+              phoneNumber: contactInformation.data.phoneNumber,
+              country: contactInformation.data.country && contactInformation.data.country.code
+                ? contactInformation.data.country.code : '',
+            }}
+            saveContactInformationHandler={saveContactInformationHandler}
+            updateUserDetailsHandler={updateUserDetailsHandler}
+          />
+          {notification.enable
+            ? (
+              <Notification
+                collapse
+                open={notification.enable}
+                openHandler={resetNotificationHandler}
+                level={notification.level}
+                message={notification.message}
+              />
+            )
+            : null}
+        </Grid>
+      </Grid>
+    );
+  }
+
+  if (!contactInformation.isFetching && contactInformation.isError) {
+    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
+  }
+
   return (
     <Page
       className={classes.root}
       title="Account"
     >
-      <Container maxWidth="lg">
-        {!contactInformation.isLoading && !contactInformation.isError
-          ? (
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                item
-                lg={4}
-                md={6}
-                xs={12}
-              >
-                <Profile
-                  user={{
-                    city: '',
-                    country: (contactInformation.data.country)
-                      ? contactInformation.data.country.value : '',
-                    avatar: ''
-                  }}
-                  updatePhotoHandler={updatePhotoHandler}
-                />
-              </Grid>
-              <Grid
-                item
-                lg={8}
-                md={6}
-                xs={12}
-              >
-                <ProfileDetails
-                  userDetails={{
-                    firstName: contactInformation.data.firstName,
-                    lastName: contactInformation.data.lastName,
-                    email,
-                    phoneCode: contactInformation.data.phoneCode,
-                    phoneNumber: contactInformation.data.phoneNumber,
-                    country: contactInformation.data.country && contactInformation.data.country.code
-                      ? contactInformation.data.country.code : '',
-                  }}
-                  saveContactInformationHandler={saveContactInformationHandler}
-                  updateUserDetailsHandler={updateUserDetailsHandler}
-                />
-                {notification.enable
-                  ? (
-                    <Notification
-                      collapse
-                      open={notification.enable}
-                      openHandler={resetNotificationHandler}
-                      level={notification.level}
-                      message={notification.message}
-                    />
-                  )
-                  : null}
-              </Grid>
-            </Grid>
-          ) : null}
-        {!contactInformation.isLoading && contactInformation.isError
-          ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
-          : null}
+      <Container
+        className={classes.container}
+        maxWidth="lg"
+      >
+        {container}
       </Container>
     </Page>
   );

@@ -20,46 +20,48 @@ import {
 } from 'react-feather';
 import { PeopleOutline as CoachIcon, PermIdentity as ClientIcon } from '@material-ui/icons';
 import React, { useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import Link from 'next/link';
 
 import NavBarBox from '../../../components/NavBarBox';
 import NavItem from './NavItem';
 import PropTypes from 'prop-types';
-import { isEnable, isWhitelist, MEASURES } from '../../../utils/toggles';
+import { isFeatureEnable, MEASURES } from '../../../utils/toggles';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const itemsCoach = [
   {
-    href: '/app/dashboard',
+    href: '/',
     icon: BarChartIcon,
     title: 'Dashboard',
     featureName: 'DASHBOARD'
   },
   {
-    href: '/app/customers',
+    href: '/clients',
     icon: UsersIcon,
     title: 'Customers',
     featureName: 'CUSTOMERS'
   },
   {
-    href: '/app/planner',
+    href: '/planner',
     icon: CalendarIcon,
     title: 'Planner',
     featureName: 'PLANNER'
   },
   {
-    href: '/app/account',
+    href: '/account',
     icon: UserIcon,
     title: 'Account',
     featureName: 'ACCOUNT'
   },
   {
-    href: '/app/settings',
+    href: '/settings',
     icon: SettingsIcon,
     title: 'Settings',
     featureName: 'SETTING'
   },
   {
-    href: '/app/logout',
+    href: '/logout',
     icon: LogOutIcon,
     title: 'Logout',
     featureName: 'LOGOUT'
@@ -68,31 +70,31 @@ const itemsCoach = [
 
 const itemsClient = [
   {
-    href: '/app/dashboard',
+    href: '/',
     icon: PlannerIcon,
     title: 'My Planner',
     featureName: 'DASHBOARD'
   },
   {
-    href: '/app/account',
+    href: '/account',
     icon: UserIcon,
     title: 'Account',
     featureName: 'ACCOUNT'
   },
   {
-    href: '/app/measures',
+    href: '/measures',
     icon: MeasuresIcon,
     title: 'Measures',
     featureName: MEASURES
   },
   {
-    href: '/app/settings',
+    href: '/settings',
     icon: SettingsIcon,
     title: 'Settings',
     featureName: 'SETTINGS'
   },
   {
-    href: '/app/logout',
+    href: '/logout',
     icon: LogOutIcon,
     title: 'Logout',
     featureName: 'LOGOUT'
@@ -116,22 +118,23 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
+const authSelector = (state) => state.auth;
+
 const NavBar = ({
-  userType,
-  firstName,
-  lastName,
-  isWhiteListFl,
   onMobileClose,
   openMobile
 }) => {
   const classes = useStyles();
-  const location = useLocation();
+  const router = useRouter();
+
+  const auth = useSelector(authSelector);
+  const userInfo = auth.userInfo !== null ? auth.userInfo : null;
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
     }
-  }, [location.pathname]);
+  }, [router.query]);
 
   const content = (
     <Box
@@ -145,21 +148,22 @@ const NavBar = ({
         flexDirection="column"
         p={2}
       >
-        <Avatar
-          className={classes.avatar}
-          component={RouterLink}
-          to="/app/account"
-        >
-          {userType === 'CLIENT' ? <ClientIcon /> : <CoachIcon />}
-        </Avatar>
+        <Link href="/account">
+          <Avatar
+            className={classes.avatar}
+            component="a"
+          >
+            {userInfo.type === 'CLIENT' ? <ClientIcon /> : <CoachIcon />}
+          </Avatar>
+        </Link>
         <Typography
           className={classes.name}
           color="textPrimary"
           variant="h5"
         >
-          {firstName}
+          {userInfo.firstName}
           {' '}
-          {lastName}
+          {userInfo.lastName}
         </Typography>
         <Typography
           color="textSecondary"
@@ -167,15 +171,15 @@ const NavBar = ({
         >
           Account Type:
           {' '}
-          {userType === 'CLIENT' ? 'Client' : 'Coach'}
+          {userInfo.type === 'CLIENT' ? 'Client' : 'Coach'}
         </Typography>
       </Box>
       <Divider />
       <Box p={2}>
         <List>
-          {userType === 'COACH'
+          {userInfo.type === 'COACH'
             ? itemsCoach.map((item) => {
-              if (isEnable(item.featureName) || isWhiteListFl) {
+              if (isFeatureEnable(item.href, userInfo.identifier)) {
                 return (
                   <NavItem
                     href={item.href}
@@ -187,7 +191,7 @@ const NavBar = ({
               }
               return null;
             }) : itemsClient.map((item) => {
-              if (isEnable(item.featureName) || isWhiteListFl) {
+              if (isFeatureEnable(item.href, userInfo.identifier)) {
                 return (
                   <NavItem
                     href={item.href}
@@ -214,7 +218,7 @@ const NavBar = ({
         )}
         btnEnable
         btnLabel="Buy me a coffee"
-        btnHref={`${process.env.REACT_APP_BUY_ME_A_COFFEE}`}
+        btnHref={`${process.env.NEXT_PUBLIC_BUY_ME_A_COFFEE}`}
       />
       <NavBarBox
         title="Having issues?"
@@ -228,7 +232,7 @@ const NavBar = ({
         )}
         btnEnable
         btnLabel="Report"
-        btnHref={`mailto:${process.env.REACT_APP_SUPPORT_EMAIL}`}
+        btnHref={`mailto:${process.env.NEXT_PUBLIC_SUPPORT_EMAIL}`}
       />
     </Box>
   );
@@ -263,26 +267,12 @@ const NavBar = ({
 NavBar.propTypes = {
   onMobileClose: PropTypes.func,
   openMobile: PropTypes.bool,
-  userType: PropTypes.string,
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  isWhiteListFl: PropTypes.bool
 };
 
 NavBar.defaultProps = {
   onMobileClose: () => {
   },
-  openMobile: false,
-  isWhiteListFl: true
+  openMobile: false
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userType: state.auth.userInfo !== null ? state.auth.userInfo.type : null,
-    firstName: state.auth.userInfo !== null ? state.auth.userInfo.firstname : null,
-    lastName: state.auth.userInfo !== null ? state.auth.userInfo.lastname : null,
-    isWhiteListFl: state.auth.userInfo !== null ? isWhitelist(state.auth.userInfo.identifier) : true
-  };
-};
-
-export { NavBar, mapStateToProps };
+export default NavBar;

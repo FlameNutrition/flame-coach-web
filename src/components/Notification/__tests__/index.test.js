@@ -1,77 +1,43 @@
 import React from 'react';
-import toJson from 'enzyme-to-json';
-import { createMount, createShallow } from '@material-ui/core/test-utils';
 import sinon from 'sinon';
+import { render, screen, cleanup, fireEvent } from '../../../testing/test-utils';
 import Notification from '../index';
 
 describe('<Notification/ >', () => {
-  let shallow;
-  let mount;
 
-  beforeAll(() => {
-    shallow = createShallow();
-    mount = createMount();
+  afterEach(() => {
+    cleanup();
   });
 
-  it('Show info notification', () => {
-    const notification = shallow(
-      <Notification message="INFO MESSAGE" level="INFO" />
-    );
-
-    expect(toJson(notification)).toMatchSnapshot();
-  });
-
-  it('Show warning notification', () => {
-    const notification = shallow(
-      <Notification message="INFO MESSAGE" level="WARNING" />
-    );
-
-    expect(toJson(notification)).toMatchSnapshot();
-  });
-
-  it('Show error notification', () => {
-    const notification = shallow(
-      <Notification message="INFO MESSAGE" level="ERROR" />
-    );
-
-    expect(toJson(notification)).toMatchSnapshot();
-  });
-
-  it('Show success notification', () => {
-    const notification = shallow(
-      <Notification message="INFO MESSAGE" level="SUCCESS" />
-    );
-
-    expect(toJson(notification)).toMatchSnapshot();
-  });
-
-  it('Show notification with collapse', () => {
-    const notification = shallow(
+  it('Show info notification with collapse', () => {
+    const { container } = render(
       <Notification
-        collapse
-        message="INFO MESSAGE"
-        level="SUCCESS"
-      />
+        collapse message="INFO MESSAGE" level="INFO"/>
     );
 
-    expect(toJson(notification)).toMatchSnapshot();
+    expect(container)
+      .toMatchSnapshot();
+    expect(screen.queryByText('INFO MESSAGE'))
+      .not
+      .toBeNull();
+    expect(screen.queryByLabelText('close'))
+      .not
+      .toBeNull();
   });
 
   it('Message should be "I like you"', () => {
-    const notification = shallow(
-      <Notification message="I like you" level="SUCCESS" />
+    render(
+      <Notification message="I like you" level="SUCCESS"/>
     );
 
-    const message = notification.find({ itemID: 'notification' })
-      .children()
-      .text();
-
-    expect(message).toEqual('I like you');
+    expect(screen.queryByText('I like you'))
+      .not
+      .toBeNull();
   });
 
   it('Close notification', () => {
     const openHandlerMock = sinon.spy();
-    const notification = mount(
+    render(
       <Notification
         collapse
         open
@@ -81,10 +47,9 @@ describe('<Notification/ >', () => {
       />
     );
 
-    const closedBtn = notification.find({ type: 'button' });
+    fireEvent.click(screen.getByRole('button'));
 
-    closedBtn.simulate('click');
-
-    expect(openHandlerMock).toHaveBeenCalledOnce();
+    expect(openHandlerMock)
+      .toHaveBeenCalledOnce(1);
   });
 });

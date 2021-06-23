@@ -7,6 +7,7 @@ export const useFetchClientPersonalInformation = (clientIdentifier) => {
   const {
     isLoading,
     isError,
+    isFetching,
     data
   } = useQuery(['getClientPersonalData', clientIdentifier],
     () => getClientPersonalData(clientIdentifier), {
@@ -19,6 +20,7 @@ export const useFetchClientPersonalInformation = (clientIdentifier) => {
 
   return {
     isLoading,
+    isFetching,
     isError,
     data
   };

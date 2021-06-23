@@ -1,8 +1,8 @@
-const extractWeightType = (measureType: String) => {
+const extractWeightType = (measureType) => {
   return measureType.split('/')[0];
 };
 
-const extractHeightType = (measureType: String) => {
+const extractHeightType = (measureType) => {
   return measureType.split('/')[1];
 };
 
