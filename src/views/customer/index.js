@@ -28,13 +28,15 @@ import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
 import themeTable from './themeTable';
 import clsx from 'clsx';
 import { useIsMediumMobile } from '../../utils/mediaUtil';
+import Loading from '../../components/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',
     paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(3),
+    height: '100%'
   },
   sendCard: {
     display: 'flex',
@@ -57,6 +59,9 @@ const useStyles = makeStyles((theme) => ({
   },
   actionColumnTable: {
     paddingRight: '12px'
+  },
+  container: {
+    height: '100%'
   }
 }));
 
@@ -145,8 +150,8 @@ const CustomersView = ({ customerIdentifier }) => {
   });
 
   const {
-    isLoading,
     isError,
+    isFetching,
     data
   } = useQuery(['getClientsCoachPlusClientsAvailableForCoaching', customerIdentifier],
     () => getClientsCoachPlusClientsAvailableForCoaching(customerIdentifier), {
@@ -279,97 +284,105 @@ const CustomersView = ({ customerIdentifier }) => {
 
   const columns = ['Name', 'Email', 'Registration date', 'Status', columnActions];
 
+  let container = (<Loading size={100} />);
+
+  if (!isFetching && !isError) {
+    container = (
+      <Grid
+        direction="row"
+        container
+      >
+        <Grid item xs={12}>
+          <Box marginBottom={2}>
+            <form onSubmit={formikSendInviteClient.handleSubmit}>
+              <Card>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Send Invite
+                  </Typography>
+                  <Box className={classes.sendCard}>
+                    <TextField
+                      error={Boolean(formikSendInviteClient.errors.email)}
+                      fullWidth
+                      helperText={formikSendInviteClient.errors.email}
+                      label="Email"
+                      margin="normal"
+                      name="email"
+                      onBlur={formikSendInviteClient.handleBlur}
+                      onChange={formikSendInviteClient.handleChange}
+                      value={formikSendInviteClient.values.email}
+                      variant="outlined"
+                    />
+                    <Button
+                      className={classes.sendInviteButton}
+                      variant="contained"
+                      type="submit"
+                      disabled={Boolean(formikSendInviteClient.errors.email)}
+                    >
+                      <SvgIcon
+                        fontSize="small"
+                        color="inherit"
+                      >
+                        <SendIcon />
+                      </SvgIcon>
+                    </Button>
+                  </Box>
+                </CardContent>
+              </Card>
+            </form>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <MuiThemeProvider theme={themeTable}>
+            <MUIDataTable
+              title="Clients List"
+              data={data.clientsCoach.map((client) => ([
+                `${client.firstname} ${client.lastname}`,
+                client.email,
+                client.registrationDate,
+                getStatus(client.status),
+                {
+                  client,
+                  clientLoading,
+                  isClientLoading
+                },
+              ]))}
+              columns={columns}
+              options={options}
+            />
+          </MuiThemeProvider>
+        </Grid>
+        {notification.enable
+          ? (
+            <Grid item xs={12}>
+              <Notification
+                collapse
+                open={notification.enable}
+                openHandler={resetNotificationHandler}
+                level={notification.level}
+                message={notification.message}
+              />
+            </Grid>
+          )
+          : null}
+      </Grid>
+    );
+  }
+
+  if (!isFetching && isError) {
+    container = <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />;
+  }
+
   return (
     <Page
       className={classes.root}
       title="Customers"
     >
-      <Container maxWidth={false}>
-        {!isLoading && !isError
-          ? (
-            <Grid
-              direction="row"
-              container
-            >
-              <Grid item xs={12}>
-                <Box marginBottom={2}>
-                  <form onSubmit={formikSendInviteClient.handleSubmit}>
-                    <Card>
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Send Invite
-                        </Typography>
-                        <Box className={classes.sendCard}>
-                          <TextField
-                            error={Boolean(formikSendInviteClient.errors.email)}
-                            fullWidth
-                            helperText={formikSendInviteClient.errors.email}
-                            label="Email"
-                            margin="normal"
-                            name="email"
-                            onBlur={formikSendInviteClient.handleBlur}
-                            onChange={formikSendInviteClient.handleChange}
-                            value={formikSendInviteClient.values.email}
-                            variant="outlined"
-                          />
-                          <Button
-                            className={classes.sendInviteButton}
-                            variant="contained"
-                            type="submit"
-                            disabled={Boolean(formikSendInviteClient.errors.email)}
-                          >
-                            <SvgIcon
-                              fontSize="small"
-                              color="inherit"
-                            >
-                              <SendIcon />
-                            </SvgIcon>
-                          </Button>
-                        </Box>
-                      </CardContent>
-                    </Card>
-                  </form>
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <MuiThemeProvider theme={themeTable}>
-                  <MUIDataTable
-                    title="Clients List"
-                    data={data.clientsCoach.map((client) => ([
-                      `${client.firstname} ${client.lastname}`,
-                      client.email,
-                      client.registrationDate,
-                      getStatus(client.status),
-                      {
-                        client,
-                        clientLoading,
-                        isClientLoading
-                      },
-                    ]))}
-                    columns={columns}
-                    options={options}
-                  />
-                </MuiThemeProvider>
-              </Grid>
-              {notification.enable
-                ? (
-                  <Grid item xs={12}>
-                    <Notification
-                      collapse
-                      open={notification.enable}
-                      openHandler={resetNotificationHandler}
-                      level={notification.level}
-                      message={notification.message}
-                    />
-                  </Grid>
-                )
-                : null}
-            </Grid>
-          )
-          : null}
-        {!isLoading && isError
-          ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
-          : null}
+      <Container
+        className={classes.container}
+        maxWidth={false}
+      >
+        {container}
       </Container>
     </Page>
   );
