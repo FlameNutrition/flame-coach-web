@@ -1,54 +1,64 @@
 import Calendar from '../Calendar';
 import React from 'react';
-import { createShallow } from '@material-ui/core/test-utils';
 import sinon from 'sinon';
-import toJson from 'enzyme-to-json';
+import { render, screen } from '../../../testing/test-utils';
 
-describe('<Calendar/ >', () => {
-  let shallow;
-  let wrapper;
+describe('<Calendar />', () => {
+
   const changeCalenderHandlerSpy = sinon.spy();
-  const setState = jest.fn();
-  const useStateSpy = jest.spyOn(React, 'useState');
-  useStateSpy.mockImplementation((init) => [init, setState]);
-
-  beforeAll(() => {
-    shallow = createShallow();
-  });
-
-  beforeEach(() => {
-    wrapper = shallow(
-      <Calendar onChangeCalendar={changeCalenderHandlerSpy} />
-    );
-  });
 
   afterEach(() => {
     jest.clearAllMocks();
+    //cleanup();
+  });
+
+  it('Show multiple selection calendar with labels', () => {
+
+    const { container } = render(
+      <Calendar
+        daily={false}
+        onChangeCalendar={changeCalenderHandlerSpy}
+      />
+    );
+
+    expect(container)
+      .toMatchSnapshot();
+
+    expect(screen.queryByText('Calendar'))
+      .not
+      .toBeNull();
+    expect(screen.queryByText('Day:'))
+      .not
+      .toBeNull();
+    expect(screen.queryByText('Double click date'))
+      .not
+      .toBeNull();
+    expect(screen.queryByText('Period:'))
+      .not
+      .toBeNull();
+    expect(screen.queryByText('Select a start and end date'))
+      .not
+      .toBeNull();
+
   });
 
   it('Show daily selection calendar', () => {
-    const calendar = shallow(
+
+    render(
       <Calendar
         daily
         onChangeCalendar={changeCalenderHandlerSpy}
       />
     );
 
-    expect(toJson(calendar)).toMatchSnapshot();
+    expect(screen.queryByText('Day:'))
+      .toBeNull();
+    expect(screen.queryByText('Double click date'))
+      .toBeNull();
+    expect(screen.queryByText('Period:'))
+      .toBeNull();
+    expect(screen.queryByText('Select a start and end date'))
+      .toBeNull();
   });
 
-  it('Show multiple selection calendar with lable', () => {
-    expect(toJson(wrapper)).toMatchSnapshot();
-
-    const labelBox = wrapper.find('WithStyles(ForwardRef(Typography))');
-
-    expect(labelBox.first().text()).toEqual('Day: Double click date');
-    expect(labelBox.last().text()).toEqual('Period: Select a start and end date');
-  });
-
-  it('Change date handler', () => {
-    wrapper.find('Calendar').props().onChange();
-
-    expect(changeCalenderHandlerSpy).toHaveBeenCalledOnce();
-  });
 });

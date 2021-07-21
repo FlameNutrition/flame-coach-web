@@ -307,7 +307,7 @@ const Dashboard = ({ customerIdentifier }) => {
     setEndDate(finalDate);
   };
 
-  const generalProblem = <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />;
+  const generalProblem = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
 
   const dashboard = (
     <>
@@ -420,7 +420,7 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    customerIdentifier: state.auth.userInfo.identifier !== null
+    customerIdentifier: state.auth.userInfo !== null && state.auth.userInfo.identifier !== null
       ? state.auth.userInfo.identifier : null
   };
 };

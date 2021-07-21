@@ -1,23 +1,15 @@
 import * as Yup from 'yup';
 
 import {
-  Box,
-  Button,
-  Container,
-  Link,
-  TextField,
-  Typography,
-  makeStyles
+  Box, Button, Container, makeStyles, TextField, Typography
 } from '@material-ui/core';
-import React, { useEffect } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { loggedIn, loggedInReset } from '../../store/actions';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Formik } from 'formik';
-import Notification from '../../components/Notification';
-import Page from '../../components/Page';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import Notification from '../../Notification';
+import Page from '../../Page';
+import Link from 'next/link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,28 +24,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const LoginView = ({
-  isAuth, error, signIn, signInReset
+const Login = ({
+  error,
+  signIn
 }) => {
   const classes = useStyles();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (error) {
-      signInReset();
-    }
-  }, []);
 
   const handlerSubmitting = async (value, { setSubmitting }) => {
-    signIn(value.email, value.password);
+    await signIn(value.email, value.password);
 
     // FIXME: Change this when something wrong happened
-    if (isAuth) {
-      setSubmitting(false);
-      navigate('/app/dashboard', { replace: true });
-    } else {
-      setSubmitting(false);
-    }
+    setSubmitting(false);
   };
 
   return (
@@ -74,10 +55,16 @@ const LoginView = ({
               email: '',
               password: ''
             }}
-            validationSchema={Yup.object().shape({
-              email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-              password: Yup.string().max(255).required('Password is required')
-            })}
+            validationSchema={Yup.object()
+              .shape({
+                email: Yup.string()
+                  .email('Must be a valid email')
+                  .max(255)
+                  .required('Email is required'),
+                password: Yup.string()
+                  .max(255)
+                  .required('Password is required')
+              })}
             onSubmit={handlerSubmitting}
           >
             {({
@@ -92,6 +79,7 @@ const LoginView = ({
               <form onSubmit={handleSubmit}>
                 <Box mb={3}>
                   <Typography
+                    aria-label="Sign in"
                     color="textPrimary"
                     variant="h2"
                   >
@@ -150,11 +138,10 @@ const LoginView = ({
                   Don&apos;t have an account?
                   {' '}
                   <Link
-                    component={RouterLink}
-                    to="/register"
+                    href="/register"
                     variant="h6"
                   >
-                    Sign up
+                    <a>Sign up</a>
                   </Link>
                 </Typography>
                 <Box className={classes.notification}>
@@ -176,24 +163,9 @@ const LoginView = ({
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.loggedIn,
-    error: state.auth.errorLogin,
-  };
-};
-
-// eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
-const mapDispatchToProps = (dispatch) => ({
-  signIn: (email, password) => dispatch(loggedIn(email, password)),
-  signInReset: () => dispatch(loggedInReset())
-});
-
-LoginView.propTypes = {
-  isAuth: PropTypes.bool,
+Login.propTypes = {
   error: PropTypes.object,
-  signIn: PropTypes.func,
-  signInReset: PropTypes.func
+  signIn: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginView);
+export default Login;

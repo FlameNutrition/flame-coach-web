@@ -1,12 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
-import logger from 'loglevel';
 import PropTypes from 'prop-types';
 import {
   AppBar, Box, Hidden, IconButton, makeStyles, Toolbar
 } from '@material-ui/core';
-import { Menu as MenuIcon, Input as InputIcon } from '@material-ui/icons';
-import { loggedOut, notification } from '../../../store/actions';
+import { Input as InputIcon, Menu as MenuIcon } from '@material-ui/icons';
+import { loggedOut } from '../../../store/actions';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -19,13 +19,10 @@ const useStyles = makeStyles(() => ({
 const TopBar = ({
   className,
   onMobileNavOpen,
-  // FIXME
-  // eslint-disable-next-line no-shadow
-  notification,
-  signOut,
   ...rest
 }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <AppBar
@@ -53,14 +50,13 @@ const TopBar = ({
             </Badge>
           </IconButton> */}
           <IconButton color="inherit">
-            <InputIcon onClick={() => signOut()} />
+            <InputIcon onClick={() => dispatch(loggedOut())} />
           </IconButton>
         </Hidden>
         <Hidden lgUp>
           <IconButton
             color="inherit"
             onClick={() => {
-              logger.info('Open the mobile menu');
               onMobileNavOpen();
             }}
           >
@@ -72,18 +68,9 @@ const TopBar = ({
   );
 };
 
-// FIXME: Remove this and fix this method
-// eslint-disable-next-line react-redux/mapDispatchToProps-prefer-shorthand
-const mapDispatchToProps = (dispatch) => ({
-  signOut: () => dispatch(loggedOut()),
-  notification: () => dispatch(notification())
-});
-
 TopBar.propTypes = {
   className: PropTypes.string,
-  onMobileNavOpen: PropTypes.func,
-  signOut: PropTypes.func,
-  notification: PropTypes.func
+  onMobileNavOpen: PropTypes.func
 };
 
-export { TopBar, mapDispatchToProps };
+export default TopBar;

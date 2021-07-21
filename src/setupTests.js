@@ -1,8 +1,6 @@
 import '@testing-library/jest-dom';
+import logger from 'loglevel';
 
-import Adapter from 'enzyme-adapter-react-16';
-import { configure } from 'enzyme';
+logger.setLevel('silent');
 
 require('jest-sinon');
-
-configure({ adapter: new Adapter() });

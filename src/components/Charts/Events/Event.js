@@ -1,5 +1,4 @@
 import React from 'react';
-import './Event.css';
 import PropTypes from 'prop-types';
 import { Paper } from '@material-ui/core';
 import moment from 'moment';

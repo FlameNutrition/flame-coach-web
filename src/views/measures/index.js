@@ -228,7 +228,7 @@ const MeasuresView = ({
   }
 
   if ((!isLoading && isError) || (!personalData.isLoading && personalData.isError)) {
-    container = <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />;
+    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
   }
 
   return (

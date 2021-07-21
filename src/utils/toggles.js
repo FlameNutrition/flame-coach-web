@@ -1,9 +1,9 @@
-export const MEASURES = 'MEASURES';
+export const MEASURES = '/measures';
 
 const isEnable = (toggleName) => {
   switch (toggleName) {
     case MEASURES:
-      return process.env.REACT_APP_TOGGLE_MEASURES === 'false';
+      return process.env.NEXT_PUBLIC_TOGGLE_MEASURES === 'true';
     default:
       return true;
   }
@@ -14,11 +14,12 @@ const isWhitelist = (customerIdentifier) => {
     return false;
   }
 
-  const uuidWhitelist = process.env.REACT_APP_UUID_WHITELIST.split(',');
+  const uuidWhitelist = process.env.NEXT_PUBLIC_UUID_WHITELIST.split(',');
   return uuidWhitelist.includes(customerIdentifier);
 };
 
-export {
-  isEnable,
-  isWhitelist
-};
+export const isFeatureEnable = (toggleName, customerIdentifier) => {
+
+  return isEnable(toggleName) || isWhitelist(customerIdentifier);
+
+}
