@@ -348,7 +348,7 @@ const Planner = ({ customerIdentifier }) => {
     >
       <Container maxWidth={false}>
         {(!clients.isLoading && (clients.isError || clientTasks.isError))
-          ? <Warning message={process.env.REACT_APP_MSG_SERVER_ERROR} />
+          ? <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />
           : null}
         {(!clients.isError && !clientTasks.isError) ? (
           <>

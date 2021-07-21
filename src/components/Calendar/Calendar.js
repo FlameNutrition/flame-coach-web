@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import CalendarReact from 'react-calendar';
 // FIXME: Try to understand why the Calendar.module.css does not work
-import './Calendar.css';
 
 const useStyles = makeStyles(() => ({
   root: {

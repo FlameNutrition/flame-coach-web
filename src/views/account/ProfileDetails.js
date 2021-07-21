@@ -207,6 +207,7 @@ const ProfileDetails = ({
                     color="primary"
                     variant="contained"
                     type="submit"
+                    name="contactInfo-save"
                   >
                     Save
                   </Button>
@@ -348,6 +349,7 @@ const ProfileDetails = ({
                         color="primary"
                         variant="contained"
                         type="submit"
+                        name="personalInfo-save"
                       >
                         Save
                       </Button>
