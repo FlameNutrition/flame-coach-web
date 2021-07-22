@@ -1,4 +1,5 @@
-import { Container, makeStyles } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import makeStyles from '@material-ui/styles/makeStyles';
 import React from 'react';
 
 import Page from '../../../components/Page';

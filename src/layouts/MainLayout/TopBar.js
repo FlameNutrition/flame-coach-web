@@ -1,11 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  AppBar,
-  Toolbar,
-  makeStyles
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import makeStyles from '@material-ui/styles/makeStyles';
 
 const useStyles = makeStyles(({
   root: {},
@@ -14,7 +12,10 @@ const useStyles = makeStyles(({
   }
 }));
 
-const TopBar = ({ className, ...rest }) => {
+const TopBar = ({
+  className,
+  ...rest
+}) => {
   const classes = useStyles();
 
   return (
@@ -23,15 +24,15 @@ const TopBar = ({ className, ...rest }) => {
       elevation={0}
       {...rest}
     >
-      <Toolbar className={classes.toolbar} />
+      <Toolbar className={classes.toolbar}/>
       {
-      /**
-      <Toolbar className={classes.toolbar}>
-        <RouterLink to="/">
-          <Logo />
-        </RouterLink>
-      </Toolbar>
-      */
+        /**
+         <Toolbar className={classes.toolbar}>
+         <RouterLink to="/">
+         <Logo />
+         </RouterLink>
+         </Toolbar>
+         */
       }
     </AppBar>
   );

@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  Divider,
-  Grid,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import makeStyles from '@material-ui/styles/makeStyles';
+
 import { AccessTime as AccessTimeIcon, GetApp as GetAppIcon } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +25,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ProductCard = ({ className, product, ...rest }) => {
+const ProductCard = ({
+  className,
+  product,
+  ...rest
+}) => {
   const classes = useStyles();
 
   return (
@@ -63,8 +65,8 @@ const ProductCard = ({ className, product, ...rest }) => {
           {product.description}
         </Typography>
       </CardContent>
-      <Box flexGrow={1} />
-      <Divider />
+      <Box flexGrow={1}/>
+      <Divider/>
       <Box p={2}>
         <Grid
           container

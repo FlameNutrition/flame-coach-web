@@ -1,23 +1,22 @@
-import {
-  Accordion,
-  AccordionActions,
-  AccordionDetails,
-  AccordionSummary,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Accordion from '@material-ui/core/Accordion';
+import Divider from '@material-ui/core/Divider';
+import AccordionActions from '@material-ui/core/AccordionActions';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import CardContent from '@material-ui/core/CardContent';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
+
 import { Controller, useForm } from 'react-hook-form';
 
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
@@ -66,7 +65,7 @@ const ProfileDetails = ({
           >
             <Accordion defaultExpanded>
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon/>}
                 aria-controls="contactInfo-content"
                 id="contactInfo-header"
               >
@@ -136,7 +135,10 @@ const ProfileDetails = ({
                       label="Code"
                       name="phoneCode"
                       error={Boolean(formContactInformation.errors.phoneCode)}
-                      inputRef={formContactInformation.register({ required: false, pattern: '^[+]*[0-9]{1,4}$' })}
+                      inputRef={formContactInformation.register({
+                        required: false,
+                        pattern: '^[+]*[0-9]{1,4}$'
+                      })}
                       onChange={updateUserDetailsHandler}
                       value={userDetails.phoneCode}
                       variant="outlined"
@@ -196,7 +198,7 @@ const ProfileDetails = ({
                   </Grid>
                 </Grid>
               </AccordionDetails>
-              <Divider />
+              <Divider/>
               <AccordionActions>
                 <Box
                   display="flex"
@@ -229,7 +231,7 @@ const ProfileDetails = ({
               >
                 <Accordion>
                   <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
+                    expandIcon={<ExpandMoreIcon/>}
                     aria-controls="contactInfo-content"
                     id="contactInfo-header"
                   >
@@ -338,7 +340,7 @@ const ProfileDetails = ({
                       </Grid>
                     </Grid>
                   </AccordionDetails>
-                  <Divider />
+                  <Divider/>
                   <AccordionActions>
                     <Box
                       display="flex"

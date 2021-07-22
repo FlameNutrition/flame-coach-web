@@ -1,13 +1,12 @@
-import {
-  Avatar,
-  Box,
-  Divider,
-  Drawer,
-  Hidden,
-  List,
-  makeStyles,
-  Typography
-} from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import List from '@material-ui/core/List';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Typography from '@material-ui/core/Typography';
+
 import {
   BarChart as BarChartIcon,
   BookOpen as PlannerIcon,
@@ -153,7 +152,7 @@ const NavBar = ({
             className={classes.avatar}
             component="a"
           >
-            {userInfo.type === 'CLIENT' ? <ClientIcon /> : <CoachIcon />}
+            {userInfo.type === 'CLIENT' ? <ClientIcon/> : <CoachIcon/>}
           </Avatar>
         </Link>
         <Typography
@@ -174,7 +173,7 @@ const NavBar = ({
           {userInfo.type === 'CLIENT' ? 'Client' : 'Coach'}
         </Typography>
       </Box>
-      <Divider />
+      <Divider/>
       <Box p={2}>
         <List>
           {userInfo.type === 'COACH'
@@ -205,7 +204,7 @@ const NavBar = ({
             })}
         </List>
       </Box>
-      <Box flexGrow={1} />
+      <Box flexGrow={1}/>
       <NavBarBox
         title=""
         message="Help to improve this app!"

@@ -39,4 +39,11 @@ const LoginPage = () => {
   );
 };
 
+// eslint-disable-next-line no-unused-vars
+export async function getStaticProps(context) {
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+
 export default LoginPage;

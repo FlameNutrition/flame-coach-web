@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import React from 'react';
-import { ThemeProvider } from '@material-ui/core';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 import theme from '../theme';

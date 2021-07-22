@@ -1,17 +1,18 @@
 import React from 'react';
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button, Checkbox, FormControlLabel, Grid,
-  makeStyles,
-  SvgIcon,
-  Typography
-} from '@material-ui/core';
 import nextId from 'react-id-generator';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import PropTypes from 'prop-types';
-import { Trash2 as DeleteIcon, RotateCw as UpdateIcon } from 'react-feather';
+import { RotateCw as UpdateIcon, Trash2 as DeleteIcon } from 'react-feather';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Button from '@material-ui/core/Button';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -42,8 +43,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DailyTask = ({
-  task, enableDelete, enableUpdate, enableCheck, enableDate,
-  updateTaskHandler, deleteTaskHandler, checkTaskHandler
+  task,
+  enableDelete,
+  enableUpdate,
+  enableCheck,
+  enableDate,
+  updateTaskHandler,
+  deleteTaskHandler,
+  checkTaskHandler
 }) => {
   const classes = useStyles();
 
@@ -54,7 +61,7 @@ const DailyTask = ({
       key={nextId()}
     >
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon/>}
         aria-label="Expand"
         aria-controls="additional-actions1-content"
         id="additional-actions1-header"
@@ -72,7 +79,7 @@ const DailyTask = ({
                     onChange={(value) => checkTaskHandler(task, value)}
                     checked={task.ticked}
                   />
-              )}
+                )}
                 label={task.taskName}
               />
               {enableDate
@@ -102,10 +109,10 @@ const DailyTask = ({
                       fontSize="small"
                       color="inherit"
                     >
-                      <DeleteIcon />
+                      <DeleteIcon/>
                     </SvgIcon>
                   </Button>
-              )}
+                )}
                 label=""
               />
               <Typography
@@ -149,7 +156,7 @@ const DailyTask = ({
                     fontSize="small"
                     color="inherit"
                   >
-                    <UpdateIcon />
+                    <UpdateIcon/>
                   </SvgIcon>
                 </Button>
               </Grid>

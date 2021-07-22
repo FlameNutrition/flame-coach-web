@@ -1,15 +1,16 @@
-import {
-  Card, CardContent, makeStyles, Paper, Typography
-} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable-list';
 import Event from './Event';
 import clsx from 'clsx';
+import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(() => ({
-  root: {
-  },
+  root: {},
   eventsCardTitle: {
     textAlign: 'center',
     paddingBottom: '5px'
@@ -63,21 +64,22 @@ const Events = ({
 
         <div className={classes.complexSwipeableListContainer}>
           <SwipeableList threshold={0.65}>
-            {dataEvents.reverse().map((event) => {
-              return (
-                <SwipeableListItem
-                  key={event.identifier}
-                  swipeRight={{
-                    content: swipeableListItemContentLeft,
-                    action: () => {
-                      onDeleteHandle(event);
-                    }
-                  }}
-                >
-                  <Event date={event.date} value={event.value} measureType={measureUnit} />
-                </SwipeableListItem>
-              );
-            })}
+            {dataEvents.reverse()
+              .map((event) => {
+                return (
+                  <SwipeableListItem
+                    key={event.identifier}
+                    swipeRight={{
+                      content: swipeableListItemContentLeft,
+                      action: () => {
+                        onDeleteHandle(event);
+                      }
+                    }}
+                  >
+                    <Event date={event.date} value={event.value} measureType={measureUnit}/>
+                  </SwipeableListItem>
+                );
+              })}
           </SwipeableList>
         </div>
       </CardContent>
@@ -92,7 +94,6 @@ Events.propTypes = {
   measureUnit: PropTypes.string.isRequired
 };
 
-Events.defaultProps = {
-};
+Events.defaultProps = {};
 
 export default Events;

@@ -1,10 +1,4 @@
 import {
-  Card,
-  CardContent,
-  Typography,
-  makeStyles
-} from '@material-ui/core';
-import {
   minMaxWeight, formatDateLabels, maxTicksLimit
 } from '../utils/chartUtil';
 
@@ -14,10 +8,13 @@ import React from 'react';
 import moment from 'moment';
 import { getTimeRange } from '../../../utils/timeRangeUtil';
 import clsx from 'clsx';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
 
 const useStyles = makeStyles(() => ({
-  root: {
-  },
+  root: {},
   weightGraphicTitle: {
     textAlign: 'center'
   }
@@ -36,11 +33,13 @@ const WeightChart = ({
 
   const dataFormatted = dataChart.map((data) => ({
     y: data.value,
-    x: moment(data.date).format('MM-DD')
+    x: moment(data.date)
+      .format('MM-DD')
   }));
 
   const data = {
-    labels: formatDateLabels(getTimeRange(timeFrame, moment().utc())),
+    labels: formatDateLabels(getTimeRange(timeFrame, moment()
+      .utc())),
     datasets: [
       {
         data: dataFormatted,
@@ -95,7 +94,7 @@ const WeightChart = ({
         <Typography className={classes.weightGraphicTitle} component="h2" variant="h5" gutterBottom>
           Weight
         </Typography>
-        <Line data={data} options={options} type="line" />
+        <Line data={data} options={options} type="line"/>
       </CardContent>
     </Card>
   );

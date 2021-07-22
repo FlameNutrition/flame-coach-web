@@ -1,14 +1,12 @@
-import {
-  Box,
-  Modal,
-  Typography,
-} from '@material-ui/core';
 import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { useIsMobile } from '../../utils/mediaUtil';
+import Box from '@material-ui/core/Box';
+import Modal from '@material-ui/core/Modal';
+import Typography from '@material-ui/core/Typography';
 
 const getModalStyle = () => {
   const top = 40;
@@ -40,7 +38,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ModalWarning = ({
-  title, message, open, onCloseHandler
+  title,
+  message,
+  open,
+  onCloseHandler
 }) => {
   const isMobile = useIsMobile();
   const classes = useStyles();
@@ -53,7 +54,11 @@ const ModalWarning = ({
       onClose={onCloseHandler}
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
-      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
     >
       <Box
         style={modalStyle}

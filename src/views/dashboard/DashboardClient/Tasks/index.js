@@ -1,19 +1,18 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  Box,
-  Card,
-  CardHeader,
-  Divider,
-  Grid,
-  IconButton,
-  makeStyles,
-  MenuItem,
-  Select,
-  Tab,
-  Tabs,
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import makeStyles from '@material-ui/styles/makeStyles';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+
 import { Refresh as RefreshIcon } from '@material-ui/icons';
 import moment from 'moment';
 import nextId from 'react-id-generator';
@@ -69,13 +68,13 @@ const Tasks = ({
   logDebug('Task', 'render', 'Tasks', tasks);
 
   const tabs = taskPeriod !== 'today' ? moment.weekdays()
-    .map((day, index) => (
-      <Tab
-        label={isMobile ? day.slice(0, 3) : day}
-        id={`task-tab-${index}`}
-        aria-controls={`task-tabpanel-${index}`}
-      />
-    ))
+      .map((day, index) => (
+        <Tab
+          label={isMobile ? day.slice(0, 3) : day}
+          id={`task-tab-${index}`}
+          aria-controls={`task-tabpanel-${index}`}
+        />
+      ))
     : null;
 
   return (
@@ -94,7 +93,7 @@ const Tasks = ({
           >
             <Grid item className={classes.dailyTaskPanelRefreshBtn}>
               <IconButton aria-label="refresh">
-                <RefreshIcon onClick={() => taskPeriodRefreshHandler()} />
+                <RefreshIcon onClick={() => taskPeriodRefreshHandler()}/>
               </IconButton>
             </Grid>
             <Grid item>
@@ -113,7 +112,7 @@ const Tasks = ({
           </Grid>
         )}
       />
-      <Divider />
+      <Divider/>
       <Box p="10px">
         {
           taskPeriod !== 'today'

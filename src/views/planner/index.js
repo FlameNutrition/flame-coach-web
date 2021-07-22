@@ -1,11 +1,8 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  makeStyles
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+import makeStyles from '@material-ui/styles/makeStyles';
 import React, { useEffect, useState } from 'react';
 import {
   addDailyTask,
@@ -348,7 +345,7 @@ const Planner = ({ customerIdentifier }) => {
     >
       <Container maxWidth={false}>
         {(!clients.isLoading && (clients.isError || clientTasks.isError))
-          ? <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />
+          ? <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>
           : null}
         {(!clients.isError && !clientTasks.isError) ? (
           <>
@@ -387,7 +384,7 @@ const Planner = ({ customerIdentifier }) => {
                 xl={3}
                 xs={12}
               >
-                <Calendar daily onChangeCalendar={selectDateHandler} />
+                <Calendar daily onChangeCalendar={selectDateHandler}/>
               </Grid>
             </Grid>
             <Box className={classes.actionTaskCard}>

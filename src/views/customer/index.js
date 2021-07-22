@@ -1,12 +1,5 @@
-import {
-  Button,
-  Container,
-  Grid,
-  SvgIcon,
-  makeStyles, Card, Box, CardContent, TextField, Typography, MuiThemeProvider
-} from '@material-ui/core';
 import React, { useState } from 'react';
-import { UserMinus as UserMinusIcon, Send as SendIcon } from 'react-feather';
+import { Send as SendIcon, UserMinus as UserMinusIcon } from 'react-feather';
 import {
   enrollmentProcessBreak,
   getClientsCoachPlusClientsAvailableForCoaching
@@ -29,6 +22,16 @@ import themeTable from './themeTable';
 import clsx from 'clsx';
 import { useIsMediumMobile } from '../../utils/mediaUtil';
 import Loading from '../../components/Loading';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Card from '@material-ui/core/Card';
+import Box from '@material-ui/core/Box';
+import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -272,7 +275,7 @@ const CustomersView = ({ customerIdentifier }) => {
                   fontSize="small"
                   color="inherit"
                 >
-                  <UserMinusIcon />
+                  <UserMinusIcon/>
                 </SvgIcon>
               </Button>
             </Grid>
@@ -284,7 +287,7 @@ const CustomersView = ({ customerIdentifier }) => {
 
   const columns = ['Name', 'Email', 'Registration date', 'Status', columnActions];
 
-  let container = (<Loading size={100} />);
+  let container = (<Loading size={100}/>);
 
   if (!isFetching && !isError) {
     container = (
@@ -323,7 +326,7 @@ const CustomersView = ({ customerIdentifier }) => {
                         fontSize="small"
                         color="inherit"
                       >
-                        <SendIcon />
+                        <SendIcon/>
                       </SvgIcon>
                     </Button>
                   </Box>
@@ -370,7 +373,7 @@ const CustomersView = ({ customerIdentifier }) => {
   }
 
   if (!isFetching && isError) {
-    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
+    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
   }
 
   return (
