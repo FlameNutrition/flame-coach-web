@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@material-ui/styles/makeStyles';
 import React from 'react';
 
 import NotFound from '../../components/NotFound';

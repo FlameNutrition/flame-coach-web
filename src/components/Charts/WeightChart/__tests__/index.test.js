@@ -15,6 +15,6 @@ describe('<WeightChart />', () => {
     />);
 
     // FIXME: Refactor this to instead of using snapshot, search for specific dates
-    expect(container).toMatchSnapshot();Calendar.test.js
+    expect(container).toMatchSnapshot();
   });
 });

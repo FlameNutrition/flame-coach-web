@@ -1,4 +1,5 @@
-import { Box, CircularProgress } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -13,7 +14,7 @@ const Loading = ({
       alignItems="center"
       height="100%"
     >
-      <CircularProgress size={size} />
+      <CircularProgress size={size}/>
     </Box>
   );
 };

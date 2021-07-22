@@ -1,9 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  Avatar, Card, CardContent, colors, Grid, makeStyles, Typography
-} from '@material-ui/core';
+
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import colors from '@material-ui/core/colors';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
 import SessionDateIcon from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
@@ -17,7 +22,10 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const NextSession = ({ date, ...rest }) => {
+const NextSession = ({
+  date,
+  ...rest
+}) => {
   const classes = useStyles();
 
   return (
@@ -48,7 +56,7 @@ const NextSession = ({ date, ...rest }) => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <SessionDateIcon />
+              <SessionDateIcon/>
             </Avatar>
           </Grid>
         </Grid>

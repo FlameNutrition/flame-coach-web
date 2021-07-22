@@ -1,17 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  Grid,
-  LinearProgress,
-  Typography,
-  makeStyles,
-  colors
-} from '@material-ui/core';
+import { colors } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
+
 import { InsertChartOutlined as InsertChartIcon } from '@material-ui/icons';
 import Loading from '../../../components/Loading';
 
@@ -30,7 +29,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const TasksProgress = ({
-  progress, isLoading, type, ...rest
+  progress,
+  isLoading,
+  type,
+  ...rest
 }) => {
   const classes = useStyles();
 
@@ -40,7 +42,7 @@ const TasksProgress = ({
       {...rest}
     >
       <CardContent className={classes.content}>
-        {isLoading ? <Loading />
+        {isLoading ? <Loading/>
           : (
             <>
               <Grid
@@ -68,7 +70,7 @@ const TasksProgress = ({
                 </Grid>
                 <Grid item>
                   <Avatar className={classes.avatar}>
-                    <InsertChartIcon />
+                    <InsertChartIcon/>
                   </Avatar>
                 </Grid>
               </Grid>

@@ -7,7 +7,10 @@
     "build": "next build",
     "tests-report": "jest --watchAll --coverage --no-cache",
     "tests": "jest --watchAll",
-    "dev": "node src/server.js"
+    "dev": "node src/server.js",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "eslintConfig": {
     "extends": "next"
@@ -49,6 +52,7 @@
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-big-calendar": "^0.33.5",
     "react-calendar": "^3.3.0",
     "react-chartjs-2": "^3.0.3",
     "react-cookie": "^4.0.3",
@@ -72,6 +76,8 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/eslint-parser": "^7.14.7",
+    "@material-ui/codemod": "^5.0.0-beta.1",
+    "@next/bundle-analyzer": "^11.0.1",
     "@next/env": "^11.0.1",
     "@testing-library/dom": "^7.30.4",
     "@testing-library/jest-dom": "^5.11.10",
@@ -79,6 +85,7 @@
     "@testing-library/react-hooks": "^5.1.2",
     "@testing-library/user-event": "^13.1.5",
     "babel-jest": "^27.0.5",
+    "cross-env": "^7.0.3",
     "eslint": "^7.29.0",
     "eslint-config-next": "^11.0.0",
     "eslint-config-prettier": "^6.11.0",

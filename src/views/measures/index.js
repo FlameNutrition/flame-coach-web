@@ -1,6 +1,6 @@
-import {
-  Container, Grid, makeStyles
-} from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import makeStyles from '@material-ui/styles/makeStyles';
 import React, { useState } from 'react';
 
 import Page from '../../components/Page';
@@ -59,7 +59,8 @@ const MeasuresView = ({
   const isMobile = useIsMobile();
 
   const [timeFrameWeight, setTimeFrameWeight] = useState('1_MONTH');
-  const [dateWeightAdding, setDateWeightAdding] = useState(moment().utc());
+  const [dateWeightAdding, setDateWeightAdding] = useState(moment()
+    .utc());
   const [weightAdding, setWeightAdding] = useState(NaN);
 
   const [notification, setNotification] = useState({
@@ -84,11 +85,16 @@ const MeasuresView = ({
   };
 
   const personalData = useFetchClientPersonalInformation(clientIdentifier);
-  const { isLoading, isError, data } = useFetchWeightClient(clientIdentifier);
+  const {
+    isLoading,
+    isError,
+    data
+  } = useFetchWeightClient(clientIdentifier);
   const { mutate: mutateAddWeight } = useAddWeightClient();
   const { mutate: mutateDeleteWeight } = useDeleteWeightClient();
 
-  const filteredData = filterWeightsPerTimeRange(data, moment().utc(), timeFrameWeight);
+  const filteredData = filterWeightsPerTimeRange(data, moment()
+    .utc(), timeFrameWeight);
 
   const addWeightHandler = (weight, date) => {
     if (Number.isNaN(weight)) {
@@ -142,7 +148,7 @@ const MeasuresView = ({
     });
   };
 
-  let container = (<Loading size={100} />);
+  let container = (<Loading size={100}/>);
 
   if ((!isLoading && !isError) && (!personalData.isLoading && !personalData.isError)) {
     container = (
@@ -228,7 +234,7 @@ const MeasuresView = ({
   }
 
   if ((!isLoading && isError) || (!personalData.isLoading && personalData.isError)) {
-    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
+    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
   }
 
   return (

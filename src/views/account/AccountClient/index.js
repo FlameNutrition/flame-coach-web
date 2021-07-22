@@ -1,4 +1,6 @@
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import makeStyles from '@material-ui/styles/makeStyles';
 import React, { useState } from 'react';
 import {
   getClientContactInformation,
@@ -195,7 +197,7 @@ const Account = ({
     });
   };
 
-  let container = (<Loading size={100} />);
+  let container = (<Loading size={100}/>);
 
   if (!contactInformation.isFetching && !contactInformation.isError
     && !personalData.isFetching && !personalData.isError) {
@@ -264,7 +266,7 @@ const Account = ({
 
   if ((!contactInformation.isFetching && contactInformation.isError)
     || (!personalData.isFetching && personalData.isError)) {
-    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
+    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
   }
 
   return (

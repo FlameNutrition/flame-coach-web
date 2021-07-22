@@ -1,6 +1,8 @@
-import {
-  Box, Container, makeStyles, Typography
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Typography from '@material-ui/core/Typography';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import PageNotFound from '../../images/404';

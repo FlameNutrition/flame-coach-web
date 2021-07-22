@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@material-ui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import TopBar from './TopBar';
 import NavBar from './NavBar';

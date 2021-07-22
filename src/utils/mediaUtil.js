@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const WIDTH_600 = '600px';
 const WIDTH_800 = '800px';

@@ -1,4 +1,6 @@
-import { Box, Container, makeStyles } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import makeStyles from '@material-ui/styles/makeStyles';
 import React, { useState } from 'react';
 
 import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
@@ -39,7 +41,9 @@ const Settings = ({
   };
 
   const updatePasswordMutation = useMutation(({
-    email, oldPassword, newPassword
+    email,
+    oldPassword,
+    newPassword
   }) => updatePassword(email, oldPassword, newPassword));
 
   return (

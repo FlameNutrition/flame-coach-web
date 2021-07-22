@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line react/display-name
 const Page = forwardRef(({
   children,
   title = '',

@@ -1,7 +1,3 @@
-import {
-  Box, Card, CardContent, makeStyles, Typography
-} from '@material-ui/core';
-
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import clsx from 'clsx';
@@ -18,6 +14,11 @@ import {
 import moment from 'moment';
 import { maxTicksLimit, maxTicksLimitMobile, minMaxWeight } from '../utils/chartUtil';
 import { getTimeRangeDates } from '../../../utils/timeRangeUtil';
+import Card from '@material-ui/core/Card';
+import makeStyles from '@material-ui/styles/makeStyles';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -78,14 +79,15 @@ const WeightChart = ({
             yDomain={[minWeight, maxWeight]}
             xDomain={[fromDttm, toDttm]}
           >
-            <VerticalGridLines />
-            <HorizontalGridLines />
+            <VerticalGridLines/>
+            <HorizontalGridLines/>
             <XAxis
               tickTotal={maxTick}
               tickSize={0}
               tickPadding={isMobile ? 12 : 10}
               tickFormat={(xValue) => {
-                return moment(xValue).format('MM-DD');
+                return moment(xValue)
+                  .format('MM-DD');
               }}
               tickLabelAngle={isMobile ? -45 : 0}
               style={{
@@ -118,7 +120,8 @@ const WeightChart = ({
                   return [
                     {
                       title: 'Date',
-                      value: moment(datapoint.x).format('YYYY-MM-DD')
+                      value: moment(datapoint.x)
+                        .format('YYYY-MM-DD')
                     },
                     {
                       title: 'Weight',
@@ -127,7 +130,7 @@ const WeightChart = ({
                 }}
                 style={{ text: { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' } }}
               />
-            ) : null }
+            ) : null}
           </FlexibleXYPlot>
         </Box>
       </CardContent>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import makeStyles from '@material-ui/styles/makeStyles';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -307,7 +309,7 @@ const Dashboard = ({ customerIdentifier }) => {
     setEndDate(finalDate);
   };
 
-  const generalProblem = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
+  const generalProblem = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
 
   const dashboard = (
     <>

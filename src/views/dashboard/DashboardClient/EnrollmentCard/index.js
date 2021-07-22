@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-  Card,
-  CardContent,
-  IconButton,
-  makeStyles,
-  Step,
-  StepLabel,
-  Stepper
-} from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Stepper from '@material-ui/core/Stepper';
 import {
   NavigateBefore as NavigateBackIcon,
   NavigateNext as NavigateNextIcon
@@ -19,8 +17,7 @@ import PropTypes from 'prop-types';
 import Loading from '../../../../components/Loading';
 
 const useStyles = makeStyles(() => ({
-  root: {
-  },
+  root: {},
   coachConfirmation: {
     display: 'flex',
     flexFlow: 'row-reverse',
@@ -36,8 +33,11 @@ const useStyles = makeStyles(() => ({
 
 const EnrollmentCard = ({
   isLoading,
-  activeCoachStep, setActiveCoachStep, enrollmentFinish,
-  customerIdentifier, enrollmentStatus
+  activeCoachStep,
+  setActiveCoachStep,
+  enrollmentFinish,
+  customerIdentifier,
+  enrollmentStatus
 }) => {
   const classes = useStyles();
 
@@ -46,7 +46,7 @@ const EnrollmentCard = ({
   return (
     <Card>
       <CardContent>
-        {isLoading ? <Loading />
+        {isLoading ? <Loading/>
           : (
             <>
               <Stepper activeStep={activeCoachStep} alternativeLabel>
@@ -82,7 +82,7 @@ const EnrollmentCard = ({
                         }
                       }}
                     >
-                      <NavigateBackIcon />
+                      <NavigateBackIcon/>
                     </IconButton>
 
                     <IconButton
@@ -101,7 +101,7 @@ const EnrollmentCard = ({
                         }
                       }}
                     >
-                      <NavigateNextIcon />
+                      <NavigateNextIcon/>
                     </IconButton>
                   </div>
                 )}

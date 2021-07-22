@@ -2,11 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  Button,
-  ListItem,
-  makeStyles
-} from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
+import Button from '@material-ui/core/Button';
+import makeStyles from '@material-ui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -62,10 +60,10 @@ const NavItem = ({
           component="a"
         >
           {Icon && (
-          <Icon
-            className={classes.icon}
-            size="20"
-          />
+            <Icon
+              className={classes.icon}
+              size="20"
+            />
           )}
           <span className={classes.title}>
             {title}

@@ -1,4 +1,6 @@
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import makeStyles from '@material-ui/styles/makeStyles';
 import update from 'immutability-helper';
 import logger from 'loglevel';
 import PropTypes from 'prop-types';
@@ -126,7 +128,7 @@ const Account = ({
     });
   };
 
-  let container = (<Loading size={100} />);
+  let container = (<Loading size={100}/>);
 
   if (!contactInformation.isFetching && !contactInformation.isError) {
     container = (
@@ -186,7 +188,7 @@ const Account = ({
   }
 
   if (!contactInformation.isFetching && contactInformation.isError) {
-    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR} />;
+    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
   }
 
   return (

@@ -3,7 +3,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import wrapper from '../store/configureStore';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import theme from '../theme';
 import GlobalStyles from '../components/GlobalStyles';
 import { useStore } from 'react-redux';
@@ -31,7 +32,11 @@ const queryClient = new QueryClient({
 });
 
 // eslint-disable-next-line react/prop-types
-const App = ({ Component, pageProps, router }) => {
+const App = ({
+  Component,
+  pageProps,
+  router
+}) => {
   const store = useStore();
 
   return (
@@ -40,8 +45,8 @@ const App = ({ Component, pageProps, router }) => {
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={theme}>
-              <GlobalStyles />
-              <CssBaseline />
+              <GlobalStyles/>
+              <CssBaseline/>
               <Router router={router}>
                 <Head>
                   <title>Flame Coach</title>

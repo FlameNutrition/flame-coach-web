@@ -1,20 +1,5 @@
 import * as Yup from 'yup';
 
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Checkbox,
-  Divider,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  Grid,
-  TextField,
-  makeStyles
-} from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 
 import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
@@ -25,6 +10,19 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { logDebug } from '../../../logging';
 import moment from 'moment';
+import Divider from '@material-ui/core/Divider';
+import CardHeader from '@material-ui/core/CardHeader';
+import makeStyles from '@material-ui/styles/makeStyles';
+import CardContent from '@material-ui/core/CardContent';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -57,8 +55,10 @@ const TaskTool = ({
 }) => {
   const classes = useStyles();
 
-  const [startDateState, setStartDate] = useState(moment().format(moment.HTML5_FMT.DATE));
-  const [endDateState, setEndDate] = useState(moment().format(moment.HTML5_FMT.DATE));
+  const [startDateState, setStartDate] = useState(moment()
+    .format(moment.HTML5_FMT.DATE));
+  const [endDateState, setEndDate] = useState(moment()
+    .format(moment.HTML5_FMT.DATE));
 
   useEffect(() => {
     // FIXME: This not allow change the date of task.
@@ -93,7 +93,7 @@ const TaskTool = ({
       <CardHeader
         title="Planner Daily Tasks"
       />
-      <Divider />
+      <Divider/>
       <CardContent>
         <Formik
           // FIXME: Please remote the init values
@@ -113,7 +113,8 @@ const TaskTool = ({
           enableReinitialize
           onSubmit={(values, { setSubmitting }) => {
             if (values.multipleDays) {
-              if (moment(startDateState).isSameOrAfter(moment(endDateState))) {
+              if (moment(startDateState)
+                .isSameOrAfter(moment(endDateState))) {
                 const errorCode = ErrorMessage.CODE_0001;
                 updateNotificationHandler(true, errorCode.msg, errorCode.level);
               } else {

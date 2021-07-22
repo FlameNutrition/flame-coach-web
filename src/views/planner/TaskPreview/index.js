@@ -1,9 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  Box, Card, CardHeader, Divider, makeStyles
-} from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Divider from '@material-ui/core/Divider';
+import makeStyles from '@material-ui/styles/makeStyles';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import nextId from 'react-id-generator';
 import moment from 'moment';
@@ -15,11 +17,17 @@ const useStyles = makeStyles(() => ({
 }));
 
 const TaskPreview = ({
-  tasks, date, selectUpdateTaskHandler, deleteTaskHandler, className, ...rest
+  tasks,
+  date,
+  selectUpdateTaskHandler,
+  deleteTaskHandler,
+  className,
+  ...rest
 }) => {
   const classes = useStyles();
 
-  const stringDate = moment(date).format(moment.HTML5_FMT.DATE);
+  const stringDate = moment(date)
+    .format(moment.HTML5_FMT.DATE);
 
   logDebug('TaskPreview', 'render', 'stringDate', stringDate);
 
@@ -31,7 +39,7 @@ const TaskPreview = ({
       <CardHeader
         title="Daily Tasks"
       />
-      <Divider />
+      <Divider/>
       <PerfectScrollbar>
         <Box m="10px" maxHeight={300}>
           {

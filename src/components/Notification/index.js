@@ -1,15 +1,9 @@
-import {
-  Box,
-  Collapse,
-  IconButton,
-  makeStyles
-} from '@material-ui/core';
-import {
-  ERROR,
-  INFO,
-  SUCCESS,
-  WARNING
-} from './notificationTypes';
+import Box from '@material-ui/core/Box';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import makeStyles from '@material-ui/styles/makeStyles';
+
+import { ERROR, INFO, SUCCESS, WARNING } from './notificationTypes';
 
 import { Alert } from '@material-ui/lab';
 import { Close as CloseIcon } from '@material-ui/icons';

@@ -1,7 +1,9 @@
-import {
-  Box, Button, Typography, makeStyles
-} from '@material-ui/core';
 import React from 'react';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/styles/makeStyles';
+
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(() => ({
@@ -13,7 +15,13 @@ const useStyles = makeStyles(() => ({
 }));
 
 const NavBarBox = ({
-  title, message, icon, iconEnable, btnEnable, btnLabel, btnHref
+  title,
+  message,
+  icon,
+  iconEnable,
+  btnEnable,
+  btnLabel,
+  btnHref
 }) => {
   const classes = useStyles();
 
@@ -29,7 +37,7 @@ const NavBarBox = ({
       >
         {iconEnable
           ? React.cloneElement(icon, { className: classes.image })
-          : null }
+          : null}
         <Typography
           align="center"
           gutterBottom
