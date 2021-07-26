@@ -89,11 +89,4 @@ Settings.propTypes = {
   customerEmail: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return {
-    customerEmail: state.auth.userInfo.username !== null
-      ? state.auth.userInfo.username : null
-  };
-};
-
-export { Settings, mapStateToProps };
+export default Settings;

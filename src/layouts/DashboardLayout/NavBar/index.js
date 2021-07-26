@@ -15,88 +15,83 @@ import {
   LogOut as LogOutIcon,
   Settings as SettingsIcon,
   User as UserIcon,
-  Users as UsersIcon
+  Users as UsersIcon,
+  PhoneCall as AppointmentsIcon
 } from 'react-feather';
 import { PeopleOutline as CoachIcon, PermIdentity as ClientIcon } from '@material-ui/icons';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Link from 'next/link';
 
 import NavBarBox from '../../../components/NavBarBox';
 import NavItem from './NavItem';
 import PropTypes from 'prop-types';
-import { isFeatureEnable, MEASURES } from '../../../utils/toggles';
-import { useSelector } from 'react-redux';
+import { isFeatureEnable } from '../../../utils/toggles';
 import { useRouter } from 'next/router';
+import { logInfo } from '../../../logging';
 
 const itemsCoach = [
   {
     href: '/',
     icon: BarChartIcon,
     title: 'Dashboard',
-    featureName: 'DASHBOARD'
   },
   {
     href: '/clients',
     icon: UsersIcon,
     title: 'Customers',
-    featureName: 'CUSTOMERS'
   },
   {
     href: '/planner',
     icon: CalendarIcon,
     title: 'Planner',
-    featureName: 'PLANNER'
+  },
+  {
+    href: '/appointments',
+    icon: AppointmentsIcon,
+    title: 'Appointments',
   },
   {
     href: '/account',
     icon: UserIcon,
     title: 'Account',
-    featureName: 'ACCOUNT'
   },
   {
     href: '/settings',
     icon: SettingsIcon,
     title: 'Settings',
-    featureName: 'SETTING'
   },
   {
     href: '/logout',
     icon: LogOutIcon,
     title: 'Logout',
-    featureName: 'LOGOUT'
   },
 ];
 
 const itemsClient = [
   {
     href: '/',
-    icon: PlannerIcon,
-    title: 'My Planner',
-    featureName: 'DASHBOARD'
+    icon: BarChartIcon,
+    title: 'Dashboard',
   },
   {
     href: '/account',
     icon: UserIcon,
     title: 'Account',
-    featureName: 'ACCOUNT'
   },
   {
     href: '/measures',
     icon: MeasuresIcon,
     title: 'Measures',
-    featureName: MEASURES
   },
   {
     href: '/settings',
     icon: SettingsIcon,
     title: 'Settings',
-    featureName: 'SETTINGS'
   },
   {
     href: '/logout',
     icon: LogOutIcon,
     title: 'Logout',
-    featureName: 'LOGOUT'
   },
 ];
 
@@ -117,17 +112,15 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const authSelector = (state) => state.auth;
-
 const NavBar = ({
+  user,
   onMobileClose,
   openMobile
 }) => {
   const classes = useStyles();
   const router = useRouter();
 
-  const auth = useSelector(authSelector);
-  const userInfo = auth.userInfo !== null ? auth.userInfo : null;
+  logInfo('NavBar', 'render', 'user', user);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -147,12 +140,12 @@ const NavBar = ({
         flexDirection="column"
         p={2}
       >
-        <Link href="/account">
+        <Link passHref href="/account">
           <Avatar
             className={classes.avatar}
             component="a"
           >
-            {userInfo.type === 'CLIENT' ? <ClientIcon/> : <CoachIcon/>}
+            {user.type === 'CLIENT' ? <ClientIcon/> : <CoachIcon/>}
           </Avatar>
         </Link>
         <Typography
@@ -160,9 +153,9 @@ const NavBar = ({
           color="textPrimary"
           variant="h5"
         >
-          {userInfo.firstName}
+          {user.firstname}
           {' '}
-          {userInfo.lastName}
+          {user.lastname}
         </Typography>
         <Typography
           color="textSecondary"
@@ -170,15 +163,15 @@ const NavBar = ({
         >
           Account Type:
           {' '}
-          {userInfo.type === 'CLIENT' ? 'Client' : 'Coach'}
+          {user.type === 'CLIENT' ? 'Client' : 'Coach'}
         </Typography>
       </Box>
       <Divider/>
       <Box p={2}>
         <List>
-          {userInfo.type === 'COACH'
+          {user.type === 'COACH'
             ? itemsCoach.map((item) => {
-              if (isFeatureEnable(item.href, userInfo.identifier)) {
+              if (isFeatureEnable(item.href, user.identifier)) {
                 return (
                   <NavItem
                     href={item.href}
@@ -190,7 +183,7 @@ const NavBar = ({
               }
               return null;
             }) : itemsClient.map((item) => {
-              if (isFeatureEnable(item.href, userInfo.identifier)) {
+              if (isFeatureEnable(item.href, user.identifier)) {
                 return (
                   <NavItem
                     href={item.href}
@@ -264,8 +257,9 @@ const NavBar = ({
 };
 
 NavBar.propTypes = {
-  onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool,
+  user: PropTypes.object.isRequired,
+  onMobileClose: PropTypes.func.isRequired,
+  openMobile: PropTypes.bool.isRequired,
 };
 
 NavBar.defaultProps = {

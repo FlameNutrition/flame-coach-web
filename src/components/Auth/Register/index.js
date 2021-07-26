@@ -52,6 +52,20 @@ const Register = ({
   const registrationKeyQueryParam = searchParameters.get('registrationKey');
   const emailQueryParam = searchParameters.get('email');
 
+  const handlerSubmitting = async (value, { setSubmitting }) => {
+    const userInfo = {
+      email: value.email,
+      firstName: value.firstName,
+      lastName: value.lastName,
+      password: value.password,
+      userType: value.type,
+      registrationKey: value.registrationKey
+    };
+
+    await signUp(userInfo);
+    setSubmitting(false);
+  };
+
   return (
     <Page
       className={classes.root}
@@ -95,19 +109,7 @@ const Register = ({
                   })
               })
           }
-          onSubmit={(value, { setSubmitting }) => {
-            const userInfo = {
-              email: value.email,
-              firstName: value.firstName,
-              lastName: value.lastName,
-              password: value.password,
-              userType: value.type,
-              registrationKey: value.registrationKey
-            };
-
-            signUp(userInfo);
-            setSubmitting(false);
-          }}
+          onSubmit={handlerSubmitting}
         >
           {({
             errors,
@@ -118,7 +120,10 @@ const Register = ({
             touched,
             values
           }) => (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(event) => {
+              event.preventDefault();
+              handleSubmit();
+            }}>
               <Box mb={3}>
                 <Typography
                   color="textPrimary"

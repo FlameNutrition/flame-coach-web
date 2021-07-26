@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -53,9 +52,9 @@ const NavItem = ({
       disableGutters
       {...rest}
     >
-      <Link href={href}>
+      <Link passHref href={href}>
         <Button
-          activeClassName={classes.active}
+          activeclassname={classes.active}
           className={classes.button}
           component="a"
         >

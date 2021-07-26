@@ -35,8 +35,6 @@ const Login = ({
 
   const handlerSubmitting = async (value, { setSubmitting }) => {
     await signIn(value.email, value.password);
-
-    // FIXME: Change this when something wrong happened
     setSubmitting(false);
   };
 
@@ -53,7 +51,6 @@ const Login = ({
       >
         <Container maxWidth="sm">
           <Formik
-            // FIXME: Please remote the init values
             initialValues={{
               email: '',
               password: ''
@@ -79,7 +76,10 @@ const Login = ({
               touched,
               values
             }) => (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={(event) => {
+                event.preventDefault();
+                handleSubmit();
+              }}>
                 <Box mb={3}>
                   <Typography
                     aria-label="Sign in"

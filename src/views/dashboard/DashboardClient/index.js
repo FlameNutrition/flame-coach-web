@@ -34,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Dashboard = ({ customerIdentifier }) => {
+const Dashboard = ({
+  customerIdentifier
+}) => {
   const queryClient = useQueryClient();
 
   const classes = useStyles();
@@ -417,14 +419,7 @@ const Dashboard = ({ customerIdentifier }) => {
 };
 
 Dashboard.propTypes = {
-  customerIdentifier: PropTypes.string
+  customerIdentifier: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return {
-    customerIdentifier: state.auth.userInfo !== null && state.auth.userInfo.identifier !== null
-      ? state.auth.userInfo.identifier : null
-  };
-};
-
-export { Dashboard, mapStateToProps };
+export default Dashboard;

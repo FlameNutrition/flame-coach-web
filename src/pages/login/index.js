@@ -1,49 +1,52 @@
 import React, { useEffect } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import Login from '../../components/Auth/Login';
-import { useDispatch, useSelector } from 'react-redux';
-import { loggedIn, loggedInReset } from '../../store/actions';
+import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 
-const authSelector = (state) => state.auth.loggedIn;
-const errorSelector = (state) => state.auth.errorLogin;
-
 const LoginPage = () => {
-  const isAuth = useSelector(authSelector);
-  const error = useSelector(errorSelector);
-  const dispatch = useDispatch();
+
+  const [session, loading] = useSession();
   const router = useRouter();
 
-  const signIn = (email, password) => dispatch(loggedIn(email, password));
-  const signInReset = () => dispatch(loggedInReset());
+  const [error, setError] = React.useState(null);
 
   useEffect(() => {
-    if (isAuth) {
-      router.replace('/');
-    }
+    if (loading) return;
+    if (session) router.replace('/');
   });
 
-  useEffect(() => {
-    if (error) {
-      signInReset();
+  const signInHandler = async (email, password) => {
+    const response = await signIn('email-password-credential', {
+      username: email,
+      password,
+      redirect: false,
+      callbackUrl: `${window.location.origin}/`
+    });
+
+    if (response.url) {
+      router.replace(response.url);
+    } else {
+      const params = new URLSearchParams(response.error);
+      setError({
+        level: params.get('level'),
+        message: params.get('error')
+      });
     }
-  }, []);
+  };
 
   return (
-    <MainLayout>
-      <Login
-        error={error}
-        signIn={signIn}
-      />
-    </MainLayout>
+    !session && !loading
+      ? (
+        <MainLayout>
+          <Login
+            signIn={signInHandler}
+            error={error}
+          />
+        </MainLayout>
+      )
+      : null
   );
 };
-
-// eslint-disable-next-line no-unused-vars
-export async function getStaticProps(context) {
-  return {
-    props: {}, // will be passed to the page component as props
-  };
-}
 
 export default LoginPage;

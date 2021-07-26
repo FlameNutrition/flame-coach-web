@@ -32,6 +32,7 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -395,11 +396,4 @@ CustomersView.propTypes = {
   customerIdentifier: PropTypes.string
 };
 
-const mapStateToProps = (state) => {
-  return {
-    customerIdentifier: state.auth.userInfo.identifier !== null
-      ? state.auth.userInfo.identifier : null
-  };
-};
-
-export { CustomersView, mapStateToProps };
+export default CustomersView;

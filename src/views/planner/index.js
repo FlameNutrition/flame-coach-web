@@ -26,6 +26,7 @@ import TaskTool from './TaskTool';
 import Warning from '../../components/Warning';
 import update from 'immutability-helper';
 import moment from 'moment';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -407,14 +408,7 @@ const Planner = ({ customerIdentifier }) => {
 };
 
 Planner.propTypes = {
-  customerIdentifier: PropTypes.string
+  customerIdentifier: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return {
-    customerIdentifier: state.auth.userInfo.identifier !== null
-      ? state.auth.userInfo.identifier : null
-  };
-};
-
-export { Planner, mapStateToProps };
+export default Planner;

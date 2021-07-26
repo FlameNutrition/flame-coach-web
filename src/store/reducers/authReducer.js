@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
 import * as actionType from '../actions/actionsType';
+import { HYDRATE } from 'next-redux-wrapper';
 
 const initialState = {
   loggedIn: false,
@@ -10,6 +11,13 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case HYDRATE:
+      // Attention! This will overwrite client state! Real apps should use proper reconciliation.
+      return update(state, {
+        loggedIn: { $set: action.payload.loggedIn },
+        userInfo: { $set: action.payload.userDetails },
+        errorLogin: { $set: action.payload.error }
+      });
     case actionType.AUTH_LOGIN_SUCCESS:
       return update(state, {
         loggedIn: { $set: true },

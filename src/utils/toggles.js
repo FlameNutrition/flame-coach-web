@@ -1,9 +1,12 @@
 export const MEASURES = '/measures';
+export const APPOINTMENTS = '/appointments';
 
 const isEnable = (toggleName) => {
   switch (toggleName) {
     case MEASURES:
       return process.env.NEXT_PUBLIC_TOGGLE_MEASURES === 'true';
+    case APPOINTMENTS:
+      return process.env.NEXT_PUBLIC_TOGGLE_APPOINTMENTS === 'true';
     default:
       return true;
   }
