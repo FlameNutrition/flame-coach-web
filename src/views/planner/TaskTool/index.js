@@ -255,7 +255,7 @@ const TaskTool = ({
               >
                 <Grid
                   container
-                  justify="flex-end"
+                  justifyContent="flex-end"
                   spacing={2}
                 >
                   <Grid item>
@@ -327,7 +327,7 @@ const TaskTool = ({
 
 TaskTool.propTypes = {
   task: PropTypes.object,
-  notification: PropTypes.func.isRequired,
+  notification: PropTypes.object.isRequired,
   notificationCollapseHandler: PropTypes.func.isRequired,
   updateNotificationHandler: PropTypes.func.isRequired,
   addTasksHandler: PropTypes.func.isRequired,

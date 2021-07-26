@@ -15,6 +15,7 @@ import ErrorMessage from '../../../../components/Notification/ErrorMessage/Error
 import InfoMessage from '../../../../components/Notification/InfoMessage/InfoMessage';
 import PropTypes from 'prop-types';
 import Loading from '../../../../components/Loading';
+import ModalWarning from '../../../../components/ModalWarning';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -133,10 +134,14 @@ const EnrollmentCard = ({
 EnrollmentCard.propTypes = {
   activeCoachStep: PropTypes.number.isRequired,
   setActiveCoachStep: PropTypes.func.isRequired,
-  enrollmentFinish: PropTypes.func.isRequired,
+  enrollmentFinish: PropTypes.object.isRequired,
   customerIdentifier: PropTypes.string.isRequired,
-  enrollmentStatus: PropTypes.string.isRequired,
+  enrollmentStatus: PropTypes.string,
   isLoading: PropTypes.bool.isRequired
+};
+
+ModalWarning.defaultProps = {
+  enrollmentStatus: ''
 };
 
 export default EnrollmentCard;

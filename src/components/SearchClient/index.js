@@ -25,7 +25,7 @@ const SearchClient = ({
 };
 
 SearchClient.propTypes = {
-  clients: PropTypes.object,
+  clients: PropTypes.array,
   searchSelectedHandler: PropTypes.func
 };
 

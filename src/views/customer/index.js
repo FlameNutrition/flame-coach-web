@@ -31,8 +31,8 @@ import Box from '@material-ui/core/Box';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Grid from '@material-ui/core/Grid';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -251,6 +251,7 @@ const CustomersView = ({ customerIdentifier }) => {
           })
         };
       },
+      // eslint-disable-next-line react/display-name
       customBodyRender: (value) => {
         const disableButtonMinus = value.client.identifier === value.clientLoading
           ? value.isClientLoading || !(value.client.status !== 'AVAILABLE')
@@ -259,7 +260,7 @@ const CustomersView = ({ customerIdentifier }) => {
         return (
           <Grid
             container
-            justify={isMobile ? 'flex-start' : 'flex-end'}
+            justifyContent={isMobile ? 'flex-start' : 'flex-end'}
             spacing={1}
             className={clsx({
               [classes.actionColumnTable]: true
@@ -337,7 +338,7 @@ const CustomersView = ({ customerIdentifier }) => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <MuiThemeProvider theme={themeTable}>
+          <ThemeProvider theme={themeTable}>
             <MUIDataTable
               title="Clients List"
               data={data.clientsCoach.map((client) => ([
@@ -354,7 +355,7 @@ const CustomersView = ({ customerIdentifier }) => {
               columns={columns}
               options={options}
             />
-          </MuiThemeProvider>
+          </ThemeProvider>
         </Grid>
         {notification.enable
           ? (

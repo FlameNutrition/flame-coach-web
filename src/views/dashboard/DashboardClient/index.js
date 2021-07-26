@@ -359,7 +359,7 @@ const Dashboard = ({
             setActiveCoachStep={setActiveCoachStep}
             customerIdentifier={customerIdentifier}
             enrollmentFinish={enrollmentFinish}
-            enrollmentStatus={enrollment.status}
+            enrollmentStatus={enrollment?.status}
           />
         </Grid>
         {notification.enable

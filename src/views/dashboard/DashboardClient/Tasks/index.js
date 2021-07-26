@@ -89,11 +89,12 @@ const Tasks = ({
             container
             direction="row"
             alignItems="center"
-            justify="flex-end"
+            justifyContent="flex-end"
           >
             <Grid item className={classes.dailyTaskPanelRefreshBtn}>
-              <IconButton aria-label="refresh">
-                <RefreshIcon onClick={() => taskPeriodRefreshHandler()}/>
+              <IconButton aria-label="refresh"
+                          onClick={() => taskPeriodRefreshHandler()}>
+                <RefreshIcon/>
               </IconButton>
             </Grid>
             <Grid item>
