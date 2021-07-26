@@ -6,7 +6,7 @@ exports[`<Notification/ > Show info notification with collapse 1`] = `
     class="MuiBox-root MuiBox-root-3 makeStyles-notificationBar-2"
   >
     <div
-      class="MuiCollapse-container MuiCollapse-hidden"
+      class="MuiCollapse-root MuiCollapse-hidden"
       style="min-height: 0px;"
     >
       <div

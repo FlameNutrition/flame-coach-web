@@ -59,7 +59,7 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
               <span
                 class="react-calendar__navigation__label__labelText react-calendar__navigation__label__labelText--from"
               >
-                June 2021
+                July 2021
               </span>
             </button>
             <button
@@ -183,321 +183,13 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
                       type="button"
                     >
                       <abbr
-                        aria-label="May 31, 2021"
-                      >
-                        31
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 1, 2021"
-                      >
-                        1
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 2, 2021"
-                      >
-                        2
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 3, 2021"
-                      >
-                        3
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 4, 2021"
-                      >
-                        4
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 5, 2021"
-                      >
-                        5
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 6, 2021"
-                      >
-                        6
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 7, 2021"
-                      >
-                        7
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 8, 2021"
-                      >
-                        8
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 9, 2021"
-                      >
-                        9
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 10, 2021"
-                      >
-                        10
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 11, 2021"
-                      >
-                        11
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 12, 2021"
-                      >
-                        12
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 13, 2021"
-                      >
-                        13
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 14, 2021"
-                      >
-                        14
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 15, 2021"
-                      >
-                        15
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 16, 2021"
-                      >
-                        16
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 17, 2021"
-                      >
-                        17
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 18, 2021"
-                      >
-                        18
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 19, 2021"
-                      >
-                        19
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 20, 2021"
-                      >
-                        20
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 21, 2021"
-                      >
-                        21
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 22, 2021"
-                      >
-                        22
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 23, 2021"
-                      >
-                        23
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 24, 2021"
-                      >
-                        24
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 25, 2021"
-                      >
-                        25
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 26, 2021"
-                      >
-                        26
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__tile--now react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
-                        aria-label="June 27, 2021"
-                      >
-                        27
-                      </abbr>
-                    </button>
-                    <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
-                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
-                      type="button"
-                    >
-                      <abbr
                         aria-label="June 28, 2021"
                       >
                         28
                       </abbr>
                     </button>
                     <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--neighboringMonth"
                       style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
                       type="button"
                     >
@@ -508,7 +200,7 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
                       </abbr>
                     </button>
                     <button
-                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--neighboringMonth"
                       style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
                       type="button"
                     >
@@ -519,7 +211,7 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
                       </abbr>
                     </button>
                     <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--neighboringMonth"
+                      class="react-calendar__tile react-calendar__month-view__days__day"
                       style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
                       type="button"
                     >
@@ -530,7 +222,7 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
                       </abbr>
                     </button>
                     <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--neighboringMonth"
+                      class="react-calendar__tile react-calendar__month-view__days__day"
                       style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
                       type="button"
                     >
@@ -541,7 +233,7 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
                       </abbr>
                     </button>
                     <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend react-calendar__month-view__days__day--neighboringMonth"
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
                       style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
                       type="button"
                     >
@@ -552,7 +244,7 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
                       </abbr>
                     </button>
                     <button
-                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend react-calendar__month-view__days__day--neighboringMonth"
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
                       style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
                       type="button"
                     >
@@ -560,6 +252,314 @@ exports[`<Calendar /> Show multiple selection calendar with labels 1`] = `
                         aria-label="July 4, 2021"
                       >
                         4
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 5, 2021"
+                      >
+                        5
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 6, 2021"
+                      >
+                        6
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 7, 2021"
+                      >
+                        7
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 8, 2021"
+                      >
+                        8
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 9, 2021"
+                      >
+                        9
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 10, 2021"
+                      >
+                        10
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 11, 2021"
+                      >
+                        11
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 12, 2021"
+                      >
+                        12
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 13, 2021"
+                      >
+                        13
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 14, 2021"
+                      >
+                        14
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 15, 2021"
+                      >
+                        15
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 16, 2021"
+                      >
+                        16
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 17, 2021"
+                      >
+                        17
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 18, 2021"
+                      >
+                        18
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 19, 2021"
+                      >
+                        19
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 20, 2021"
+                      >
+                        20
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 21, 2021"
+                      >
+                        21
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 22, 2021"
+                      >
+                        22
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 23, 2021"
+                      >
+                        23
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 24, 2021"
+                      >
+                        24
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 25, 2021"
+                      >
+                        25
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__tile--now react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 26, 2021"
+                      >
+                        26
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 27, 2021"
+                      >
+                        27
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 28, 2021"
+                      >
+                        28
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 29, 2021"
+                      >
+                        29
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 30, 2021"
+                      >
+                        30
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="July 31, 2021"
+                      >
+                        31
+                      </abbr>
+                    </button>
+                    <button
+                      class="react-calendar__tile react-calendar__month-view__days__day react-calendar__month-view__days__day--weekend react-calendar__month-view__days__day--neighboringMonth"
+                      style="flex-basis: 14.285714285714286%; max-width: 14.285714285714286%; overflow: hidden;"
+                      type="button"
+                    >
+                      <abbr
+                        aria-label="August 1, 2021"
+                      >
+                        1
                       </abbr>
                     </button>
                   </div>
