@@ -6,11 +6,18 @@ import { signIn, useSession } from 'next-auth/client';
 import axios from '../../api/axios/axios-flame-coach';
 import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
 
+const routerLocationSearch = (query) => {
+  const queryParams = query.split('?')[1];
+  return new URLSearchParams(queryParams);
+};
+
 const RegisterPage = () => {
 
   const [session, loading] = useSession();
   const router = useRouter();
 
+  const [registrationKey, setRegistrationKey] = React.useState(null);
+  const [email, setEmail] = React.useState(null);
   const [error, setError] = React.useState(null);
 
   const signInHandler = async (userInfo) => {
@@ -72,12 +79,22 @@ const RegisterPage = () => {
   useEffect(() => {
     if (loading) return;
     if (session) router.replace('/');
+
+    const searchParameters = routerLocationSearch(router.asPath);
+    const registrationKeyQueryParam = searchParameters.get('registrationKey');
+    const emailQueryParam = searchParameters.get('email');
+
+    setEmail(emailQueryParam === undefined ? '' : emailQueryParam);
+    setRegistrationKey(registrationKeyQueryParam === undefined ? '' : registrationKeyQueryParam);
   });
+
+  if(!email || !registrationKey) return null
 
   return (
     <MainLayout>
       <Register
-        routerQuery={router.asPath}
+        email={email}
+        registrationKey={registrationKey}
         signUp={signInHandler}
         error={error}
       />

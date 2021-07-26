@@ -34,23 +34,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const useRouterLocationSearch = (query) => {
-  const queryParams = query.split('?')[1];
-  return new URLSearchParams(queryParams);
-};
-
 const Register = ({
   error,
   signUp,
-  routerQuery,
+  registrationKey,
+  email,
   termsConditions
 }) => {
   const classes = useStyles();
-
-  const searchParameters = useRouterLocationSearch(routerQuery);
-
-  const registrationKeyQueryParam = searchParameters.get('registrationKey');
-  const emailQueryParam = searchParameters.get('email');
 
   const handlerSubmitting = async (value, { setSubmitting }) => {
     const userInfo = {
@@ -74,13 +65,13 @@ const Register = ({
       <Container maxWidth="sm">
         <Formik
           initialValues={{
-            email: emailQueryParam || '',
+            email: email || '',
             firstName: '',
             lastName: '',
             password: '',
             type: 'CLIENT',
             policy: true,
-            registrationKey: registrationKeyQueryParam || ''
+            registrationKey: registrationKey || ''
           }}
           validationSchema={
             Yup.object()
@@ -183,7 +174,7 @@ const Register = ({
                 helperText={touched.email && errors.email}
                 label="Email address"
                 margin="normal"
-                disabled={Boolean(emailQueryParam)}
+                disabled={Boolean(email)}
                 name="email"
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -213,7 +204,7 @@ const Register = ({
                       helperText={touched.registrationKey && errors.registrationKey}
                       label="Registration code"
                       margin="normal"
-                      disabled={Boolean(registrationKeyQueryParam)}
+                      disabled={Boolean(registrationKey)}
                       name="registrationKey"
                       onBlur={handleBlur}
                       onChange={handleChange}
@@ -308,12 +299,15 @@ const Register = ({
 
 Register.propTypes = {
   termsConditions: PropTypes.bool,
-  routerQuery: PropTypes.object.isRequired,
+  registrationKey: PropTypes.string,
+  email: PropTypes.string,
   signUp: PropTypes.func.isRequired,
   error: PropTypes.object
 };
 
 Register.defaultProps = {
+  registrationKey: '',
+  email: '',
   termsConditions: false,
 };
 
