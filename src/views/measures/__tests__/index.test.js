@@ -1,5 +1,5 @@
 import React from 'react';
-import { MeasuresView } from '../index';
+import MeasuresView from '../index';
 import { render, screen, waitFor } from '../../../testing/test-utils';
 import { useFetchWeightClient } from '../../../api/measures/useFetchWeightClient';
 import { useFetchClientPersonalInformation } from '../../../api/client/useFetchClientPersonalInformation';
@@ -38,7 +38,7 @@ describe('<MeasuresView />', () => {
     }));
 
     render(<MeasuresView
-      clientIdentifier="40dfd08f-bc5f-4cb9-a926-211db8c11c06"
+      customerIdentifier="40dfd08f-bc5f-4cb9-a926-211db8c11c06"
     />);
 
     expect(useFetchWeightClient).toHaveBeenCalledWith('40dfd08f-bc5f-4cb9-a926-211db8c11c06');
@@ -62,7 +62,7 @@ describe('<MeasuresView />', () => {
     }));
 
     render(<MeasuresView
-      clientIdentifier="40dfd08f-bc5f-4cb9-a926-211db8c11c06"
+      customerIdentifier="40dfd08f-bc5f-4cb9-a926-211db8c11c06"
     />);
 
     expect(useFetchWeightClient).toHaveBeenCalledWith('40dfd08f-bc5f-4cb9-a926-211db8c11c06');
@@ -84,7 +84,7 @@ describe('<MeasuresView />', () => {
     }));
 
     render(<MeasuresView
-      clientIdentifier="40dfd08f-bc5f-4cb9-a926-211db8c11c06"
+      customerIdentifier="40dfd08f-bc5f-4cb9-a926-211db8c11c06"
     />);
 
     expect(useFetchWeightClient).toHaveBeenCalledWith('40dfd08f-bc5f-4cb9-a926-211db8c11c06');

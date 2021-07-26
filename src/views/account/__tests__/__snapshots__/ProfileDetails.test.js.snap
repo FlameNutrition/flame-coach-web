@@ -79,7 +79,7 @@ exports[`<ProfileDetails / > render component with personal data 1`] = `
               </div>
             </div>
             <div
-              class="MuiCollapse-container MuiCollapse-entered"
+              class="MuiCollapse-root MuiCollapse-entered"
               style="min-height: 0px;"
             >
               <div
@@ -361,6 +361,7 @@ exports[`<ProfileDetails / > render component with personal data 1`] = `
                       >
                         <button
                           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                          name="contactInfo-save"
                           tabindex="0"
                           type="submit"
                         >
@@ -431,7 +432,7 @@ exports[`<ProfileDetails / > render component with personal data 1`] = `
               </div>
             </div>
             <div
-              class="MuiCollapse-container MuiCollapse-hidden"
+              class="MuiCollapse-root MuiCollapse-hidden"
               style="min-height: 0px;"
             >
               <div
@@ -666,6 +667,7 @@ exports[`<ProfileDetails / > render component with personal data 1`] = `
                       >
                         <button
                           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                          name="personalInfo-save"
                           tabindex="0"
                           type="submit"
                         >
@@ -771,7 +773,7 @@ exports[`<ProfileDetails / > render component without personal data 1`] = `
               </div>
             </div>
             <div
-              class="MuiCollapse-container MuiCollapse-entered"
+              class="MuiCollapse-root MuiCollapse-entered"
               style="min-height: 0px;"
             >
               <div
@@ -1053,6 +1055,7 @@ exports[`<ProfileDetails / > render component without personal data 1`] = `
                       >
                         <button
                           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+                          name="contactInfo-save"
                           tabindex="0"
                           type="submit"
                         >

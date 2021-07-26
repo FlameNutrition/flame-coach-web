@@ -96,7 +96,7 @@ exports[`<Daily Task/ > Show daily task with checked btn 1`] = `
       </div>
     </div>
     <div
-      class="MuiCollapse-container MuiCollapse-hidden"
+      class="MuiCollapse-root MuiCollapse-hidden"
       style="min-height: 0px;"
     >
       <div
@@ -114,7 +114,7 @@ exports[`<Daily Task/ > Show daily task with checked btn 1`] = `
               class="MuiAccordionDetails-root"
             >
               <div
-                class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+                class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-content-xs-space-between"
               >
                 <div
                   class="MuiGrid-root MuiGrid-item"
@@ -247,7 +247,7 @@ exports[`<Daily Task/ > Show daily task with delete and update btn 1`] = `
       </div>
     </div>
     <div
-      class="MuiCollapse-container MuiCollapse-hidden"
+      class="MuiCollapse-root MuiCollapse-hidden"
       style="min-height: 0px;"
     >
       <div
@@ -265,7 +265,7 @@ exports[`<Daily Task/ > Show daily task with delete and update btn 1`] = `
               class="MuiAccordionDetails-root"
             >
               <div
-                class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-xs-space-between"
+                class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-content-xs-space-between"
               >
                 <div
                   class="MuiGrid-root MuiGrid-item"

@@ -4,7 +4,7 @@ import {
 } from '../../../testing/test-utils';
 
 import React from 'react';
-import { Settings } from '../index';
+import Settings from '../index';
 
 describe('<Settings / >', () => {
   it('render component', async () => {
