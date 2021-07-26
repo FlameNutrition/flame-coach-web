@@ -88,7 +88,7 @@ const RegisterPage = () => {
     setRegistrationKey(registrationKeyQueryParam === undefined ? '' : registrationKeyQueryParam);
   });
 
-  if(!email || !registrationKey) return null
+  if(email === undefined || registrationKey === undefined) return null
 
   return (
     <MainLayout>
