@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MeasuresView = ({
-  clientIdentifier
+  customerIdentifier
 }) => {
   const classes = useStyles();
 
@@ -84,12 +84,12 @@ const MeasuresView = ({
       }));
   };
 
-  const personalData = useFetchClientPersonalInformation(clientIdentifier);
+  const personalData = useFetchClientPersonalInformation(customerIdentifier);
   const {
     isLoading,
     isError,
     data
-  } = useFetchWeightClient(clientIdentifier);
+  } = useFetchWeightClient(customerIdentifier);
   const { mutate: mutateAddWeight } = useAddWeightClient();
   const { mutate: mutateDeleteWeight } = useDeleteWeightClient();
 
@@ -105,7 +105,7 @@ const MeasuresView = ({
       updateNotificationHandler(true, errorMessage.msg, errorMessage.level);
     } else {
       mutateAddWeight({
-        clientIdentifier,
+        customerIdentifier,
         weight,
         utcDate: date
       }, {
@@ -119,7 +119,7 @@ const MeasuresView = ({
           updateNotificationHandler(true, errorCode.msg, errorCode.level);
         },
         onSuccess: () => {
-          queryClient.invalidateQueries(['getWeightClient', clientIdentifier]);
+          queryClient.invalidateQueries(['getWeightClient', customerIdentifier]);
 
           const successMessage = InfoMessage.CODE_0002;
           updateNotificationHandler(true, successMessage.msg, successMessage.level);
@@ -130,7 +130,7 @@ const MeasuresView = ({
 
   const deleteWeightHandler = (event) => {
     mutateDeleteWeight({
-      clientIdentifier,
+      customerIdentifier,
       identifier: event.identifier
     }, {
       onError: (error) => {
@@ -143,7 +143,7 @@ const MeasuresView = ({
         updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: () => {
-        queryClient.invalidateQueries(['getWeightClient', clientIdentifier]);
+        queryClient.invalidateQueries(['getWeightClient', customerIdentifier]);
       }
     });
   };
@@ -253,14 +253,7 @@ const MeasuresView = ({
 };
 
 MeasuresView.propTypes = {
-  clientIdentifier: PropTypes.string
+  customerIdentifier: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return {
-    clientIdentifier: state.auth.userInfo.identifier !== null
-      ? state.auth.userInfo.identifier : null
-  };
-};
-
-export { MeasuresView, mapStateToProps };
+export default MeasuresView;

@@ -285,16 +285,8 @@ const Account = ({
 };
 
 Account.propTypes = {
-  customerIdentifier: PropTypes.string,
-  email: PropTypes.string
+  customerIdentifier: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return {
-    customerIdentifier: state.auth.userInfo.identifier !== null
-      ? state.auth.userInfo.identifier : null,
-    email: state.auth.userInfo.username
-  };
-};
-
-export { Account, mapStateToProps };
+export default Account;

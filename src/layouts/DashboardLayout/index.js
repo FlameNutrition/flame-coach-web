@@ -33,14 +33,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({
+  user,
+  children
+}) => {
   const classes = useStyles();
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
     <div className={classes.root}>
-      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
+      <TopBar onMobileNavOpen={() => setMobileNavOpen(true)}/>
       <NavBar
+        user={user}
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}
       />
@@ -56,7 +60,8 @@ const DashboardLayout = ({ children }) => {
 };
 
 DashboardLayout.propTypes = {
-  children: PropTypes.node
+  user: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default DashboardLayout;

@@ -1,15 +1,15 @@
 import React from 'react';
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import theme from '../theme';
-import ServerStyleSheets from '@material-ui/styles/ServerStyleSheets';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
         <Head>
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+          <meta name="theme-color" content={theme.palette.primary.main}/>
+          <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"/>
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab|Roboto:300,400,500,700"
@@ -26,8 +26,8 @@ export default class MyDocument extends Document {
           </style>
         </Head>
         <body>
-          <Main />
-          <NextScript />
+        <Main/>
+        <NextScript/>
         </body>
       </Html>
     );

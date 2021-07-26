@@ -1,14 +1,26 @@
 import React from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
-import useRoute from '../../route/useRoute';
+import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import Auth from '../../route/auth';
+import dynamic from 'next/dynamic';
+
+const ClientsView = dynamic(() => import('../../views/customer'));
 
 const ClientsPage = () => {
-  const routing = useRoute();
+  const [session, loading] = useSession();
+  const router = useRouter();
+
+  if (loading) return null;
 
   return (
-    <DashboardLayout>
-      {routing.element}
-    </DashboardLayout>
+    <Auth router={router}>
+      {session ?
+        <DashboardLayout user={session.user}>
+          <ClientsView customerIdentifier={session.user.identifier}/>
+        </DashboardLayout> : null
+      }
+    </Auth>
   );
 };
 

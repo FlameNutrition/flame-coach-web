@@ -1,14 +1,30 @@
 import React from 'react';
 import DashboardLayout from '../../layouts/DashboardLayout';
-import useRoute from '../../route/useRoute';
+import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
+import Auth from '../../route/auth';
+import dynamic from 'next/dynamic';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+
+const MeasuresView = dynamic(() => import('../../views/measures'));
 
 const MeasuresPage = () => {
-  const routing = useRoute();
+  const [session, loading] = useSession();
+  const router = useRouter();
+
+  if (loading) return null;
 
   return (
-    <DashboardLayout>
-      {routing.element}
-    </DashboardLayout>
+    <Auth router={router}>
+      {session ?
+        <DashboardLayout user={session.user}>
+          <MuiPickersUtilsProvider utils={MomentUtils}>
+            <MeasuresView customerIdentifier={session.user.identifier}/>
+          </MuiPickersUtilsProvider>
+        </DashboardLayout> : null
+      }
+    </Auth>
   );
 };
 

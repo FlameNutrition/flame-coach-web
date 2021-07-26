@@ -1,24 +1,44 @@
-import React from 'react';
+import { Calendar, Views } from 'react-big-calendar';
+
 import PropTypes from 'prop-types';
-import { Views, Calendar } from 'react-big-calendar';
+import React from 'react';
+import { useIsMobile } from '../../utils/mediaUtil';
 
-const BigCalendar = ({ localizer }) => {
+const scrollTime = new Date(1970, 1, 1, 6);
+const calendarNormalView = [Views.MONTH, Views.WEEK, Views.DAY, Views.AGENDA];
+const calendarMobileView = [Views.MONTH, Views.DAY, Views.AGENDA];
 
-  return (<Calendar
-    selectable
-    localizer={localizer}
-    events={this.state.events}
-    defaultView={Views.WEEK}
-    scrollToTime={new Date(1970, 1, 1, 6)}
-    defaultDate={new Date(2015, 3, 12)}
-    onSelectEvent={event => alert(event.title)}
-    dayLayoutAlgorithm={this.state.dayLayoutAlgorithm}
-  />);
+const BigCalendar = ({
+  events,
+  selectSlotHandler,
+  doubleClickSlotHandler,
+  localizer,
+  ...rest
+}) => {
+
+  const isMobile = useIsMobile();
+
+  return (
+    <Calendar
+      selectable
+      localizer={localizer}
+      events={events}
+      defaultView={Views.DAY}
+      scrollToTime={scrollTime}
+      views={isMobile ? calendarMobileView : calendarNormalView}
+      onSelectSlot={selectSlotHandler}
+      onDoubleClickEvent={doubleClickSlotHandler}
+      {...rest}
+    />
+  );
 
 };
 
 BigCalendar.propTypes = {
+  events: PropTypes.array.isRequired,
   localizer: PropTypes.object.isRequired,
+  selectSlotHandler: PropTypes.func.isRequired,
+  doubleClickSlotHandler: PropTypes.func.isRequired
 };
 
 export default BigCalendar;

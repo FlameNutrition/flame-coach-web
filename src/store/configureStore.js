@@ -24,39 +24,12 @@ const makeStore = () => {
     return createOwnStore(rootReducer);
   }
 
-  // we need it only on client side
-  // eslint-disable-next-line global-require
-  const { persistStore, persistReducer } = require('redux-persist');
-  // eslint-disable-next-line global-require
-  const storageSession = require('redux-persist/lib/storage').default;
-
-  const rootPersistConfig = {
-    key: 'persistStore',
-    storage: storageSession,
-    blacklist: ['auth'],
-    // FIXME: This is a bug: https://github.com/rt2zz/redux-persist/issues/786
-    timeout: 1
-  };
-
-  // If you want whitelist a specific value please follow the following example
-  // Good explanation: https://blog.reactnativecoach.com/the-definitive-guide-to-redux-persist-84738167975
-  // eslint-disable-next-line no-unused-vars
-  const authPersistConfig = {
-    key: 'auth',
-    storage: storageSession,
-    blacklist: ['error']
-  };
-
-  const persistedReducer = combineReducers({
-    auth: persistReducer(authPersistConfig, authReducer),
+  const rootReducers = combineReducers({
+    auth: authReducer,
     notification: notificationReducer
   });
-  const persistedRootReducer = persistReducer(rootPersistConfig, persistedReducer);
-  const store = createOwnStore(persistedRootReducer);
+  return createOwnStore(rootReducers);
 
-  store.__persistor = persistStore(store); // Nasty hack
-
-  return store;
 };
 
 export default createWrapper(makeStore);

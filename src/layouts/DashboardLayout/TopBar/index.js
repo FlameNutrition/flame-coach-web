@@ -9,8 +9,7 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import { Input as InputIcon, Menu as MenuIcon } from '@material-ui/icons';
-import { loggedOut } from '../../../store/actions';
-import { useDispatch } from 'react-redux';
+import { signOut } from 'next-auth/client';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -26,7 +25,6 @@ const TopBar = ({
   ...rest
 }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   return (
     <AppBar
@@ -35,26 +33,12 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        {
-          /**
-           <RouterLink to="/">
-           <Logo />
-           </RouterLink>
-           */
-        }
         <Box flexGrow={1}/>
         <Hidden mdDown>
-          {/* <IconButton color="inherit">
-            <Badge
-              badgeContent={notificationLength.length}
-              color="primary"
-              variant="dot"
-            >
-              <NotificationsIcon onClick={() => notification()} />
-            </Badge>
-          </IconButton> */}
           <IconButton color="inherit">
-            <InputIcon onClick={() => dispatch(loggedOut())}/>
+            <InputIcon onClick={() => signOut({
+              callbackUrl: `${window.location.origin}/login`
+            })}/>
           </IconButton>
         </Hidden>
         <Hidden lgUp>
