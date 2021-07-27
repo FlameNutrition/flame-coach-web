@@ -4,7 +4,6 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import logger from 'redux-logger';
 import { createWrapper } from 'next-redux-wrapper';
-import authReducer from './reducers/authReducer';
 import notificationReducer from './reducers/notificationReducer';
 
 const createOwnStore = (reducers) => {
@@ -25,7 +24,6 @@ const makeStore = () => {
   }
 
   const rootReducers = combineReducers({
-    auth: authReducer,
     notification: notificationReducer
   });
   return createOwnStore(rootReducers);
