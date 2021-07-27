@@ -35,10 +35,10 @@ const TopBar = ({
       <Toolbar>
         <Box flexGrow={1}/>
         <Hidden mdDown>
-          <IconButton color="inherit">
-            <InputIcon onClick={() => signOut({
-              callbackUrl: `${window.location.origin}/login`
-            })}/>
+          <IconButton color="inherit" onClick={() => signOut({
+            callbackUrl: `${window.location.origin}/login`
+          })}>
+            <InputIcon/>
           </IconButton>
         </Hidden>
         <Hidden lgUp>
