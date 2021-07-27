@@ -57,7 +57,7 @@ export default NextAuth({
     jwt: true,
 
     // Seconds - How long until an idle session expires and is no longer valid.
-    // maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 2 * 60 * 60, // 2 hours
 
     // Seconds - Throttle how frequently to write to database to extend a session.
     // Use it to limit write operations. Set to 0 to always update the database.
@@ -69,6 +69,7 @@ export default NextAuth({
   // option is set - or by default if no database is specified.
   // https://next-auth.js.org/configuration/options#jwt
   jwt: {
+    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
     // A secret to use for key generation (you should set this explicitly)
     // secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
     // Set to true to use encryption (default: false)
@@ -89,7 +90,7 @@ export default NextAuth({
     signOut: '/logout', // Displays form with sign out button
     error: '/login', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
-    newUser: '/register' // If set, new users will be directed here on first sign in
+    // newUser: '/auth/new-user' // If set, new users will be directed here on first sign in
   },
 
   // Callbacks are asynchronous functions you can use to control what happens
