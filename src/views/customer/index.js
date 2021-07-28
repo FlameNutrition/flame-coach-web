@@ -322,7 +322,6 @@ const CustomersView = ({ customerIdentifier }) => {
                       className={classes.sendInviteButton}
                       variant="contained"
                       type="submit"
-                      disabled={Boolean(formikSendInviteClient.errors.email)}
                     >
                       <SvgIcon
                         fontSize="small"
