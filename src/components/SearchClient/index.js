@@ -6,7 +6,11 @@ import TextField from '@material-ui/core/TextField';
 
 const SearchClient = ({
   clients,
-  searchSelectedHandler
+  clientDefault,
+  searchSelectedHandler,
+  inputRef,
+  disabled,
+  ...rest
 }) => {
   return (
     <Autocomplete
@@ -16,9 +20,12 @@ const SearchClient = ({
       onChange={(event, client) => {
         searchSelectedHandler(client);
       }}
+      value={clients.find(client => client.identifier === clientDefault)}
+      disabled={disabled}
       getOptionLabel={(option) => `${option.firstname} ${option.lastname}`}
       renderInput={(params) => (
-        <TextField {...params} label="Client" margin="normal" variant="outlined"/>
+        <TextField {...rest} {...params} label="Client" name="client"
+                   variant="outlined" inputRef={inputRef}/>
       )}
     />
   );
@@ -26,7 +33,14 @@ const SearchClient = ({
 
 SearchClient.propTypes = {
   clients: PropTypes.array,
-  searchSelectedHandler: PropTypes.func
+  clientDefault: PropTypes.string,
+  searchSelectedHandler: PropTypes.func,
+  inputRef: PropTypes.func,
+  disabled: PropTypes.bool
+};
+
+SearchClient.defaultProps = {
+  disabled: false
 };
 
 export default SearchClient;

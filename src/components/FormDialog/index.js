@@ -5,43 +5,82 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import makeStyles from '@material-ui/styles/makeStyles';
+
+const useStyles = makeStyles(() => ({
+  root: {},
+  dialogTitle: {
+    '& h2': {
+      fontSize: 25
+    }
+  },
+  dialogContentText: {
+    fontSize: 15
+  }
+}));
 
 const FormDialog = ({
+  submitHandler,
   dialogTitle,
   dialogDescription,
   open,
-  handleClose,
-  handleOk,
+  closeHandler,
+  deleteHandler,
+  okHandler,
   children
 }) => {
 
+  const classes = useStyles();
+
   return (
-    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">{dialogTitle}</DialogTitle>
-      <DialogContent>
-        <DialogContentText>{dialogDescription}</DialogContentText>
-        {children}
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancel
-        </Button>
-        <Button onClick={handleOk} color="primary">
-          Ok
-        </Button>
-      </DialogActions>
+    <Dialog
+      open={open}
+      onClose={closeHandler}
+      aria-labelledby="form-dialog-title">
+      <DialogTitle
+        id="form-dialog-title"
+        className={classes.dialogTitle}>{dialogTitle}</DialogTitle>
+      <form
+        autoComplete="off"
+        onSubmit={submitHandler(okHandler)}>
+        <DialogContent>
+          <DialogContentText className={classes.dialogContentText}>
+            {dialogDescription}
+          </DialogContentText>
+          {children}
+        </DialogContent>
+        <DialogActions>
+          {deleteHandler !== null ?
+            <Button onClick={deleteHandler} color="primary">
+              Delete
+            </Button>
+            : null}
+          <Button onClick={closeHandler} color="primary">
+            Cancel
+          </Button>
+          <Button type="submit" color="primary">
+            Ok
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 
 };
 
 FormDialog.propTypes = {
+  submitHandler: PropTypes.func.isRequired,
   dialogTitle: PropTypes.string.isRequired,
   dialogDescription: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  handleOk: PropTypes.func.isRequired,
+  deleteHandler: PropTypes.func,
+  closeHandler: PropTypes.func.isRequired,
+  okHandler: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
+};
+
+FormDialog.defaultProps = {
+  deleteHandler: null,
 };
 
 export default FormDialog;
