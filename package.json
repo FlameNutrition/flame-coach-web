@@ -1,7 +1,7 @@
 {
   "name": "flame-coach",
   "author": "Flame Nutrition",
-  "version": "2021.8.0",
+  "version": "2021.8.1-SNAPSHOT",
   "private": true,
   "scripts": {
     "build": "next build",
