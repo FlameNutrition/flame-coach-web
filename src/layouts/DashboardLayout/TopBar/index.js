@@ -10,6 +10,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import { Input as InputIcon, Menu as MenuIcon } from '@material-ui/icons';
 import { signOut } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -26,6 +27,8 @@ const TopBar = ({
 }) => {
   const classes = useStyles();
 
+  const router = useRouter();
+
   return (
     <AppBar
       className={clsx(classes.root, className)}
@@ -35,9 +38,14 @@ const TopBar = ({
       <Toolbar>
         <Box flexGrow={1}/>
         <Hidden mdDown>
-          <IconButton color="inherit" onClick={() => signOut({
-            callbackUrl: `${window.location.origin}/login`
-          })}>
+          <IconButton color="inherit" onClick={async () => {
+            const response = await signOut({
+              callbackUrl: `${process.env.NEXTAUTH_URL}/login`,
+              redirect: false
+            });
+
+            router.replace(response.url);
+          }}>
             <InputIcon/>
           </IconButton>
         </Hidden>
