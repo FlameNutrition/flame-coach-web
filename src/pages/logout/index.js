@@ -10,7 +10,7 @@ const LogoutPage = () => {
     if (loading) return;
     if (session) {
       const response = await signOut({
-        callbackUrl: `${process.env.NEXTAUTH_URL}`,
+        callbackUrl: `${process.env.NEXTAUTH_URL}/login`,
         redirect: false
       });
 
