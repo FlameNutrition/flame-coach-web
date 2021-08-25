@@ -37,7 +37,7 @@ const TaskPreview = ({
       {...rest}
     >
       <CardHeader
-        title="Daily Tasks"
+        title="Daily Routine Preview"
       />
       <Divider/>
       <PerfectScrollbar>

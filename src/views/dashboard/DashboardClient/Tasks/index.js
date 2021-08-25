@@ -70,6 +70,7 @@ const Tasks = ({
   const tabs = taskPeriod !== 'today' ? moment.weekdays()
       .map((day, index) => (
         <Tab
+          key={index}
           label={isMobile ? day.slice(0, 3) : day}
           id={`task-tab-${index}`}
           aria-controls={`task-tabpanel-${index}`}
@@ -83,7 +84,7 @@ const Tasks = ({
       {...rest}
     >
       <CardHeader
-        title="Daily Tasks"
+        title="Daily Routine"
         action={(
           <Grid
             container
@@ -132,7 +133,7 @@ const Tasks = ({
                 {
                   moment.weekdays()
                     .map((_, index) => (
-                      <TaskPanel value={tabIndex} index={index}>
+                      <TaskPanel key={index} value={tabIndex} index={index}>
                         <PerfectScrollbar>
                           <Box m="2px">
                             {
@@ -162,8 +163,9 @@ const Tasks = ({
                 <div className={clsx(classes.dailyTaskPanel)}>
                   <Box m="2px">
                     {
-                      tasks.map((task) => (
+                      tasks.map((task, index) => (
                         <DailyTask
+                          key={index}
                           task={task}
                           enableCheck
                           checkTaskHandler={updateTaskHandler}
