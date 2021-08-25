@@ -1,5 +1,8 @@
 module.exports = {
   setupFilesAfterEnv: ['./src/setupTests.js'],
+  roots: [
+    '<rootDir>/src/'
+  ],
   coveragePathIgnorePatterns: [
     'node_modules',
     '<rootDir>/src/serviceWorker.js',
@@ -7,7 +10,7 @@ module.exports = {
     '<rootDir>/src/testing/test-utils.js'
   ],
   collectCoverageFrom: [
-    "<rootDir>/src/**/*"
+    '<rootDir>/src/**/*'
   ],
   testEnvironment: 'jsdom',
   globalSetup: '<rootDir>/src/testing/test-setup-env.js', //https://github.com/vercel/next.js/issues/17903

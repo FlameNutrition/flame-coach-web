@@ -2,6 +2,7 @@ import '../components/Calendar/Calendar.css';
 import '../components/Charts/Events/Event.css';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import '../components/BigCalendar/BigCalendar.css';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import wrapper from '../store/configureStore';

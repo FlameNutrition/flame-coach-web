@@ -91,7 +91,7 @@ const TaskTool = ({
   return (
     <Card className={clsx(classes.root)}>
       <CardHeader
-        title="Planner Daily Tasks"
+        title="Plan Daily Routine"
       />
       <Divider/>
       <CardContent>
@@ -165,12 +165,12 @@ const TaskTool = ({
                   container
                   spacing={1}
                 >
-                  <Grid item xs={6}>
+                  <Grid item xs={12} lg={5} md={5}>
                     <TextField
                       error={Boolean(touched.taskName && errors.taskName)}
                       fullWidth
                       helperText={touched.taskName && errors.taskName}
-                      label="Task Name"
+                      label="Routine Name"
                       margin="dense"
                       name="taskName"
                       onBlur={handleBlur}
@@ -183,8 +183,8 @@ const TaskTool = ({
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
-                      helperText="A simple task description"
-                      label="Task Description"
+                      helperText="A simple description/instructions for routine"
+                      label="Routine Description"
                       margin="dense"
                       name="taskDescription"
                       onBlur={handleBlur}
@@ -210,7 +210,7 @@ const TaskTool = ({
                         label="Multiple Days"
                       />
                       <FormHelperText className={classes.multipleDaysHelper}>
-                        Enable to add this task into multiple days
+                        Enable this to add same routine into multiple days
                       </FormHelperText>
                     </FormGroup>
                   </Grid>

@@ -1,0 +1,7 @@
+@media only screen and (max-width: 600px) {
+    .rbc-btn-group {
+        width: 100%;
+        text-align: center;
+        margin: 7px;
+    }
+}

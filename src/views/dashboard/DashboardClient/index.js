@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/styles/makeStyles';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import update from 'immutability-helper';
 import Page from '../../../components/Page';
 import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
@@ -261,8 +261,7 @@ const Dashboard = ({
     setTaskPeriod(event.target.value);
     const now = moment();
     let initDate;
-    let
-      finalDate;
+    let finalDate;
 
     switch (event.target.value) {
       case 'today': {
@@ -319,6 +318,19 @@ const Dashboard = ({
         container
         spacing={3}
       >
+        {
+          /* TODO: Implement this when I have the get last appointment endpoint
+          <Grid
+            item
+            lg={6}
+            sm={6}
+            xl={6}
+            xs={12}
+          >
+            <NextAppointment isLoading={false} date={moment()}/>
+          </Grid>
+          */
+        }
         <Grid
           item
           lg={3}

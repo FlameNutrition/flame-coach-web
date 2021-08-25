@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import { FitnessCenter as CoachIcon } from '@material-ui/icons';
+import { Person as CoachIcon } from '@material-ui/icons';
 import Loading from '../Loading';
 
 const useStyles = makeStyles(() => ({
