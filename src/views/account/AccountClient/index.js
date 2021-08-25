@@ -10,9 +10,9 @@ import {
 import { logDebug, logError } from '../../../logging';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
-import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../../components/Notification/InfoMessage/InfoMessage';
-import Notification from '../../../components/Notification';
+import ErrorMessage from '../../../components/Core/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../../components/Core/Notification/InfoMessage/InfoMessage';
+import Notification from '../../../components/Core/Notification';
 import Page from '../../../components/Page';
 import Profile from '../Profile';
 import ProfileDetails from '../ProfileDetails';
@@ -21,7 +21,7 @@ import Warning from '../../../components/Warning';
 import logger from 'loglevel';
 import update from 'immutability-helper';
 import { useFetchClientPersonalInformation } from '../../../api/client/useFetchClientPersonalInformation';
-import Loading from '../../../components/Loading';
+import Loading from '../../../components/Core/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {

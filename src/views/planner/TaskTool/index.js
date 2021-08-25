@@ -2,10 +2,10 @@ import * as Yup from 'yup';
 
 import React, { useEffect, useState } from 'react';
 
-import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../components/Core/Notification/ErrorMessage/ErrorMessage';
 import { Formik } from 'formik';
 import { KeyboardDatePicker } from '@material-ui/pickers';
-import Notification from '../../../components/Notification';
+import Notification from '../../../components/Core/Notification';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { logDebug } from '../../../logging';

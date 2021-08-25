@@ -1,6 +1,6 @@
 import React from 'react';
 import sinon from 'sinon';
-import { render, screen, cleanup, fireEvent } from '../../../testing/test-utils';
+import { render, screen, cleanup, fireEvent } from '../../../../testing/test-utils';
 import Notification from '../index';
 
 describe('<Notification/ >', () => {

@@ -6,9 +6,9 @@ import {
 } from '../../api/axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
-import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
 import MUIDataTable from 'mui-datatables';
-import Notification from '../../components/Notification';
+import Notification from '../../components/Core/Notification';
 import Page from '../../components/Page';
 import PropTypes from 'prop-types';
 import Warning from '../../components/Warning';
@@ -17,11 +17,11 @@ import update from 'immutability-helper';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useInviteClient } from '../../api/client/useInviteClient';
-import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
+import InfoMessage from '../../components/Core/Notification/InfoMessage/InfoMessage';
 import themeTable from './themeTable';
 import clsx from 'clsx';
 import { useIsMediumMobile } from '../../utils/mediaUtil';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Core/Loading';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import SvgIcon from '@material-ui/core/SvgIcon';
