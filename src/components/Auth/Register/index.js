@@ -16,7 +16,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import { Formik } from 'formik';
-import Notification from '../../Notification';
+import Notification from '../../Core/Notification';
 import Page from '../../Page';
 import PropTypes from 'prop-types';
 

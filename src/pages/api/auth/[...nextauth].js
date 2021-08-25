@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 import axios from '../../../api/axios/axios-flame-coach';
-import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../../components/Core/Notification/ErrorMessage/ErrorMessage';
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options

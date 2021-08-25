@@ -3,7 +3,7 @@ import Page from './Page';
 import Container from '@material-ui/core/Container';
 import React from 'react';
 import makeStyles from '@material-ui/styles/makeStyles';
-import Loading from './Loading';
+import Loading from './Core/Loading';
 import Warning from './Warning';
 
 const useStyles = makeStyles((theme) => ({

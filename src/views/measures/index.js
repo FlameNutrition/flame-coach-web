@@ -13,17 +13,17 @@ import { useQueryClient } from 'react-query';
 import { logError } from '../../logging';
 import PropTypes from 'prop-types';
 import Warning from '../../components/Warning';
-import Notification from '../../components/Notification';
+import Notification from '../../components/Core/Notification';
 import update from 'immutability-helper';
-import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
+import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../components/Core/Notification/InfoMessage/InfoMessage';
 import { useFetchWeightClient } from '../../api/measures/useFetchWeightClient';
 import { useAddWeightClient } from '../../api/measures/useAddWeightClient';
 import { useDeleteWeightClient } from '../../api/measures/useDeleteWeightClient';
 import { useFetchClientPersonalInformation } from '../../api/client/useFetchClientPersonalInformation';
 import { extractWeightType } from '../../api/client/clientPersonalInformationUtil';
 import { useIsMobile } from '../../utils/mediaUtil';
-import Loading from '../../components/Loading';
+import Loading from '../../components/Core/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {

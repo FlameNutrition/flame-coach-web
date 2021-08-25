@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '../../../testing/test-utils';
+import { render, screen } from '../../../../testing/test-utils';
 import NextAppointment from '../index';
 import moment from 'moment-timezone';
 

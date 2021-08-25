@@ -1,7 +1,7 @@
 import { ERROR, WARNING } from '../notificationTypes';
 
 /* eslint-disable lines-between-class-members */
-import { logWarn } from '../../../logging';
+import { logWarn } from '../../../../logging';
 
 class ErrorMessage {
   // Request
@@ -20,8 +20,8 @@ class ErrorMessage {
   static CODE_3002 = new ErrorMessage('CODE_3002', 'Please check if the client already has a coach or if you start the enrollment process.', WARNING);
 
   // Daily Tasks
-  static CODE_4001 = new ErrorMessage('CODE_4001', 'Daily task not found! Please ask help to the admin system.', ERROR);
-  static CODE_4002 = new ErrorMessage('CODE_4002', 'You can not delete this task.', ERROR);
+  static CODE_4001 = new ErrorMessage('CODE_4001', 'Daily routine not found! Please ask help to the admin system.', ERROR);
+  static CODE_4002 = new ErrorMessage('CODE_4002', 'You can not delete this routine.', ERROR);
 
   // Configs
   static CODE_5001 = new ErrorMessage('CODE_5001', 'Configuration is not present in the system. Please report this problem.', ERROR);
@@ -32,7 +32,7 @@ class ErrorMessage {
   // UI
   static CODE_0001 = new ErrorMessage('CODE_0001', 'End date is the same or before to the start date. Please use another date.', WARNING);
   static CODE_0002 = new ErrorMessage('CODE_0002', 'Ops! You need to select a client first. Please choose a client on the top of the application.', WARNING);
-  static CODE_0003 = new ErrorMessage('CODE_0003', 'Ops! You need to select a task first. Please choose the task you want to update.', WARNING);
+  static CODE_0003 = new ErrorMessage('CODE_0003', 'Ops! You need to select a routine first. Please choose the routine you want to update.', WARNING);
   static CODE_0004 = new ErrorMessage('CODE_0004', 'After confirmation you will need to ask us or your coach to leave this experience.', WARNING);
   static CODE_0005 = new ErrorMessage('CODE_0005', '\'Password\' and \'Confirm password\' fields don\'t have the same value.', WARNING);
   static CODE_0006 = new ErrorMessage('CODE_0006', 'Please insert a valid weight.', WARNING);

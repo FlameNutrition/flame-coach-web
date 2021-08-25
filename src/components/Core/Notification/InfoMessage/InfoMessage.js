@@ -8,9 +8,9 @@ class InfoMessage {
   static CODE_2003 = new InfoMessage('Password updated with success!', SUCCESS)
 
   // Daily Tasks
-  static CODE_4001 = new InfoMessage('Task added with success!', SUCCESS)
-  static CODE_4002 = new InfoMessage('Task updated with success!', SUCCESS)
-  static CODE_4003 = new InfoMessage('Task deleted with success!', SUCCESS)
+  static CODE_4001 = new InfoMessage('Routine added with success!', SUCCESS)
+  static CODE_4002 = new InfoMessage('Routine updated with success!', SUCCESS)
+  static CODE_4003 = new InfoMessage('Routine deleted with success!', SUCCESS)
 
   // UI
   static CODE_0001 = new InfoMessage('If you want to leave please ask us or your coach.', INFO)

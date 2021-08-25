@@ -8,15 +8,15 @@ import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { getCoachContactInformation, updateCoachContactInformation } from '../../../api/axios';
-import Notification from '../../../components/Notification';
-import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../../components/Notification/InfoMessage/InfoMessage';
+import Notification from '../../../components/Core/Notification';
+import ErrorMessage from '../../../components/Core/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../../components/Core/Notification/InfoMessage/InfoMessage';
 import Page from '../../../components/Page';
 import Warning from '../../../components/Warning';
 import { logDebug, logError } from '../../../logging';
 import Profile from '../Profile';
 import ProfileDetails from '../ProfileDetails';
-import Loading from '../../../components/Loading';
+import Loading from '../../../components/Core/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {

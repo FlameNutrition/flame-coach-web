@@ -10,7 +10,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Formik } from 'formik';
-import Notification from '../../Notification';
+import Notification from '../../Core/Notification';
 import Page from '../../Page';
 import Link from 'next/link';
 

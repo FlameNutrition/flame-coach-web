@@ -11,10 +11,10 @@ import {
   NavigateNext as NavigateNextIcon
 } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
-import ErrorMessage from '../../../../components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../../../components/Notification/InfoMessage/InfoMessage';
+import ErrorMessage from '../../../../components/Core/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../../../components/Core/Notification/InfoMessage/InfoMessage';
 import PropTypes from 'prop-types';
-import Loading from '../../../../components/Loading';
+import Loading from '../../../../components/Core/Loading';
 import ModalWarning from '../../../../components/ModalWarning';
 
 const useStyles = makeStyles(() => ({

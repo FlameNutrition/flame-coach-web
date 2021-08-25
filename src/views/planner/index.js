@@ -16,8 +16,8 @@ import { logDebug, logError } from '../../logging';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import Calendar from '../../components/Calendar/Calendar';
-import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
+import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../components/Core/Notification/InfoMessage/InfoMessage';
 import Page from '../../components/Page';
 import PropTypes from 'prop-types';
 import SearchClient from '../../components/SearchClient';

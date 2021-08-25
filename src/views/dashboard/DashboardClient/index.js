@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 import update from 'immutability-helper';
 import Page from '../../../components/Page';
-import ErrorMessage from '../../../components/Notification/ErrorMessage/ErrorMessage';
-import TasksProgress from './TasksProgress';
+import ErrorMessage from '../../../components/Core/Notification/ErrorMessage/ErrorMessage';
+import TasksProgress from '../../../components/Dashboard/TaskProgress';
 import Tasks from './Tasks';
-import MyCoach from '../../../components/MyCoach';
+import MyCoach from '../../../components/Dashboard/MyCoach';
 import { logDebug, logError } from '../../../logging';
 import {
   enrollmentProcessFinish,
@@ -19,7 +19,7 @@ import {
   updateDailyTaskByUUID
 } from '../../../api/axios';
 import Warning from '../../../components/Warning';
-import Notification from '../../../components/Notification';
+import Notification from '../../../components/Core/Notification';
 import EnrollmentCard from './EnrollmentCard';
 
 const useStyles = makeStyles((theme) => ({

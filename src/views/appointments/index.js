@@ -23,9 +23,9 @@ import Grid from '@material-ui/core/Grid';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { getTimezoneDateTime } from '../../utils/timezoneUtil';
 import update from 'immutability-helper';
-import Notification from '../../components/Notification';
+import Notification from '../../components/Core/Notification';
 import { useQueryClient } from 'react-query';
-import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
 import { useEditAppointmentClient } from '../../api/appointments/useEditAppointmentsCoach';
 import { useDeleteAppointmentClient } from '../../api/appointments/useDeleteAppointmentsCoach';
 

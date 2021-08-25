@@ -10,7 +10,7 @@ import makeStyles from '@material-ui/styles/makeStyles';
 
 import { Form, Formik } from 'formik';
 
-import Notification from '../../components/Notification';
+import Notification from '../../components/Core/Notification';
 import PropTypes from 'prop-types';
 import React from 'react';
 import clsx from 'clsx';

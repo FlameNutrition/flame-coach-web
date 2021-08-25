@@ -1,7 +1,7 @@
 import logger from 'loglevel';
 
 import axios from '../../api/axios/axios-flame-coach';
-import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
 import * as actionType from './actionsType';
 
 const signupSuccess = (userInfo) => {

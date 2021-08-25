@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Register from '../../components/Auth/Register';
 import { signIn, useSession } from 'next-auth/client';
 import axios from '../../api/axios/axios-flame-coach';
-import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
+import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
 
 const routerLocationSearch = (query) => {
   const queryParams = query.split('?')[1];

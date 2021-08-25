@@ -3,8 +3,8 @@ import Container from '@material-ui/core/Container';
 import makeStyles from '@material-ui/styles/makeStyles';
 import React, { useState } from 'react';
 
-import ErrorMessage from '../../components/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../components/Notification/InfoMessage/InfoMessage';
+import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
+import InfoMessage from '../../components/Core/Notification/InfoMessage/InfoMessage';
 import Page from '../../components/Page';
 import Password from './Password';
 import PropTypes from 'prop-types';
