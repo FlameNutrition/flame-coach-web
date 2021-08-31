@@ -1,6 +1,4 @@
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import makeStyles from '@material-ui/styles/makeStyles';
 import React, { useState } from 'react';
 
 import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
@@ -12,19 +10,9 @@ import { logError } from '../../logging';
 import { updatePassword } from '../../api/axios';
 import { useMutation } from 'react-query';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
-  }
-}));
-
 const Settings = ({
   customerEmail
 }) => {
-  const classes = useStyles();
 
   const [notification, setNotification] = useState({
     enable: false,
@@ -48,39 +36,38 @@ const Settings = ({
 
   return (
     <Page
-      className={classes.root}
       title="Settings"
+      isError={false}
+      isLoading={false}
     >
-      <Container maxWidth="lg">
-        <Box>
-          <Password
-            notification={notification}
-            updateNotificationHandler={updateNotificationHandler}
-            updatePasswordHandler={(oldPassword, newPassword, newPasswordConfirmation) => {
-              if (newPassword === newPasswordConfirmation) {
-                updatePasswordMutation.mutate({
-                  email: customerEmail,
-                  oldPassword,
-                  newPassword
-                }, {
-                  onError: async (error) => {
-                    logError('Settings', 'updatePassword', 'Error Details:', error.response.data.detail);
-                    const errorCode = ErrorMessage.fromCode(error.response.data.code);
-                    updateNotificationHandler(true, errorCode.msg, errorCode.level);
-                  },
-                  onSuccess: async () => {
-                    const infoCode = InfoMessage.CODE_2003;
-                    updateNotificationHandler(true, infoCode.msg, infoCode.level);
-                  }
-                });
-              } else {
-                const errorCode = ErrorMessage.CODE_0005;
-                updateNotificationHandler(true, errorCode.msg, errorCode.level);
-              }
-            }}
-          />
-        </Box>
-      </Container>
+      <Box>
+        <Password
+          notification={notification}
+          updateNotificationHandler={updateNotificationHandler}
+          updatePasswordHandler={(oldPassword, newPassword, newPasswordConfirmation) => {
+            if (newPassword === newPasswordConfirmation) {
+              updatePasswordMutation.mutate({
+                email: customerEmail,
+                oldPassword,
+                newPassword
+              }, {
+                onError: async (error) => {
+                  logError('Settings', 'updatePassword', 'Error Details:', error.response.data.detail);
+                  const errorCode = ErrorMessage.fromCode(error.response.data.code);
+                  updateNotificationHandler(true, errorCode.msg, errorCode.level);
+                },
+                onSuccess: async () => {
+                  const infoCode = InfoMessage.CODE_2003;
+                  updateNotificationHandler(true, infoCode.msg, infoCode.level);
+                }
+              });
+            } else {
+              const errorCode = ErrorMessage.CODE_0005;
+              updateNotificationHandler(true, errorCode.msg, errorCode.level);
+            }
+          }}
+        />
+      </Box>
     </Page>
   );
 };

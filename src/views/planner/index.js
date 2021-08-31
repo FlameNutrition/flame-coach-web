@@ -23,18 +23,10 @@ import PropTypes from 'prop-types';
 import SearchClient from '../../components/SearchClient';
 import TaskPreview from './TaskPreview';
 import TaskTool from './TaskTool';
-import Warning from '../../components/Warning';
 import update from 'immutability-helper';
 import moment from 'moment';
-import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
-  },
   searchClientCard: {
     marginBottom: theme.spacing(3)
   },
@@ -341,68 +333,62 @@ const Planner = ({ customerIdentifier }) => {
 
   return (
     <Page
-      className={classes.root}
       title="Planner"
+      isLoading={clients.isLoading || clientTasks.isLoading}
+      isError={clients.isError || clientTasks.isError}
     >
-      <Container maxWidth={false}>
-        {(!clients.isLoading && (clients.isError || clientTasks.isError))
-          ? <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>
-          : null}
-        {(!clients.isError && !clientTasks.isError) ? (
-          <>
-            <Box className={classes.searchClientCard}>
-              <Card>
-                <CardContent>
-                  <SearchClient
-                    clients={!clients.isLoading ? clients.data.clientsCoach : []}
-                    searchSelectedHandler={searchClientSelectHandler}
-                  />
-                </CardContent>
-              </Card>
-            </Box>
-            <Grid
-              container
-              spacing={3}
-            >
-              <Grid
-                item
-                lg={8}
-                md={12}
-                xl={9}
-                xs={12}
-              >
-                <TaskPreview
-                  tasks={clientTasks.data ? clientTasks.data.dailyTasks : []}
-                  date={selectedDate}
-                  selectUpdateTaskHandler={selectUpdateTaskHandler}
-                  deleteTaskHandler={deleteTaskHandler}
-                />
-              </Grid>
-              <Grid
-                item
-                lg={4}
-                md={6}
-                xl={3}
-                xs={12}
-              >
-                <Calendar daily onChangeCalendar={selectDateHandler}/>
-              </Grid>
-            </Grid>
-            <Box className={classes.actionTaskCard}>
-              <TaskTool
-                task={selectedTask}
-                notification={notification}
-                notificationCollapseHandler={notificationHandler}
-                updateNotificationHandler={updateNotificationHandler}
-                addTasksHandler={addTasksHandler}
-                addMultipleTasksHandler={addMultipleTasksHandler}
-                updateTaskHandler={updateTasksHandler}
-                selectUpdateTaskHandler={selectUpdateTaskHandler}
+      <>
+        <Box className={classes.searchClientCard}>
+          <Card>
+            <CardContent>
+              <SearchClient
+                clients={!clients.isLoading ? clients.data.clientsCoach : []}
+                searchSelectedHandler={searchClientSelectHandler}
               />
-            </Box>
-          </>
-        ) : null}
-      </Container>
+            </CardContent>
+          </Card>
+        </Box>
+        <Grid
+          container
+          spacing={3}
+        >
+          <Grid
+            item
+            lg={8}
+            md={12}
+            xl={9}
+            xs={12}
+          >
+            <TaskPreview
+              tasks={clientTasks.data ? clientTasks.data.dailyTasks : []}
+              date={selectedDate}
+              selectUpdateTaskHandler={selectUpdateTaskHandler}
+              deleteTaskHandler={deleteTaskHandler}
+            />
+          </Grid>
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xl={3}
+            xs={12}
+          >
+            <Calendar daily onChangeCalendar={selectDateHandler}/>
+          </Grid>
+        </Grid>
+        <Box className={classes.actionTaskCard}>
+          <TaskTool
+            task={selectedTask}
+            notification={notification}
+            notificationCollapseHandler={notificationHandler}
+            updateNotificationHandler={updateNotificationHandler}
+            addTasksHandler={addTasksHandler}
+            addMultipleTasksHandler={addMultipleTasksHandler}
+            updateTaskHandler={updateTasksHandler}
+            selectUpdateTaskHandler={selectUpdateTaskHandler}
+          />
+        </Box>
+      </>
     </Page>
   );
 };

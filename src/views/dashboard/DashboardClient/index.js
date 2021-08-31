@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/styles/makeStyles';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
@@ -18,7 +17,6 @@ import {
   getDailyTasksByClientAndDay,
   updateDailyTaskByUUID
 } from '../../../api/axios';
-import Warning from '../../../components/Warning';
 import Notification from '../../../components/Core/Notification';
 import EnrollmentCard from './EnrollmentCard';
 
@@ -310,122 +308,107 @@ const Dashboard = ({
     setEndDate(finalDate);
   };
 
-  const generalProblem = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
-
-  const dashboard = (
-    <>
-      <Grid
-        container
-        spacing={3}
-      >
-        {
-          /* TODO: Implement this when I have the get last appointment endpoint
-          <Grid
-            item
-            lg={6}
-            sm={6}
-            xl={6}
-            xs={12}
-          >
-            <NextAppointment isLoading={false} date={moment()}/>
-          </Grid>
-          */
-        }
-        <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <TasksProgress
-            isLoading={clientTasks.isFetching}
-            type={progressLabel(taskPeriod)}
-            progress={tasksProgress}
-          />
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <MyCoach
-            isLoading={enrollmentStatus.isFetching}
-            coachName={enrollment.coach ? enrollment.coach.name : null}
-          />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        spacing={3}
-      >
-        <Grid
-          item
-          xs={12}
-        >
-          <EnrollmentCard
-            isLoading={enrollmentStatus.isFetching}
-            activeCoachStep={activeCoachStep}
-            setActiveCoachStep={setActiveCoachStep}
-            customerIdentifier={customerIdentifier}
-            enrollmentFinish={enrollmentFinish}
-            enrollmentStatus={enrollment?.status}
-          />
-        </Grid>
-        {notification.enable
-          ? (
-            <Grid
-              item
-              xs={12}
-            >
-              <Notification
-                className={classes.notification}
-                collapse
-                open={notification.enable}
-                openHandler={notificationHandler}
-                level={notification.level}
-                message={notification.message}
-              />
-            </Grid>
-          )
-          : null}
-        <Grid
-          item
-          lg={8}
-          md={12}
-          xl={9}
-          xs={12}
-        >
-          <Tasks
-            tasks={clientTasks.data ? clientTasks.data.dailyTasks : []}
-            taskPeriod={taskPeriod}
-            taskPeriodHandler={taskPeriodHandler}
-            taskPeriodRefreshHandler={taskPeriodRefreshHandler}
-            updateTaskHandler={updateTaskHandler}
-          />
-        </Grid>
-      </Grid>
-    </>
-  );
-
-  let container;
-
-  if (clientTasks.isError || enrollmentStatus.isError) {
-    container = generalProblem;
-  } else {
-    container = dashboard;
-  }
-
   return (
     <Page
-      className={classes.root}
       title="Dashboard"
+      isError={clientTasks.isError || enrollmentStatus.isError}
+      isLoading={clientTasks.isLoading || enrollmentStatus.isLoading}
     >
-      <Container maxWidth={false}>
-        {container}
-      </Container>
+      <>
+        <Grid
+          container
+          spacing={3}
+        >
+          {
+            /* TODO: Implement this when I have the get last appointment endpoint
+            <Grid
+              item
+              lg={6}
+              sm={6}
+              xl={6}
+              xs={12}
+            >
+              <NextAppointment isLoading={false} date={moment()}/>
+            </Grid>
+            */
+          }
+          <Grid
+            item
+            lg={3}
+            sm={6}
+            xl={3}
+            xs={12}
+          >
+            <TasksProgress
+              isLoading={clientTasks.isFetching}
+              type={progressLabel(taskPeriod)}
+              progress={tasksProgress}
+            />
+          </Grid>
+          <Grid
+            item
+            lg={3}
+            sm={6}
+            xl={3}
+            xs={12}
+          >
+            <MyCoach
+              isLoading={enrollmentStatus.isFetching}
+              coachName={enrollment.coach ? enrollment.coach.name : null}
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          spacing={3}
+        >
+          <Grid
+            item
+            xs={12}
+          >
+            <EnrollmentCard
+              isLoading={enrollmentStatus.isFetching}
+              activeCoachStep={activeCoachStep}
+              setActiveCoachStep={setActiveCoachStep}
+              customerIdentifier={customerIdentifier}
+              enrollmentFinish={enrollmentFinish}
+              enrollmentStatus={enrollment?.status}
+            />
+          </Grid>
+          {notification.enable
+            ? (
+              <Grid
+                item
+                xs={12}
+              >
+                <Notification
+                  className={classes.notification}
+                  collapse
+                  open={notification.enable}
+                  openHandler={notificationHandler}
+                  level={notification.level}
+                  message={notification.message}
+                />
+              </Grid>
+            )
+            : null}
+          <Grid
+            item
+            lg={8}
+            md={12}
+            xl={9}
+            xs={12}
+          >
+            <Tasks
+              tasks={clientTasks.data ? clientTasks.data.dailyTasks : []}
+              taskPeriod={taskPeriod}
+              taskPeriodHandler={taskPeriodHandler}
+              taskPeriodRefreshHandler={taskPeriodRefreshHandler}
+              updateTaskHandler={updateTaskHandler}
+            />
+          </Grid>
+        </Grid>
+      </>
     </Page>
   );
 };

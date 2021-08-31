@@ -1,6 +1,4 @@
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import makeStyles from '@material-ui/styles/makeStyles';
 import update from 'immutability-helper';
 import logger from 'loglevel';
 import PropTypes from 'prop-types';
@@ -12,32 +10,15 @@ import Notification from '../../../components/Core/Notification';
 import ErrorMessage from '../../../components/Core/Notification/ErrorMessage/ErrorMessage';
 import InfoMessage from '../../../components/Core/Notification/InfoMessage/InfoMessage';
 import Page from '../../../components/Page';
-import Warning from '../../../components/Warning';
 import { logDebug, logError } from '../../../logging';
 import Profile from '../Profile';
 import ProfileDetails from '../ProfileDetails';
-import Loading from '../../../components/Core/Loading';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3),
-    height: '100%'
-  },
-  container: {
-    height: '100%'
-  }
-}));
 
 const Account = ({
   customerIdentifier,
   email
 }) => {
   const queryClient = useQueryClient();
-
-  const classes = useStyles();
 
   const [notification, setNotification] = useState({
     enable: false,
@@ -128,10 +109,12 @@ const Account = ({
     });
   };
 
-  let container = (<Loading size={100}/>);
-
-  if (!contactInformation.isFetching && !contactInformation.isError) {
-    container = (
+  return (
+    <Page
+      title="Account"
+      isError={contactInformation.isError}
+      isLoading={contactInformation.isFetching}
+    >
       <Grid
         container
         spacing={3}
@@ -143,12 +126,12 @@ const Account = ({
           xs={12}
         >
           <Profile
-            user={{
+            user={contactInformation.data ? {
               city: '',
               country: (contactInformation.data.country)
                 ? contactInformation.data.country.value : '',
               avatar: ''
-            }}
+            } : null}
             updatePhotoHandler={updatePhotoHandler}
           />
         </Grid>
@@ -159,7 +142,7 @@ const Account = ({
           xs={12}
         >
           <ProfileDetails
-            userDetails={{
+            userDetails={contactInformation.data ? {
               firstName: contactInformation.data.firstName,
               lastName: contactInformation.data.lastName,
               email,
@@ -167,7 +150,7 @@ const Account = ({
               phoneNumber: contactInformation.data.phoneNumber,
               country: contactInformation.data.country && contactInformation.data.country.code
                 ? contactInformation.data.country.code : '',
-            }}
+            } : null}
             saveContactInformationHandler={saveContactInformationHandler}
             updateUserDetailsHandler={updateUserDetailsHandler}
           />
@@ -184,24 +167,6 @@ const Account = ({
             : null}
         </Grid>
       </Grid>
-    );
-  }
-
-  if (!contactInformation.isFetching && contactInformation.isError) {
-    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
-  }
-
-  return (
-    <Page
-      className={classes.root}
-      title="Account"
-    >
-      <Container
-        className={classes.container}
-        maxWidth="lg"
-      >
-        {container}
-      </Container>
     </Page>
   );
 };

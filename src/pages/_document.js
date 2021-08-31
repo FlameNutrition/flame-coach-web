@@ -12,12 +12,13 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"/>
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab|Roboto:300,400,500,700"
+            href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab|Roboto:300,400,500,700&display=optional"
           />
-          <link
-            rel="manifest"
-            href="/manifest.json"
-          />
+          <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
+          <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5"/>
+          <link rel="manifest" href="/manifest.json"/>
           {/* FIXME: Please review this, docs advice not change this CSS */}
           <style>
             {`

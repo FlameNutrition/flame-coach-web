@@ -11,7 +11,6 @@ import MUIDataTable from 'mui-datatables';
 import Notification from '../../components/Core/Notification';
 import Page from '../../components/Page';
 import PropTypes from 'prop-types';
-import Warning from '../../components/Warning';
 import { logError } from '../../logging';
 import update from 'immutability-helper';
 import { useFormik } from 'formik';
@@ -21,9 +20,7 @@ import InfoMessage from '../../components/Core/Notification/InfoMessage/InfoMess
 import themeTable from './themeTable';
 import clsx from 'clsx';
 import { useIsMediumMobile } from '../../utils/mediaUtil';
-import Loading from '../../components/Core/Loading';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Card from '@material-ui/core/Card';
@@ -155,7 +152,7 @@ const CustomersView = ({ customerIdentifier }) => {
 
   const {
     isError,
-    isFetching,
+    isLoading,
     data
   } = useQuery(['getClientsCoachPlusClientsAvailableForCoaching', customerIdentifier],
     () => getClientsCoachPlusClientsAvailableForCoaching(customerIdentifier), {
@@ -289,10 +286,11 @@ const CustomersView = ({ customerIdentifier }) => {
 
   const columns = ['Name', 'Email', 'Registration date', 'Status', columnActions];
 
-  let container = (<Loading size={100}/>);
-
-  if (!isFetching && !isError) {
-    container = (
+  return (
+    <Page
+      title="Customers"
+      isError={isError}
+      isLoading={isLoading}>
       <Grid
         direction="row"
         container
@@ -340,7 +338,7 @@ const CustomersView = ({ customerIdentifier }) => {
           <ThemeProvider theme={themeTable}>
             <MUIDataTable
               title="Clients List"
-              data={data.clientsCoach.map((client) => ([
+              data={data ? data.clientsCoach.map((client) => ([
                 `${client.firstname} ${client.lastname}`,
                 client.email,
                 client.registrationDate,
@@ -350,7 +348,7 @@ const CustomersView = ({ customerIdentifier }) => {
                   clientLoading,
                   isClientLoading
                 },
-              ]))}
+              ])) : null}
               columns={columns}
               options={options}
             />
@@ -370,24 +368,6 @@ const CustomersView = ({ customerIdentifier }) => {
           )
           : null}
       </Grid>
-    );
-  }
-
-  if (!isFetching && isError) {
-    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
-  }
-
-  return (
-    <Page
-      className={classes.root}
-      title="Customers"
-    >
-      <Container
-        className={classes.container}
-        maxWidth={false}
-      >
-        {container}
-      </Container>
     </Page>
   );
 };

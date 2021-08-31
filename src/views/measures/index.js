@@ -1,4 +1,3 @@
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/styles/makeStyles';
 import React, { useState } from 'react';
@@ -12,7 +11,6 @@ import Filters from '../../components/Charts/Filters';
 import { useQueryClient } from 'react-query';
 import { logError } from '../../logging';
 import PropTypes from 'prop-types';
-import Warning from '../../components/Warning';
 import Notification from '../../components/Core/Notification';
 import update from 'immutability-helper';
 import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
@@ -23,7 +21,6 @@ import { useDeleteWeightClient } from '../../api/measures/useDeleteWeightClient'
 import { useFetchClientPersonalInformation } from '../../api/client/useFetchClientPersonalInformation';
 import { extractWeightType } from '../../api/client/clientPersonalInformationUtil';
 import { useIsMobile } from '../../utils/mediaUtil';
-import Loading from '../../components/Core/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -148,10 +145,12 @@ const MeasuresView = ({
     });
   };
 
-  let container = (<Loading size={100}/>);
-
-  if ((!isLoading && !isError) && (!personalData.isLoading && !personalData.isError)) {
-    container = (
+  return (
+    <Page
+      title="Measures"
+      isError={isError || personalData.isError}
+      isLoading={isLoading || personalData.isLoading}
+    >
       <Grid
         container
         spacing={1}
@@ -230,24 +229,6 @@ const MeasuresView = ({
           )
           : null}
       </Grid>
-    );
-  }
-
-  if ((!isLoading && isError) || (!personalData.isLoading && personalData.isError)) {
-    container = <Warning message={process.env.NEXT_PUBLIC_MSG_SERVER_ERROR}/>;
-  }
-
-  return (
-    <Page
-      className={classes.root}
-      title="Measures"
-    >
-      <Container
-        className={classes.container}
-        maxWidth={false}
-      >
-        {container}
-      </Container>
     </Page>
   );
 };
