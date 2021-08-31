@@ -15,7 +15,7 @@ import { useAddAppointmentClient } from '../../api/appointments/useAddAppointmen
 import SearchClient from '../../components/SearchClient';
 import { logDebug, logError, logInfo } from '../../logging';
 import { useFetchClientsCoach } from '../../api/client/useFetchClientsCoach';
-import Spinner from '../../components/Spinner';
+import Page from '../../components/Page';
 import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
 import { KeyboardDateTimePicker } from '@material-ui/pickers';
@@ -276,8 +276,8 @@ const Appointments = ({
   };
 
   return (
-    <Spinner
-      pageTitle={'Appointments'}
+    <Page
+      title={'Appointments'}
       isError={clientsCoach.isError || appointmentsIsError}
       isLoading={clientsCoach.isFetching || appointmentsIsFetching}>
       <Card className={clsx(classes.calendarCard)}>
@@ -447,7 +447,7 @@ const Appointments = ({
             : null}
         </Grid>
       </FormDialog>
-    </Spinner>
+    </Page>
   );
 
 };
