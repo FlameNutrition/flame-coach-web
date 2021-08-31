@@ -334,7 +334,8 @@ const Planner = ({ customerIdentifier }) => {
   return (
     <Page
       title="Planner"
-      isLoading={clients.isLoading || clientTasks.isLoading}
+      //FIXME: Loading data inside the components instead the entire page
+      isLoading={false}
       isError={clients.isError || clientTasks.isError}
     >
       <>
@@ -342,7 +343,7 @@ const Planner = ({ customerIdentifier }) => {
           <Card>
             <CardContent>
               <SearchClient
-                clients={!clients.isLoading ? clients.data.clientsCoach : []}
+                clients={clients.data ? clients.data.clientsCoach : []}
                 searchSelectedHandler={searchClientSelectHandler}
               />
             </CardContent>
