@@ -12,7 +12,7 @@ import {
   YAxis
 } from 'react-vis';
 import moment from 'moment';
-import { maxTicksLimit, maxTicksLimitMobile, minMaxWeight } from '../utils/chartUtil';
+import { maxTicksLimit, maxTicksLimitMobile, minMaxValue } from '../utils/chartUtil';
 import { getTimeRangeDates } from '../../../utils/timeRangeUtil';
 import Card from '@material-ui/core/Card';
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -46,7 +46,7 @@ const WeightChart = ({
 
   const filterDates = getTimeRangeDates(timeFrame, moment());
 
-  const minMaxWeightRange = minMaxWeight(dataChart);
+  const minMaxWeightRange = minMaxValue(dataChart);
 
   const dataFormatted = dataChart.map((data) => ({
     y: data.value,
@@ -56,8 +56,8 @@ const WeightChart = ({
   const fromDttm = moment(filterDates.fromDttm, 'YYYY-MM-DD');
   const toDttm = moment(filterDates.toDttm, 'YYYY-MM-DD');
 
-  const minWeight = minMaxWeightRange.minWeight - 10;
-  const maxWeight = minMaxWeightRange.maxWeight + 10;
+  const minWeight = minMaxWeightRange.minValue - 10;
+  const maxWeight = minMaxWeightRange.maxValue + 10;
 
   const [value, setValue] = useState();
 

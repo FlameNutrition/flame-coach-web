@@ -6,7 +6,7 @@ import { orderPerDate } from '../../components/Charts/utils/chartUtil';
 // eslint-disable-next-line import/prefer-default-export
 export const useFetchWeightClient = (clientIdentifier) => {
   const {
-    isLoading,
+    isFetching,
     isError,
     data
   } = useQuery(['getWeightClient', clientIdentifier],
@@ -26,7 +26,7 @@ export const useFetchWeightClient = (clientIdentifier) => {
     });
 
   return {
-    isLoading,
+    isFetching,
     isError,
     data
   };

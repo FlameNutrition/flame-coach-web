@@ -312,7 +312,7 @@ const Dashboard = ({
     <Page
       title="Dashboard"
       isError={clientTasks.isError || enrollmentStatus.isError}
-      isLoading={clientTasks.isLoading || enrollmentStatus.isLoading}
+      isLoading={enrollmentStatus.isLoading}
     >
       <>
         <Grid
