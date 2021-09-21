@@ -13,6 +13,8 @@ import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import logger from 'loglevel';
 import theme from '../theme';
 import { Provider } from 'next-auth/client';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 logger.setLevel(process.env.NEXT_PUBLIC_LOG_LEVEL);
 
@@ -58,7 +60,9 @@ const App = ({
           }}
           session={pageProps.session}>
           <QueryClientProvider client={queryClient}>
-            <Component {...pageProps} />
+            <MuiPickersUtilsProvider utils={MomentUtils}>
+              <Component {...pageProps} />
+            </MuiPickersUtilsProvider>
           </QueryClientProvider>
         </Provider>
       </ThemeProvider>

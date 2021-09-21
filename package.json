@@ -7,7 +7,7 @@
     "build": "next build",
     "tests-report": "jest --watchAll --coverage --no-cache",
     "tests": "jest --watchAll",
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS=--max_old_space_size=4028 next dev",
     "start": "next start",
     "lint": "next lint",
     "dev-server": "NODE_TLS_REJECT_UNAUTHORIZED='0' node src/server.js",

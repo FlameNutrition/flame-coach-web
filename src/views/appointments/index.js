@@ -51,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Appointments = ({
-  appointments,
   customerIdentifier
 }) => {
 
@@ -102,7 +101,7 @@ const Appointments = ({
     data: appointmentsData,
     isFetching: appointmentsIsFetching,
     isError: appointmentsIsError
-  } = useFetchAppointmentsCoach(customerIdentifier, appointments);
+  } = useFetchAppointmentsCoach(customerIdentifier);
 
   const clientsCoach = useFetchClientsCoach(customerIdentifier);
 
@@ -453,7 +452,6 @@ const Appointments = ({
 };
 
 Appointments.propTypes = {
-  appointments: PropTypes.array,
   customerIdentifier: PropTypes.string.isRequired
 };
 

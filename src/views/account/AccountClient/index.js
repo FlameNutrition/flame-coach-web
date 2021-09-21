@@ -212,7 +212,7 @@ const Account = ({
         >
           <ProfileDetails
             enablePersonalData
-            userDetails={contactInformation.data ? {
+            userDetails={contactInformation.data && personalData.data ? {
               firstName: contactInformation.data.firstName,
               lastName: contactInformation.data.lastName,
               email,

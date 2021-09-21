@@ -1,8 +1,7 @@
 import {
   filterWeightsPerTimeRange,
   formatDateLabels,
-  maxTicksLimit, maxTicksLimitMobile,
-  minMaxWeight
+  maxTicksLimit, maxTicksLimitMobile, minMaxValue,
 } from '../chartUtil';
 
 import moment from 'moment';
@@ -126,7 +125,7 @@ describe('chartUtil tests', () => {
       }
     ];
 
-    const result = minMaxWeight(data);
+    const result = minMaxValue(data);
 
     expect(result)
       .toStrictEqual({

@@ -61,8 +61,13 @@ const Page = React.forwardRef(({
 Page.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool,
+  isError: PropTypes.bool
+};
+
+Page.defaultProps = {
+  isLoading: false,
+  isError: false
 };
 
 export default Page;

@@ -72,18 +72,18 @@ export const filterWeightsPerTimeRange = (data, now, timeFrame) => {
   return dataFiltered;
 };
 
-export const minMaxWeight = (formattedData) => {
-  let minWeight = formattedData.length === 0 ? 0 : formattedData[0].value;
-  let maxWeight = formattedData.length === 0 ? 0 : formattedData[0].value;
+export const minMaxValue = (data) => {
+  let minValue = data.length === 0 ? 0 : data[0].value;
+  let maxValue = data.length === 0 ? 0 : data[0].value;
 
-  formattedData.forEach((data) => {
-    minWeight = data.value < minWeight ? data.value : minWeight;
-    maxWeight = data.value > maxWeight ? data.value : maxWeight;
+  data.forEach((value) => {
+    minValue = value.value < minValue ? value.value : minValue;
+    maxValue = value.value > maxValue ? value.value : maxValue;
   });
 
   return {
-    minWeight: Math.floor(minWeight),
-    maxWeight: Math.floor(maxWeight)
+    minValue: Math.floor(minValue),
+    maxValue: Math.floor(maxValue)
   };
 };
 
@@ -91,5 +91,5 @@ export default {
   formatDateLabels,
   maxTicksLimit,
   filterWeightsPerTimeRange,
-  minMaxWeight
+  minMaxValue
 };

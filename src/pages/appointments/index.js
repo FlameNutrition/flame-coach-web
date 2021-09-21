@@ -22,7 +22,7 @@ const AppointmentsPage = () => {
           <MuiPickersUtilsProvider utils={MomentUtils}>
             <Appointments
               customerIdentifier={session.user.identifier}
-              appointments={[]}/>
+            />
           </MuiPickersUtilsProvider>
         </DashboardLayout> : null
       }

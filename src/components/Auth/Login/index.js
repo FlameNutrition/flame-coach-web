@@ -41,8 +41,7 @@ const Login = ({
   return (
     <Page
       className={classes.root}
-      title="Login"
-    >
+      title="Login">
       <Box
         display="flex"
         flexDirection="column"

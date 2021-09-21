@@ -83,7 +83,7 @@ const MeasuresView = ({
 
   const personalData = useFetchClientPersonalInformation(customerIdentifier);
   const {
-    isLoading,
+    isFetching,
     isError,
     data
   } = useFetchWeightClient(customerIdentifier);
@@ -149,7 +149,7 @@ const MeasuresView = ({
     <Page
       title="Measures"
       isError={isError || personalData.isError}
-      isLoading={isLoading || personalData.isLoading}
+      isLoading={isFetching || personalData.isFetching}
     >
       <Grid
         container
@@ -178,7 +178,7 @@ const MeasuresView = ({
                     isMobile={isMobile}
                     timeFrame={timeFrameWeight}
                     dataChart={filteredData}
-                    measureUnit={extractWeightType(personalData.data.measureType.value)}
+                    measureUnit={extractWeightType(personalData.data?.measureType.value)}
                   />
                 </Grid>
                 <Grid item md={3} xs={12}>
@@ -186,7 +186,7 @@ const MeasuresView = ({
                     className={classes.eventsCardContent}
                     dataEvents={filteredData}
                     onDeleteHandle={deleteWeightHandler}
-                    measureUnit={extractWeightType(personalData.data.measureType.value)}
+                    measureUnit={extractWeightType(personalData.data?.measureType.value)}
                   />
                 </Grid>
               </Grid>
