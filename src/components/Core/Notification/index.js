@@ -1,20 +1,20 @@
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import makeStyles from '@material-ui/styles/makeStyles';
+import Box from "@material-ui/core/Box";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from "@material-ui/core";
 
-import { ERROR, INFO, SUCCESS, WARNING } from './notificationTypes';
+import { ERROR, INFO, SUCCESS, WARNING } from "./notificationTypes";
 
-import { Alert } from '@material-ui/lab';
-import { Close as CloseIcon } from '@material-ui/icons';
-import PropTypes from 'prop-types';
-import React from 'react';
-import clsx from 'clsx';
+import { Alert } from "@material-ui/lab";
+import { Close as CloseIcon } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React from "react";
+import clsx from "clsx";
 
 const useStyles = makeStyles(() => ({
   root: {},
   notificationBar: {
-    marginTop: '10px'
+    marginTop: "10px"
   }
 }));
 
@@ -32,19 +32,19 @@ const Notification = ({
 
   switch (level) {
     case INFO:
-      internalLevel = 'info';
+      internalLevel = "info";
       break;
     case WARNING:
-      internalLevel = 'warning';
+      internalLevel = "warning";
       break;
     case ERROR:
-      internalLevel = 'error';
+      internalLevel = "error";
       break;
     case SUCCESS:
-      internalLevel = 'success';
+      internalLevel = "success";
       break;
     default:
-      internalLevel = 'info';
+      internalLevel = "info";
       break;
   }
 

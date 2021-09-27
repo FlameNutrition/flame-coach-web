@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import '../../../../node_modules/react-vis/dist/style.css';
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import clsx from "clsx";
+import "../../../../node_modules/react-vis/dist/style.css";
 import {
   FlexibleXYPlot,
   Hint,
@@ -10,26 +10,26 @@ import {
   VerticalGridLines,
   XAxis,
   YAxis
-} from 'react-vis';
-import moment from 'moment';
-import { maxTicksLimit, maxTicksLimitMobile, minMaxValue } from '../utils/chartUtil';
-import { getTimeRangeDates } from '../../../utils/timeRangeUtil';
-import Card from '@material-ui/core/Card';
-import makeStyles from '@material-ui/styles/makeStyles';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+} from "react-vis";
+import moment from "moment";
+import { maxTicksLimit, maxTicksLimitMobile, minMaxValue } from "../utils/chartUtil";
+import { getTimeRangeDates } from "../../../utils/timeRangeUtil";
+import Card from "@material-ui/core/Card";
+import { makeStyles } from "@material-ui/core";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles(() => ({
   root: {},
   chart: {
-    display: 'flex',
-    height: '100%',
-    width: '100%'
+    display: "flex",
+    height: "100%",
+    width: "100%"
   },
   weightGraphicTitle: {
-    textAlign: 'center',
-    paddingBottom: '10px'
+    textAlign: "center",
+    paddingBottom: "10px"
   }
 }));
 
@@ -50,11 +50,11 @@ const WeightChart = ({
 
   const dataFormatted = dataChart.map((data) => ({
     y: data.value,
-    x: moment(data.date, 'YYYY-MM-DD')
+    x: moment(data.date, "YYYY-MM-DD")
   }));
 
-  const fromDttm = moment(filterDates.fromDttm, 'YYYY-MM-DD');
-  const toDttm = moment(filterDates.toDttm, 'YYYY-MM-DD');
+  const fromDttm = moment(filterDates.fromDttm, "YYYY-MM-DD");
+  const toDttm = moment(filterDates.toDttm, "YYYY-MM-DD");
 
   const minWeight = minMaxWeightRange.minValue - 10;
   const maxWeight = minMaxWeightRange.maxValue + 10;
@@ -79,20 +79,20 @@ const WeightChart = ({
             yDomain={[minWeight, maxWeight]}
             xDomain={[fromDttm, toDttm]}
           >
-            <VerticalGridLines/>
-            <HorizontalGridLines/>
+            <VerticalGridLines />
+            <HorizontalGridLines />
             <XAxis
               tickTotal={maxTick}
               tickSize={0}
               tickPadding={isMobile ? 12 : 10}
               tickFormat={(xValue) => {
                 return moment(xValue)
-                  .format('MM-DD');
+                  .format("MM-DD");
               }}
               tickLabelAngle={isMobile ? -45 : 0}
               style={{
-                ticks: { paddingLeft: '50px' },
-                text: { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' }
+                ticks: { paddingLeft: "50px" },
+                text: { fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }
               }}
             />
             <YAxis
@@ -100,7 +100,7 @@ const WeightChart = ({
               tickSizeInner={0}
               tickPadding={7}
               style={{
-                text: { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' }
+                text: { fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" }
               }}
             />
             <LineMarkSeries
@@ -119,16 +119,16 @@ const WeightChart = ({
                 format={(datapoint) => {
                   return [
                     {
-                      title: 'Date',
+                      title: "Date",
                       value: moment(datapoint.x)
-                        .format('YYYY-MM-DD')
+                        .format("YYYY-MM-DD")
                     },
                     {
-                      title: 'Weight',
+                      title: "Weight",
                       value: `${datapoint.y} ${measureUnit}`
                     }];
                 }}
-                style={{ text: { fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif' } }}
+                style={{ text: { fontFamily: "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif" } }}
               />
             ) : null}
           </FlexibleXYPlot>

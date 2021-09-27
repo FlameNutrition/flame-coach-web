@@ -8,6 +8,11 @@ import {
 import moment from 'moment';
 
 describe('axios-measures-weight tests', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('get weight client', async () => {
     mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
 

@@ -10,6 +10,11 @@ import mockAxios from 'axios';
 import moment from 'moment';
 
 describe('axios-dailyTask tests', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('add daily task successfully from API', async () => {
     mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
 

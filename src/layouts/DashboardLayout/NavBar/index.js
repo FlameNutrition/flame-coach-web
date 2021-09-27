@@ -1,98 +1,103 @@
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import List from '@material-ui/core/List';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Typography from '@material-ui/core/Typography';
+import Avatar from "@material-ui/core/Avatar";
+import Box from "@material-ui/core/Box";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import Hidden from "@material-ui/core/Hidden";
+import List from "@material-ui/core/List";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 import {
   BarChart as BarChartIcon,
-  BookOpen as PlannerIcon,
   Calendar as CalendarIcon,
+  DollarSign as IncomeIcon,
   Heart as MeasuresIcon,
   LogOut as LogOutIcon,
+  PhoneCall as AppointmentsIcon,
   Settings as SettingsIcon,
   User as UserIcon,
-  Users as UsersIcon,
-  PhoneCall as AppointmentsIcon
-} from 'react-feather';
-import { PeopleOutline as CoachIcon, PermIdentity as ClientIcon } from '@material-ui/icons';
-import { useEffect } from 'react';
-import Link from 'next/link';
+  Users as UsersIcon
+} from "react-feather";
+import { PeopleOutline as CoachIcon, PermIdentity as ClientIcon } from "@material-ui/icons";
+import { useEffect } from "react";
+import Link from "next/link";
 
-import NavBarBox from '../../../components/NavBarBox';
-import NavItem from './NavItem';
-import PropTypes from 'prop-types';
-import { isFeatureEnable } from '../../../utils/toggles';
-import { useRouter } from 'next/router';
-import { logInfo } from '../../../logging';
+import NavBarBox from "../../../components/NavBarBox";
+import NavItem from "./NavItem";
+import PropTypes from "prop-types";
+import { isFeatureEnable } from "../../../utils/toggles";
+import { useRouter } from "next/router";
+import { logInfo } from "../../../logging";
 
 const itemsCoach = [
   {
-    href: '/',
+    href: "/",
     icon: BarChartIcon,
-    title: 'Dashboard',
+    title: "Dashboard"
   },
   {
-    href: '/clients',
+    href: "/clients",
     icon: UsersIcon,
-    title: 'Customers',
+    title: "Customers"
   },
   {
-    href: '/planner',
+    href: "/planner",
     icon: CalendarIcon,
-    title: 'Planner',
+    title: "Planner"
   },
   {
-    href: '/appointments',
+    href: "/appointments",
     icon: AppointmentsIcon,
-    title: 'Appointments',
+    title: "Appointments"
   },
   {
-    href: '/account',
+    href: "/income",
+    icon: IncomeIcon,
+    title: "Income"
+  },
+  {
+    href: "/account",
     icon: UserIcon,
-    title: 'Account',
+    title: "Account"
   },
   {
-    href: '/settings',
+    href: "/settings",
     icon: SettingsIcon,
-    title: 'Settings',
+    title: "Settings"
   },
   {
-    href: '/logout',
+    href: "/logout",
     icon: LogOutIcon,
-    title: 'Logout',
-  },
+    title: "Logout"
+  }
 ];
 
 const itemsClient = [
   {
-    href: '/',
+    href: "/",
     icon: BarChartIcon,
-    title: 'Dashboard',
+    title: "Dashboard"
   },
   {
-    href: '/account',
+    href: "/account",
     icon: UserIcon,
-    title: 'Account',
+    title: "Account"
   },
   {
-    href: '/measures',
+    href: "/measures",
     icon: MeasuresIcon,
-    title: 'Measures',
+    title: "Measures"
   },
   {
-    href: '/settings',
+    href: "/settings",
     icon: SettingsIcon,
-    title: 'Settings',
+    title: "Settings"
   },
   {
-    href: '/logout',
+    href: "/logout",
     icon: LogOutIcon,
-    title: 'Logout',
-  },
+    title: "Logout"
+  }
 ];
 
 const useStyles = makeStyles(() => ({
@@ -102,13 +107,13 @@ const useStyles = makeStyles(() => ({
   desktopDrawer: {
     width: 256,
     top: 64,
-    height: 'calc(100% - 64px)'
+    height: "calc(100% - 64px)"
   },
   avatar: {
-    cursor: 'pointer',
+    cursor: "pointer",
     width: 64,
     height: 64,
-    marginBottom: '10px'
+    marginBottom: "10px"
   }
 }));
 
@@ -120,7 +125,7 @@ const NavBar = ({
   const classes = useStyles();
   const router = useRouter();
 
-  logInfo('NavBar', 'render', 'user', user);
+  logInfo("NavBar", "render", "user", user);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -145,7 +150,7 @@ const NavBar = ({
             className={classes.avatar}
             component="a"
           >
-            {user.type === 'CLIENT' ? <ClientIcon/> : <CoachIcon/>}
+            {user.type === "CLIENT" ? <ClientIcon /> : <CoachIcon />}
           </Avatar>
         </Link>
         <Typography
@@ -154,7 +159,7 @@ const NavBar = ({
           variant="h5"
         >
           {user.firstname}
-          {' '}
+          {" "}
           {user.lastname}
         </Typography>
         <Typography
@@ -162,14 +167,14 @@ const NavBar = ({
           variant="body2"
         >
           Account Type:
-          {' '}
-          {user.type === 'CLIENT' ? 'Client' : 'Coach'}
+          {" "}
+          {user.type === "CLIENT" ? "Client" : "Coach"}
         </Typography>
       </Box>
-      <Divider/>
+      <Divider />
       <Box p={2}>
         <List>
-          {user.type === 'COACH'
+          {user.type === "COACH"
             ? itemsCoach.map((item) => {
               if (isFeatureEnable(item.href, user.identifier)) {
                 return (
@@ -197,7 +202,7 @@ const NavBar = ({
             })}
         </List>
       </Box>
-      <Box flexGrow={1}/>
+      <Box flexGrow={1} />
       <NavBarBox
         title=""
         message="Help to improve this app!"
@@ -259,7 +264,7 @@ const NavBar = ({
 NavBar.propTypes = {
   user: PropTypes.object.isRequired,
   onMobileClose: PropTypes.func.isRequired,
-  openMobile: PropTypes.bool.isRequired,
+  openMobile: PropTypes.bool.isRequired
 };
 
 NavBar.defaultProps = {

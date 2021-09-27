@@ -1,34 +1,37 @@
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Typography from '@material-ui/core/Typography';
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
-import PropTypes from 'prop-types';
-import React from 'react';
-import PageNotFound from '../../images/404';
-import { useIsMobile } from '../../utils/mediaUtil';
+import PropTypes from "prop-types";
+import React from "react";
+import PageNotFound from "../../images/404";
+import { useIsMobile } from "../../utils/mediaUtil";
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: '100%',
-    paddingLeft: '15px',
-    paddingRight: '15px'
+    height: "100%",
+    paddingLeft: "15px",
+    paddingRight: "15px"
   },
   imageLayout: {
-    marginTop: '10px',
-    width: '100%'
+    marginTop: "10px",
+    width: "100%"
   },
   imageMobile: {
-    height: 'auto',
-    width: '50%'
+    height: "auto",
+    width: "50%"
   },
   image: {
-    width: '300pt',
-    height: '300pt'
+    width: "300pt",
+    height: "300pt"
   }
 }));
 
-const NotFound = ({ title, submessage }) => {
+const NotFound = ({
+  title,
+  submessage
+}) => {
   const classes = useStyles();
   const isMobile = useIsMobile();
 
@@ -59,7 +62,8 @@ const NotFound = ({ title, submessage }) => {
           justifyContent="center"
           className={classes.imageLayout}
         >
-          <PageNotFound className={isMobile ? classes.imageMobile : classes.image} viewBox="0 0 496 496" />
+          <PageNotFound className={isMobile ? classes.imageMobile : classes.image}
+                        viewBox="0 0 496 496" />
         </Box>
       </Container>
     </Box>

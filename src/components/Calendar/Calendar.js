@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import clsx from "clsx";
+import PropTypes from "prop-types";
 import {
-  NavigateNextRounded as NextMonth,
-  NavigateBeforeRounded as PreviousMonth
-} from '@material-ui/icons';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Divider from '@material-ui/core/Divider';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Typography from '@material-ui/core/Typography';
-import CalendarReact from 'react-calendar';
+  NavigateBeforeRounded as PreviousMonth,
+  NavigateNextRounded as NextMonth
+} from "@material-ui/icons";
+import Box from "@material-ui/core/Box";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardHeader from "@material-ui/core/CardHeader";
+import Divider from "@material-ui/core/Divider";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import CalendarReact from "react-calendar";
 // FIXME: Try to understand why the Calendar.module.css does not work
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: '100%'
+    height: "100%"
   }
 }));
 
@@ -31,7 +31,7 @@ const Calendar = ({
   const infoDaily = (
     <Typography component="div" align="right" variant="caption">
       <strong>Day:</strong>
-      {' '}
+      {" "}
       Double click date
     </Typography>
   );
@@ -41,7 +41,7 @@ const Calendar = ({
       {infoDaily}
       <Typography component="div" align="right" variant="caption">
         <strong>Period:</strong>
-        {' '}
+        {" "}
         Select a start and end date
       </Typography>
     </>
@@ -51,8 +51,8 @@ const Calendar = ({
     <Card
       className={clsx(classes.root)}
     >
-      <CardHeader title="Calendar"/>
-      <Divider/>
+      <CardHeader title="Calendar" />
+      <Divider />
       <CardContent>
         <Box>
           <CalendarReact
@@ -62,10 +62,10 @@ const Calendar = ({
             }}
             selectRange={!daily}
             value={calendar}
-            nextLabel={<NextMonth/>}
+            nextLabel={<NextMonth />}
             next2Label={null}
             returnValue="range"
-            prevLabel={<PreviousMonth/>}
+            prevLabel={<PreviousMonth />}
             prev2Label={null}
           />
         </Box>
@@ -83,6 +83,6 @@ Calendar.propTypes = {
 };
 
 Calendar.defaultProps = {
-  daily: false,
+  daily: false
 };
 export default Calendar;

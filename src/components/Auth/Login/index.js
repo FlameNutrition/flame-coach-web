@@ -1,18 +1,18 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import makeStyles from '@material-ui/styles/makeStyles';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import React from 'react';
-import PropTypes from 'prop-types';
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Formik } from 'formik';
-import Notification from '../../Core/Notification';
-import Page from '../../Page';
-import Link from 'next/link';
+import { Formik } from "formik";
+import Notification from "../../Core/Notification";
+import Page from "../../Page";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   root: {

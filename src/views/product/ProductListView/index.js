@@ -1,24 +1,24 @@
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import makeStyles from '@material-ui/styles/makeStyles';
-import { Pagination } from '@material-ui/lab';
-import React, { useState } from 'react';
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
+import React, { useState } from "react";
 
-import Page from '../../../components/Page';
-import data from './data';
-import ProductCard from './ProductCard';
-import Toolbar from './Toolbar';
+import Page from "../../../components/Page";
+import data from "./data";
+import ProductCard from "./ProductCard";
+import Toolbar from "./Toolbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
-    minHeight: '100%',
+    minHeight: "100%",
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
   },
   productCard: {
-    height: '100%'
+    height: "100%"
   }
 }));
 

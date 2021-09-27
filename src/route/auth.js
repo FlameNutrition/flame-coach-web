@@ -1,45 +1,37 @@
-import { useSession } from 'next-auth/client';
 import { useEffect, useState } from 'react';
 import { logInfo } from '../logging';
 import { isFeatureEnable } from '../utils/toggles';
+import { useSession } from 'next-auth/client';
 
 const unprotectedRoutes = [
-  '/login', '/logout', '/register', '/404'
+  '/login', '/logout', '/register', '/404', '/test'
 ];
 
 const routesCoach = [{
-  path: '/',
-  enableWhitelist: false
+  path: '/'
 }, {
-  path: '/account',
-  enableWhitelist: false
+  path: '/account'
 }, {
-  path: '/clients',
-  enableWhitelist: false
+  path: '/clients'
 }, {
-  path: '/planner',
-  enableWhitelist: false
+  path: '/planner'
 }, {
-  path: '/appointments',
-  enableWhitelist: false
+  path: '/appointments'
 }, {
-  path: '/settings',
-  enableWhitelist: false
-},
+  path: '/settings'
+}, {
+  path: '/income'
+}
 ];
 
 const routesClient = [{
-  path: '/',
-  enableWhitelist: true
+  path: '/'
 }, {
-  path: '/account',
-  enableWhitelist: false
+  path: '/account'
 }, {
-  path: '/measures',
-  enableWhitelist: true
+  path: '/measures'
 }, {
-  path: '/settings',
-  enableWhitelist: false
+  path: '/settings'
 },
 ];
 

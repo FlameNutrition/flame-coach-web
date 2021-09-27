@@ -1,20 +1,19 @@
-import '../components/Calendar/Calendar.css';
-import '../components/Charts/Events/Event.css';
-import '@sandstreamdev/react-swipeable-list/dist/styles.css';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-import '../components/BigCalendar/BigCalendar.css';
+import "../components/Calendar/Calendar.css";
+import "../components/Charts/Events/Event.css";
+import "@sandstreamdev/react-swipeable-list/dist/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "../components/BigCalendar/BigCalendar.css";
 
-import { QueryClient, QueryClientProvider } from 'react-query';
-import wrapper from '../store/configureStore';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import GlobalStyles from '../components/GlobalStyles';
-import React from 'react';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
-import logger from 'loglevel';
-import theme from '../theme';
-import { Provider } from 'next-auth/client';
-import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { QueryClient, QueryClientProvider } from "react-query";
+import wrapper from "../store/configureStore";
+import GlobalStyles from "../components/GlobalStyles";
+import React from "react";
+import logger from "loglevel";
+import theme from "../theme";
+import { Provider } from "next-auth/client";
+import MomentUtils from "@date-io/moment";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { CssBaseline, ThemeProvider } from "@material-ui/core";
 
 logger.setLevel(process.env.NEXT_PUBLIC_LOG_LEVEL);
 
@@ -24,13 +23,12 @@ const queryClient = new QueryClient({
       staleTime: 300000,
       refetchOnWindowFocus: false,
       refetchOnReconnect: true,
-      refetchOnMount: 'always',
+      refetchOnMount: "always",
       retry: false
     }
   }
 });
 
-// eslint-disable-next-line react/prop-types
 const App = ({
   Component,
   pageProps
@@ -38,8 +36,8 @@ const App = ({
   return (
     <>
       <ThemeProvider theme={theme}>
-        <GlobalStyles/>
-        <CssBaseline/>
+        <GlobalStyles />
+        <CssBaseline />
         <Provider
           // Provider options are not required but can be useful in situations where
           // you have a short session maxAge time. Shown here with default values.

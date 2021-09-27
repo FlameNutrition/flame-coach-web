@@ -1,24 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import Box from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
-import makeStyles from '@material-ui/styles/makeStyles';
+import React from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import Box from "@material-ui/core/Box";
+import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
+import { makeStyles } from "@material-ui/core";
 
-import { AccessTime as AccessTimeIcon, GetApp as GetAppIcon } from '@material-ui/icons';
+import { AccessTime as AccessTimeIcon, GetApp as GetAppIcon } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column'
+    display: "flex",
+    flexDirection: "column"
   },
   statsItem: {
-    alignItems: 'center',
-    display: 'flex'
+    alignItems: "center",
+    display: "flex"
   },
   statsIcon: {
     marginRight: theme.spacing(1)
@@ -65,8 +65,8 @@ const ProductCard = ({
           {product.description}
         </Typography>
       </CardContent>
-      <Box flexGrow={1}/>
-      <Divider/>
+      <Box flexGrow={1} />
+      <Divider />
       <Box p={2}>
         <Grid
           container
@@ -103,7 +103,7 @@ const ProductCard = ({
               variant="body2"
             >
               {product.totalDownloads}
-              {' '}
+              {" "}
               Downloads
             </Typography>
           </Grid>

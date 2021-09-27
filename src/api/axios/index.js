@@ -1,4 +1,13 @@
 export {
+  getCoachAppointments,
+  getClientNextAppointment,
+  getCoachNextAppointment,
+  addAppointment,
+  editAppointment,
+  deleteAppointment
+} from './axios-appointments';
+
+export {
   addDailyTask,
   addMultipleDailyTasks,
   getDailyTasksByClientAndDay,
@@ -38,3 +47,14 @@ export {
   updateWeightClient,
   deleteWeightClient
 } from './axios-measures-weight';
+
+export {
+  getCoachClientsMetrics
+} from './axios-metrics';
+
+export {
+  getIncomes
+} from './axios-incomes';
+
+
+

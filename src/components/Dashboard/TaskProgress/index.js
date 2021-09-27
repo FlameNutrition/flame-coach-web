@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/styles/makeStyles';
+import { makeStyles } from "@material-ui/core";
 
 import { InsertChartOutlined as InsertChartIcon } from '@material-ui/icons';
 import DashboardBox from '../../Core/DashboardBox';
