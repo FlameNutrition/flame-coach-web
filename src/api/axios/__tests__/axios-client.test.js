@@ -9,6 +9,11 @@ import {
 import mockAxios from 'axios';
 
 describe('axios-client tests', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('get client contact information successfully from API', async () => {
     mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
 

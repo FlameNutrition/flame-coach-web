@@ -8,6 +8,11 @@ import {
 import mockAxios from 'axios';
 
 describe('axios-coach tests', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('get clients coach and client available for coaching successfully from API', async () => {
     mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
 

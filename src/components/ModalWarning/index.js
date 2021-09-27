@@ -1,39 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import { useIsMobile } from '../../utils/mediaUtil';
-import Box from '@material-ui/core/Box';
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core";
+import { useIsMobile } from "../../utils/mediaUtil";
+import Box from "@material-ui/core/Box";
+import Modal from "@material-ui/core/Modal";
+import Typography from "@material-ui/core/Typography";
 
 const getModalStyle = () => {
   const top = 40;
 
   return {
     top: `${top}%`,
-    margin: 'auto'
+    margin: "auto"
   };
 };
 
 // eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
+    position: "absolute",
     backgroundColor: theme.palette.background.paper,
-    border: '1px solid #000',
+    border: "1px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: theme.spacing(2, 4, 3)
   },
   paperSize: {
-    width: '40%',
+    width: "40%"
   },
   paperSizeMobile: {
-    width: '70%',
+    width: "70%"
   },
   message: {
-    marginTop: '10px'
+    marginTop: "10px"
   }
 }));
 
@@ -55,9 +55,9 @@ const ModalWarning = ({
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
       }}
     >
       <Box

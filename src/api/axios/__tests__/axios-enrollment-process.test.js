@@ -8,6 +8,11 @@ import {
 import mockAxios from 'axios';
 
 describe('axios-enrollment-process tests', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('init enrollment process successfully from API', async () => {
     mockAxios.mockResolvedValueOnce({ data: { response: 'data' } });
 

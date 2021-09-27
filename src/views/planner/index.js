@@ -1,9 +1,9 @@
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import makeStyles from '@material-ui/styles/makeStyles';
-import React, { useEffect, useState } from 'react';
+import Box from "@material-ui/core/Box";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import {
   addDailyTask,
   addMultipleDailyTasks,
@@ -11,20 +11,20 @@ import {
   getClientsCoach,
   getDailyTasksByClientAndDay,
   updateDailyTaskByUUID
-} from '../../api/axios';
-import { logDebug, logError } from '../../logging';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+} from "../../api/axios";
+import { logDebug, logError } from "../../logging";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import Calendar from '../../components/Calendar/Calendar';
-import ErrorMessage from '../../components/Core/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../components/Core/Notification/InfoMessage/InfoMessage';
-import Page from '../../components/Page';
-import PropTypes from 'prop-types';
-import SearchClient from '../../components/SearchClient';
-import TaskPreview from './TaskPreview';
-import TaskTool from './TaskTool';
-import update from 'immutability-helper';
-import moment from 'moment';
+import Calendar from "../../components/Calendar/Calendar";
+import ErrorMessage from "../../components/Core/Notification/ErrorMessage/ErrorMessage";
+import InfoMessage from "../../components/Core/Notification/InfoMessage/InfoMessage";
+import Page from "../../components/Page";
+import PropTypes from "prop-types";
+import SearchClient from "../../components/SearchClient";
+import TaskPreview from "./TaskPreview";
+import TaskTool from "./TaskTool";
+import update from "immutability-helper";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   searchClientCard: {
@@ -46,8 +46,8 @@ const Planner = ({ customerIdentifier }) => {
 
   const [notification, setNotification] = useState({
     enable: false,
-    message: '',
-    level: 'INFO'
+    message: "",
+    level: "INFO"
   });
 
   const updateNotificationHandler = (enable, message, level) => {
@@ -58,21 +58,21 @@ const Planner = ({ customerIdentifier }) => {
     });
   };
 
-  const clients = useQuery(['getClientsCoach', customerIdentifier],
+  const clients = useQuery(["getClientsCoach", customerIdentifier],
     () => getClientsCoach(customerIdentifier), {
       onError: async (err) => {
-        logError('Planner',
-          'useQuery getClientsCoach',
-          'Error:', err);
+        logError("Planner",
+          "useQuery getClientsCoach",
+          "Error:", err);
       }
     });
 
-  const clientTasks = useQuery(['getDailyTasksByClientAndDay', selectedClient, selectedDate],
+  const clientTasks = useQuery(["getDailyTasksByClientAndDay", selectedClient, selectedDate],
     () => getDailyTasksByClientAndDay(selectedClient.identifier, selectedDate, selectedDate), {
       onError: async (err) => {
-        logError('Planner',
-          'useQuery getDailyTasksByClientAndDay',
-          'Error:', err);
+        logError("Planner",
+          "useQuery getDailyTasksByClientAndDay",
+          "Error:", err);
       },
       enabled: false
     });
@@ -84,23 +84,23 @@ const Planner = ({ customerIdentifier }) => {
   }, [selectedClient, selectedDate]);
 
   const searchClientSelectHandler = (client) => {
-    logDebug('Planner',
-      'searchClientSelectHandler',
-      'Client Selected:', client);
+    logDebug("Planner",
+      "searchClientSelectHandler",
+      "Client Selected:", client);
     setSelectedClient(client);
   };
 
   const selectDateHandler = (value) => {
-    logDebug('Planner',
-      'selectDateHandler',
-      'Period Selected:', value[0], value[1]);
+    logDebug("Planner",
+      "selectDateHandler",
+      "Period Selected:", value[0], value[1]);
     setSelectedDate(value[0]);
   };
 
   const selectUpdateTaskHandler = (task) => {
-    logDebug('Planner',
-      'selectUpdateTaskHandler',
-      'Task Selected', task);
+    logDebug("Planner",
+      "selectUpdateTaskHandler",
+      "Task Selected", task);
     setSelectedTask(task);
   };
 
@@ -120,27 +120,27 @@ const Planner = ({ customerIdentifier }) => {
     }) => addMultipleDailyTasks(task, clientIdentifier, coachIdentifier),
     {
       onError: async (error) => {
-        logError('Planner', 'addMultiplesDailyTasksMutation', 'Error Details:', error.response.data.detail);
+        logError("Planner", "addMultiplesDailyTasksMutation", "Error Details:", error.response.data.detail);
         const errorCode = ErrorMessage.fromCode(error.response.data.code);
         updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data) => {
-        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
-        logDebug('Planner',
-          'addMultipleDailyTasks',
-          'Response:', data);
+        await queryClient.cancelQueries(["getDailyTasksByClientAndDay", selectedClient, selectedDate]);
+        logDebug("Planner",
+          "addMultipleDailyTasks",
+          "Response:", data);
 
-        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
-          logDebug('Planner',
-            'addMultipleDailyTasks',
-            'Old Data:', oldData);
+        queryClient.setQueryData(["getDailyTasksByClientAndDay", selectedClient, selectedDate], (oldData) => {
+          logDebug("Planner",
+            "addMultipleDailyTasks",
+            "Old Data:", oldData);
 
           const newTask = data.dailyTasks.find((it) => it.date === moment(selectedDate)
             .format(moment.HTML5_FMT.DATE));
 
-          logDebug('Planner',
-            'found task',
-            'Task:', newTask);
+          logDebug("Planner",
+            "found task",
+            "Task:", newTask);
 
           return update(oldData, { dailyTasks: { $push: [newTask] } });
         });
@@ -160,21 +160,21 @@ const Planner = ({ customerIdentifier }) => {
     }) => addDailyTask(task, clientIdentifier, coachIdentifier),
     {
       onError: async (error) => {
-        logError('Planner', 'addDailyTaskMutation', 'Error Details:', error.response.data.detail);
+        logError("Planner", "addDailyTaskMutation", "Error Details:", error.response.data.detail);
         const errorCode = ErrorMessage.fromCode(error.response.data.code);
         updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data) => {
-        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
+        await queryClient.cancelQueries(["getDailyTasksByClientAndDay", selectedClient, selectedDate]);
 
-        logDebug('Planner',
-          'addDailyTaskMutation',
-          'Response:', data);
+        logDebug("Planner",
+          "addDailyTaskMutation",
+          "Response:", data);
 
-        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
-          logDebug('Planner',
-            'addDailyTaskMutation',
-            'Old Data:', oldData);
+        queryClient.setQueryData(["getDailyTasksByClientAndDay", selectedClient, selectedDate], (oldData) => {
+          logDebug("Planner",
+            "addDailyTaskMutation",
+            "Old Data:", oldData);
           return update(oldData, { dailyTasks: { $push: [data.dailyTasks[0]] } });
         });
 
@@ -191,21 +191,21 @@ const Planner = ({ customerIdentifier }) => {
     }) => updateDailyTaskByUUID(taskIdentifier, newTask),
     {
       onError: async (error) => {
-        logError('Planner', 'updateDailyTaskMutation', 'Error Details:', error.response.data.detail);
+        logError("Planner", "updateDailyTaskMutation", "Error Details:", error.response.data.detail);
         const errorCode = ErrorMessage.fromCode(error.response.data.code);
         updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data, variables) => {
-        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
+        await queryClient.cancelQueries(["getDailyTasksByClientAndDay", selectedClient, selectedDate]);
 
-        logDebug('Planner',
-          'updateDailyTaskMutation',
-          'Response:', data);
+        logDebug("Planner",
+          "updateDailyTaskMutation",
+          "Response:", data);
 
-        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
-          logDebug('Planner',
-            'updateDailyTaskMutation',
-            'Old Data:', oldData);
+        queryClient.setQueryData(["getDailyTasksByClientAndDay", selectedClient, selectedDate], (oldData) => {
+          logDebug("Planner",
+            "updateDailyTaskMutation",
+            "Old Data:", oldData);
           const index = oldData.dailyTasks.findIndex(
             (dailyTask) => dailyTask !== undefined
               && dailyTask.identifier === variables.taskIdentifier
@@ -218,9 +218,9 @@ const Planner = ({ customerIdentifier }) => {
             }
           });
 
-          logDebug('Planner',
-            'updateDailyTaskMutation',
-            'New Data:', newData);
+          logDebug("Planner",
+            "updateDailyTaskMutation",
+            "New Data:", newData);
 
           return newData;
         });
@@ -236,21 +236,21 @@ const Planner = ({ customerIdentifier }) => {
     ({ taskIdentifier }) => deleteDailyTasksByUUID(taskIdentifier),
     {
       onError: async (error) => {
-        logError('Planner', 'deleteDailyTaskMutation', 'Error Details:', error.response.data.detail);
+        logError("Planner", "deleteDailyTaskMutation", "Error Details:", error.response.data.detail);
         const errorCode = ErrorMessage.fromCode(error.response.data.code);
         updateNotificationHandler(true, errorCode.msg, errorCode.level);
       },
       onSuccess: async (data, variables) => {
-        await queryClient.cancelQueries(['getDailyTasksByClientAndDay', selectedClient, selectedDate]);
+        await queryClient.cancelQueries(["getDailyTasksByClientAndDay", selectedClient, selectedDate]);
 
-        logDebug('Planner',
-          'deleteDailyTaskMutation',
-          'Response:', data);
+        logDebug("Planner",
+          "deleteDailyTaskMutation",
+          "Response:", data);
 
-        queryClient.setQueryData(['getDailyTasksByClientAndDay', selectedClient, selectedDate], (oldData) => {
-          logDebug('Planner',
-            'deleteDailyTaskMutation',
-            'Old Data:', oldData);
+        queryClient.setQueryData(["getDailyTasksByClientAndDay", selectedClient, selectedDate], (oldData) => {
+          logDebug("Planner",
+            "deleteDailyTaskMutation",
+            "Old Data:", oldData);
           const index = oldData.dailyTasks.findIndex(
             (dailyTask) => dailyTask !== undefined
               && dailyTask.identifier === variables.taskIdentifier
@@ -259,9 +259,9 @@ const Planner = ({ customerIdentifier }) => {
           // FIXME: The undefined values should be deleted
           const newData = update(oldData, { dailyTasks: { $unset: [index] } });
 
-          logDebug('Planner',
-            'deleteDailyTaskMutation',
-            'New Data:', newData);
+          logDebug("Planner",
+            "deleteDailyTaskMutation",
+            "New Data:", newData);
 
           return newData;
         });
@@ -279,9 +279,9 @@ const Planner = ({ customerIdentifier }) => {
     }
 
     if (selectedClient !== null && selectedDate !== null) {
-      logDebug('Planner',
-        'addMultipleTasksHandler',
-        'Add multiple tasks action. Task: ', task);
+      logDebug("Planner",
+        "addMultipleTasksHandler",
+        "Add multiple tasks action. Task: ", task);
       addMultiplesDailyTasksMutation.mutate(
         {
           task,
@@ -374,7 +374,7 @@ const Planner = ({ customerIdentifier }) => {
             xl={3}
             xs={12}
           >
-            <Calendar daily onChangeCalendar={selectDateHandler}/>
+            <Calendar daily onChangeCalendar={selectDateHandler} />
           </Grid>
         </Grid>
         <Box className={classes.actionTaskCard}>

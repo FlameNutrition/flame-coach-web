@@ -1,49 +1,49 @@
-import React from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import makeStyles from '@material-ui/styles/makeStyles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+import React from "react";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import Box from "@material-ui/core/Box";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
 
-import { Refresh as RefreshIcon } from '@material-ui/icons';
-import moment from 'moment';
-import nextId from 'react-id-generator';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import DailyTask from '../../../../components/DailyTask';
-import { logDebug } from '../../../../logging';
-import TaskPanel from './TaskPanel';
-import { useIsMobile } from '../../../../utils/mediaUtil';
+import { Refresh as RefreshIcon } from "@material-ui/icons";
+import moment from "moment";
+import nextId from "react-id-generator";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import DailyTask from "../../../../components/DailyTask";
+import { logDebug } from "../../../../logging";
+import TaskPanel from "./TaskPanel";
+import { useIsMobile } from "../../../../utils/mediaUtil";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   dailyTaskPanel: {
-    height: 400,
+    height: 400
   },
   dailyTaskPanelRefreshBtn: {
-    paddingRight: '10px'
+    paddingRight: "10px"
   },
   tabPanel: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    display: 'flex',
+    display: "flex"
   },
   tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
+    borderRight: `1px solid ${theme.palette.divider}`
   },
   dayOfWeek: {
-    padding: '10px',
-    fontWeight: 'bold'
+    padding: "10px",
+    fontWeight: "bold"
   },
   dayOfWeekDivider: {
-    marginTop: '10px'
+    marginTop: "10px"
   }
 }));
 
@@ -65,9 +65,9 @@ const Tasks = ({
     setTabIndex(newTabIndex);
   };
 
-  logDebug('Task', 'render', 'Tasks', tasks);
+  logDebug("Task", "render", "Tasks", tasks);
 
-  const tabs = taskPeriod !== 'today' ? moment.weekdays()
+  const tabs = taskPeriod !== "today" ? moment.weekdays()
       .map((day, index) => (
         <Tab
           key={index}
@@ -95,7 +95,7 @@ const Tasks = ({
             <Grid item className={classes.dailyTaskPanelRefreshBtn}>
               <IconButton aria-label="refresh"
                           onClick={() => taskPeriodRefreshHandler()}>
-                <RefreshIcon/>
+                <RefreshIcon />
               </IconButton>
             </Grid>
             <Grid item>
@@ -114,10 +114,10 @@ const Tasks = ({
           </Grid>
         )}
       />
-      <Divider/>
+      <Divider />
       <Box p="10px">
         {
-          taskPeriod !== 'today'
+          taskPeriod !== "today"
             ? (
               <div className={clsx(classes.dailyTaskPanel, classes.tabPanel)}>
                 <Tabs

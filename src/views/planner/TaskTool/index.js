@@ -1,36 +1,36 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import ErrorMessage from '../../../components/Core/Notification/ErrorMessage/ErrorMessage';
-import { Formik } from 'formik';
-import { KeyboardDatePicker } from '@material-ui/pickers';
-import Notification from '../../../components/Core/Notification';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { logDebug } from '../../../logging';
-import moment from 'moment';
-import Divider from '@material-ui/core/Divider';
-import CardHeader from '@material-ui/core/CardHeader';
-import makeStyles from '@material-ui/styles/makeStyles';
-import CardContent from '@material-ui/core/CardContent';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
-import TextField from '@material-ui/core/TextField';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Button from '@material-ui/core/Button';
+import ErrorMessage from "../../../components/Core/Notification/ErrorMessage/ErrorMessage";
+import { Formik } from "formik";
+import { KeyboardDatePicker } from "@material-ui/pickers";
+import Notification from "../../../components/Core/Notification";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import { logDebug } from "../../../logging";
+import moment from "moment";
+import Divider from "@material-ui/core/Divider";
+import CardHeader from "@material-ui/core/CardHeader";
+import { makeStyles } from "@material-ui/core";
+import CardContent from "@material-ui/core/CardContent";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormGroup from "@material-ui/core/FormGroup";
+import TextField from "@material-ui/core/TextField";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   actionButtons: {
-    marginTop: '20px',
+    marginTop: "20px"
   },
   multipleDaysHelper: {
-    marginLeft: '14px'
+    marginLeft: "14px"
   },
   addButton: {
     backgroundColor: theme.palette.button.success
@@ -67,7 +67,7 @@ const TaskTool = ({
       setEndDate(task.date);
     }
 
-    logDebug('TaskTool', 'render', 'task', task, startDateState, endDateState);
+    logDebug("TaskTool", "render", "task", task, startDateState, endDateState);
   });
 
   const resetFormValues = (setFieldValue) => {
@@ -78,13 +78,13 @@ const TaskTool = ({
       .utc()
       .format(moment.HTML5_FMT.DATE));
 
-    setFieldValue('button', 'ADD', false);
-    setFieldValue('taskName', '', false);
-    setFieldValue('taskDescription', '', false);
-    setFieldValue('multipleDays', false, false);
-    setFieldValue('isUpdate', false, false);
+    setFieldValue("button", "ADD", false);
+    setFieldValue("taskName", "", false);
+    setFieldValue("taskDescription", "", false);
+    setFieldValue("multipleDays", false, false);
+    setFieldValue("isUpdate", false, false);
 
-    updateNotificationHandler(false, '', '');
+    updateNotificationHandler(false, "", "");
     selectUpdateTaskHandler(null);
   };
 
@@ -93,22 +93,22 @@ const TaskTool = ({
       <CardHeader
         title="Plan Daily Routine"
       />
-      <Divider/>
+      <Divider />
       <CardContent>
         <Formik
           // FIXME: Please remote the init values
           initialValues={{
-            taskName: task !== null ? task.taskName : '',
-            taskDescription: task !== null ? task.taskDescription : '',
+            taskName: task !== null ? task.taskName : "",
+            taskDescription: task !== null ? task.taskDescription : "",
             multipleDays: false,
             button: null,
-            isUpdate: task !== null,
+            isUpdate: task !== null
           }}
           validationSchema={Yup.object()
             .shape({
               taskName: Yup.string()
                 .max(255)
-                .required('Name is required'),
+                .required("Name is required")
             })}
           enableReinitialize
           onSubmit={(values, { setSubmitting }) => {
@@ -134,7 +134,7 @@ const TaskTool = ({
                 date: startDateState
               };
 
-              logDebug('TaskTool', 'update', 'dailyTask', dailyTask);
+              logDebug("TaskTool", "update", "dailyTask", dailyTask);
 
               updateTaskHandler(dailyTask);
             } else {
@@ -265,7 +265,7 @@ const TaskTool = ({
                       disabled={values.isUpdate}
                       size="large"
                       onClick={() => {
-                        setFieldValue('button', 'ADD', false);
+                        setFieldValue("button", "ADD", false);
                         handleSubmit();
                       }}
                       variant="contained"
@@ -281,7 +281,7 @@ const TaskTool = ({
                       disabled={!values.isUpdate}
                       size="large"
                       onClick={() => {
-                        setFieldValue('button', 'UPDATE', false);
+                        setFieldValue("button", "UPDATE", false);
                         handleSubmit();
                       }}
                       variant="contained"

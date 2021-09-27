@@ -1,17 +1,17 @@
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/styles/makeStyles';
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Divider from "@material-ui/core/Divider";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import moment from 'moment';
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import moment from "moment";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -30,7 +30,7 @@ const Profile = ({
 }) => {
   const classes = useStyles();
 
-  const dateFormat = 'MMMM Do YYYY, h:mm:ss a';
+  const dateFormat = "MMMM Do YYYY, h:mm:ss a";
   const [localTime, setLocalTime] = useState(moment()
     .format(dateFormat));
 
@@ -74,7 +74,7 @@ const Profile = ({
             variant="body1"
           >
             {
-              user.country && user.country !== 'Country'
+              user.country && user.country !== "Country"
                 ? `${localTime} - ${user.city} ${user.country}`
                 : `${localTime}`
             }
@@ -83,7 +83,7 @@ const Profile = ({
       </CardContent>
       {enablePhoto ? (
           <>
-            <Divider/>
+            <Divider />
             <CardActions>
               <Button
                 fullWidth

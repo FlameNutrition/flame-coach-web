@@ -1,12 +1,12 @@
-import { createTheme, colors } from '@material-ui/core';
+import { createTheme, colors } from "@material-ui/core";
 
-import shadows from './shadows';
-import typography from './typography';
+import shadows from "./shadows";
+import typography from "./typography";
 
 const theme = createTheme({
   palette: {
     background: {
-      dark: '#F4F6F8',
+      dark: "#F4F6F8",
       default: colors.common.white,
       paper: colors.common.white
     },
@@ -23,7 +23,8 @@ const theme = createTheme({
     button: {
       success: colors.green[300],
       warning: colors.yellow[500],
-      dangerous: colors.red[300]
+      dangerous: colors.red[300],
+      neutral: colors.indigo[100]
     }
   },
   shadows,

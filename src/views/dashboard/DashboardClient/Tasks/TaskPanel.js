@@ -1,16 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import makeStyles from '@material-ui/styles/makeStyles';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '100%',
-    paddingLeft: '10px'
+    width: "100%",
+    paddingLeft: "10px"
   }
 }));
 
 const TaskPanel = ({
-  children, value, index, ...other
+  children,
+  value,
+  index,
+  ...other
 }) => {
   const classes = useStyles();
 
@@ -25,8 +28,8 @@ const TaskPanel = ({
     >
       {value === index && (
         <>
-          {children }
-          {' '}
+          {children}
+          {" "}
         </>
       )}
     </div>

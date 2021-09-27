@@ -1,37 +1,37 @@
-import Link from 'next/link';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import ListItem from '@material-ui/core/ListItem';
-import Button from '@material-ui/core/Button';
-import makeStyles from '@material-ui/styles/makeStyles';
+import Link from "next/link";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import ListItem from "@material-ui/core/ListItem";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   item: {
-    display: 'flex',
+    display: "flex",
     paddingTop: 0,
     paddingBottom: 0
   },
   button: {
     color: theme.palette.text.secondary,
     fontWeight: theme.typography.fontWeightMedium,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
     letterSpacing: 0,
-    padding: '10px 8px',
-    textTransform: 'none',
-    width: '100%'
+    padding: "10px 8px",
+    textTransform: "none",
+    width: "100%"
   },
   icon: {
     marginRight: theme.spacing(1)
   },
   title: {
-    marginRight: 'auto'
+    marginRight: "auto"
   },
   active: {
     color: theme.palette.primary.main,
-    '& $title': {
+    "& $title": {
       fontWeight: theme.typography.fontWeightMedium
     },
-    '& $icon': {
+    "& $icon": {
       color: theme.palette.primary.main
     }
   }

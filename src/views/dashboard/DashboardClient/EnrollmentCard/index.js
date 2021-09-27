@@ -1,34 +1,34 @@
-import React from 'react';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Stepper from '@material-ui/core/Stepper';
+import React from "react";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from "@material-ui/core";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Stepper from "@material-ui/core/Stepper";
 import {
   NavigateBefore as NavigateBackIcon,
   NavigateNext as NavigateNextIcon
-} from '@material-ui/icons';
-import { Alert } from '@material-ui/lab';
-import ErrorMessage from '../../../../components/Core/Notification/ErrorMessage/ErrorMessage';
-import InfoMessage from '../../../../components/Core/Notification/InfoMessage/InfoMessage';
-import PropTypes from 'prop-types';
-import Loading from '../../../../components/Core/Loading';
-import ModalWarning from '../../../../components/ModalWarning';
+} from "@material-ui/icons";
+import { Alert } from "@material-ui/lab";
+import ErrorMessage from "../../../../components/Core/Notification/ErrorMessage/ErrorMessage";
+import InfoMessage from "../../../../components/Core/Notification/InfoMessage/InfoMessage";
+import PropTypes from "prop-types";
+import Loading from "../../../../components/Core/Loading";
+import ModalWarning from "../../../../components/ModalWarning";
 
 const useStyles = makeStyles(() => ({
   root: {},
   coachConfirmation: {
-    display: 'flex',
-    flexFlow: 'row-reverse',
-    paddingRight: '20px'
+    display: "flex",
+    flexFlow: "row-reverse",
+    paddingRight: "20px"
   },
   coachConfirmationNextBtn: {
-    margin: '3px'
+    margin: "3px"
   },
   coachConfirmationBackBtn: {
-    margin: '3px'
+    margin: "3px"
   }
 }));
 
@@ -42,12 +42,12 @@ const EnrollmentCard = ({
 }) => {
   const classes = useStyles();
 
-  const steps = ['Waiting for a coach invitation', 'Do you want be part of this experience?', 'Confirmation'];
+  const steps = ["Waiting for a coach invitation", "Do you want be part of this experience?", "Confirmation"];
 
   return (
     <Card>
       <CardContent>
-        {isLoading ? <Loading/>
+        {isLoading ? <Loading />
           : (
             <>
               <Stepper activeStep={activeCoachStep} alternativeLabel>
@@ -83,14 +83,14 @@ const EnrollmentCard = ({
                         }
                       }}
                     >
-                      <NavigateBackIcon/>
+                      <NavigateBackIcon />
                     </IconButton>
 
                     <IconButton
                       color="primary"
-                      aria-label={activeCoachStep === steps.length - 1 ? 'Finish' : 'Next'}
+                      aria-label={activeCoachStep === steps.length - 1 ? "Finish" : "Next"}
                       className={classes.coachConfirmationNextBtn}
-                      disabled={enrollmentStatus === 'AVAILABLE'}
+                      disabled={enrollmentStatus === "AVAILABLE"}
                       onClick={() => {
                         if (activeCoachStep === 2) {
                           enrollmentFinish.mutate({
@@ -102,7 +102,7 @@ const EnrollmentCard = ({
                         }
                       }}
                     >
-                      <NavigateNextIcon/>
+                      <NavigateNextIcon />
                     </IconButton>
                   </div>
                 )}
@@ -110,7 +110,7 @@ const EnrollmentCard = ({
               {activeCoachStep === steps.length - 1 ? (
                 <div className={classes.coachConfirmation}>
                   <Alert severity={ErrorMessage.CODE_0004.level.toLowerCase()}>
-                    {' '}
+                    {" "}
                     {ErrorMessage.CODE_0004.msg}
                   </Alert>
                 </div>
@@ -119,7 +119,7 @@ const EnrollmentCard = ({
               {activeCoachStep === steps.length ? (
                 <div className={classes.coachConfirmation}>
                   <Alert severity={InfoMessage.CODE_0001.level.toLowerCase()}>
-                    {' '}
+                    {" "}
                     {InfoMessage.CODE_0001.msg}
                   </Alert>
                 </div>
@@ -141,7 +141,7 @@ EnrollmentCard.propTypes = {
 };
 
 ModalWarning.defaultProps = {
-  enrollmentStatus: ''
+  enrollmentStatus: ""
 };
 
 export default EnrollmentCard;

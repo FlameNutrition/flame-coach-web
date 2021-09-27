@@ -4,6 +4,11 @@ import mockAxios from 'axios';
 import { updatePassword } from '../axios-auth';
 
 describe('axios-auth tests', () => {
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('update password successfully from API', async () => {
     mockAxios.mockResolvedValueOnce({ data: { result: 'true' } });
 

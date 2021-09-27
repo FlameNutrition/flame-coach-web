@@ -1,40 +1,40 @@
-import * as yup from 'yup';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import Divider from '@material-ui/core/Divider';
-import TextField from '@material-ui/core/TextField';
-import makeStyles from '@material-ui/styles/makeStyles';
+import * as yup from "yup";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardContent from "@material-ui/core/CardContent";
+import Divider from "@material-ui/core/Divider";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core";
 
-import { Form, Formik } from 'formik';
+import { Form, Formik } from "formik";
 
-import Notification from '../../components/Core/Notification';
-import PropTypes from 'prop-types';
-import React from 'react';
-import clsx from 'clsx';
+import Notification from "../../components/Core/Notification";
+import PropTypes from "prop-types";
+import React from "react";
+import clsx from "clsx";
 
 const validationSchema = yup.object({
-  oldPassword: yup.string('Enter your previous password')
-    .required('Previous password is required'),
-  newPassword: yup.string('Enter your new password')
-    .required('New password is required'),
-  newPasswordConfirmation: yup.string('Enter your new password')
-    .required('New password is required')
+  oldPassword: yup.string("Enter your previous password")
+    .required("Previous password is required"),
+  newPassword: yup.string("Enter your new password")
+    .required("New password is required"),
+  newPasswordConfirmation: yup.string("Enter your new password")
+    .required("New password is required")
 });
 
 const useStyles = makeStyles(({
   root: {},
   notification: {
-    margin: '0px !important',
-    padding: '10px'
+    margin: "0px !important",
+    padding: "10px"
   },
   updateBtnNotification: {
-    margin: '15px 15px 0px 15px'
+    margin: "15px 15px 0px 15px"
   },
   updateBtn: {
-    margin: '15px'
+    margin: "15px"
   }
 }));
 
@@ -54,9 +54,9 @@ const Password = ({
     <Formik
       className={clsx(classes.root)}
       initialValues={{
-        oldPassword: '',
-        newPassword: '',
-        newPasswordConfirmation: '',
+        oldPassword: "",
+        newPassword: "",
+        newPasswordConfirmation: ""
       }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
@@ -74,7 +74,7 @@ const Password = ({
               subheader="Update password"
               title="Password"
             />
-            <Divider/>
+            <Divider />
             <CardContent>
               <TextField
                 fullWidth
@@ -114,7 +114,7 @@ const Password = ({
                 helperText={touched.newPasswordConfirmation && errors.newPasswordConfirmation}
               />
             </CardContent>
-            <Divider/>
+            <Divider />
             <Box
               display="flex"
               justifyContent="flex-end"

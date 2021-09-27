@@ -1,21 +1,21 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import clsx from 'clsx';
-import AddIcon from '@material-ui/icons/AddCircleOutline';
-import { KeyboardDatePicker } from '@material-ui/pickers';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import Card from '@material-ui/core/Card';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
-import makeStyles from '@material-ui/styles/makeStyles';
+import PropTypes from "prop-types";
+import React from "react";
+import clsx from "clsx";
+import AddIcon from "@material-ui/icons/AddCircleOutline";
+import { KeyboardDatePicker } from "@material-ui/pickers";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import FormControl from "@material-ui/core/FormControl";
+import Card from "@material-ui/core/Card";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+import Divider from "@material-ui/core/Divider";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   addSession: {
     marginTop: theme.spacing(2)
-  },
+  }
 }));
 
 const Filters = ({
@@ -82,7 +82,7 @@ const Filters = ({
         {enableAddingWeight
           ? (
             <>
-              <Divider variant="fullWidth"/>
+              <Divider variant="fullWidth" />
               <div className={classes.addSession}>
                 <Typography component="h2" variant="h5" gutterBottom>
                   Add
@@ -120,7 +120,7 @@ const Filters = ({
                   <Button
                     color="primary"
                     variant="contained"
-                    startIcon={<AddIcon/>}
+                    startIcon={<AddIcon />}
                     onClick={() => onAddWeightHandler(weight, date)}
                   >
                     Add

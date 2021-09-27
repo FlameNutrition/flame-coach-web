@@ -1,17 +1,16 @@
-import PropTypes from 'prop-types';
-import { colors } from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/styles/makeStyles';
-import moment from 'moment-timezone';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import { displayDate, displayTime } from '../../../utils/timeFormatterUtil';
-import DashboardBox from '../../Core/DashboardBox';
+import PropTypes from "prop-types";
+import { colors, makeStyles } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import moment from "moment-timezone";
+import ScheduleIcon from "@material-ui/icons/Schedule";
+import { displayDate, displayTime } from "../../../utils/displayDateTimeUtil";
+import DashboardBox from "../../Core/DashboardBox";
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: '100%'
+    height: "100%"
   },
   avatar: {
     backgroundColor: colors.indigo[500],
@@ -19,13 +18,14 @@ const useStyles = makeStyles(() => ({
     width: 56
   },
   content: {
-    height: '100%'
+    height: "100%"
   }
 }));
 
 const NextAppointment = ({
   date,
-  isLoading,
+  name,
+  isLoading
 }) => {
   const classes = useStyles();
 
@@ -67,10 +67,19 @@ const NextAppointment = ({
               N/A
             </Typography>
           }
+          {name ?
+            <Typography
+              color="textPrimary"
+              variant="h5"
+            >
+              {name}
+            </Typography>
+            : null
+          }
         </Grid>
         <Grid item>
           <Avatar className={classes.avatar}>
-            <ScheduleIcon/>
+            <ScheduleIcon />
           </Avatar>
         </Grid>
       </Grid>
@@ -80,7 +89,12 @@ const NextAppointment = ({
 
 NextAppointment.propTypes = {
   date: PropTypes.objectOf(moment).isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  name: PropTypes.string
+};
+
+NextAppointment.defaultProps = {
+  name: null
 };
 
 export default NextAppointment;

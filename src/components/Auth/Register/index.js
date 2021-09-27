@@ -1,24 +1,24 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import Container from '@material-ui/core/Container';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
-import makeStyles from '@material-ui/styles/makeStyles';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import React from 'react';
-import Link from 'next/link';
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Checkbox from "@material-ui/core/Checkbox";
+import Container from "@material-ui/core/Container";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import InputLabel from "@material-ui/core/InputLabel";
+import { makeStyles } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import React from "react";
+import Link from "next/link";
 
-import { Formik } from 'formik';
-import Notification from '../../Core/Notification';
-import Page from '../../Page';
-import PropTypes from 'prop-types';
+import { Formik } from "formik";
+import Notification from "../../Core/Notification";
+import Page from "../../Page";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {

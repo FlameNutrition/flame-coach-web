@@ -1,9 +1,9 @@
-import React from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import makeStyles from '@material-ui/styles/makeStyles';
+import React from "react";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(({
   root: {},
@@ -24,7 +24,7 @@ const TopBar = ({
       elevation={0}
       {...rest}
     >
-      <Toolbar className={classes.toolbar}/>
+      <Toolbar className={classes.toolbar} />
       {
         /**
          <Toolbar className={classes.toolbar}>

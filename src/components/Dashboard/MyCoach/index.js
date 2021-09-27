@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Typography from '@material-ui/core/Typography';
-import { colors } from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
-import { Person as CoachIcon } from '@material-ui/icons';
-import DashboardBox from '../../Core/DashboardBox';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import { colors } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import Grid from "@material-ui/core/Grid";
+import { Person as CoachIcon } from "@material-ui/icons";
+import DashboardBox from "../../Core/DashboardBox";
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: '100%'
+    height: "100%"
   },
   avatar: {
     backgroundColor: colors.green[600],
@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
     width: 56
   },
   content: {
-    height: '100%'
+    height: "100%"
   }
 }));
 
@@ -47,12 +47,12 @@ const MyCoach = ({
             color="textPrimary"
             variant="h5"
           >
-            {coachName || 'N/A'}
+            {coachName || "N/A"}
           </Typography>
         </Grid>
         <Grid item>
           <Avatar className={classes.avatar}>
-            <CoachIcon/>
+            <CoachIcon />
           </Avatar>
         </Grid>
       </Grid>

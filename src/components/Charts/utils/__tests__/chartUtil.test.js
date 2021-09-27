@@ -129,8 +129,8 @@ describe('chartUtil tests', () => {
 
     expect(result)
       .toStrictEqual({
-        minWeight: 50,
-        maxWeight: 100
+        minValue: 50,
+        maxValue: 100
       });
   });
 });

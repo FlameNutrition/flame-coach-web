@@ -1,16 +1,16 @@
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
-import makeStyles from '@material-ui/styles/makeStyles';
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {},
   dialogTitle: {
-    '& h2': {
+    "& h2": {
       fontSize: 25
     }
   },
@@ -80,7 +80,7 @@ FormDialog.propTypes = {
 };
 
 FormDialog.defaultProps = {
-  deleteHandler: null,
+  deleteHandler: null
 };
 
 export default FormDialog;

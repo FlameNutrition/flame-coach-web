@@ -1,12 +1,12 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from "react-query";
 
-import React from 'react';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
-import { render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
-import theme from '../theme';
-import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import React from "react";
+import { render } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
+import theme from "../theme";
+import MomentUtils from "@date-io/moment";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { ThemeProvider } from "@material-ui/core";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +32,7 @@ const customHookRender = (ui, options) => {
 };
 
 // re-export everything
-export * from '@testing-library/react';
+export * from "@testing-library/react";
 
 // override render method
 export { customRender as render, customHookRender as renderHook };

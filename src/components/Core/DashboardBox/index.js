@@ -1,16 +1,16 @@
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import makeStyles from '@material-ui/styles/makeStyles';
-import CardContent from '@material-ui/core/CardContent';
-import Card from '@material-ui/core/Card';
-import Loading from '../Loading';
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core";
+import CardContent from "@material-ui/core/CardContent";
+import Card from "@material-ui/core/Card";
+import Loading from "../Loading";
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: '100%'
+    height: "100%"
   },
   content: {
-    height: '100%'
+    height: "100%"
   }
 }));
 
@@ -23,7 +23,7 @@ const DashboardBox = ({
   return (
     <Card className={clsx(classes.root)}>
       <CardContent className={classes.content}>
-        {isLoading ? <Loading/> : children}
+        {isLoading ? <Loading /> : children}
       </CardContent>
     </Card>
   );

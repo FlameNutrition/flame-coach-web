@@ -1,44 +1,44 @@
-import React from 'react';
-import nextId from 'react-id-generator';
-import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
-import PropTypes from 'prop-types';
-import { RotateCw as UpdateIcon, Trash2 as DeleteIcon } from 'react-feather';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Button from '@material-ui/core/Button';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import React from "react";
+import nextId from "react-id-generator";
+import { ExpandMore as ExpandMoreIcon } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import { RotateCw as UpdateIcon, Trash2 as DeleteIcon } from "react-feather";
+import { makeStyles } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import SvgIcon from "@material-ui/core/SvgIcon";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   accordionSummary: {
-    display: 'flex',
-    flexFlow: 'column-reverse'
+    display: "flex",
+    flexFlow: "column-reverse"
   },
   date: {
-    display: 'flex',
-    flexFlow: 'flex-end',
-    alignItems: 'center',
+    display: "flex",
+    flexFlow: "flex-end",
+    alignItems: "center",
     color: theme.palette.text.secondary
   },
   taskName: {
-    display: 'flex',
-    alignItems: 'center'
+    display: "flex",
+    alignItems: "center"
   },
   deleteButton: {
     backgroundColor: theme.palette.button.dangerous,
-    marginLeft: '10px'
+    marginLeft: "10px"
   },
   updateButton: {
-    backgroundColor: theme.palette.button.warning,
+    backgroundColor: theme.palette.button.warning
   },
   updateButtonIcon: {
-    marginLeft: '10px'
+    marginLeft: "10px"
   }
 }));
 
@@ -61,7 +61,7 @@ const DailyTask = ({
       key={nextId()}
     >
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon/>}
+        expandIcon={<ExpandMoreIcon />}
         aria-label="Expand"
         aria-controls="additional-actions1-content"
         id="additional-actions1-header"
@@ -109,7 +109,7 @@ const DailyTask = ({
                       fontSize="small"
                       color="inherit"
                     >
-                      <DeleteIcon/>
+                      <DeleteIcon />
                     </SvgIcon>
                   </Button>
                 )}
@@ -156,7 +156,7 @@ const DailyTask = ({
                     fontSize="small"
                     color="inherit"
                   >
-                    <UpdateIcon/>
+                    <UpdateIcon />
                   </SvgIcon>
                 </Button>
               </Grid>

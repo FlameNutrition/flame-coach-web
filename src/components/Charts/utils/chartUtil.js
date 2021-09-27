@@ -1,12 +1,12 @@
-import moment from 'moment';
-import { getTimeRangeDates } from '../../../utils/timeRangeUtil';
+import moment from "moment";
+import { getTimeRangeDates } from "../../../utils/timeRangeUtil";
 
 export const formatDateLabels = (listOfDates) => {
   const labels = [];
 
   listOfDates.forEach((date) => {
     const wrapperDate = moment(date);
-    labels.push(wrapperDate.format('MM-DD'));
+    labels.push(wrapperDate.format("MM-DD"));
   });
 
   return labels;
@@ -14,13 +14,13 @@ export const formatDateLabels = (listOfDates) => {
 
 export const maxTicksLimit = (timeFrame) => {
   switch (timeFrame) {
-    case '1_WEEK':
+    case "1_WEEK":
       return 7;
-    case '1_MONTH':
+    case "1_MONTH":
       return 4;
-    case '2_MONTH':
+    case "2_MONTH":
       return 6;
-    case '6_MONTH':
+    case "6_MONTH":
       return 6;
     default:
       return 7;
@@ -29,13 +29,13 @@ export const maxTicksLimit = (timeFrame) => {
 
 export const maxTicksLimitMobile = (timeFrame) => {
   switch (timeFrame) {
-    case '1_WEEK':
+    case "1_WEEK":
       return 7;
-    case '1_MONTH':
+    case "1_MONTH":
       return 5;
-    case '2_MONTH':
+    case "2_MONTH":
       return 4;
-    case '6_MONTH':
+    case "6_MONTH":
       return 6;
     default:
       return 7;
@@ -61,8 +61,8 @@ export const filterWeightsPerTimeRange = (data, now, timeFrame) => {
   const dataFiltered = [];
 
   data.forEach((data) => {
-    const momentDate = moment(data.date, 'YYYY-MM-DD');
-    if (momentDate.isBetween(filterDates.fromDttm, filterDates.toDttm, undefined, '[]')) {
+    const momentDate = moment(data.date, "YYYY-MM-DD");
+    if (momentDate.isBetween(filterDates.fromDttm, filterDates.toDttm, undefined, "[]")) {
       dataFiltered.push(data);
     }
   });
@@ -82,8 +82,8 @@ export const minMaxValue = (data) => {
   });
 
   return {
-    minValue: Math.floor(minValue),
-    maxValue: Math.floor(maxValue)
+    minValue: minValue === 0 ? 0 : Math.floor(minValue),
+    maxValue: maxValue === 0 ? 10 : Math.floor(maxValue)
   };
 };
 

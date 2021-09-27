@@ -23,8 +23,10 @@ const IndexPage = () => {
           <DashboardLayout user={session.user}>
             {session.user.type === 'CLIENT' ?
               <DashboardClientView
-                customerIdentifier={session.user.identifier}/>
-              : <DashboardCoachView/>}
+                customerIdentifier={session.user.identifier}/> :
+              <DashboardCoachView
+                coachIdentifier={session.user.identifier}/>
+            }
           </DashboardLayout> : null
         }
       </Auth>
