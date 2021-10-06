@@ -368,7 +368,7 @@ const Dashboard = ({
             xs={12}
           >
             <NextAppointment isLoading={nextAppointment.isFetching}
-                             date={getTimezoneDateTime(nextAppointment.data?.appointments[0].dttmStarts)}
+                             date={nextAppointment.isError ? null : getTimezoneDateTime(nextAppointment.data?.appointments[0].dttmStarts)}
             />
           </Grid>
         </Grid>

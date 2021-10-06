@@ -3,7 +3,6 @@ import { colors, makeStyles } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import moment from "moment-timezone";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import { displayDate, displayTime } from "../../../utils/displayDateTimeUtil";
 import DashboardBox from "../../Core/DashboardBox";
@@ -88,12 +87,13 @@ const NextAppointment = ({
 };
 
 NextAppointment.propTypes = {
-  date: PropTypes.objectOf(moment).isRequired,
+  date: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   name: PropTypes.string
 };
 
 NextAppointment.defaultProps = {
+  date: null,
   name: null
 };
 
