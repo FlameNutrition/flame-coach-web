@@ -124,8 +124,8 @@ const Dashboard = ({
             xs={12}
           >
             <NextAppointment isLoading={nextAppointment.isFetching}
-                             date={getTimezoneDateTime(nextAppointment.data?.appointments[0].dttmStarts)}
-                             name={nextAppointment.data?.appointments[0]?.client?.firstName + ' ' + nextAppointment.data?.appointments[0]?.client?.lastName}/>
+                             date={nextAppointment.isError ? null : getTimezoneDateTime(nextAppointment.data?.appointments[0].dttmStarts)}
+                             name={nextAppointment.isError ? null : nextAppointment.data?.appointments[0]?.client?.firstName + ' ' + nextAppointment.data?.appointments[0]?.client?.lastName}/>
           </Grid>
           <Grid
             item
