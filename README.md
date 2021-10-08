@@ -37,7 +37,7 @@ e.g: ./flame-coach-tools --api/web --deploy --version <version>
 ```
 
 ## Contributing ✍️
-Pull requests are welcome. Please check the CONTRIBUTING.md to find the best way to contribute.
+Pull requests are welcome. Please check the [CONTRIBUTING.md](https://github.com/FlameNutrition/flame-coach-web/blob/master/CONTRIBUTING.md) to find the best way to contribute.
 
 ## Authors and acknowledgment
 I'm waiting for you 🤟
