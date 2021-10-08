@@ -1,9 +1,9 @@
 ---
-name: Bug Report Triage
-about: Create a report to help us improve
+name: Bug Report
+about: Report a bug
 title: ''
-labels: bug, bug-reported, triage
-assignees: ''
+labels: bug, triage
+assignees: 'nbentoneves'
 
 ---
 
@@ -24,14 +24,14 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Where happened (please complete the following information):**
- - [  ]  Desktop
- - [  ]  Mobile
+ - Desktop
+ - Mobile
 
 **Which browser (please complete the following information):**
- - [  ]  Safari
- - [  ]  Chrome
- - [  ]  Firefox
- - [  ]  Other
+ - Safari
+ - Chrome
+ - Firefox
+ - Other
 
 **Additional context**
 Add any other context about the problem here.
