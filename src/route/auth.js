@@ -32,7 +32,9 @@ const routesClient = [{
   path: '/measures'
 }, {
   path: '/settings'
-},
+}, {
+  path: '/client/my-coach'
+}
 ];
 
 const Auth = ({
