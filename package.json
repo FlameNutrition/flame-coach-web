@@ -1,7 +1,7 @@
 {
   "name": "flame-coach",
   "author": "Nuno Bento",
-  "version": "2021.11.0",
+  "version": "2021.12.0-SNAPSHOT",
   "private": true,
   "scripts": {
     "build": "next build",
