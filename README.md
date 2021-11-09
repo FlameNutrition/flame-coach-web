@@ -1,5 +1,4 @@
-<img src="./flameCoach.png?raw=true"
-data-canonical-src="./logo.png?raw=true"/>
+<img src="./flameCoach.png?raw=true" />
 # flame-coach-web
 Web code for Flame Coach Application
 

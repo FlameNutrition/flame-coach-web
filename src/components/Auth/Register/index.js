@@ -70,7 +70,7 @@ const Register = ({
             firstName: '',
             lastName: '',
             password: '',
-            type: 'CLIENT',
+            type: 'COACH',
             policy: true,
             registrationKey: registrationKey || ''
           }}
