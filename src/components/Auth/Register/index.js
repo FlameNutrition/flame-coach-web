@@ -64,6 +64,7 @@ const Register = ({
     >
       <Container maxWidth="sm">
         <Formik
+          enableReinitialize
           initialValues={{
             email: email || '',
             firstName: '',

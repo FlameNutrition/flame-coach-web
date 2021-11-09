@@ -102,7 +102,7 @@ const MeasuresView = ({
       updateNotificationHandler(true, errorMessage.msg, errorMessage.level);
     } else {
       mutateAddWeight({
-        customerIdentifier,
+        clientIdentifier: customerIdentifier,
         weight,
         utcDate: date
       }, {
@@ -127,7 +127,7 @@ const MeasuresView = ({
 
   const deleteWeightHandler = (event) => {
     mutateDeleteWeight({
-      customerIdentifier,
+      clientIdentifier: customerIdentifier,
       identifier: event.identifier
     }, {
       onError: (error) => {
