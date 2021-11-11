@@ -1,5 +1,6 @@
 <img src="./flameCoach.png?raw=true" />
-# flame-coach-web
+
+## flame-coach-web
 Web code for Flame Coach Application
 
 ## Description
