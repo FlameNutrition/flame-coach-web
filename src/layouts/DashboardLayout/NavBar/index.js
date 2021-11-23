@@ -27,7 +27,6 @@ import NavItem from "./NavItem";
 import PropTypes from "prop-types";
 import { isFeatureEnable } from "../../../utils/toggles";
 import { useRouter } from "next/router";
-import { logInfo } from "../../../logging";
 
 const itemsCoach = [
   {
@@ -125,7 +124,7 @@ const NavBar = ({
   const classes = useStyles();
   const router = useRouter();
 
-  logInfo("NavBar", "render", "user", user);
+  //logInfo("NavBar", "render", "user", user);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {

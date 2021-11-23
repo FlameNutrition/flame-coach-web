@@ -1,5 +1,5 @@
-import { loadEnvConfig } from '@next/env'
+import { loadEnvConfig } from '@next/env';
 
 export default async () => {
-  loadEnvConfig(process.env.PWD)
-}
+  loadEnvConfig(process.env.PWD);
+};

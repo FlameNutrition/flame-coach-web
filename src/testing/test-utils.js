@@ -8,7 +8,14 @@ import MomentUtils from "@date-io/moment";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { ThemeProvider } from "@material-ui/core";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // https://react-query.tanstack.com/guides/testing
+      retry: false,
+    },
+  },
+});
 
 // eslint-disable-next-line react/prop-types
 const AllTheProviders = ({ children }) => {
@@ -28,7 +35,7 @@ const customRender = (ui, options) => {
 };
 
 const customHookRender = (ui, options) => {
-  return renderHook(() => ui, { wrapper: AllTheProviders, ...options });
+  return renderHook(ui, { wrapper: AllTheProviders, ...options });
 };
 
 // re-export everything
