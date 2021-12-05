@@ -56,5 +56,8 @@ export {
   getIncomes
 } from './axios-incomes';
 
+export {
+  getHarrisBenedictCalculator
+} from './axios-calories-calculator';
 
 

@@ -4,7 +4,7 @@ import { isFeatureEnable } from '../utils/toggles';
 import { useSession } from 'next-auth/client';
 
 const unprotectedRoutes = [
-  '/login', '/logout', '/register', '/404', '/test'
+  '/login', '/logout', '/register', '/404'
 ];
 
 const routesCoach = [{
@@ -21,6 +21,8 @@ const routesCoach = [{
   path: '/settings'
 }, {
   path: '/income'
+}, {
+  path: '/coach/calculator'
 }
 ];
 
@@ -69,7 +71,7 @@ const Auth = ({
         }
       }
     }
-  });
+  }, [router]);
 
   if (!pathIsProtected) return children;
   if (session && !loading && isAuth) return children;

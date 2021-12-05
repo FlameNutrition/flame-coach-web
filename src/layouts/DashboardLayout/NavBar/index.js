@@ -11,6 +11,7 @@ import {
   BarChart as BarChartIcon,
   Calendar as CalendarIcon,
   DollarSign as IncomeIcon,
+  Clipboard as CalculatorIcon,
   Heart as MeasuresIcon,
   LogOut as LogOutIcon,
   PhoneCall as AppointmentsIcon,
@@ -27,7 +28,6 @@ import NavItem from "./NavItem";
 import PropTypes from "prop-types";
 import { isFeatureEnable } from "../../../utils/toggles";
 import { useRouter } from "next/router";
-import { logInfo } from "../../../logging";
 
 const itemsCoach = [
   {
@@ -54,6 +54,11 @@ const itemsCoach = [
     href: "/income",
     icon: IncomeIcon,
     title: "Income"
+  },
+  {
+    href: "/coach/calculator",
+    icon: CalculatorIcon,
+    title: "Calculator"
   },
   {
     href: "/account",
@@ -125,7 +130,7 @@ const NavBar = ({
   const classes = useStyles();
   const router = useRouter();
 
-  logInfo("NavBar", "render", "user", user);
+  //logInfo("NavBar", "render", "user", user);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
