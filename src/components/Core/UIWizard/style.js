@@ -12,6 +12,6 @@ export const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2),
     },
     resetContainer: {
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
     },
 }));

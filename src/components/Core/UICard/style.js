@@ -2,7 +2,8 @@ import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles(() => ({
     root: {
-        height: "100%"
+        height: "auto",
+        marginBottom: '24px'
     },
     content: {
         height: "100%"

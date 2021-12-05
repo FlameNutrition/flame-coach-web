@@ -11,6 +11,7 @@ import {
   BarChart as BarChartIcon,
   Calendar as CalendarIcon,
   DollarSign as IncomeIcon,
+  Clipboard as CalculatorIcon,
   Heart as MeasuresIcon,
   LogOut as LogOutIcon,
   PhoneCall as AppointmentsIcon,
@@ -53,6 +54,11 @@ const itemsCoach = [
     href: "/income",
     icon: IncomeIcon,
     title: "Income"
+  },
+  {
+    href: "/coach/calculator",
+    icon: CalculatorIcon,
+    title: "Calculator"
   },
   {
     href: "/account",

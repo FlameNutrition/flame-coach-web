@@ -4,9 +4,11 @@ import { Typography } from "@material-ui/core";
 import { useStyles } from "./style";
 
 const UIText = ({
+  padding,
   children,
 }) => {
-  const classes = useStyles();
+
+  const classes = useStyles({ padding });
 
   return (
     <Typography
@@ -19,10 +21,12 @@ const UIText = ({
 };
 
 UIText.propTypes = {
+  padding: PropTypes.string,
   children: PropTypes.node.isRequired
 };
 
 UIText.defaultProps = {
+  padding: '15px',
   isLoading: false
 };
 

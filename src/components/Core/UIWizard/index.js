@@ -9,6 +9,8 @@ const UIWizard = ({
     getStepContent,
     result,
     isWizardValid,
+    handleFinish,
+    handleResetValidator,
 }) => {
 
     const classes = useStyles();
@@ -19,6 +21,7 @@ const UIWizard = ({
     };
 
     const handleBack = () => {
+        handleResetValidator();
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
@@ -39,19 +42,31 @@ const UIWizard = ({
                                     <Button
                                         disabled={activeStep === 0}
                                         onClick={handleBack}
-                                        className={classes.button}
-                                    >
+                                        className={classes.button}>
                                         Back
                                     </Button>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleNext}
-                                        className={classes.button}
-                                        disabled={!isWizardValid}
-                                    >
-                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                    </Button>
+                                    {activeStep === steps.length - 1 && (
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() => {
+                                                handleNext();
+                                                handleFinish();
+                                            }}
+                                            className={classes.button}
+                                            disabled={!isWizardValid}>
+                                            Finish
+                                        </Button>)}
+                                    {activeStep !== steps.length - 1 && (
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleNext}
+                                            className={classes.button}
+                                            disabled={!isWizardValid}>
+                                            Next
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                         </StepContent>
@@ -61,7 +76,10 @@ const UIWizard = ({
             {activeStep === steps.length && (
                 <Paper square elevation={0} className={classes.resetContainer}>
                     {result}
-                    <Button onClick={handleReset} className={classes.button}>
+                    <Button onClick={handleReset}
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}>
                         Reset
                     </Button>
                 </Paper>
@@ -75,7 +93,8 @@ UIWizard.propTypes = {
     steps: PropTypes.array.isRequired,
     getStepContent: PropTypes.func.isRequired,
     result: PropTypes.node.isRequired,
-    isWizardValid: PropTypes.bool.isRequired
+    isWizardValid: PropTypes.bool.isRequired,
+    handleResetValidator: PropTypes.func.isRequired,
 };
 
 export default UIWizard;
