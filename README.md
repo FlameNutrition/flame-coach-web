@@ -36,6 +36,14 @@ Deploy:
 e.g: ./flame-coach-tools --api/web --deploy --version <version>
 ```
 
+## How to Submit a bug
+1. Make sure that you describe the issue/bug as detailed as possible.  
+2. If possible, it would help if you posted pictures or error logs.     
+3. How did you encounter the bug? Can we recreate the problem? Do you have any possible solutions?  
+4. Have you tried solving the bug? If so, then please share so that all future devs don't have to repeat the process!  
+   - Collaborated w/ [Michael Brunette](https://github.com/mcbrunette33)
+
+
 ## Contributing ✍️
 Pull requests are welcome. Please check the [CONTRIBUTING.md](https://github.com/FlameNutrition/flame-coach-web/blob/master/CONTRIBUTING.md) to find the best way to contribute.
 

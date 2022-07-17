@@ -37,5 +37,5 @@ Please check this amazing tutorial to do the first contribution: https://github.
 
 ## Code review process
 
-Right now we don't have a code review process because this is a quite new opensource project. Please be aware of it and try to be pacient after the pull request
+Right now we don't have a code review process because this is a quite new opensource project. Please be aware of it and try to be patient after the pull request
 submission.
