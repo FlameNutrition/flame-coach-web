@@ -3,7 +3,7 @@
 If you want to contribute to this repository, you are in the right place 🙂. Here you will find the best way to contribute and also make some improvements in
 this document!
 
-Please be aware this opensource project is new and most of the following rules/processes are under experience, if you have any question or suggestions please
+Please be aware this opensource project is new. Thus, most of the following rules/processes are under experience. If you have any questions or suggestions, please
 contact me directly.
 
 ## Contributions we are looking for
@@ -37,5 +37,4 @@ Please check this amazing tutorial to do the first contribution: https://github.
 
 ## Code review process
 
-Right now we don't have a code review process because this is a quite new opensource project. Please be aware of it and try to be pacient after the pull request
-submission.
+We still don't have a code review process because this is quite a new open-source project. Please be aware of it and be patient after the pull request submission.

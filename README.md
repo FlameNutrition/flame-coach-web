@@ -7,11 +7,11 @@ Web code for Flame Coach Application
 This is the frontend source of Flame Coach. Code uses [flame-coach-service] to retrieve the information 
 to expose into the website. If you want to develop a new feature you must write the core code in the [flame-coach-service].
 
-Flame Coach frontend uses reactj and nextjs as the core framework, which means the code is in Javascript (ES6).
+Flame Coach frontend uses reactjs and nextjs as the core framework, which means the code is in Javascript (ES6).
 
 ## Compile 🏗️
 It's easy to compile and use the Flame Coach Web. 
-Keep in mind you will need to run a backend instance in your local computer (find how [here](https://github.com/FlameNutrition/flame-coach-service/blob/master/README.md#run-%EF%B8%8F)). 
+Keep in mind that you will need to run a backend instance in your local computer (find how [here](https://github.com/FlameNutrition/flame-coach-service/blob/master/README.md#run-%EF%B8%8F)). 
 The project uses package.json to manage dependencies, also, there you can find scripts that will help you to compile, build and run the application.
 
 To compile the application please run the following command:
